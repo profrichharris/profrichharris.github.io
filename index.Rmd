@@ -1,9 +1,10 @@
 ---
-title: "downcute chaos template example"
+title: "Richard Harris"
+subtitle: "School of Geographical Sciences, University of Bristol"
 date: "`r Sys.Date()`"
 output:
   rmdformats::downcute:
-    code_folding: show
+#   code_folding: show
     self_contained: true
     thumbnails: false
     lightbox: true
@@ -16,22 +17,10 @@ pkgdown:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## About Me
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+I am a social geographer interested in socio-spatial inequalities within society and their causes. Presently I am Director of the South West Doctoral Training Partnership and was founding director of the University of Bristol’s £1.3 million funded Q-Step Centre for undergraduate, quantitative social science. My early research looked at the application of spatial statistics, geographic information science and geodemographics in marketing, public policy and urban geography – all examples of what are now described as geographic data science. More recent work has been in urban analytics and cartographic geovisualisation of administrative datasets, focusing on developing and applying innovative computational methods to analyse the geographies of Covid-19, to measure and to visualise spatial scales of social and ethnic segregation, and to study choice and markets in educational systems; and also in the geographies of education, supporting quantitative and statistical literacy amongst geographers and undergraduate and postgraduate social scientists. I am also a licensed lay minister in the Church of England so have some theological interests too.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+## Links
 
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+XXXX
