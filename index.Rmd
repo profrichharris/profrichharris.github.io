@@ -27,7 +27,7 @@ I am a social geographer interested in **socio-spatial inequalities** within soc
 
 [My ORCiD page](https://orcid.org/0000-0001-7943-9005) (includes some papers I had forgotten about)
 
-[My RPubs page](https://rpubs.com/profrichharris) (occasional tutorials, working ideas, supplementary material and other 'stuff' in R)
+[My RPubs page](https://rpubs.com/profrichharris) (occasional tutorials, working ideas, supplementary material and other 'stuff' [in R](https://cran.r-project.org/))
 
 ## Books
 
@@ -39,4 +39,6 @@ I am a social geographer interested in **socio-spatial inequalities** within soc
 
 ![](geodemographics.jpg){width=80} [**Geodemographics, GIS and Neighbourhood Targeting**](https://www.google.co.uk/books/edition/Geodemographics_GIS_and_Neighbourhood_Ta/f62DTuyRe0UC?hl=en&gbpv=1&printsec=frontcover){width=20} (with Peter Sleight & Richard Webber)
 
+### Credits
 
+This website was authored in [R Markdown](https://rmarkdown.rstudio.com/) using the downcute chaos theme by [Zac Garland](https://github.com/zac-garland) available in the [rmdformats](https://cran.r-project.org/web/packages/rmdformats/) library. It is hosted using [GitHub Pages](https://pages.github.com/).
