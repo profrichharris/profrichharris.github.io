@@ -25,9 +25,9 @@ I am a social geographer interested in **socio-spatial inequalities** within soc
 
 [My University of Bristol Research Information pages](https://research-information.bris.ac.uk/en/persons/richard-j-harris)
 
-[My ORCiD page](https://orcid.org/0000-0001-7943-9005)
+[My ORCiD page](https://orcid.org/0000-0001-7943-9005) (includes some papers I had forgotten about)
 
-[My RPubs page](https://rpubs.com/profrichharris)
+[My RPubs page](https://rpubs.com/profrichharris) (occasional tutorials, working ideas, supplementary material and other 'stuff' in R)
 
 ## Books
 
