@@ -1,8 +1,15 @@
 ---
-title: "Untitled"
-author: "Rich Harris"
-date: "02/06/2022"
-output: html_document
+title: "downcute chaos template example"
+date: "`r Sys.Date()`"
+output:
+  rmdformats::downcute:
+    code_folding: show
+    self_contained: true
+    thumbnails: false
+    lightbox: true
+    downcute_theme: "chaos"
+pkgdown:
+  as_is: true
 ---
 
 ```{r setup, include=FALSE}
