@@ -31,15 +31,25 @@ I am a social geographer interested in **socio-spatial inequalities** within soc
 
 [My RPubs page](https://rpubs.com/profrichharris) (occasional tutorials, working ideas, supplementary material and other 'stuff' [in R](https://cran.r-project.org/))
 
+[The School of Geographical Sciences](http://www.bristol.ac.uk/geography/), [University of Bristol](https://www.bristol.ac.uk/)
+
 ## Books
 
-![](segregation.jpg){width=80} [**Ethnic Segregation Between Schools**](https://bristoluniversitypress.co.uk/ethnic-segregation-between-schools) (with Ron Johnston)
+[**Ethnic Segregation Between Schools**](https://bristoluniversitypress.co.uk/ethnic-segregation-between-schools) (with Ron Johnston)
 
-![](quantgeog.jpg){width=80} [**Quantitative Geography: The Basics**](https://www.google.co.uk/books/edition/Quantitative_Geography/RsbmDAAAQBAJ?hl=en&gbpv=1&printsec=frontcover)
+![](segregation.jpg){width=80}
 
-![](statistics.jpg){width=80} [**Statistics for Geography and Environmental Science**](https://www.google.co.uk/books/edition/Statistics_for_Geography_and_Environment/JJZ9AwAAQBAJ?hl=en&gbpv=1&printsec=frontcover){width=20} (with Claire Jarvis)
+[**Quantitative Geography: The Basics**](https://www.google.co.uk/books/edition/Quantitative_Geography/RsbmDAAAQBAJ?hl=en&gbpv=1&printsec=frontcover)
 
-![](geodemographics.jpg){width=80} [**Geodemographics, GIS and Neighbourhood Targeting**](https://www.google.co.uk/books/edition/Geodemographics_GIS_and_Neighbourhood_Ta/f62DTuyRe0UC?hl=en&gbpv=1&printsec=frontcover) (with Peter Sleight and Richard Webber)
+![](quantgeog.jpg){width=80}
+
+[**Statistics for Geography and Environmental Science**](https://www.google.co.uk/books/edition/Statistics_for_Geography_and_Environment/JJZ9AwAAQBAJ?hl=en&gbpv=1&printsec=frontcover){width=20} (with Claire Jarvis)
+
+![](statistics.jpg){width=80}
+
+[**Geodemographics, GIS and Neighbourhood Targeting**](https://www.google.co.uk/books/edition/Geodemographics_GIS_and_Neighbourhood_Ta/f62DTuyRe0UC?hl=en&gbpv=1&printsec=frontcover) (with Peter Sleight and Richard Webber)
+
+![](geodemographics.jpg){width=80}
 
 ## Listening choices
 
