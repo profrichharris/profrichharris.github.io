@@ -1,5 +1,5 @@
 ---
-title: "Richard Harris"
+title: "Richard Harris (Professor)"
 subtitle: "School of Geographical Sciences, University of Bristol"
 date: "`r Sys.Date()`"
 output:
@@ -19,11 +19,21 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## About Me
 
-I am a social geographer interested in **socio-spatial inequalities** within society and their causes. Presently I am Director of the [South West Doctoral Training Partnership](https://www.swdtp.ac.uk/) and was founding director of the University of Bristol’s £1.3 million funded [Q-Step Centre](https://www.nuffieldfoundation.org/students-teachers/q-step) for undergraduate, quantitative social science. My early research looked at the application of spatial statistics, geographic information science and geodemographics in marketing, public policy and urban geography – all examples of what are now described as **geographic data science**. More recent work has been in urban analytics and cartographic geovisualisation of administrative datasets, focusing on developing and applying innovative computational methods to analyse the **geographies of Covid-19**, to measure and to visualise spatial scales of **social and ethnic segregation**, and to study choice and markets in educational systems; also in the **geographies of education**, supporting quantitative and statistical literacy amongst geographers and undergraduate and postgraduate social scientists. I am also a licensed lay minister in the [Church of England](https://www.churchofengland.org/) so have some theological interests too.
+I am a social geographer in the [School of Geographical Sciences](http://www.bristol.ac.uk/geography/) interested in **socio-spatial inequalities** within society and their causes. Presently I am Director of the [South West Doctoral Training Partnership](https://www.swdtp.ac.uk/) and was founding director of [the University of Bristol](https://www.bristol.ac.uk/)’s £1.3 million funded [Q-Step Centre](https://www.nuffieldfoundation.org/students-teachers/q-step) for undergraduate, quantitative social science.
+
+My early research looked at the application of spatial statistics, geographic information science and geodemographics in marketing, public policy and urban geography – all examples of what are now described as **geographic data science**. More recent work has been in urban analytics and cartographic geovisualisation of administrative datasets, focusing on developing and applying innovative computational methods to analyse the **geographies of Covid-19**, to measure and to visualise spatial scales of **social and ethnic segregation**, and to study choice and markets in educational systems; also in the **geographies of education**, supporting quantitative and statistical literacy amongst geographers and undergraduate and postgraduate social scientists.
+
+I am a Fellow of the [Academy of Social Sciences](https://acss.org.uk/) and of the [Royal Geographical Society (with IBG)](https://www.rgs.org/). I am also a licensed lay minister in the [Church of England](https://www.churchofengland.org/) so have some theological interests too.
 
 [\@profrichharris on Twitter](https://twitter.com/profrichharris)
 
-## Links
+
+## Key Research Interests
+
+Social Geography. Quantitative Methods and Geographic Data Science. Socio-spatial inequality. Geographies of education.
+
+
+## Publications
 
 [My University of Bristol Research Information pages](https://research-information.bris.ac.uk/en/persons/richard-j-harris)
 
@@ -31,7 +41,6 @@ I am a social geographer interested in **socio-spatial inequalities** within soc
 
 [My RPubs page](https://rpubs.com/profrichharris) (occasional tutorials, working ideas, supplementary material and other 'stuff' [in R](https://cran.r-project.org/))
 
-[The School of Geographical Sciences](http://www.bristol.ac.uk/geography/), [University of Bristol](https://www.bristol.ac.uk/)
 
 ## Books
 
@@ -51,11 +60,17 @@ I am a social geographer interested in **socio-spatial inequalities** within soc
 
 ![](geodemographics.jpg){width=80}
 
+## Come Study With Me!
+
+I have supervised PhD students from across the world, including Europe, Asia, Africa and the Middle East. Applicants are invited in topics aligned with my research interests. Please see the [School of Geographical Sciences webpages](http://www.bristol.ac.uk/geography/courses/postgraduate/humanphd.html) for funding opportunities and how to apply.
+
+
 ## Listening choices
 
 What I have been listening to on [Tidal](https://tidal.com/) (May 2022) 
 
 ![](stories_sticker.png){width=300}
+
 
 ### Credits
 
