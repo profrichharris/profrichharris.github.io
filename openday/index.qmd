@@ -1,0 +1,239 @@
+---
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+![](logo - colour.jpg){width=300}
+
+<font size = 10>Geographies of COVID-19</font><font size = 6></br>An exercise in geographic data science in R</font>
+
+## Step 1: Download the data and install/load any libraries
+
+```{r}
+
+if(!"tidyverse" %in% installed.packages()[,1]) install.packages("tidyverse")
+if(!"lme4" %in% installed.packages()[,1]) install.packages("lme4")
+if(!"ggplot2" %in% installed.packages()[,1]) install.packages("ggplot2")
+if(!"proxy" %in% installed.packages()[,1]) install.packages("proxy")
+if(!"sf" %in% installed.packages()[,1]) install.packages("sf")
+
+require(tidyverse)
+require(lme4)
+require(ggplot2)
+require(sf)
+
+df <- read_csv("https://www.dropbox.com/s/baqkwvsb0ah3ahh/covid_data.csv?dl=1") %>%
+  mutate(across(starts_with("age"), ~ 100 * . / `All Ages`)) %>%
+  mutate(carebeds = round(1000 * carebeds / `Adults`, 1)) %>%
+  mutate(`age22-34` = `age22-24` + `age25-29` + `age30-34`) %>%
+  pivot_longer(., cols = c(starts_with("2020-"), starts_with("2021-"), starts_with("2022-")),
+               names_to = "week",
+               values_to = "cases") %>%
+  filter(week > "2020-03-13")
+
+cat("\n\n*** Data loaded ***\n\n")
+
+```
+
+</br>
+
+## Step 2: Fit a model
+
+```{r}
+
+sample.week <- sample(df$week, 1)
+
+mlm <-  df %>%
+  filter(week == sample.week) %>%
+  mutate(across(starts_with("age") | matches("carebeds") | matches("AandE"),
+                ~ as.numeric(scale(.)))) %>%
+  glmer(cases ~  `age5-11` + `age12-17` + `age18-21` + `age22-34` +
+                  carebeds + AandE +
+                 (1|MSOA11CD) + (1|regionName) + offset(log(`All Ages`)),
+                family=poisson(), data = .,
+                control = glmerControl(calc.derivs = FALSE))
+
+cat("\n\n*** Model fitted with", sample.week,"as the sampled week ***\n\n")
+
+```
+
+</br>
+
+## Step 3: Which region had the highest COVID rate that week?
+
+```{r}
+
+regional.rates <- ranef(mlm, whichel = "regionName") %>%
+  as_tibble() %>%
+  select(-grpvar, -term) %>%
+  rename(region = grp) %>%
+  arrange(desc(region))
+
+regional.rates %>%
+  print(n = Inf)
+
+```
+
+</br>
+
+## Step 4: How different are the regions from one another?
+
+```{r}
+
+regional.rates %>%
+  mutate(ymin = condval - 1.39 * condsd, ymax = condval + 1.39 * condsd) %>%
+  ggplot(., aes(x = region, y = condval, ymin = ymin, ymax = ymax)) +
+  geom_errorbar() +
+  geom_hline(yintercept = 0, linetype = "dotted") +
+  xlab("Region")
+
+```
+
+</br>
+
+## Step 5: Map the regional differences
+
+</br>
+
+### 5a: Start by getting and plotting a boundary file
+
+```{r}
+
+if(!file.exists("england_gor_2011_gen_clipped.shp")) {
+  download.file("https://www.dropbox.com/s/gb5161kl17zra7v/England_gor_2011_gen_clipped.zip?dl=1",
+              "regions.zip", mode = "wb")
+  unzip("regions.zip")
+}
+  
+map.outline <- read_sf("england_gor_2011_gen_clipped.shp") %>%
+  rename(region = name)
+
+plot(st_geometry(map.outline))
+
+```
+
+</br>
+
+### 5b: Join to the modelled rates and plot
+
+```{r}
+
+inner_join(map.outline, regional.rates, by = "region") %>%
+  mutate(condval = ifelse(condval > 3.5, 3.5, condval)) %>%
+  mutate(condval = ifelse(condval < -3.5, -3.5, condval)) %>%
+  ggplot(.) +
+    geom_sf(aes(fill = condval)) +
+    scale_fill_distiller(palette = "RdYlBu", direction = -1,
+       limits = c(-3.5, 3.5)) +
+    ggtitle(paste0("Highest rate: ",regional.rates$region[1]), sample.week)
+
+```
+
+</br>
+
+## Step 6: Dig a little more into the geography for that week
+
+</br>
+
+### 6a: Refit the model but at a sub-regional scale
+
+```{r}
+
+mlm2 <-  df %>%
+  filter(week == sample.week) %>%
+  mutate(across(starts_with("age") | matches("carebeds") | matches("AandE"),
+                ~ as.numeric(scale(.)))) %>%
+  glmer(cases ~  `age5-11` + `age12-17` + `age18-21` + `age22-34` +
+                  carebeds + AandE +
+                 (1|MSOA11CD) + (1|PLACE) + offset(log(`All Ages`)),
+                family=poisson(), data = .,
+                control = glmerControl(calc.derivs = FALSE))
+
+cat("\n\n*** Model fitted with", sample.week,"still as the sampled week ***\n\n")
+
+```
+
+</br>
+
+### 6b: Look at which places have the highest rates
+
+```{r}
+
+sub.regional.rates <- ranef(mlm2, whichel = "PLACE") %>%
+  as_tibble() %>%
+  select(-grpvar, -term) %>%
+  rename(PLACE = grp) %>%
+  arrange(desc(PLACE))
+
+sub.regional.rates %>%
+  print(n = 10)
+
+```
+
+</br>
+
+### 6c: Look at the differences for 'top ten'
+
+```{r}
+
+sub.regional.rates %>%
+  slice(1:10) %>%
+  mutate(ymin = condval - 1.39 * condsd, ymax = condval + 1.39 * condsd) %>%
+  ggplot(., aes(x = PLACE, y = condval, ymin = ymin, ymax = ymax)) +
+  geom_errorbar() +
+  geom_hline(yintercept = 0, linetype = "dotted") +
+  xlab("Place")
+
+```
+
+</br>
+
+### 6d: Map the sub-regional results
+
+```{r}
+
+if(!file.exists("places.shp")) {
+  download.file("https://www.dropbox.com/s/7cd8ef8nrkbild5/places.zip?dl=1",
+              "places.zip", mode = "wb")
+  unzip("places.zip")
+}
+  
+read_sf("places.shp") %>%
+  inner_join(., sub.regional.rates, by = "PLACE") %>%
+  mutate(condval = ifelse(condval > 3.5, 3.5, condval)) %>%
+  mutate(condval = ifelse(condval < -3.5, -3.5, condval)) %>%
+  ggplot(.) +
+    geom_sf(aes(fill = condval), colour = "transparent") +
+    scale_fill_distiller(palette = "RdYlBu", direction = -1,
+       limits = c(-3.5, 3.5)) +
+    geom_sf(data = map.outline, fill = "transparent") +
+    ggtitle(paste0("Highest rate: ",sub.regional.rates$PLACE[1]), sample.week)
+
+```
+
+</br>
+
+## Step 7: Record the location with the highest rate in the padlet
+
+Go to the padlet, https://en-gb.padlet.com/profrichharris/openday, click on the red circle with a white + sign, search for the place with the highest COVID-19 rate in your map, and enter the date of that rate in the text before hitting Publish.
+
+</br>
+
+## Step 8: See what happens in a different week
+
+Go back to Step 2 and repeat everything from that step onward (you can miss out step 5a)
+
+</br>
+</br>
+</br>
+
+  
+  
+  
