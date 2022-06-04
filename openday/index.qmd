@@ -10,7 +10,7 @@ format:
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-![](logo - colour.jpg){width=300}
+![](logocolour.jpg){width=300}
 
 <font size = 10>Geographies of COVID-19</font><font size = 6></br>An exercise in geographic data science in R</font>
 
