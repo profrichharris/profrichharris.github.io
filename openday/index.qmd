@@ -7,7 +7,7 @@ format:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE)
 ```
 
 ![](logocolour.jpg){width=300}
@@ -34,10 +34,30 @@ and [Kelvyn Jones](https://en.wikipedia.org/wiki/Kelvyn_Jones), a leading pionee
 
 ![](jones.jpg){width=100}
 
+
 We continue to honour this tradition through our [Quantitative Spatial Science Research Group](https://www.bristol.ac.uk/geography/research/quantitative-spatial-science/), which leads the teaching of quantitative methods to students in all years of our undergraduate (and Masters) programmes. These include [BSc Geography](http://www.bristol.ac.uk/study/undergraduate/2023/geography/bsc-geography/), [BSc Geography with Quantitative Research Methods](http://www.bristol.ac.uk/study/undergraduate/2023/quantitative-research-methods/bsc-geography-quantitative-research/) and our new [MSc in Geographic Data Science and Spatial Analytics](https://www.bristol.ac.uk/study/postgraduate/2022/sci/msc-geographic-data-science-and-spatial-analytics/).
 
 
-## Step 1: Download the data and install/load any libraries
+## Why Teaching Computing, Quantitative Methods and Data-handling Skills?
+
+Programming languages such as [R](https://cran.r-project.org/) and [Python](https://www.python.org/) provide an integrated environment that can be used to input, analyse and communicate the results of data-based research, including by visual methods such as maps. This webpage was written in [R Studio](https://www.rstudio.com/), allowing me to bring together the computer code, the results of running that code and other text such as that which you are reading, all into one document. More standard off-the-shelf software such as Excel do not allow this. Presently, we teach R to **all our students**. We do this to support their training in research methods -- the sorts of skills that all geographers need [and are expected to have](https://www.qaa.ac.uk/quality-code/subject-benchmark-statements/geography) -- and also to enhance their employability because data science skills are well regarded by employers.
+
+
+## For today
+
+All you need to do for today's session is follow along with the instructor, copying and pasting code from this document into the R Console as they do. **Please do not rush ahead as this is more likely to generate errors that you will then need to go back and correct**. Just take it one step at a time, in company with the instructor. The purpose of the session is not to teach you coding so there is no need to worry about what the code fully means. It is simply to give you a flavour of the sort of skills we teach our students.
+
+If you wish, you could run this practical again from a personal computer when you get home. If you do, take a note of the web adress, which is [https://profrichharris.github.io/openday](https://profrichharris.github.io/openday) and note that you will first need to install [R](https://cran.r-project.org/) and then [RStudio Desktop](https://www.rstudio.com/products/rstudio/download/) on the computer for the following code to work. These software are free and operate on Windows, Mac OS and Linux.
+
+
+### To Begin
+
+When the instructor invites you to do so, please open RStudio on your computer.
+
+
+### Step 1: Install/load any required libraries
+
+The great advantage of software such as R is that it has available a large number of additional libraries that extend its functionality (for mapping, for example). The ones we need today are listed below. The code chunk checks to see if these library have been installed already, if not then installs them, and then instructs that they are required for the current session in R.
 
 ```{r}
 
@@ -52,6 +72,13 @@ require(lme4)
 require(ggplot2)
 require(sf)
 
+```
+
+
+Next, we will download and load into R some data which give the reported number of positive COVID-19 cases in English neighbourhoods for the period of pandemic until free testing ended. These data are based on those from the [Coranvirus Data Dashboard](https://coronavirus.data.gov.uk/) for England, with some minor adjustments to ensure the regional totals match those reported regionally. The English neighbourhoods are what are known as [Middle Super Output Areas](https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeography) (MSOAs). As the data are read-in, some variables are recalculated to create percentages (e.g. the percentage of the population aged 5 to 11 years) and the number of care home beds per 1000 of the Adult population. 
+
+```{r}
+
 df <- read_csv("https://www.dropbox.com/s/baqkwvsb0ah3ahh/covid_data.csv?dl=1") %>%
   mutate(across(starts_with("age"), ~ 100 * . / `All Ages`)) %>%
   mutate(carebeds = round(1000 * carebeds / `Adults`, 1)) %>%
@@ -60,14 +87,28 @@ df <- read_csv("https://www.dropbox.com/s/baqkwvsb0ah3ahh/covid_data.csv?dl=1") 
                names_to = "week",
                values_to = "cases") %>%
   filter(week > "2020-03-13")
+```
 
-cat("\n\n*** Data loaded ***\n\n")
+Here is the top of the data:
+
+```{r}
+
+head(df)
 
 ```
 
-</br>
 
-## Step 2: Fit a model
+### Step 2: Fit a model
+
+Next we will each fit a statistical model to a randomly sampled week of the pandemic. **Please note that unless your randomly selected week happens to be the same as mine, here, then our results and what appears on screen will differ from now on. The code remains the same, however.**
+
+The model is not really very different to fitting a line of best fit to a scatter plot of data. The model basically says that the number of cases of COVID-19 in a neighbourhood is a function of the number of people who live there, their age profile and whether there is a carehome/A&E facility there. Remember that early in the pandemic those living in carehomes were particularly at risk. The model allows that in some places the number of COVID-19 cases is higher than expected, which, from a geographical point of view raises the question, *where?*
+
+It may take a minute or two to fit the model so please be patient.
+
+```{r, include = FALSE}
+set.seed(06062022)
+```
 
 ```{r}
 
@@ -83,13 +124,21 @@ mlm <-  df %>%
                 family=poisson(), data = .,
                 control = glmerControl(calc.derivs = FALSE))
 
-cat("\n\n*** Model fitted with", sample.week,"as the sampled week ***\n\n")
+```
+
+
+When the model has been fitted, take a note of the week it has been fitted for.
+
+```{r}
+
+print(sample.week)
 
 ```
 
-</br>
 
 ## Step 3: Which region had the highest COVID rate that week?
+
+If we 'dig' into the results of the model a little we find what are, in effect, the regional rates of COVID-19, allowing for ages, carehomes and A&E facilities. They are reported on a stanfardised and also relative scale: a value greater than zero represents a region with more COVID-19 cases relative to the average that week; a value greater than zero represents a region with fewer. For the week I am looking at, which is in April 2021, Yorkshire and The Humber has most cases and the South West the least **but, remember, it could be different for the week you are looking at**.
 
 ```{r}
 
@@ -100,6 +149,8 @@ regional.rates <- ranef(mlm, whichel = "regionName") %>%
   arrange(desc(region))
 
 regional.rates %>%
+  select(region, condval) %>%
+  mutate(condval = round(condval, 3)) %>%
   print(n = Inf)
 
 ```

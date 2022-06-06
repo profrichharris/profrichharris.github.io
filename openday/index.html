@@ -104,8 +104,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#step-1-download-the-data-and-installload-any-libraries" id="toc-step-1-download-the-data-and-installload-any-libraries" class="nav-link" data-scroll-target="#step-1-download-the-data-and-installload-any-libraries">Step 1: Download the data and install/load any libraries</a></li>
+  <li><a href="#why-teaching-computing-quantitative-methods-and-data-handling-skills" id="toc-why-teaching-computing-quantitative-methods-and-data-handling-skills" class="nav-link" data-scroll-target="#why-teaching-computing-quantitative-methods-and-data-handling-skills">Why Teaching Computing, Quantitative Methods and Data-handling Skills?</a></li>
+  <li><a href="#for-today" id="toc-for-today" class="nav-link" data-scroll-target="#for-today">For today</a>
+  <ul class="collapse">
+  <li><a href="#to-begin" id="toc-to-begin" class="nav-link" data-scroll-target="#to-begin">To Begin</a></li>
+  <li><a href="#step-1-installload-any-required-libraries" id="toc-step-1-installload-any-required-libraries" class="nav-link" data-scroll-target="#step-1-installload-any-required-libraries">Step 1: Install/load any required libraries</a></li>
   <li><a href="#step-2-fit-a-model" id="toc-step-2-fit-a-model" class="nav-link" data-scroll-target="#step-2-fit-a-model">Step 2: Fit a model</a></li>
+  </ul></li>
   <li><a href="#step-3-which-region-had-the-highest-covid-rate-that-week" id="toc-step-3-which-region-had-the-highest-covid-rate-that-week" class="nav-link" data-scroll-target="#step-3-which-region-had-the-highest-covid-rate-that-week">Step 3: Which region had the highest COVID rate that week?</a></li>
   <li><a href="#step-4-how-different-are-the-regions-from-one-another" id="toc-step-4-how-different-are-the-regions-from-one-another" class="nav-link" data-scroll-target="#step-4-how-different-are-the-regions-from-one-another">Step 4: How different are the regions from one another?</a></li>
   <li><a href="#step-5-map-the-regional-differences" id="toc-step-5-map-the-regional-differences" class="nav-link" data-scroll-target="#step-5-map-the-regional-differences">Step 5: Map the regional differences</a>
@@ -144,8 +149,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="jones.jpg" class="img-fluid" width="100"></p>
 <p>We continue to honour this tradition through our <a href="https://www.bristol.ac.uk/geography/research/quantitative-spatial-science/">Quantitative Spatial Science Research Group</a>, which leads the teaching of quantitative methods to students in all years of our undergraduate (and Masters) programmes. These include <a href="http://www.bristol.ac.uk/study/undergraduate/2023/geography/bsc-geography/">BSc Geography</a>, <a href="http://www.bristol.ac.uk/study/undergraduate/2023/quantitative-research-methods/bsc-geography-quantitative-research/">BSc Geography with Quantitative Research Methods</a> and our new <a href="https://www.bristol.ac.uk/study/postgraduate/2022/sci/msc-geographic-data-science-and-spatial-analytics/">MSc in Geographic Data Science and Spatial Analytics</a>.</p>
 </section>
-<section id="step-1-download-the-data-and-installload-any-libraries" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-download-the-data-and-installload-any-libraries">Step 1: Download the data and install/load any libraries</h2>
+<section id="why-teaching-computing-quantitative-methods-and-data-handling-skills" class="level2">
+<h2 class="anchored" data-anchor-id="why-teaching-computing-quantitative-methods-and-data-handling-skills">Why Teaching Computing, Quantitative Methods and Data-handling Skills?</h2>
+<p>Programming languages such as <a href="https://cran.r-project.org/">R</a> and <a href="https://www.python.org/">Python</a> provide an integrated environment that can be used to input, analyse and communicate the results of data-based research, including by visual methods such as maps. This webpage was written in <a href="https://www.rstudio.com/">R Studio</a>, allowing me to bring together the computer code, the results of running that code and other text such as that which you are reading, all into one document. More standard off-the-shelf software such as Excel do not allow this. Presently, we teach R to <strong>all our students</strong>. We do this to support their training in research methods – the sorts of skills that all geographers need <a href="https://www.qaa.ac.uk/quality-code/subject-benchmark-statements/geography">and are expected to have</a> – and also to enhance their employability because data science skills are well regarded by employers.</p>
+</section>
+<section id="for-today" class="level2">
+<h2 class="anchored" data-anchor-id="for-today">For today</h2>
+<p>All you need to do for today’s session is follow along with the instructor, copying and pasting code from this document into the R Console as they do. <strong>Please do not rush ahead as this is more likely to generate errors that you will then need to go back and correct</strong>. Just take it one step at a time, in company with the instructor. The purpose of the session is not to teach you coding so there is no need to worry about what the code fully means. It is simply to give you a flavour of the sort of skills we teach our students.</p>
+<p>If you wish, you could run this practical again from a personal computer when you get home. If you do, take a note of the web adress, which is <a href="https://profrichharris.github.io/openday">https://profrichharris.github.io/openday</a> and note that you will first need to install <a href="https://cran.r-project.org/">R</a> and then <a href="https://www.rstudio.com/products/rstudio/download/">RStudio Desktop</a> on the computer for the following code to work. These software are free and operate on Windows, Mac OS and Linux.</p>
+<section id="to-begin" class="level3">
+<h3 class="anchored" data-anchor-id="to-begin">To Begin</h3>
+<p>When the instructor invites you to do so, please open RStudio on your computer.</p>
+</section>
+<section id="step-1-installload-any-required-libraries" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-installload-any-required-libraries">Step 1: Install/load any required libraries</h3>
+<p>The great advantage of software such as R is that it has available a large number of additional libraries that extend its functionality (for mapping, for example). The ones we need today are listed below. The code chunk checks to see if these library have been installed already, if not then installs them, and then instructs that they are required for the current session in R.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="st">"tidyverse"</span> <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[,<span class="dv">1</span>]) <span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="st">"lme4"</span> <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[,<span class="dv">1</span>]) <span class="fu">install.packages</span>(<span class="st">"lme4"</span>)</span>
@@ -156,63 +174,112 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(tidyverse)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(lme4)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(sf)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://www.dropbox.com/s/baqkwvsb0ah3ahh/covid_data.csv?dl=1"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"age"</span>), <span class="sc">~</span> <span class="dv">100</span> <span class="sc">*</span> . <span class="sc">/</span> <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">carebeds =</span> <span class="fu">round</span>(<span class="dv">1000</span> <span class="sc">*</span> carebeds <span class="sc">/</span> <span class="st">`</span><span class="at">Adults</span><span class="st">`</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">age22-34</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">age22-24</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age25-29</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age30-34</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(., <span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">starts_with</span>(<span class="st">"2020-"</span>), <span class="fu">starts_with</span>(<span class="st">"2021-"</span>), <span class="fu">starts_with</span>(<span class="st">"2022-"</span>)),</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"week"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"cases"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(week <span class="sc">&gt;</span> <span class="st">"2020-03-13"</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">*** Data loaded ***</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br></p>
-</section>
-<section id="step-2-fit-a-model" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-fit-a-model">Step 2: Fit a model</h2>
+<p>Next, we will download and load into R some data which give the reported number of positive COVID-19 cases in English neighbourhoods for the period of pandemic until free testing ended. These data are based on those from the <a href="https://coronavirus.data.gov.uk/">Coranvirus Data Dashboard</a> for England, with some minor adjustments to ensure the regional totals match those reported regionally. The English neighbourhoods are what are known as <a href="https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeography">Middle Super Output Areas</a> (MSOAs). As the data are read-in, some variables are recalculated to create percentages (e.g.&nbsp;the percentage of the population aged 5 to 11 years) and the number of care home beds per 1000 of the Adult population.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sample.week <span class="ot">&lt;-</span> <span class="fu">sample</span>(df<span class="sc">$</span>week, <span class="dv">1</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>mlm <span class="ot">&lt;-</span>  df <span class="sc">%&gt;%</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(week <span class="sc">==</span> sample.week) <span class="sc">%&gt;%</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"age"</span>) <span class="sc">|</span> <span class="fu">matches</span>(<span class="st">"carebeds"</span>) <span class="sc">|</span> <span class="fu">matches</span>(<span class="st">"AandE"</span>),</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                <span class="sc">~</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(.)))) <span class="sc">%&gt;%</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glmer</span>(cases <span class="sc">~</span>  <span class="st">`</span><span class="at">age5-11</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age12-17</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age18-21</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age22-34</span><span class="st">`</span> <span class="sc">+</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                  carebeds <span class="sc">+</span> AandE <span class="sc">+</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">1</span><span class="sc">|</span>MSOA11CD) <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>regionName) <span class="sc">+</span> <span class="fu">offset</span>(<span class="fu">log</span>(<span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>)),</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">family=</span><span class="fu">poisson</span>(), <span class="at">data =</span> .,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">control =</span> <span class="fu">glmerControl</span>(<span class="at">calc.derivs =</span> <span class="cn">FALSE</span>))</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">*** Model fitted with"</span>, sample.week,<span class="st">"as the sampled week ***</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://www.dropbox.com/s/baqkwvsb0ah3ahh/covid_data.csv?dl=1"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"age"</span>), <span class="sc">~</span> <span class="dv">100</span> <span class="sc">*</span> . <span class="sc">/</span> <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">carebeds =</span> <span class="fu">round</span>(<span class="dv">1000</span> <span class="sc">*</span> carebeds <span class="sc">/</span> <span class="st">`</span><span class="at">Adults</span><span class="st">`</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">age22-34</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">age22-24</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age25-29</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age30-34</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(., <span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">starts_with</span>(<span class="st">"2020-"</span>), <span class="fu">starts_with</span>(<span class="st">"2021-"</span>), <span class="fu">starts_with</span>(<span class="st">"2022-"</span>)),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"week"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"cases"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(week <span class="sc">&gt;</span> <span class="st">"2020-03-13"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br></p>
+<p>Here is the top of the data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 x 39
+  MSOA11CD  MSOA11NM LtlaCode LtlaName regionCode regionName TCITY15CD TCITY15NM
+  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;    
+1 E02000002 Marks G~ E090000~ Barking~ E12000007  London     J01000055 London   
+2 E02000002 Marks G~ E090000~ Barking~ E12000007  London     J01000055 London   
+3 E02000002 Marks G~ E090000~ Barking~ E12000007  London     J01000055 London   
+4 E02000002 Marks G~ E090000~ Barking~ E12000007  London     J01000055 London   
+5 E02000002 Marks G~ E090000~ Barking~ E12000007  London     J01000055 London   
+6 E02000002 Marks G~ E090000~ Barking~ E12000007  London     J01000055 London   
+# ... with 31 more variables: PLACE &lt;chr&gt;, IMD &lt;dbl&gt;, IMD.mx &lt;dbl&gt;,
+#   `All Ages` &lt;dbl&gt;, `age0-4` &lt;dbl&gt;, `age5-11` &lt;dbl&gt;, `age12-17` &lt;dbl&gt;,
+#   `age18-21` &lt;dbl&gt;, `age22-24` &lt;dbl&gt;, `age25-29` &lt;dbl&gt;, `age30-34` &lt;dbl&gt;,
+#   `age35-39` &lt;dbl&gt;, `age40-44` &lt;dbl&gt;, `age45-49` &lt;dbl&gt;, `age50-54` &lt;dbl&gt;,
+#   `age55-59` &lt;dbl&gt;, `age60-64` &lt;dbl&gt;, `age65-69` &lt;dbl&gt;, `age70-74` &lt;dbl&gt;,
+#   `age75-79` &lt;dbl&gt;, `age80-84` &lt;dbl&gt;, `age85-89` &lt;dbl&gt;, `age90+` &lt;dbl&gt;,
+#   Adults &lt;dbl&gt;, carebeds &lt;dbl&gt;, AandE &lt;dbl&gt;, NCases &lt;dbl&gt;, Rate &lt;dbl&gt;, ...</code></pre>
+</div>
+</div>
+</section>
+<section id="step-2-fit-a-model" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-fit-a-model">Step 2: Fit a model</h3>
+<p>Next we will each fit a statistical model to a randomly sampled week of the pandemic. <strong>Please note that unless your randomly selected week happens to be the same as mine, here, then our results and what appears on screen will differ from now on. The code remains the same, however.</strong></p>
+<p>The model is not really very different to fitting a line of best fit to a scatter plot of data. The model basically says that the number of cases of COVID-19 in a neighbourhood is a function of the number of people who live there, their age profile and whether there is a carehome/A&amp;E facility there. Remember that early in the pandemic those living in carehomes were particularly at risk. The model allows that in some places the number of COVID-19 cases is higher than expected, which, from a geographical point of view raises the question, <em>where?</em></p>
+<p>It may take a minute or two to fit the model so please be patient.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sample.week <span class="ot">&lt;-</span> <span class="fu">sample</span>(df<span class="sc">$</span>week, <span class="dv">1</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>mlm <span class="ot">&lt;-</span>  df <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(week <span class="sc">==</span> sample.week) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"age"</span>) <span class="sc">|</span> <span class="fu">matches</span>(<span class="st">"carebeds"</span>) <span class="sc">|</span> <span class="fu">matches</span>(<span class="st">"AandE"</span>),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                <span class="sc">~</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(.)))) <span class="sc">%&gt;%</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glmer</span>(cases <span class="sc">~</span>  <span class="st">`</span><span class="at">age5-11</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age12-17</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age18-21</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age22-34</span><span class="st">`</span> <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                  carebeds <span class="sc">+</span> AandE <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">1</span><span class="sc">|</span>MSOA11CD) <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>regionName) <span class="sc">+</span> <span class="fu">offset</span>(<span class="fu">log</span>(<span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>)),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">family=</span><span class="fu">poisson</span>(), <span class="at">data =</span> .,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">control =</span> <span class="fu">glmerControl</span>(<span class="at">calc.derivs =</span> <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When the model has been fitted, take a note of the week it has been fitted for.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sample.week)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2021-04-17"</code></pre>
+</div>
+</div>
+</section>
 </section>
 <section id="step-3-which-region-had-the-highest-covid-rate-that-week" class="level2">
 <h2 class="anchored" data-anchor-id="step-3-which-region-had-the-highest-covid-rate-that-week">Step 3: Which region had the highest COVID rate that week?</h2>
+<p>If we ‘dig’ into the results of the model a little we find what are, in effect, the regional rates of COVID-19, allowing for ages, carehomes and A&amp;E facilities. They are reported on a stanfardised and also relative scale: a value greater than zero represents a region with more COVID-19 cases relative to the average that week; a value greater than zero represents a region with fewer. For the week I am looking at, which is in April 2021, Yorkshire and The Humber has most cases and the South West the least <strong>but, remember, it could be different for the week you are looking at</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>regional.rates <span class="ot">&lt;-</span> <span class="fu">ranef</span>(mlm, <span class="at">whichel =</span> <span class="st">"regionName"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>grpvar, <span class="sc">-</span>term) <span class="sc">%&gt;%</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">region =</span> grp) <span class="sc">%&gt;%</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(region))</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>regional.rates <span class="sc">%&gt;%</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>regional.rates <span class="ot">&lt;-</span> <span class="fu">ranef</span>(mlm, <span class="at">whichel =</span> <span class="st">"regionName"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>grpvar, <span class="sc">-</span>term) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">region =</span> grp) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(region))</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>regional.rates <span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(region, condval) <span class="sc">%&gt;%</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">condval =</span> <span class="fu">round</span>(condval, <span class="dv">3</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 x 2
+  region                   condval
+  &lt;fct&gt;                      &lt;dbl&gt;
+1 Yorkshire and The Humber   0.803
+2 East Midlands              0.364
+3 North West                 0.197
+4 North East                 0.159
+5 West Midlands              0.052
+6 East of England           -0.008
+7 London                    -0.036
+8 South East                -0.182
+9 South West                -0.308</code></pre>
+</div>
 </div>
 <p><br></p>
 </section>
 <section id="step-4-how-different-are-the-regions-from-one-another" class="level2">
 <h2 class="anchored" data-anchor-id="step-4-how-different-are-the-regions-from-one-another">Step 4: How different are the regions from one another?</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>regional.rates <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ymin =</span> condval <span class="sc">-</span> <span class="fl">1.39</span> <span class="sc">*</span> condsd, <span class="at">ymax =</span> condval <span class="sc">+</span> <span class="fl">1.39</span> <span class="sc">*</span> condsd) <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> condval, <span class="at">ymin =</span> ymin, <span class="at">ymax =</span> ymax)) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>() <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Region"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>regional.rates <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ymin =</span> condval <span class="sc">-</span> <span class="fl">1.39</span> <span class="sc">*</span> condsd, <span class="at">ymax =</span> condval <span class="sc">+</span> <span class="fl">1.39</span> <span class="sc">*</span> condsd) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> condval, <span class="at">ymin =</span> ymin, <span class="at">ymax =</span> ymax)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>() <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Region"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <p><br></p>
 </section>
@@ -222,30 +289,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="a-start-by-getting-and-plotting-a-boundary-file" class="level3">
 <h3 class="anchored" data-anchor-id="a-start-by-getting-and-plotting-a-boundary-file">5a: Start by getting and plotting a boundary file</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">file.exists</span>(<span class="st">"england_gor_2011_gen_clipped.shp"</span>)) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">download.file</span>(<span class="st">"https://www.dropbox.com/s/gb5161kl17zra7v/England_gor_2011_gen_clipped.zip?dl=1"</span>,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"regions.zip"</span>, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unzip</span>(<span class="st">"regions.zip"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>map.outline <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"england_gor_2011_gen_clipped.shp"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">region =</span> name)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(map.outline))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">file.exists</span>(<span class="st">"england_gor_2011_gen_clipped.shp"</span>)) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">download.file</span>(<span class="st">"https://www.dropbox.com/s/gb5161kl17zra7v/England_gor_2011_gen_clipped.zip?dl=1"</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"regions.zip"</span>, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unzip</span>(<span class="st">"regions.zip"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>map.outline <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"england_gor_2011_gen_clipped.shp"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">region =</span> name)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(map.outline))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <p><br></p>
 </section>
 <section id="b-join-to-the-modelled-rates-and-plot" class="level3">
 <h3 class="anchored" data-anchor-id="b-join-to-the-modelled-rates-and-plot">5b: Join to the modelled rates and plot</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(map.outline, regional.rates, <span class="at">by =</span> <span class="st">"region"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">condval =</span> <span class="fu">ifelse</span>(condval <span class="sc">&gt;</span> <span class="fl">3.5</span>, <span class="fl">3.5</span>, condval)) <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">condval =</span> <span class="fu">ifelse</span>(condval <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">3.5</span>, <span class="sc">-</span><span class="fl">3.5</span>, condval)) <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(.) <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> condval)) <span class="sc">+</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"RdYlBu"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>)) <span class="sc">+</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="st">"Highest rate: "</span>,regional.rates<span class="sc">$</span>region[<span class="dv">1</span>]), sample.week)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(map.outline, regional.rates, <span class="at">by =</span> <span class="st">"region"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">condval =</span> <span class="fu">ifelse</span>(condval <span class="sc">&gt;</span> <span class="fl">3.5</span>, <span class="fl">3.5</span>, condval)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">condval =</span> <span class="fu">ifelse</span>(condval <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">3.5</span>, <span class="sc">-</span><span class="fl">3.5</span>, condval)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(.) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> condval)) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"RdYlBu"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>)) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="st">"Highest rate: "</span>,regional.rates<span class="sc">$</span>region[<span class="dv">1</span>]), sample.week)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <p><br></p>
 </section>
@@ -256,66 +329,93 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="a-refit-the-model-but-at-a-sub-regional-scale" class="level3">
 <h3 class="anchored" data-anchor-id="a-refit-the-model-but-at-a-sub-regional-scale">6a: Refit the model but at a sub-regional scale</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mlm2 <span class="ot">&lt;-</span>  df <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(week <span class="sc">==</span> sample.week) <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"age"</span>) <span class="sc">|</span> <span class="fu">matches</span>(<span class="st">"carebeds"</span>) <span class="sc">|</span> <span class="fu">matches</span>(<span class="st">"AandE"</span>),</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                <span class="sc">~</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(.)))) <span class="sc">%&gt;%</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glmer</span>(cases <span class="sc">~</span>  <span class="st">`</span><span class="at">age5-11</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age12-17</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age18-21</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age22-34</span><span class="st">`</span> <span class="sc">+</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                  carebeds <span class="sc">+</span> AandE <span class="sc">+</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">1</span><span class="sc">|</span>MSOA11CD) <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>PLACE) <span class="sc">+</span> <span class="fu">offset</span>(<span class="fu">log</span>(<span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>)),</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">family=</span><span class="fu">poisson</span>(), <span class="at">data =</span> .,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">control =</span> <span class="fu">glmerControl</span>(<span class="at">calc.derivs =</span> <span class="cn">FALSE</span>))</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">*** Model fitted with"</span>, sample.week,<span class="st">"still as the sampled week ***</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mlm2 <span class="ot">&lt;-</span>  df <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(week <span class="sc">==</span> sample.week) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"age"</span>) <span class="sc">|</span> <span class="fu">matches</span>(<span class="st">"carebeds"</span>) <span class="sc">|</span> <span class="fu">matches</span>(<span class="st">"AandE"</span>),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                <span class="sc">~</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(.)))) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glmer</span>(cases <span class="sc">~</span>  <span class="st">`</span><span class="at">age5-11</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age12-17</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age18-21</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age22-34</span><span class="st">`</span> <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                  carebeds <span class="sc">+</span> AandE <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">1</span><span class="sc">|</span>MSOA11CD) <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>PLACE) <span class="sc">+</span> <span class="fu">offset</span>(<span class="fu">log</span>(<span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>)),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">family=</span><span class="fu">poisson</span>(), <span class="at">data =</span> .,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">control =</span> <span class="fu">glmerControl</span>(<span class="at">calc.derivs =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">*** Model fitted with"</span>, sample.week,<span class="st">"still as the sampled week ***</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+*** Model fitted with 2021-04-17 still as the sampled week ***</code></pre>
+</div>
 </div>
 <p><br></p>
 </section>
 <section id="b-look-at-which-places-have-the-highest-rates" class="level3">
 <h3 class="anchored" data-anchor-id="b-look-at-which-places-have-the-highest-rates">6b: Look at which places have the highest rates</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sub.regional.rates <span class="ot">&lt;-</span> <span class="fu">ranef</span>(mlm2, <span class="at">whichel =</span> <span class="st">"PLACE"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>grpvar, <span class="sc">-</span>term) <span class="sc">%&gt;%</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">PLACE =</span> grp) <span class="sc">%&gt;%</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(PLACE))</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>sub.regional.rates <span class="sc">%&gt;%</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sub.regional.rates <span class="ot">&lt;-</span> <span class="fu">ranef</span>(mlm2, <span class="at">whichel =</span> <span class="st">"PLACE"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>grpvar, <span class="sc">-</span>term) <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">PLACE =</span> grp) <span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(PLACE))</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>sub.regional.rates <span class="sc">%&gt;%</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 392 x 3
+   PLACE         condval condsd
+   &lt;fct&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+ 1 Doncaster#      1.38   0.139
+ 2 Wakefield*      1.21   0.181
+ 3 Barnsley#       1.14   0.161
+ 4 Kirklees#       1.08   0.127
+ 5 Bradford*       1.06   0.108
+ 6 Doncaster*      1.05   0.179
+ 7 Rotherham#      1.03   0.168
+ 8 Leicester*      1.02   0.104
+ 9 Huddersfield*   1.01   0.149
+10 Scunthorpe*     0.984  0.199
+# ... with 382 more rows</code></pre>
+</div>
 </div>
 <p><br></p>
 </section>
 <section id="c-look-at-the-differences-for-top-ten" class="level3">
 <h3 class="anchored" data-anchor-id="c-look-at-the-differences-for-top-ten">6c: Look at the differences for ‘top ten’</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sub.regional.rates <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ymin =</span> condval <span class="sc">-</span> <span class="fl">1.39</span> <span class="sc">*</span> condsd, <span class="at">ymax =</span> condval <span class="sc">+</span> <span class="fl">1.39</span> <span class="sc">*</span> condsd) <span class="sc">%&gt;%</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> PLACE, <span class="at">y =</span> condval, <span class="at">ymin =</span> ymin, <span class="at">ymax =</span> ymax)) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>() <span class="sc">+</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Place"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sub.regional.rates <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ymin =</span> condval <span class="sc">-</span> <span class="fl">1.39</span> <span class="sc">*</span> condsd, <span class="at">ymax =</span> condval <span class="sc">+</span> <span class="fl">1.39</span> <span class="sc">*</span> condsd) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> PLACE, <span class="at">y =</span> condval, <span class="at">ymin =</span> ymin, <span class="at">ymax =</span> ymax)) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>() <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Place"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <p><br></p>
 </section>
 <section id="d-map-the-sub-regional-results" class="level3">
 <h3 class="anchored" data-anchor-id="d-map-the-sub-regional-results">6d: Map the sub-regional results</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">file.exists</span>(<span class="st">"places.shp"</span>)) {</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">download.file</span>(<span class="st">"https://www.dropbox.com/s/7cd8ef8nrkbild5/places.zip?dl=1"</span>,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"places.zip"</span>, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unzip</span>(<span class="st">"places.zip"</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sf</span>(<span class="st">"places.shp"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(., sub.regional.rates, <span class="at">by =</span> <span class="st">"PLACE"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">condval =</span> <span class="fu">ifelse</span>(condval <span class="sc">&gt;</span> <span class="fl">3.5</span>, <span class="fl">3.5</span>, condval)) <span class="sc">%&gt;%</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">condval =</span> <span class="fu">ifelse</span>(condval <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">3.5</span>, <span class="sc">-</span><span class="fl">3.5</span>, condval)) <span class="sc">%&gt;%</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(.) <span class="sc">+</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> condval), <span class="at">colour =</span> <span class="st">"transparent"</span>) <span class="sc">+</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"RdYlBu"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>)) <span class="sc">+</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">data =</span> map.outline, <span class="at">fill =</span> <span class="st">"transparent"</span>) <span class="sc">+</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="st">"Highest rate: "</span>,sub.regional.rates<span class="sc">$</span>PLACE[<span class="dv">1</span>]), sample.week)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">file.exists</span>(<span class="st">"places.shp"</span>)) {</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">download.file</span>(<span class="st">"https://www.dropbox.com/s/7cd8ef8nrkbild5/places.zip?dl=1"</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"places.zip"</span>, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unzip</span>(<span class="st">"places.zip"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sf</span>(<span class="st">"places.shp"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(., sub.regional.rates, <span class="at">by =</span> <span class="st">"PLACE"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">condval =</span> <span class="fu">ifelse</span>(condval <span class="sc">&gt;</span> <span class="fl">3.5</span>, <span class="fl">3.5</span>, condval)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">condval =</span> <span class="fu">ifelse</span>(condval <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">3.5</span>, <span class="sc">-</span><span class="fl">3.5</span>, condval)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(.) <span class="sc">+</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> condval), <span class="at">colour =</span> <span class="st">"transparent"</span>) <span class="sc">+</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"RdYlBu"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>)) <span class="sc">+</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">data =</span> map.outline, <span class="at">fill =</span> <span class="st">"transparent"</span>) <span class="sc">+</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="st">"Highest rate: "</span>,sub.regional.rates<span class="sc">$</span>PLACE[<span class="dv">1</span>]), sample.week)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <p><br></p>
 </section>
