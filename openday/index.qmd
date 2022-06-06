@@ -7,12 +7,12 @@ format:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE, cache = TRUE)
 ```
 
 ![](logocolour.jpg){width=300}
 
-<font size = 10>Geographies of COVID-19</font><font size = 6></br>An introduction to quantitative geography</font>
+<font size = 10>Geographies of COVID-19</font><font size = 6></br>An introduction to quantitative geography</font><font size = 4></br>[Professor Richard Harris](https://profrichharris.github.io/), (updated: `r format(Sys.Date(), "%b %d %Y")`)</font>
 
 ## Introduction
 
@@ -43,7 +43,7 @@ We continue to honour this tradition through our [Quantitative Spatial Science R
 Programming languages such as [R](https://cran.r-project.org/) and [Python](https://www.python.org/) provide an integrated environment that can be used to input, analyse and communicate the results of data-based research, including by visual methods such as maps. This webpage was written in [R Studio](https://www.rstudio.com/), allowing me to bring together the computer code, the results of running that code and other text such as that which you are reading, all into one document. More standard off-the-shelf software such as Excel do not allow this. Presently, we teach R to **all our students**. We do this to support their training in research methods -- the sorts of skills that all geographers need [and are expected to have](https://www.qaa.ac.uk/quality-code/subject-benchmark-statements/geography) -- and also to enhance their employability because data science skills are well regarded by employers.
 
 
-## For today
+## Today's Exercise
 
 All you need to do for today's session is follow along with the instructor, copying and pasting code from this document into the R Console as they do. **Please do not rush ahead as this is more likely to generate errors that you will then need to go back and correct**. Just take it one step at a time, in company with the instructor. The purpose of the session is not to teach you coding so there is no need to worry about what the code fully means. It is simply to give you a flavour of the sort of skills we teach our students.
 
@@ -98,6 +98,7 @@ head(df)
 ```
 
 
+
 ### Step 2: Fit a model
 
 Next we will each fit a statistical model to a randomly sampled week of the pandemic. **Please note that unless your randomly selected week happens to be the same as mine, here, then our results and what appears on screen will differ from now on. The code remains the same, however.**
@@ -136,47 +137,50 @@ print(sample.week)
 ```
 
 
-## Step 3: Which region had the highest COVID rate that week?
+### Step 3: Identify which region had the highest COVID rate that week?
 
-If we 'dig' into the results of the model a little we find what are, in effect, the regional rates of COVID-19, allowing for ages, carehomes and A&E facilities. They are reported on a stanfardised and also relative scale: a value greater than zero represents a region with more COVID-19 cases relative to the average that week; a value greater than zero represents a region with fewer. For the week I am looking at, which is in April 2021, Yorkshire and The Humber has most cases and the South West the least **but, remember, it could be different for the week you are looking at**.
+If we 'dig' into the results of the model a little we find what are, in effect, the regional rates of COVID-19, allowing for ages, carehomes and A&E facilities. They are reported on a stanardised and also relative scale: a value greater than zero represents a region with more COVID-19 cases relative to the average that week; a value greater than zero represents a region with fewer. For the week I am looking at, which is in April 2021, Yorkshire and The Humber has most cases and the South West the least **but, remember, it could be different for the week you are looking at**.
 
 ```{r}
 
 regional.rates <- ranef(mlm, whichel = "regionName") %>%
   as_tibble() %>%
   select(-grpvar, -term) %>%
-  rename(region = grp) %>%
+  rename(region = grp, relative.rate = condval) %>%
   arrange(desc(region))
 
 regional.rates %>%
-  select(region, condval) %>%
-  mutate(condval = round(condval, 3)) %>%
+  select(region, relative.rate) %>%
+  mutate(relative.rate = round(relative.rate, 3)) %>%
   print(n = Inf)
 
 ```
 
-</br>
 
-## Step 4: How different are the regions from one another?
+### Step 4: Ask how different the regions really are from one another
+
+An important statistical idea is that differences can arise 'by chance' because of uncertainties in the way data are collected. Looked at another way, it would be extremely surprising if all the regions had *exactly* the same COVID-19 rate in the selected week. Given that, it is helpful to have some idea of our confidence/(un-/)certainty in the data and if the regional rates could really overlap or are substantially different from each other. In this week, Yorkshire and The Humber does seem to be different from the rest, as the chart below shows, but there is little difference between, say, London, the East of England and the West Midlands. 
 
 ```{r}
 
 regional.rates %>%
-  mutate(ymin = condval - 1.39 * condsd, ymax = condval + 1.39 * condsd) %>%
-  ggplot(., aes(x = region, y = condval, ymin = ymin, ymax = ymax)) +
+  mutate(ymin = relative.rate - 1.39 * condsd, ymax = relative.rate + 1.39 * condsd) %>%
+  ggplot(., aes(x = region, y = relative.rate, ymin = ymin, ymax = ymax)) +
   geom_errorbar() +
   geom_hline(yintercept = 0, linetype = "dotted") +
-  xlab("Region")
+  xlab("Region") +
+  ylab("Relative rate of COVID-19") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 60, size = 8, vjust = 0.5))
 
 ```
 
-</br>
 
-## Step 5: Map the regional differences
+### Step 5: Map the regional differences
 
-</br>
+Now that we have calculated the regional rates we can do the digital equivalent of taking a blank map of the study region and colouring it in to produce a choropleth map of those rates.
 
-### 5a: Start by getting and plotting a boundary file
+To achieve this, first we need a boundary file, which is 'the blank map'.
 
 ```{r}
 
@@ -189,34 +193,30 @@ if(!file.exists("england_gor_2011_gen_clipped.shp")) {
 map.outline <- read_sf("england_gor_2011_gen_clipped.shp") %>%
   rename(region = name)
 
-plot(st_geometry(map.outline))
-
 ```
 
-</br>
 
-### 5b: Join to the modelled rates and plot
+Next, the map is joined to the regional rates and coloured. In my map, although there are some differences between how the regions are shaded, they are very slight. The reason for this is that the regional geography of the disease is not especially strong for the week, possibly because the important differences are to be found at a sub-regional scale.
 
 ```{r}
 
 inner_join(map.outline, regional.rates, by = "region") %>%
-  mutate(condval = ifelse(condval > 3.5, 3.5, condval)) %>%
-  mutate(condval = ifelse(condval < -3.5, -3.5, condval)) %>%
+  mutate(relative.rate = ifelse(relative.rate > 3.5, 3.5, relative.rate)) %>%
+  mutate(relative.rate = ifelse(relative.rate < -3.5, -3.5, relative.rate)) %>%
   ggplot(.) +
-    geom_sf(aes(fill = condval)) +
+    geom_sf(aes(fill = relative.rate)) +
     scale_fill_distiller(palette = "RdYlBu", direction = -1,
        limits = c(-3.5, 3.5)) +
-    ggtitle(paste0("Highest rate: ",regional.rates$region[1]), sample.week)
+    ggtitle(paste0("Highest rate: ", regional.rates$region[1]), sample.week)
 
 ```
 
-</br>
 
-## Step 6: Dig a little more into the geography for that week
+### Step 6: Look at the sub-regional differences
 
-</br>
+Another important statistical idea, which also is geographical, is that results are scale dependent. For example, what we see in a map is dependent upon on the size (and shape and position) of the areas that we use for the map. So, too, are the results of a statistical model that uses geographical data.
 
-### 6a: Refit the model but at a sub-regional scale
+Let's refit the model but at a sub-regional scale for the same week. This will take a little longer to fit because of the more detailed geography, which is a mixture of urban and local authority geographies.
 
 ```{r}
 
@@ -230,46 +230,27 @@ mlm2 <-  df %>%
                 family=poisson(), data = .,
                 control = glmerControl(calc.derivs = FALSE))
 
-cat("\n\n*** Model fitted with", sample.week,"still as the sampled week ***\n\n")
-
 ```
 
-</br>
 
-### 6b: Look at which places have the highest rates
+The places with the highest relative rates in the week are (for me):
 
 ```{r}
 
 sub.regional.rates <- ranef(mlm2, whichel = "PLACE") %>%
   as_tibble() %>%
   select(-grpvar, -term) %>%
-  rename(PLACE = grp) %>%
+  rename(PLACE = grp, relative.rate = condval) %>%
   arrange(desc(PLACE))
 
 sub.regional.rates %>%
+  mutate(relative.rate = round(relative.rate, 3)) %>%
   print(n = 10)
 
 ```
 
-</br>
 
-### 6c: Look at the differences for 'top ten'
-
-```{r}
-
-sub.regional.rates %>%
-  slice(1:10) %>%
-  mutate(ymin = condval - 1.39 * condsd, ymax = condval + 1.39 * condsd) %>%
-  ggplot(., aes(x = PLACE, y = condval, ymin = ymin, ymax = ymax)) +
-  geom_errorbar() +
-  geom_hline(yintercept = 0, linetype = "dotted") +
-  xlab("Place")
-
-```
-
-</br>
-
-### 6d: Map the sub-regional results
+If I now map the rates, I obtain the following map. As it turns out, the differences between the places are not especially great for this week even at a sub-regional scale.
 
 ```{r}
 
@@ -281,10 +262,10 @@ if(!file.exists("places.shp")) {
   
 read_sf("places.shp") %>%
   inner_join(., sub.regional.rates, by = "PLACE") %>%
-  mutate(condval = ifelse(condval > 3.5, 3.5, condval)) %>%
-  mutate(condval = ifelse(condval < -3.5, -3.5, condval)) %>%
+  mutate(relative.rate = ifelse(relative.rate > 3.5, 3.5, relative.rate)) %>%
+  mutate(relative.rate = ifelse(relative.rate < -3.5, -3.5, relative.rate)) %>%
   ggplot(.) +
-    geom_sf(aes(fill = condval), colour = "transparent") +
+    geom_sf(aes(fill = relative.rate), colour = "transparent") +
     scale_fill_distiller(palette = "RdYlBu", direction = -1,
        limits = c(-3.5, 3.5)) +
     geom_sf(data = map.outline, fill = "transparent") +
@@ -292,21 +273,37 @@ read_sf("places.shp") %>%
 
 ```
 
-</br>
 
-## Step 7: Record the location with the highest rate in the padlet
+### Step 7: Record the location with the highest rate in the padlet
 
-Go to the padlet, https://en-gb.padlet.com/profrichharris/openday, click on the red circle with a white + sign, search for the place with the highest COVID-19 rate in your map, and enter the date of that rate in the text before hitting Publish.
+Go to the padlet, [https://en-gb.padlet.com/profrichharris/openday](https://en-gb.padlet.com/profrichharris/openday), click on the red circle with a white + sign, search for the place with the highest COVID-19 rate in your map, and enter the date of that rate in the text before hitting Publish.
 
-</br>
 
-## Step 8: See what happens in a different week
+### Step 8: See what happens in a different week
 
-Go back to Step 2 and repeat everything from that step onward (you can miss out step 5a)
+Finally, if there is time, and if instructed, fo back to Step 2 and repeat everything from that step onward 
 
-</br>
-</br>
-</br>
+
+## To Consider
+
+At the end of this exercise, when everyone has finished, if you go back to the padlet, [https://en-gb.padlet.com/profrichharris/openday](https://en-gb.padlet.com/profrichharris/openday) and interact with it then you should find that:
+
+(a) there is a geography to COVID-19 in England; and
+(b) that geography changes throughout the pandemic.
+
+So, **here are some important geographical questions for you to consider: why? Why are the rates higher in some places than in others? What might that tells us about those places or the populations that live in them? What are the causes of the differences? Is it a 'standalone' geography or is the geography of COVID-19 related to other geographical patterns of living within England? Can you think of some possible explanations?**
+
+
+## Further Reading
+
+Department for Levelling Up, Housing and Communities (2022). Levelling Up the United Kingdom: executive summary. Dpt. for Levelling Up, Housing and Communities, London. Retrieved June 6, 2022, from [https://www.gov.uk/government/publications/levelling-up-the-united-kingdom](https://www.gov.uk/government/publications/levelling-up-the-united-kingdom).
+
+Horton, R. (2020). Comment: COVID-19 is not a pandemic. *The Lancet*, 396 (10255), p. 874. [https://doi.org/10.1016/S0140-6736(20)32000-6](https://doi.org/10.1016/S0140-6736(20)32000-6). 
+
+Lawence, D. (2020). *An Avoidable Crisis: The disproportionate impact of COVID-19 on Black, Asian and minority ethnic communities.* The Labour Party, London. Retrieved May 24, 2021, from [https://www.lawrencereview.co.uk/](https://www.lawrencereview.co.uk/).
+
+
+
 
   
   
