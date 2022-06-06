@@ -114,7 +114,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#step-4-ask-how-different-the-regions-really-are-from-one-another" id="toc-step-4-ask-how-different-the-regions-really-are-from-one-another" class="nav-link" data-scroll-target="#step-4-ask-how-different-the-regions-really-are-from-one-another">Step 4: Ask how different the regions really are from one another</a></li>
   <li><a href="#step-5-map-the-regional-differences" id="toc-step-5-map-the-regional-differences" class="nav-link" data-scroll-target="#step-5-map-the-regional-differences">Step 5: Map the regional differences</a></li>
   <li><a href="#step-6-look-at-the-sub-regional-differences" id="toc-step-6-look-at-the-sub-regional-differences" class="nav-link" data-scroll-target="#step-6-look-at-the-sub-regional-differences">Step 6: Look at the sub-regional differences</a></li>
-  <li><a href="#step-7-record-the-location-with-the-highest-rate-in-the-padlet" id="toc-step-7-record-the-location-with-the-highest-rate-in-the-padlet" class="nav-link" data-scroll-target="#step-7-record-the-location-with-the-highest-rate-in-the-padlet">Step 7: Record the location with the highest rate in the padlet</a></li>
+  <li><a href="#step-7-record-the-location-place-with-the-highest-rate-in-the-padlet" id="toc-step-7-record-the-location-place-with-the-highest-rate-in-the-padlet" class="nav-link" data-scroll-target="#step-7-record-the-location-place-with-the-highest-rate-in-the-padlet">Step 7: Record the location (place) with the highest rate in the padlet</a></li>
   <li><a href="#step-8-see-what-happens-in-a-different-week" id="toc-step-8-see-what-happens-in-a-different-week" class="nav-link" data-scroll-target="#step-8-see-what-happens-in-a-different-week">Step 8: See what happens in a different week</a></li>
   </ul></li>
   <li><a href="#to-consider" id="toc-to-consider" class="nav-link" data-scroll-target="#to-consider">To Consider</a></li>
@@ -131,31 +131,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Welcome to the <a href="http://www.bristol.ac.uk/geography/">School of Geographical Sciences</a>, <a href="https://www.bristol.ac.uk/">University of Bristol</a>. The School has a long and distinguished history of teaching quantitative methods, spatial modelling and geographic data science to all of our students. Historically, some of our pioneering staff in this field have included:</p>
-<p><a href="https://en.wikipedia.org/wiki/Peter_Haggett">Peter Haggett</a>, one of the most influential geographers of his generation;</p>
 <p><img src="haggett.jpg" class="img-fluid" width="100"></p>
-<p><a href="https://en.wikipedia.org/wiki/Ron_Johnston_(geographer)">Ron Johnston</a>, one of the most prolific authors ever in human geography;</p>
+<p><a href="https://en.wikipedia.org/wiki/Peter_Haggett">Peter Haggett</a>, one of the most influential geographers of his generation;</p>
 <p><img src="johnston.jpg" class="img-fluid" width="100"></p>
-<p><a href="https://doi.org/10.1068/a4097">Les Hepple</a>, an exceptional scholar, polymath and dedicated teacher;</p>
+<p><a href="https://en.wikipedia.org/wiki/Ron_Johnston_(geographer)">Ron Johnston</a>, one of the most prolific authors ever in human geography;</p>
 <p><img src="hepple.jpg" class="img-fluid" width="100"></p>
-<p>and <a href="https://en.wikipedia.org/wiki/Kelvyn_Jones">Kelvyn Jones</a>, a leading pioneer of quantitative methods in human geography.</p>
+<p><a href="https://doi.org/10.1068/a4097">Les Hepple</a>, an exceptional scholar, polymath and dedicated teacher; and</p>
 <p><img src="jones.jpg" class="img-fluid" width="100"></p>
-<p>We continue to honour this tradition through our <a href="https://www.bristol.ac.uk/geography/research/quantitative-spatial-science/">Quantitative Spatial Science Research Group</a>, which leads the teaching of quantitative methods to students in all years of our undergraduate (and Masters) programmes. These include <a href="http://www.bristol.ac.uk/study/undergraduate/2023/geography/bsc-geography/">BSc Geography</a>, <a href="http://www.bristol.ac.uk/study/undergraduate/2023/quantitative-research-methods/bsc-geography-quantitative-research/">BSc Geography with Quantitative Research Methods</a> and our new <a href="https://www.bristol.ac.uk/study/postgraduate/2022/sci/msc-geographic-data-science-and-spatial-analytics/">MSc in Geographic Data Science and Spatial Analytics</a>.</p>
+<p><a href="https://en.wikipedia.org/wiki/Kelvyn_Jones">Kelvyn Jones</a>, a leading pioneer of quantitative methods in human geography.</p>
+<p>We continue this tradition into the present-day through our <a href="https://www.bristol.ac.uk/geography/research/quantitative-spatial-science/">Quantitative Spatial Science Research Group</a>, which (no longer all male and all white!) leads the teaching of quantitative methods to students in all years of our undergraduate (and Masters) programmes. These include <a href="http://www.bristol.ac.uk/study/undergraduate/2023/geography/bsc-geography/">BSc Geography</a>, <a href="http://www.bristol.ac.uk/study/undergraduate/2023/quantitative-research-methods/bsc-geography-quantitative-research/">BSc Geography with Quantitative Research Methods</a> and our new <a href="https://www.bristol.ac.uk/study/postgraduate/2022/sci/msc-geographic-data-science-and-spatial-analytics/">MSc in Geographic Data Science and Spatial Analytics</a>.</p>
 </section>
 <section id="why-we-teach-computing-and-data-handling-skills" class="level2">
 <h2 class="anchored" data-anchor-id="why-we-teach-computing-and-data-handling-skills">Why We Teach Computing and Data-handling Skills</h2>
-<p>Programming languages such as <a href="https://cran.r-project.org/">R</a> and <a href="https://www.python.org/">Python</a> provide an integrated environment that can be used to input, analyse and communicate the results of data-based research, including by visual methods such as maps. This webpage was written in <a href="https://www.rstudio.com/">R Studio</a>, allowing me to bring together the computer code, the results of running that code and other text such as that which you are reading, all into one document. More standard off-the-shelf software such as Excel do not allow this. Presently, we teach R to <strong>all our students</strong>. We do this to support their training in research methods – the sorts of skills that all geographers need <a href="https://www.qaa.ac.uk/quality-code/subject-benchmark-statements/geography">and are expected to have</a> – and also to enhance their employability because data science skills are well regarded by employers.</p>
+<p>Programming languages such as <a href="https://cran.r-project.org/">R</a> and <a href="https://www.python.org/">Python</a> provide an integrated environment that can be used to input, analyse and communicate the results of data-based geographic research, bringing together data manipulation, statistical analysis and visual methods such as charts and maps. This webpage was written in <a href="https://www.rstudio.com/">R Studio</a>, allowing me to bring together into one document the computer code, the results of running that code and other text such as what you are reading. More standard ‘off-the-shelf’ software such as Excel do not allow this. Presently, we teach R to <strong>all our students</strong>. We do this to support their training in research methods – the sorts of skills that all geographers need <a href="https://www.qaa.ac.uk/quality-code/subject-benchmark-statements/geography">and are expected to have</a> – and also to enhance their employability because data science skills are well regarded by employers.</p>
 </section>
 <section id="todays-exercise" class="level2">
 <h2 class="anchored" data-anchor-id="todays-exercise">Today’s Exercise</h2>
 <p>All you need to do for today’s session is follow along with the instructor, copying and pasting code from this document into the R Console as they do. <strong>Please do not rush ahead as this is more likely to generate errors that you will then need to go back and correct</strong>. Just take it one step at a time, in company with the instructor. The purpose of the session is not to teach you coding so there is no need to worry about what the code fully means. It is simply to give you a flavour of the sort of skills we teach our students.</p>
-<p>If you wish, you could run this practical again from a personal computer when you get home. If you do, take a note of the web adress, which is <a href="https://profrichharris.github.io/openday">https://profrichharris.github.io/openday</a> and note that you will first need to install <a href="https://cran.r-project.org/">R</a> and then <a href="https://www.rstudio.com/products/rstudio/download/">RStudio Desktop</a> on the computer for the following code to work. These software are free and operate on Windows, Mac OS and Linux.</p>
+<p>If you wish, you could run this practical again from a personal computer when you get home. If you do, take a note of the web adress, which is <a href="https://profrichharris.github.io/openday">https://profrichharris.github.io/openday</a> and be aware that you will first need to install <a href="https://cran.r-project.org/">R</a> and then <a href="https://www.rstudio.com/products/rstudio/download/">RStudio Desktop</a> on the computer for the following code to work. These software are free and operate on Windows, Mac OS and Linux.</p>
 <section id="to-begin" class="level3">
 <h3 class="anchored" data-anchor-id="to-begin">To Begin</h3>
 <p>When the instructor invites you to do so, please open RStudio on your computer.</p>
 </section>
 <section id="step-1-installload-any-required-libraries" class="level3">
 <h3 class="anchored" data-anchor-id="step-1-installload-any-required-libraries">Step 1: Install/load any required libraries</h3>
-<p>The great advantage of software such as R is that it has available a large number of additional libraries that extend its functionality (for mapping, for example). The ones we need today are listed below. The code chunk checks to see if these library have been installed already, if not then installs them, and then instructs that they are required for the current session in R.</p>
+<p>The great advantage of software such as R is that it has available a large number of additional libraries that extend its functionality – for mapping, for example. The ones we need today are listed below. The code chunk, below, checks to see if these libraries have been installed already, if not then installs them, and then instructs that they are required for the current session in R.</p>
+<section id="code-chunk-1a" class="level4">
+<h4 class="anchored" data-anchor-id="code-chunk-1a"><font size="2">(Code chunk 1a)</font></h4>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-2_6513dd9c19805e0813751be565272be7">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="st">"tidyverse"</span> <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[,<span class="dv">1</span>]) <span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="st">"lme4"</span> <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[,<span class="dv">1</span>]) <span class="fu">install.packages</span>(<span class="st">"lme4"</span>)</span>
@@ -169,6 +171,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next, we will download and load into R some data which give the reported number of positive COVID-19 cases in English neighbourhoods for the period of pandemic until free testing ended. These data are based on those from the <a href="https://coronavirus.data.gov.uk/">Coranvirus Data Dashboard</a> for England, with some minor adjustments to ensure the regional totals match those reported regionally. The English neighbourhoods are what are known as <a href="https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeography">Middle Super Output Areas</a> (MSOAs). As the data are read-in, some variables are recalculated to create percentages (e.g.&nbsp;the percentage of the population aged 5 to 11 years) and the number of care home beds per 1000 of the Adult population.</p>
+</section>
+<section id="code-chunk-1b" class="level4">
+<h4 class="anchored" data-anchor-id="code-chunk-1b"><font size="2">(Code chunk 1b)</font></h4>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-4_3126262f4e35ed063aec037d72c39723">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://www.dropbox.com/s/baqkwvsb0ah3ahh/covid_data.csv?dl=1"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"age"</span>), <span class="sc">~</span> <span class="dv">100</span> <span class="sc">*</span> . <span class="sc">/</span> <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
@@ -180,33 +185,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(week <span class="sc">&gt;</span> <span class="st">"2020-03-13"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here is the top of the data:</p>
-<div class="cell" data-hash="index_cache/html/unnamed-chunk-6_435a72cc57f1d2f9b965df32568006ea">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-6_c3c0be6fa5d527c503822cc9289a1abf">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(df, <span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 x 39
+<pre><code># A tibble: 746,790 x 39
   MSOA11CD  MSOA11NM LtlaCode LtlaName regionCode regionName TCITY15CD TCITY15NM
   &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;    
 1 E02000002 Marks G~ E090000~ Barking~ E12000007  London     J01000055 London   
 2 E02000002 Marks G~ E090000~ Barking~ E12000007  London     J01000055 London   
 3 E02000002 Marks G~ E090000~ Barking~ E12000007  London     J01000055 London   
-4 E02000002 Marks G~ E090000~ Barking~ E12000007  London     J01000055 London   
-5 E02000002 Marks G~ E090000~ Barking~ E12000007  London     J01000055 London   
-6 E02000002 Marks G~ E090000~ Barking~ E12000007  London     J01000055 London   
-# ... with 31 more variables: PLACE &lt;chr&gt;, IMD &lt;dbl&gt;, IMD.mx &lt;dbl&gt;,
-#   `All Ages` &lt;dbl&gt;, `age0-4` &lt;dbl&gt;, `age5-11` &lt;dbl&gt;, `age12-17` &lt;dbl&gt;,
-#   `age18-21` &lt;dbl&gt;, `age22-24` &lt;dbl&gt;, `age25-29` &lt;dbl&gt;, `age30-34` &lt;dbl&gt;,
-#   `age35-39` &lt;dbl&gt;, `age40-44` &lt;dbl&gt;, `age45-49` &lt;dbl&gt;, `age50-54` &lt;dbl&gt;,
-#   `age55-59` &lt;dbl&gt;, `age60-64` &lt;dbl&gt;, `age65-69` &lt;dbl&gt;, `age70-74` &lt;dbl&gt;,
-#   `age75-79` &lt;dbl&gt;, `age80-84` &lt;dbl&gt;, `age85-89` &lt;dbl&gt;, `age90+` &lt;dbl&gt;,
-#   Adults &lt;dbl&gt;, carebeds &lt;dbl&gt;, AandE &lt;dbl&gt;, NCases &lt;dbl&gt;, Rate &lt;dbl&gt;, ...</code></pre>
+# ... with 746,787 more rows, and 31 more variables: PLACE &lt;chr&gt;, IMD &lt;dbl&gt;,
+#   IMD.mx &lt;dbl&gt;, `All Ages` &lt;dbl&gt;, `age0-4` &lt;dbl&gt;, `age5-11` &lt;dbl&gt;,
+#   `age12-17` &lt;dbl&gt;, `age18-21` &lt;dbl&gt;, `age22-24` &lt;dbl&gt;, `age25-29` &lt;dbl&gt;,
+#   `age30-34` &lt;dbl&gt;, `age35-39` &lt;dbl&gt;, `age40-44` &lt;dbl&gt;, `age45-49` &lt;dbl&gt;,
+#   `age50-54` &lt;dbl&gt;, `age55-59` &lt;dbl&gt;, `age60-64` &lt;dbl&gt;, `age65-69` &lt;dbl&gt;,
+#   `age70-74` &lt;dbl&gt;, `age75-79` &lt;dbl&gt;, `age80-84` &lt;dbl&gt;, `age85-89` &lt;dbl&gt;,
+#   `age90+` &lt;dbl&gt;, Adults &lt;dbl&gt;, carebeds &lt;dbl&gt;, AandE &lt;dbl&gt;, ...</code></pre>
 </div>
 </div>
 </section>
+</section>
 <section id="step-2-fit-a-model" class="level3">
 <h3 class="anchored" data-anchor-id="step-2-fit-a-model">Step 2: Fit a model</h3>
-<p>Next we will each fit a statistical model to a randomly sampled week of the pandemic. <strong>Please note that unless your randomly selected week happens to be the same as mine, here, then our results and what appears on screen will differ from now on. The code remains the same, however.</strong></p>
-<p>The model is not really very different to fitting a line of best fit to a scatter plot of data. The model basically says that the number of cases of COVID-19 in a neighbourhood is a function of the number of people who live there, their age profile and whether there is a carehome/A&amp;E facility there. Remember that early in the pandemic those living in carehomes were particularly at risk. The model allows that in some places the number of COVID-19 cases is higher than expected, which, from a geographical point of view raises the question, <em>where?</em></p>
+<p>Now that we have the data we will each fit a statistical model to a randomly sampled week of the pandemic. <strong>Please note that unless your randomly selected week happens to be the same as mine, here, then from now on our results and what appears on screen will differ. The code remains the same, however.</strong></p>
+<p>The model is not really very different to fitting a line of best fit to a scatter plot of data. The model basically says that the number of cases of COVID-19 in a neighbourhood is a function of the number of people who live there, their age profile and whether there is a carehome/A&amp;E facility there (remember that early in the pandemic those living in carehomes were particularly at risk). The model allows that in some places the number of COVID-19 cases is higher than expected, which, from a geographical point of view raises the question, <em>where?</em></p>
 <p>It may take a minute or two to fit the model so please be patient.</p>
+<section id="code-chunk-2" class="level4">
+<h4 class="anchored" data-anchor-id="code-chunk-2"><font size="2">(Code chunk 2)</font></h4>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-10_b5482cda7a367e2b6570abf00f548f16">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sample.week <span class="ot">&lt;-</span> <span class="fu">sample</span>(df<span class="sc">$</span>week, <span class="dv">1</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -228,9 +233,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
+</section>
 <section id="step-3-identify-which-region-had-the-highest-covid-rate-that-week" class="level3">
 <h3 class="anchored" data-anchor-id="step-3-identify-which-region-had-the-highest-covid-rate-that-week">Step 3: Identify which region had the highest COVID rate that week?</h3>
-<p>If we ‘dig’ into the results of the model a little we find what are, in effect, the regional rates of COVID-19, allowing for ages, carehomes and A&amp;E facilities. They are reported on a stanardised and also relative scale: a value greater than zero represents a region with more COVID-19 cases relative to the average that week; a value greater than zero represents a region with fewer. For the week I am looking at, which is in April 2021, Yorkshire and The Humber has most cases and the South West the least <strong>but, remember, it could be different for the week you are looking at</strong>.</p>
+<p>If we ‘dig’ into the results of the model a little we find what are, in effect, the regional rates of COVID-19, allowing for ages, carehomes and A&amp;E facilities. They are reported on a standardised and also relative scale: a value greater than zero represents a region with more COVID-19 cases relative to the average that week; a value greater than zero represents a region with fewer. For the week I am looking at, which is in April 2021, Yorkshire and The Humber has most cases and the South West the least <strong>but, remember, it could be different for the week you are looking at</strong>.</p>
+<section id="code-chunk-3" class="level4">
+<h4 class="anchored" data-anchor-id="code-chunk-3"><font size="2">(Code chunk 3)</font></h4>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-14_b14ae2b97498d141be4ec17767696920">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>regional.rates <span class="ot">&lt;-</span> <span class="fu">ranef</span>(mlm, <span class="at">whichel =</span> <span class="st">"regionName"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
@@ -258,9 +266,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
+</section>
 <section id="step-4-ask-how-different-the-regions-really-are-from-one-another" class="level3">
 <h3 class="anchored" data-anchor-id="step-4-ask-how-different-the-regions-really-are-from-one-another">Step 4: Ask how different the regions really are from one another</h3>
-<p>An important statistical idea is that differences can arise ‘by chance’ because of uncertainties in the way data are collected. Looked at another way, it would be extremely surprising if all the regions had <em>exactly</em> the same COVID-19 rate in the selected week. Given that, it is helpful to have some idea of our confidence/(un-/)certainty in the data and if the regional rates could really overlap or are substantially different from each other. In this week, Yorkshire and The Humber does seem to be different from the rest, as the chart below shows, but there is little difference between, say, London, the East of England and the West Midlands.</p>
+<p>An important statistical idea is that differences can arise ‘by chance’ because of uncertainties in the way data are collected. Looked at another way, it would be extremely surprising if all the regions had <em>exactly</em> the same COVID-19 rate in the selected week. Knowing this, it is helpful to have some idea of our confidence/(un-/)certainty in the data, and if the regional rates could really overlap or are substantially different from each other. In this week, Yorkshire and The Humber does seem to be different from the rest, as the chart below shows, but there is little difference between, say, London, the East of England and the West Midlands. Yes, the West Midlands has a higher modelled rate than both the East of England and London but if we allow that the rates could each be a little higher or a little lower then their overlaps suggests they might not be that different afterall.</p>
+<section id="code-chunk-4" class="level4">
+<h4 class="anchored" data-anchor-id="code-chunk-4"><font size="2">(Code chunk 4)</font></h4>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-16_ea8ae6dbbff6f2db886e0ed3c2d38a13">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>regional.rates <span class="sc">%&gt;%</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ymin =</span> relative.rate <span class="sc">-</span> <span class="fl">1.39</span> <span class="sc">*</span> condsd, <span class="at">ymax =</span> relative.rate <span class="sc">+</span> <span class="fl">1.39</span> <span class="sc">*</span> condsd) <span class="sc">%&gt;%</span></span>
@@ -276,10 +287,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
+</section>
 <section id="step-5-map-the-regional-differences" class="level3">
 <h3 class="anchored" data-anchor-id="step-5-map-the-regional-differences">Step 5: Map the regional differences</h3>
-<p>Now that we have calculated the regional rates we can do the digital equivalent of taking a blank map of the study region and colouring it in to produce a choropleth map of those rates.</p>
+<p>Having calculated the regional rates we can do the digital equivalent of taking a blank map of the study region and colouring it in to produce a choropleth map of those rates.</p>
 <p>To achieve this, first we need a boundary file, which is ‘the blank map’.</p>
+<section id="code-chunk-5a" class="level4">
+<h4 class="anchored" data-anchor-id="code-chunk-5a"><font size="2">(Code chunk 5a)</font></h4>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-18_658175e44f018863be704804edeae7fc">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">file.exists</span>(<span class="st">"england_gor_2011_gen_clipped.shp"</span>)) {</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">download.file</span>(<span class="st">"https://www.dropbox.com/s/gb5161kl17zra7v/England_gor_2011_gen_clipped.zip?dl=1"</span>,</span>
@@ -290,7 +304,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>map.outline <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"england_gor_2011_gen_clipped.shp"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">region =</span> name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Next, the map is joined to the regional rates and coloured. In my map, although there are some differences between how the regions are shaded, they are very slight. The reason for this is that the regional geography of the disease is not especially strong for the week, possibly because the important differences are to be found at a sub-regional scale.</p>
+<p>Next, the map is joined to the regional rates and coloured. We can do this because the boundary file and the modelled rates have an attribute in common, which is the names of the regions. In my map, although there are some differences between how the regions are shaded, they are very slight. The reason for this is that the regional geography of the disease is not especially strong for the week, possibly because the important differences are to be found at a sub-regional scale, which we shall explore next.</p>
+</section>
+<section id="code-chunk-5b" class="level4">
+<h4 class="anchored" data-anchor-id="code-chunk-5b"><font size="2">(Code chunk 5b)</font></h4>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-20_272681e408447fc1c59d41ccf396ddad">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(map.outline, regional.rates, <span class="at">by =</span> <span class="st">"region"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relative.rate =</span> <span class="fu">ifelse</span>(relative.rate <span class="sc">&gt;</span> <span class="fl">3.5</span>, <span class="fl">3.5</span>, relative.rate)) <span class="sc">%&gt;%</span></span>
@@ -305,10 +322,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
+</section>
 <section id="step-6-look-at-the-sub-regional-differences" class="level3">
 <h3 class="anchored" data-anchor-id="step-6-look-at-the-sub-regional-differences">Step 6: Look at the sub-regional differences</h3>
-<p>Another important statistical idea, which also is geographical, is that results are scale dependent. For example, what we see in a map is dependent upon on the size (and shape and position) of the areas that we use for the map. So, too, are the results of a statistical model that uses geographical data.</p>
-<p>Let’s refit the model but at a sub-regional scale for the same week. This will take a little longer to fit because of the more detailed geography, which is a mixture of urban and local authority geographies.</p>
+<p>Another important statistical principle, which also is a geographical one, is that results are scale dependent. For example, what we see in a map is dependent upon on the size (and shape and position) of the areas that we use for the map. So, too, are the results of a statistical model that uses geographical data. It could be that the regional rates are ‘averaging away’ places of low and/or high rates within them.</p>
+<p>Let’s refit the model but at a sub-regional scale for the same week. This will take a little longer to fit because of the more detailed geography, which is a mixture of urban and local authority geographies so, again, please be patient if it takes a minute or two.</p>
+<section id="code-chunk-6a" class="level4">
+<h4 class="anchored" data-anchor-id="code-chunk-6a"><font size="2">(Code chunk 6a)</font></h4>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-22_556ee2a5eeb21a09bb76bc7d5ccbffec">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mlm2 <span class="ot">&lt;-</span>  df <span class="sc">%&gt;%</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(week <span class="sc">==</span> sample.week) <span class="sc">%&gt;%</span></span>
@@ -320,8 +340,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">family=</span><span class="fu">poisson</span>(), <span class="at">data =</span> .,</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">control =</span> <span class="fu">glmerControl</span>(<span class="at">calc.derivs =</span> <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The places with the highest relative rates in the week are (for me):</p>
-<div class="cell" data-hash="index_cache/html/unnamed-chunk-24_ad87763df565b26b26217cb837a3a440">
+<p>The places with the highest relative rates in the week are (for me, not necessarily you):</p>
+</section>
+<section id="code-chunk-6b" class="level4">
+<h4 class="anchored" data-anchor-id="code-chunk-6b"><font size="2">(Code chunk 6b)</font></h4>
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-24_f7e26201c10575708fc5cfd6af4b6fc4">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sub.regional.rates <span class="ot">&lt;-</span> <span class="fu">ranef</span>(mlm2, <span class="at">whichel =</span> <span class="st">"PLACE"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>grpvar, <span class="sc">-</span>term) <span class="sc">%&gt;%</span></span>
@@ -330,25 +353,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>sub.regional.rates <span class="sc">%&gt;%</span></span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relative.rate =</span> <span class="fu">round</span>(relative.rate, <span class="dv">3</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(PLACE, relative.rate) <span class="sc">%&gt;%</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 392 x 3
-   PLACE         relative.rate condsd
-   &lt;fct&gt;                 &lt;dbl&gt;  &lt;dbl&gt;
- 1 Doncaster#            1.38   0.139
- 2 Wakefield*            1.21   0.181
- 3 Barnsley#             1.14   0.161
- 4 Kirklees#             1.08   0.127
- 5 Bradford*             1.06   0.108
- 6 Doncaster*            1.04   0.179
- 7 Rotherham#            1.03   0.168
- 8 Leicester*            1.02   0.104
- 9 Huddersfield*         1.01   0.149
-10 Scunthorpe*           0.984  0.199
+<pre><code># A tibble: 392 x 2
+   PLACE         relative.rate
+   &lt;fct&gt;                 &lt;dbl&gt;
+ 1 Doncaster#            1.38 
+ 2 Wakefield*            1.21 
+ 3 Barnsley#             1.14 
+ 4 Kirklees#             1.08 
+ 5 Bradford*             1.06 
+ 6 Doncaster*            1.04 
+ 7 Rotherham#            1.03 
+ 8 Leicester*            1.02 
+ 9 Huddersfield*         1.01 
+10 Scunthorpe*           0.984
 # ... with 382 more rows</code></pre>
 </div>
 </div>
 <p>If I now map the rates, I obtain the following map. As it turns out, the differences between the places are not especially great for this week even at a sub-regional scale.</p>
+</section>
+<section id="code-chunk-6c" class="level4">
+<h4 class="anchored" data-anchor-id="code-chunk-6c"><font size="2">(Code chunk 6c)</font></h4>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-26_e1b2f5352a81643ccf6f2bd64818c181">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">file.exists</span>(<span class="st">"places.shp"</span>)) {</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">download.file</span>(<span class="st">"https://www.dropbox.com/s/7cd8ef8nrkbild5/places.zip?dl=1"</span>,</span>
@@ -370,30 +397,80 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="index_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>In fact, for my week of the data, there are more differences between MSOAs than there are between the sub-regional places, and more differences between those places than there are between regions. I know this from fitting a final model with three geographical levels in it – the MSOAs, the sub-regional places and the regions – and looking in the results under where it says Std. Dev. The ‘Random effect’ with the highest Std.Dev. is the level which has most geographical variation. The one with the least, has least. This sort of modelling is very useful for understanding at which geographical scales particular processes (here the spread of a disease) generate geographical outcomes.</p>
 </section>
-<section id="step-7-record-the-location-with-the-highest-rate-in-the-padlet" class="level3">
-<h3 class="anchored" data-anchor-id="step-7-record-the-location-with-the-highest-rate-in-the-padlet">Step 7: Record the location with the highest rate in the padlet</h3>
-<p>Go to the padlet, <a href="https://en-gb.padlet.com/profrichharris/openday">https://en-gb.padlet.com/profrichharris/openday</a>, click on the red circle with a white + sign, search for the place with the highest COVID-19 rate in your map, and enter the date of that rate in the text before hitting Publish.</p>
+<section id="code-chunk-6d" class="level4">
+<h4 class="anchored" data-anchor-id="code-chunk-6d"><font size="2">(Code chunk 6d)</font></h4>
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-28_f6911293a37ad859a4f3b10a864f0e3f">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mlm3 <span class="ot">&lt;-</span>  df <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(week <span class="sc">==</span> sample.week) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"age"</span>) <span class="sc">|</span> <span class="fu">matches</span>(<span class="st">"carebeds"</span>) <span class="sc">|</span> <span class="fu">matches</span>(<span class="st">"AandE"</span>),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                <span class="sc">~</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(.)))) <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glmer</span>(cases <span class="sc">~</span>  <span class="st">`</span><span class="at">age5-11</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age12-17</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age18-21</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">age22-34</span><span class="st">`</span> <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                  carebeds <span class="sc">+</span> AandE <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">1</span><span class="sc">|</span>MSOA11CD) <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>PLACE) <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>regionName) <span class="sc">+</span> <span class="fu">offset</span>(<span class="fu">log</span>(<span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>)),</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">family=</span><span class="fu">poisson</span>(), <span class="at">data =</span> .,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">control =</span> <span class="fu">glmerControl</span>(<span class="at">calc.derivs =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(mlm3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: poisson  ( log )
+Formula: cases ~ `age5-11` + `age12-17` + `age18-21` + `age22-34` + carebeds +  
+    AandE + (1 | MSOA11CD) + (1 | PLACE) + (1 | regionName) +  
+    offset(log(`All Ages`))
+   Data: .
+      AIC       BIC    logLik  deviance  df.resid 
+ 23698.24  23766.48 -11839.12  23678.24      6779 
+Random effects:
+ Groups     Name        Std.Dev.
+ MSOA11CD   (Intercept) 0.5524  
+ PLACE      (Intercept) 0.3836  
+ regionName (Intercept) 0.2854  
+Number of obs: 6789, groups:  MSOA11CD, 6789; PLACE, 392; regionName, 9
+Fixed Effects:
+(Intercept)    `age5-11`   `age12-17`   `age18-21`   `age22-34`     carebeds  
+   -8.66804      0.11763      0.09205     -0.01060      0.22678      0.02682  
+      AandE  
+    0.00539  </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="step-7-record-the-location-place-with-the-highest-rate-in-the-padlet" class="level3">
+<h3 class="anchored" data-anchor-id="step-7-record-the-location-place-with-the-highest-rate-in-the-padlet">Step 7: Record the location (place) with the highest rate in the padlet</h3>
+<p>Go to the padlet, <a href="https://en-gb.padlet.com/profrichharris/openday">https://en-gb.padlet.com/profrichharris/openday</a>, click on the red circle with a white + sign, search for the place with the highest COVID-19 rate in your map (Doncaster in mine), and enter the date of that rate in the text before hitting Publish.</p>
 </section>
 <section id="step-8-see-what-happens-in-a-different-week" class="level3">
 <h3 class="anchored" data-anchor-id="step-8-see-what-happens-in-a-different-week">Step 8: See what happens in a different week</h3>
-<p>Finally, if there is time, and if instructed, fo back to Step 2 and repeat everything from that step onward</p>
+<p>Finally, if there is time, and if instructed, go back to Step 2 and repeat everything from that step onward</p>
 </section>
 </section>
 <section id="to-consider" class="level2">
 <h2 class="anchored" data-anchor-id="to-consider">To Consider</h2>
 <p>At the end of this exercise, when everyone has finished, if you go back to the padlet, <a href="https://en-gb.padlet.com/profrichharris/openday">https://en-gb.padlet.com/profrichharris/openday</a> and interact with it then you should find that:</p>
-<ol type="a">
+<ul>
 <li>there is a geography to COVID-19 in England; and</li>
 <li>that geography changes throughout the pandemic.</li>
-</ol>
-<p>So, <strong>here are some important geographical questions for you to consider: why? Why are the rates higher in some places than in others? What might that tells us about those places or the populations that live in them? What are the causes of the differences? Is it a ‘standalone’ geography or is the geography of COVID-19 related to other geographical patterns of living within England? Can you think of some possible explanations?</strong></p>
+</ul>
+<p><strong>Earlier we asked the where question: where is there more or less of the disease? Now we turn to the why.</strong></p>
+<ul>
+<li>Why are the rates higher in some places than in others?</li>
+<li>What might that tell us about those places or the populations that live in them?</li>
+<li>What are the causes of the differences?</li>
+<li>Is it a ‘standalone’ geography or is the geography of COVID-19 related to other geographical patterns of living within England?</li>
+<li>Can you think of some possible explanations?</li>
+<li>Does the map reveal any clues?</li>
+</ul>
+<p><br> Thank you for attending today’s session. I wish you a pleasant time in Bristol and a safe journey home.</p>
 </section>
 <section id="further-reading" class="level2">
 <h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
 <p>Department for Levelling Up, Housing and Communities (2022). Levelling Up the United Kingdom: executive summary. Dpt. for Levelling Up, Housing and Communities, London. Retrieved June 6, 2022, from <a href="https://www.gov.uk/government/publications/levelling-up-the-united-kingdom">https://www.gov.uk/government/publications/levelling-up-the-united-kingdom</a>.</p>
 <p>Horton, R. (2020). Comment: COVID-19 is not a pandemic. <em>The Lancet</em>, 396 (10255), p.&nbsp;874. <a href="https://doi.org/10.1016/S0140-6736(20)32000-6">https://doi.org/10.1016/S0140-6736(20)32000-6</a>.</p>
 <p>Lawence, D. (2020). <em>An Avoidable Crisis: The disproportionate impact of COVID-19 on Black, Asian and minority ethnic communities.</em> The Labour Party, London. Retrieved May 24, 2021, from <a href="https://www.lawrencereview.co.uk/">https://www.lawrencereview.co.uk/</a>.</p>
+<p><br> <img src="REF.jpg" class="img-fluid" width="1500"></p>
 </section>
 
 </main>

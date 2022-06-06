@@ -18,36 +18,35 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE
 
 Welcome to the [School of Geographical Sciences](http://www.bristol.ac.uk/geography/), [University of Bristol](https://www.bristol.ac.uk/). The School has a long and distinguished history of teaching quantitative methods, spatial modelling and geographic data science to all of our students. Historically, some of our pioneering staff in this field have included:
 
-[Peter Haggett](https://en.wikipedia.org/wiki/Peter_Haggett), one of the most influential geographers of his generation;
-
 ![](haggett.jpg){width=100}
 
-[Ron Johnston](https://en.wikipedia.org/wiki/Ron_Johnston_(geographer)), one of the most prolific authors ever in human geography;
+[Peter Haggett](https://en.wikipedia.org/wiki/Peter_Haggett), one of the most influential geographers of his generation;
 
 ![](johnston.jpg){width=100}
 
-[Les Hepple](https://doi.org/10.1068/a4097), an exceptional scholar, polymath and dedicated teacher;
+[Ron Johnston](https://en.wikipedia.org/wiki/Ron_Johnston_(geographer)), one of the most prolific authors ever in human geography;
 
 ![](hepple.jpg){width=100}
 
-and [Kelvyn Jones](https://en.wikipedia.org/wiki/Kelvyn_Jones), a leading pioneer of quantitative methods in human geography.
+[Les Hepple](https://doi.org/10.1068/a4097), an exceptional scholar, polymath and dedicated teacher; and
 
 ![](jones.jpg){width=100}
 
+[Kelvyn Jones](https://en.wikipedia.org/wiki/Kelvyn_Jones), a leading pioneer of quantitative methods in human geography.
 
-We continue to honour this tradition through our [Quantitative Spatial Science Research Group](https://www.bristol.ac.uk/geography/research/quantitative-spatial-science/), which leads the teaching of quantitative methods to students in all years of our undergraduate (and Masters) programmes. These include [BSc Geography](http://www.bristol.ac.uk/study/undergraduate/2023/geography/bsc-geography/), [BSc Geography with Quantitative Research Methods](http://www.bristol.ac.uk/study/undergraduate/2023/quantitative-research-methods/bsc-geography-quantitative-research/) and our new [MSc in Geographic Data Science and Spatial Analytics](https://www.bristol.ac.uk/study/postgraduate/2022/sci/msc-geographic-data-science-and-spatial-analytics/).
+We continue this tradition into the present-day through our [Quantitative Spatial Science Research Group](https://www.bristol.ac.uk/geography/research/quantitative-spatial-science/), which (no longer all male and all white!) leads the teaching of quantitative methods to students in all years of our undergraduate (and Masters) programmes. These include [BSc Geography](http://www.bristol.ac.uk/study/undergraduate/2023/geography/bsc-geography/), [BSc Geography with Quantitative Research Methods](http://www.bristol.ac.uk/study/undergraduate/2023/quantitative-research-methods/bsc-geography-quantitative-research/) and our new [MSc in Geographic Data Science and Spatial Analytics](https://www.bristol.ac.uk/study/postgraduate/2022/sci/msc-geographic-data-science-and-spatial-analytics/).
 
 
 ## Why We Teach Computing and Data-handling Skills
 
-Programming languages such as [R](https://cran.r-project.org/) and [Python](https://www.python.org/) provide an integrated environment that can be used to input, analyse and communicate the results of data-based research, including by visual methods such as maps. This webpage was written in [R Studio](https://www.rstudio.com/), allowing me to bring together the computer code, the results of running that code and other text such as that which you are reading, all into one document. More standard off-the-shelf software such as Excel do not allow this. Presently, we teach R to **all our students**. We do this to support their training in research methods -- the sorts of skills that all geographers need [and are expected to have](https://www.qaa.ac.uk/quality-code/subject-benchmark-statements/geography) -- and also to enhance their employability because data science skills are well regarded by employers.
+Programming languages such as [R](https://cran.r-project.org/) and [Python](https://www.python.org/) provide an integrated environment that can be used to input, analyse and communicate the results of data-based geographic research, bringing together data manipulation, statistical analysis and visual methods such as charts and maps. This webpage was written in [R Studio](https://www.rstudio.com/), allowing me to bring together into one document the computer code, the results of running that code and other text such as what you are reading. More standard 'off-the-shelf' software such as Excel do not allow this. Presently, we teach R to **all our students**. We do this to support their training in research methods -- the sorts of skills that all geographers need [and are expected to have](https://www.qaa.ac.uk/quality-code/subject-benchmark-statements/geography) -- and also to enhance their employability because data science skills are well regarded by employers.
 
 
 ## Today's Exercise
 
 All you need to do for today's session is follow along with the instructor, copying and pasting code from this document into the R Console as they do. **Please do not rush ahead as this is more likely to generate errors that you will then need to go back and correct**. Just take it one step at a time, in company with the instructor. The purpose of the session is not to teach you coding so there is no need to worry about what the code fully means. It is simply to give you a flavour of the sort of skills we teach our students.
 
-If you wish, you could run this practical again from a personal computer when you get home. If you do, take a note of the web adress, which is [https://profrichharris.github.io/openday](https://profrichharris.github.io/openday) and note that you will first need to install [R](https://cran.r-project.org/) and then [RStudio Desktop](https://www.rstudio.com/products/rstudio/download/) on the computer for the following code to work. These software are free and operate on Windows, Mac OS and Linux.
+If you wish, you could run this practical again from a personal computer when you get home. If you do, take a note of the web adress, which is [https://profrichharris.github.io/openday](https://profrichharris.github.io/openday) and be aware that you will first need to install [R](https://cran.r-project.org/) and then [RStudio Desktop](https://www.rstudio.com/products/rstudio/download/) on the computer for the following code to work. These software are free and operate on Windows, Mac OS and Linux.
 
 
 ### To Begin
@@ -57,7 +56,9 @@ When the instructor invites you to do so, please open RStudio on your computer.
 
 ### Step 1: Install/load any required libraries
 
-The great advantage of software such as R is that it has available a large number of additional libraries that extend its functionality (for mapping, for example). The ones we need today are listed below. The code chunk checks to see if these library have been installed already, if not then installs them, and then instructs that they are required for the current session in R.
+The great advantage of software such as R is that it has available a large number of additional libraries that extend its functionality -- for mapping, for example. The ones we need today are listed below. The code chunk, below, checks to see if these libraries have been installed already, if not then installs them, and then instructs that they are required for the current session in R.
+
+#### <font size = 2>(Code chunk 1a)</font>
 
 ```{r}
 
@@ -77,6 +78,8 @@ require(sf)
 
 Next, we will download and load into R some data which give the reported number of positive COVID-19 cases in English neighbourhoods for the period of pandemic until free testing ended. These data are based on those from the [Coranvirus Data Dashboard](https://coronavirus.data.gov.uk/) for England, with some minor adjustments to ensure the regional totals match those reported regionally. The English neighbourhoods are what are known as [Middle Super Output Areas](https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeography) (MSOAs). As the data are read-in, some variables are recalculated to create percentages (e.g. the percentage of the population aged 5 to 11 years) and the number of care home beds per 1000 of the Adult population. 
 
+#### <font size = 2>(Code chunk 1b)</font>
+
 ```{r}
 
 df <- read_csv("https://www.dropbox.com/s/baqkwvsb0ah3ahh/covid_data.csv?dl=1") %>%
@@ -93,7 +96,7 @@ Here is the top of the data:
 
 ```{r}
 
-head(df)
+print(df, n = 3)
 
 ```
 
@@ -101,11 +104,13 @@ head(df)
 
 ### Step 2: Fit a model
 
-Next we will each fit a statistical model to a randomly sampled week of the pandemic. **Please note that unless your randomly selected week happens to be the same as mine, here, then our results and what appears on screen will differ from now on. The code remains the same, however.**
+Now that we have the data we will each fit a statistical model to a randomly sampled week of the pandemic. **Please note that unless your randomly selected week happens to be the same as mine, here, then from now on our results and what appears on screen will differ. The code remains the same, however.**
 
-The model is not really very different to fitting a line of best fit to a scatter plot of data. The model basically says that the number of cases of COVID-19 in a neighbourhood is a function of the number of people who live there, their age profile and whether there is a carehome/A&E facility there. Remember that early in the pandemic those living in carehomes were particularly at risk. The model allows that in some places the number of COVID-19 cases is higher than expected, which, from a geographical point of view raises the question, *where?*
+The model is not really very different to fitting a line of best fit to a scatter plot of data. The model basically says that the number of cases of COVID-19 in a neighbourhood is a function of the number of people who live there, their age profile and whether there is a carehome/A&E facility there (remember that early in the pandemic those living in carehomes were particularly at risk). The model allows that in some places the number of COVID-19 cases is higher than expected, which, from a geographical point of view raises the question, *where?*
 
 It may take a minute or two to fit the model so please be patient.
+
+#### <font size = 2>(Code chunk 2)</font>
 
 ```{r, include = FALSE}
 set.seed(06062022)
@@ -139,7 +144,9 @@ print(sample.week)
 
 ### Step 3: Identify which region had the highest COVID rate that week?
 
-If we 'dig' into the results of the model a little we find what are, in effect, the regional rates of COVID-19, allowing for ages, carehomes and A&E facilities. They are reported on a stanardised and also relative scale: a value greater than zero represents a region with more COVID-19 cases relative to the average that week; a value greater than zero represents a region with fewer. For the week I am looking at, which is in April 2021, Yorkshire and The Humber has most cases and the South West the least **but, remember, it could be different for the week you are looking at**.
+If we 'dig' into the results of the model a little we find what are, in effect, the regional rates of COVID-19, allowing for ages, carehomes and A&E facilities. They are reported on a standardised and also relative scale: a value greater than zero represents a region with more COVID-19 cases relative to the average that week; a value greater than zero represents a region with fewer. For the week I am looking at, which is in April 2021, Yorkshire and The Humber has most cases and the South West the least **but, remember, it could be different for the week you are looking at**.
+
+#### <font size = 2>(Code chunk 3)</font>
 
 ```{r}
 
@@ -159,7 +166,9 @@ regional.rates %>%
 
 ### Step 4: Ask how different the regions really are from one another
 
-An important statistical idea is that differences can arise 'by chance' because of uncertainties in the way data are collected. Looked at another way, it would be extremely surprising if all the regions had *exactly* the same COVID-19 rate in the selected week. Given that, it is helpful to have some idea of our confidence/(un-/)certainty in the data and if the regional rates could really overlap or are substantially different from each other. In this week, Yorkshire and The Humber does seem to be different from the rest, as the chart below shows, but there is little difference between, say, London, the East of England and the West Midlands. 
+An important statistical idea is that differences can arise 'by chance' because of uncertainties in the way data are collected. Looked at another way, it would be extremely surprising if all the regions had *exactly* the same COVID-19 rate in the selected week. Knowing this, it is helpful to have some idea of our confidence/(un-/)certainty in the data, and if the regional rates could really overlap or are substantially different from each other. In this week, Yorkshire and The Humber does seem to be different from the rest, as the chart below shows, but there is little difference between, say, London, the East of England and the West Midlands. Yes, the West Midlands has a higher modelled rate than both the East of England and London but if we allow that the rates could each be a little higher or a little lower then their overlaps suggests they might not be that different afterall. 
+
+#### <font size = 2>(Code chunk 4)</font>
 
 ```{r}
 
@@ -178,9 +187,11 @@ regional.rates %>%
 
 ### Step 5: Map the regional differences
 
-Now that we have calculated the regional rates we can do the digital equivalent of taking a blank map of the study region and colouring it in to produce a choropleth map of those rates.
+Having calculated the regional rates we can do the digital equivalent of taking a blank map of the study region and colouring it in to produce a choropleth map of those rates.
 
 To achieve this, first we need a boundary file, which is 'the blank map'.
+
+#### <font size = 2>(Code chunk 5a)</font>
 
 ```{r}
 
@@ -196,7 +207,9 @@ map.outline <- read_sf("england_gor_2011_gen_clipped.shp") %>%
 ```
 
 
-Next, the map is joined to the regional rates and coloured. In my map, although there are some differences between how the regions are shaded, they are very slight. The reason for this is that the regional geography of the disease is not especially strong for the week, possibly because the important differences are to be found at a sub-regional scale.
+Next, the map is joined to the regional rates and coloured. We can do this because the boundary file and the modelled rates have an attribute in common, which is the names of the regions. In my map, although there are some differences between how the regions are shaded, they are very slight. The reason for this is that the regional geography of the disease is not especially strong for the week, possibly because the important differences are to be found at a sub-regional scale, which we shall explore next.
+
+#### <font size = 2>(Code chunk 5b)</font>
 
 ```{r}
 
@@ -214,9 +227,11 @@ inner_join(map.outline, regional.rates, by = "region") %>%
 
 ### Step 6: Look at the sub-regional differences
 
-Another important statistical idea, which also is geographical, is that results are scale dependent. For example, what we see in a map is dependent upon on the size (and shape and position) of the areas that we use for the map. So, too, are the results of a statistical model that uses geographical data.
+Another important statistical principle, which also is a geographical one, is that results are scale dependent. For example, what we see in a map is dependent upon on the size (and shape and position) of the areas that we use for the map. So, too, are the results of a statistical model that uses geographical data. It could be that the regional rates are 'averaging away' places of low and/or high rates within them.
 
-Let's refit the model but at a sub-regional scale for the same week. This will take a little longer to fit because of the more detailed geography, which is a mixture of urban and local authority geographies.
+Let's refit the model but at a sub-regional scale for the same week. This will take a little longer to fit because of the more detailed geography, which is a mixture of urban and local authority geographies so, again, please be patient if it takes a minute or two.
+
+#### <font size = 2>(Code chunk 6a)</font>
 
 ```{r}
 
@@ -233,7 +248,9 @@ mlm2 <-  df %>%
 ```
 
 
-The places with the highest relative rates in the week are (for me):
+The places with the highest relative rates in the week are (for me, not necessarily you):
+
+#### <font size = 2>(Code chunk 6b)</font>
 
 ```{r}
 
@@ -245,12 +262,15 @@ sub.regional.rates <- ranef(mlm2, whichel = "PLACE") %>%
 
 sub.regional.rates %>%
   mutate(relative.rate = round(relative.rate, 3)) %>%
+  select(PLACE, relative.rate) %>%
   print(n = 10)
 
 ```
 
 
 If I now map the rates, I obtain the following map. As it turns out, the differences between the places are not especially great for this week even at a sub-regional scale.
+
+#### <font size = 2>(Code chunk 6c)</font>
 
 ```{r}
 
@@ -273,25 +293,55 @@ read_sf("places.shp") %>%
 
 ```
 
+In fact, for my week of the data, there are more differences between MSOAs than there are between the sub-regional places, and more differences between those places than there are between regions. I know this from fitting a final model with three geographical levels in it -- the MSOAs, the sub-regional places and the regions -- and looking in the results under where it says Std. Dev. The 'Random effect' with the highest Std.Dev. is the level which has most geographical variation. The one with the least, has least. This sort of modelling is very useful for understanding at which geographical scales particular processes (here the spread of a disease) generate geographical outcomes.
 
-### Step 7: Record the location with the highest rate in the padlet
+#### <font size = 2>(Code chunk 6d)</font>
 
-Go to the padlet, [https://en-gb.padlet.com/profrichharris/openday](https://en-gb.padlet.com/profrichharris/openday), click on the red circle with a white + sign, search for the place with the highest COVID-19 rate in your map, and enter the date of that rate in the text before hitting Publish.
+```{r}
+
+mlm3 <-  df %>%
+  filter(week == sample.week) %>%
+  mutate(across(starts_with("age") | matches("carebeds") | matches("AandE"),
+                ~ as.numeric(scale(.)))) %>%
+  glmer(cases ~  `age5-11` + `age12-17` + `age18-21` + `age22-34` +
+                  carebeds + AandE +
+                 (1|MSOA11CD) + (1|PLACE) + (1|regionName) + offset(log(`All Ages`)),
+                family=poisson(), data = .,
+                control = glmerControl(calc.derivs = FALSE))
+
+print(mlm3)
+
+```
+
+
+### Step 7: Record the location (place) with the highest rate in the padlet
+
+Go to the padlet, [https://en-gb.padlet.com/profrichharris/openday](https://en-gb.padlet.com/profrichharris/openday), click on the red circle with a white + sign, search for the place with the highest COVID-19 rate in your map (Doncaster in mine), and enter the date of that rate in the text before hitting Publish.
 
 
 ### Step 8: See what happens in a different week
 
-Finally, if there is time, and if instructed, fo back to Step 2 and repeat everything from that step onward 
+Finally, if there is time, and if instructed, go back to Step 2 and repeat everything from that step onward 
 
 
 ## To Consider
 
 At the end of this exercise, when everyone has finished, if you go back to the padlet, [https://en-gb.padlet.com/profrichharris/openday](https://en-gb.padlet.com/profrichharris/openday) and interact with it then you should find that:
 
-(a) there is a geography to COVID-19 in England; and
-(b) that geography changes throughout the pandemic.
+- there is a geography to COVID-19 in England; and
+- that geography changes throughout the pandemic.
 
-So, **here are some important geographical questions for you to consider: why? Why are the rates higher in some places than in others? What might that tells us about those places or the populations that live in them? What are the causes of the differences? Is it a 'standalone' geography or is the geography of COVID-19 related to other geographical patterns of living within England? Can you think of some possible explanations?**
+**Earlier we asked the where question: where is there more or less of the disease? Now we turn to the why.**
+
+- Why are the rates higher in some places than in others?
+- What might that tell us about those places or the populations that live in them?
+- What are the causes of the differences?
+- Is it a 'standalone' geography or is the geography of COVID-19 related to other geographical patterns of living within England?
+- Can you think of some possible explanations?
+- Does the map reveal any clues?
+  
+</br>
+Thank you for attending today's session. I wish you a pleasant time in Bristol and a safe journey home.
 
 
 ## Further Reading
@@ -302,9 +352,5 @@ Horton, R. (2020). Comment: COVID-19 is not a pandemic. *The Lancet*, 396 (10255
 
 Lawence, D. (2020). *An Avoidable Crisis: The disproportionate impact of COVID-19 on Black, Asian and minority ethnic communities.* The Labour Party, London. Retrieved May 24, 2021, from [https://www.lawrencereview.co.uk/](https://www.lawrencereview.co.uk/).
 
-
-
-
-  
-  
-  
+</br>
+![](REF.jpg){width=1500}
