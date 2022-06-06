@@ -12,7 +12,30 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 ![](logocolour.jpg){width=300}
 
-<font size = 10>Geographies of COVID-19</font><font size = 6></br>An exercise in geographic data science in R</font>
+<font size = 10>Geographies of COVID-19</font><font size = 6></br>An introduction to quantitative geography</font>
+
+## Introduction
+
+Welcome to the [School of Geographical Sciences](http://www.bristol.ac.uk/geography/), [University of Bristol](https://www.bristol.ac.uk/). The School has a long and distinguished history of teaching quantitative methods, spatial modelling and geographic data science to all of our students. Historically, some of our pioneering staff in this field have included:
+
+[Peter Haggett](https://en.wikipedia.org/wiki/Peter_Haggett), one of the most influential geographers of his generation;
+
+![](haggett.jpg){width=100}
+
+[Ron Johnston](https://en.wikipedia.org/wiki/Ron_Johnston_(geographer)), one of the most prolific authors ever in human geography;
+
+![](johnston.jpg){width=100}
+
+[Les Hepple](https://doi.org/10.1068/a4097), an exceptional scholar, polymath and dedicated teacher;
+
+![](hepple.jpg){width=100}
+
+and [Kelvyn Jones](https://en.wikipedia.org/wiki/Kelvyn_Jones), a leading pioneer of quantitative methods in human geography.
+
+![](jones.jpg){width=100}
+
+We continue to honour this tradition through our [Quantitative Spatial Science Research Group](https://www.bristol.ac.uk/geography/research/quantitative-spatial-science/), which leads the teaching of quantitative methods to students in all years of our undergraduate (and Masters) programmes. These include [BSc Geography](http://www.bristol.ac.uk/study/undergraduate/2023/geography/bsc-geography/), [BSc Geography with Quantitative Research Methods](http://www.bristol.ac.uk/study/undergraduate/2023/quantitative-research-methods/bsc-geography-quantitative-research/) and our new [MSc in Geographic Data Science and Spatial Analytics](https://www.bristol.ac.uk/study/postgraduate/2022/sci/msc-geographic-data-science-and-spatial-analytics/).
+
 
 ## Step 1: Download the data and install/load any libraries
 
