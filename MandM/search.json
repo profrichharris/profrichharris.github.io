@@ -49,11 +49,11 @@
     "text": "Further Reading\nThis short introduction to base R has really only scratched the surface. For a fuller introduction, see the software manual, An Introduction to R.\nDon’t worry if not everything makes sense at this stage. The best way to learn R is to put it into practice and that is what we shall be doing in later sessions."
   },
   {
-    "objectID": "index.html#mapping-and-modelling-geographic-data-in-r",
-    "href": "index.html#mapping-and-modelling-geographic-data-in-r",
+    "objectID": "index.html",
+    "href": "index.html",
     "title": "",
-    "section": "Mapping and Modelling Geographic Data in R",
-    "text": "Mapping and Modelling Geographic Data in R\nRichard Harris, School of Geographical Sciences, University of Bristol\n @profrichharris"
+    "section": "",
+    "text": "Richard Harris, School of Geographical Sciences, University of Bristol\n\nThis is a work in progress and a long way from completion.\nLast updated: 2022-06-30"
   },
   {
     "objectID": "index.html#about-the-course",
@@ -67,7 +67,7 @@
     "href": "index.html#about-the-author",
     "title": "",
     "section": "About the author",
-    "text": "About the author\nThis course is authored by Richard Harris, Professor of Quantitative Social Geography at the University of Bristol. You can find out more about me, my research and other interests at https://profrichharris.github.io/."
+    "text": "About the author\nThis course is authored by Richard Harris, Professor of Quantitative Social Geography at the University of Bristol. You can find out more about me, my research and other interests at https://profrichharris.github.io/.\n @profrichharris"
   },
   {
     "objectID": "index.html#useful-resources",
