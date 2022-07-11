@@ -70,5 +70,7 @@ ggplot(data = ipumsi) +
     caption = "Source: IPUMS-International"
   )
   
+# Save the map and data as a shapefile
 
+write_sf(ipumsi, "ipumsi.shp")
 
