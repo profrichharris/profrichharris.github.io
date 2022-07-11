@@ -89,6 +89,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <script src="site_libs/quarto-search/autocomplete-preset-algolia.umd.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./programming.html" rel="next">
 <link href="./base.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -178,7 +179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="./" class="sidebar-logo-link">
-      <img src="./logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./logo.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
@@ -236,6 +237,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./tidyverse.html" class="sidebar-item-text sidebar-link active">Tidyverse</a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./programming.html" class="sidebar-item-text sidebar-link">Programming</a>
+  </div>
+</li>
     </ul>
   </li>
     </ul>
@@ -290,7 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://github.com/profrichharris/profrichharris.github.io/raw/main/data/covid_extract.csv"</span>, <span class="st">"covid.csv"</span>, <span class="at">mode =</span> <span class="st">"wb"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://github.com/profrichharris/profrichharris.github.io/raw/main/MandM/data/covid_extract.csv"</span>, <span class="st">"covid.csv"</span>, <span class="at">mode =</span> <span class="st">"wb"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>We also need to <code>require(tidyverse)</code> ready for use.</p>
@@ -522,7 +528,7 @@ lm(formula = y ~ x, data = .)
 
 Coefficients:
 (Intercept)            x  
-    -0.1238       1.9975  </code></pre>
+    -0.1103       2.0030  </code></pre>
 </div>
 </div>
 <p>However, it does <em>not</em> work with the pipe, <code>|&gt;</code> because it does not recognise the place holder <code>.</code>, which receives the data frame from the line above and contains the variables for the model.</p>
@@ -552,7 +558,7 @@ lm(formula = y ~ x, data = z)
 
 Coefficients:
 (Intercept)            x  
-   -0.02083      1.99796  </code></pre>
+   -0.04649      2.00177  </code></pre>
 </div>
 </div>
 <p>Over time, expect <code>|&gt;</code> to be developed and to supersede <code>%&gt;%</code>. For now, however, you are unlikely to encounter errors using <code>%&gt;%</code> as a substitute for <code>|&gt;</code> but you might using <code>|&gt;</code> instead of <code>%&gt;%</code>. In other words, <code>%&gt;%</code> is the safer choice and the one which will be used for these tutorials.</p>
@@ -653,16 +659,17 @@ Coefficients:
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">cases =</span> <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="at">population =</span> <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(regionName) <span class="sc">%&gt;%</span></span>
 <span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), sum)) <span class="sc">%&gt;%</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rate =</span> <span class="fu">round</span>(cases <span class="sc">/</span> population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)) <span class="ot">-&gt;</span> df2</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>df2 <span class="sc">%&gt;%</span></span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rate)) <span class="sc">+</span></span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">binwidth =</span> <span class="fl">0.05</span>, <span class="at">center =</span> <span class="sc">-</span><span class="fl">0.025</span>) <span class="sc">+</span></span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_rug</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"rate (cases as % of population)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>) <span class="sc">+</span></span>
-<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rate =</span> <span class="fu">round</span>(cases <span class="sc">/</span> population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)) <span class="ot">-&gt;</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  df2</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>df2 <span class="sc">%&gt;%</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rate)) <span class="sc">+</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">binwidth =</span> <span class="fl">0.05</span>, <span class="at">center =</span> <span class="sc">-</span><span class="fl">0.025</span>) <span class="sc">+</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_rug</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"rate (cases as % of population)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>) <span class="sc">+</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="tidyverse_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
@@ -884,6 +891,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./programming.html" class="pagination-link">
+        <span class="nav-page-text">Programming</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb43" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
@@ -903,7 +913,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>We will begin by downloading a data file to use. It is an extract of the <span class="co">[</span><span class="ot">Covid Data Dashboard</span><span class="co">](https://coronavirus.data.gov.uk/)</span>{target="_blank"} for England in December 2021. Some prior manipulation and adjustments to these data have been undertaken for another project so treat them as indicative only (the actual numbers may have been changed slightly from their originals although only marginally so).</span>
 <span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, message=FALSE, warning=FALSE}</span></span>
-<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://github.com/profrichharris/profrichharris.github.io/raw/main/data/covid_extract.csv"</span>, <span class="st">"covid.csv"</span>, <span class="at">mode =</span> <span class="st">"wb"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://github.com/profrichharris/profrichharris.github.io/raw/main/MandM/data/covid_extract.csv"</span>, <span class="st">"covid.csv"</span>, <span class="at">mode =</span> <span class="st">"wb"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) </span>
 <span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a>We also need to <span class="in">`require(tidyverse)`</span> ready for use.</span>
@@ -1120,84 +1130,85 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb43-260"><a href="#cb43-260" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">cases =</span> <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="at">population =</span> <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb43-261"><a href="#cb43-261" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(regionName) <span class="sc">%&gt;%</span></span>
 <span id="cb43-262"><a href="#cb43-262" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), sum)) <span class="sc">%&gt;%</span></span>
-<span id="cb43-263"><a href="#cb43-263" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rate =</span> <span class="fu">round</span>(cases <span class="sc">/</span> population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)) <span class="ot">-&gt;</span> df2</span>
-<span id="cb43-264"><a href="#cb43-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-265"><a href="#cb43-265" aria-hidden="true" tabindex="-1"></a>df2 <span class="sc">%&gt;%</span></span>
-<span id="cb43-266"><a href="#cb43-266" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rate)) <span class="sc">+</span></span>
-<span id="cb43-267"><a href="#cb43-267" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">binwidth =</span> <span class="fl">0.05</span>, <span class="at">center =</span> <span class="sc">-</span><span class="fl">0.025</span>) <span class="sc">+</span></span>
-<span id="cb43-268"><a href="#cb43-268" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_rug</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb43-269"><a href="#cb43-269" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"rate (cases as % of population)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
-<span id="cb43-270"><a href="#cb43-270" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>) <span class="sc">+</span></span>
-<span id="cb43-271"><a href="#cb43-271" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb43-272"><a href="#cb43-272" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb43-273"><a href="#cb43-273" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-274"><a href="#cb43-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-275"><a href="#cb43-275" aria-hidden="true" tabindex="-1"></a>In this instance, it is the tidyverse code that is the more elaborate. This is partly because there is more customisation of it to mimic the previous plot, which has added the final two lines of code. However, it is also because it is using the package <span class="co">[</span><span class="ot">ggplot2</span><span class="co">](https://ggplot2.tidyverse.org/)</span>{target="_blank"} to produce the histogram. We return to <span class="in">`ggplot2`</span> more in later sessions. For now it is sufficient to scan the code and observe how it is 'layering up' the various components of the graphic, which those components separated by the <span class="in">`+`</span> in the lines of code.</span>
-<span id="cb43-276"><a href="#cb43-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-277"><a href="#cb43-277" aria-hidden="true" tabindex="-1"></a>I prefer the <span class="in">`ggplot2`</span> to the <span class="in">`hist()`</span> graphics plot but that may be a matter of personal taste. However, <span class="in">`ggplot2`</span> can do 'clever things' with the visualisation, a hint of which is shown below.</span>
-<span id="cb43-278"><a href="#cb43-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-279"><a href="#cb43-279" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, warning=FALSE, message=FALSE, fig.height=4}</span></span>
-<span id="cb43-280"><a href="#cb43-280" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
-<span id="cb43-281"><a href="#cb43-281" aria-hidden="true" tabindex="-1"></a>df2 <span class="sc">%&gt;%</span></span>
-<span id="cb43-282"><a href="#cb43-282" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rate)) <span class="sc">+</span></span>
-<span id="cb43-283"><a href="#cb43-283" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">binwidth =</span> <span class="fl">0.05</span>, <span class="at">center =</span> <span class="sc">-</span><span class="fl">0.025</span>) <span class="sc">+</span></span>
-<span id="cb43-284"><a href="#cb43-284" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_rug</span>(<span class="fu">aes</span>(<span class="at">colour =</span> regionName), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb43-285"><a href="#cb43-285" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"rate (cases as % of population)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
-<span id="cb43-286"><a href="#cb43-286" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>) <span class="sc">+</span></span>
-<span id="cb43-287"><a href="#cb43-287" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_colour_discrete</span>(<span class="at">name =</span> <span class="st">"Region"</span>) <span class="sc">+</span></span>
-<span id="cb43-288"><a href="#cb43-288" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb43-289"><a href="#cb43-289" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()) </span>
-<span id="cb43-290"><a href="#cb43-290" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-291"><a href="#cb43-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-292"><a href="#cb43-292" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/br&gt;</span></span>
-<span id="cb43-293"><a href="#cb43-293" aria-hidden="true" tabindex="-1"></a>Please don't form that impression that <span class="in">`ggplot2`</span> is hard-wired to tidverse, and base R to the base <span class="in">`graphics`</span>.  In practice, they are interchangeable.</span>
-<span id="cb43-294"><a href="#cb43-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-295"><a href="#cb43-295" aria-hidden="true" tabindex="-1"></a>Here is an example of using <span class="in">`ggplot2`</span> after a sequence of base R commands.</span>
-<span id="cb43-296"><a href="#cb43-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-299"><a href="#cb43-299" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-300"><a href="#cb43-300" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"covid.csv"</span>)</span>
-<span id="cb43-301"><a href="#cb43-301" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df1[, <span class="fu">c</span>(<span class="st">"regionName"</span>, <span class="st">"X2021.12.04"</span>, <span class="st">"All.Ages"</span>)]</span>
-<span id="cb43-302"><a href="#cb43-302" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df1)[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"population"</span>)</span>
-<span id="cb43-303"><a href="#cb43-303" aria-hidden="true" tabindex="-1"></a>df1<span class="sc">$</span>rate <span class="ot">&lt;-</span> <span class="fu">round</span>(df1<span class="sc">$</span>cases <span class="sc">/</span> df1<span class="sc">$</span>population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)</span>
-<span id="cb43-304"><a href="#cb43-304" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df1, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> regionName)) <span class="sc">+</span></span>
-<span id="cb43-305"><a href="#cb43-305" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb43-306"><a href="#cb43-306" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"rate (cases as % of population)"</span>,</span>
-<span id="cb43-307"><a href="#cb43-307" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"region"</span>,</span>
-<span id="cb43-308"><a href="#cb43-308" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>) <span class="sc">+</span></span>
-<span id="cb43-309"><a href="#cb43-309" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb43-310"><a href="#cb43-310" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-311"><a href="#cb43-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-312"><a href="#cb43-312" aria-hidden="true" tabindex="-1"></a>And here is an example of using the base R graphic <span class="in">`boxplot()`</span> after a chain of tidyverse commands.</span>
-<span id="cb43-313"><a href="#cb43-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-314"><a href="#cb43-314" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, warning=FALSE, message=FALSE, fig.height=6}</span></span>
-<span id="cb43-315"><a href="#cb43-315" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"covid.csv"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb43-316"><a href="#cb43-316" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(regionName, <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb43-317"><a href="#cb43-317" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">cases =</span> <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="at">population =</span> <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb43-318"><a href="#cb43-318" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rate =</span> <span class="fu">round</span>(cases <span class="sc">/</span> population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)) <span class="ot">-&gt;</span> df2</span>
-<span id="cb43-319"><a href="#cb43-319" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mai=</span><span class="fu">c</span>(<span class="fl">0.8</span>,<span class="dv">2</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>), <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">pch =</span> <span class="dv">20</span>)  <span class="co"># See text below</span></span>
-<span id="cb43-320"><a href="#cb43-320" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(df2<span class="sc">$</span>rate <span class="sc">~</span> df2<span class="sc">$</span>regionName, <span class="at">horizontal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb43-321"><a href="#cb43-321" aria-hidden="true" tabindex="-1"></a>        <span class="at">whisklty =</span> <span class="st">"solid"</span>, <span class="at">staplelty =</span> <span class="dv">0</span>,</span>
-<span id="cb43-322"><a href="#cb43-322" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"white"</span>, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">cex =</span> <span class="fl">0.9</span>, <span class="at">cex.axis =</span> <span class="fl">0.75</span>,</span>
-<span id="cb43-323"><a href="#cb43-323" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"rate (cases as % of population)"</span>, <span class="at">ylab=</span><span class="st">""</span>,</span>
-<span id="cb43-324"><a href="#cb43-324" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>)</span>
-<span id="cb43-325"><a href="#cb43-325" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">ylab =</span> <span class="st">"region"</span>, <span class="at">line =</span> <span class="dv">6</span>)</span>
-<span id="cb43-326"><a href="#cb43-326" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-327"><a href="#cb43-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-328"><a href="#cb43-328" aria-hidden="true" tabindex="-1"></a>I would argue that, in this instance, the base R graphic is as nice as the ggplot2 one but it took more customisation to get it that way and I had to go digging around in the help files, <span class="in">`?boxplot`</span>, <span class="in">`?bxp`</span> and <span class="in">`?par`</span> to find what I needed, which included changing the graphic's margins (<span class="in">`par(mai=...))`</span>), moving and changing the size of the text on the vertical axis (the argument <span class="in">`cex.axis`</span> and the use of the <span class="in">`title()`</span> function), changing the appearance of the 'whiskers' (<span class="in">`whisklty = "solid"`</span> and <span class="in">`staplelty = 0`</span>), and so forth. Still, it does demonstrate that you can have a lot of control over what is produced, if you have the patience and tenacity to do so.</span>
-<span id="cb43-329"><a href="#cb43-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-330"><a href="#cb43-330" aria-hidden="true" tabindex="-1"></a><span class="fu">## Which is better?</span></span>
-<span id="cb43-331"><a href="#cb43-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-332"><a href="#cb43-332" aria-hidden="true" tabindex="-1"></a>Having provided a very small taste of tidyverse and how it differs from base R, we might be tempted to ask, "which is better?". However, the question is misguided: it is a little like deciding to go to South America and asking whether Spanish or Portuguese is the better language. It depends, of course, on what you intend to do and where you intend to travel.</span>
-<span id="cb43-333"><a href="#cb43-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-334"><a href="#cb43-334" aria-hidden="true" tabindex="-1"></a>I use both base R and tidyverse packages in my work, sometimes drifting between the two in rather haphazard ways. If I can get what I want to work then I am happy. Outcomes worry me more than means so, although I use tidyverse a lot, I am not always as tidy as it would want me to be!</span>
-<span id="cb43-335"><a href="#cb43-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-336"><a href="#cb43-336" aria-hidden="true" tabindex="-1"></a><span class="fu">## Futher reading</span></span>
-<span id="cb43-337"><a href="#cb43-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-338"><a href="#cb43-338" aria-hidden="true" tabindex="-1"></a><span class="al">![](data_science.png)</span>{width=100}</span>
-<span id="cb43-339"><a href="#cb43-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-340"><a href="#cb43-340" aria-hidden="true" tabindex="-1"></a>There is **much** more to tidyverse than has been covered here. See <span class="co">[</span><span class="ot">here</span><span class="co">](https://www.tidyverse.org/packages/)</span>{target="_blank} for further information about it and its core packages.</span>
-<span id="cb43-341"><a href="#cb43-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-342"><a href="#cb43-342" aria-hidden="true" tabindex="-1"></a>A full introduction to using tidyverse for Data Science is provided by the book R for Data Science by Hadley Wickham and Garrett Grolemund. There is a free <span class="co">[</span><span class="ot">online version</span><span class="co">](https://r4ds.had.co.nz/)</span>{target="_blank"} of it available.</span>
+<span id="cb43-263"><a href="#cb43-263" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rate =</span> <span class="fu">round</span>(cases <span class="sc">/</span> population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)) <span class="ot">-&gt;</span></span>
+<span id="cb43-264"><a href="#cb43-264" aria-hidden="true" tabindex="-1"></a>  df2</span>
+<span id="cb43-265"><a href="#cb43-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-266"><a href="#cb43-266" aria-hidden="true" tabindex="-1"></a>df2 <span class="sc">%&gt;%</span></span>
+<span id="cb43-267"><a href="#cb43-267" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rate)) <span class="sc">+</span></span>
+<span id="cb43-268"><a href="#cb43-268" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">binwidth =</span> <span class="fl">0.05</span>, <span class="at">center =</span> <span class="sc">-</span><span class="fl">0.025</span>) <span class="sc">+</span></span>
+<span id="cb43-269"><a href="#cb43-269" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_rug</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb43-270"><a href="#cb43-270" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"rate (cases as % of population)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb43-271"><a href="#cb43-271" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>) <span class="sc">+</span></span>
+<span id="cb43-272"><a href="#cb43-272" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb43-273"><a href="#cb43-273" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb43-274"><a href="#cb43-274" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-275"><a href="#cb43-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-276"><a href="#cb43-276" aria-hidden="true" tabindex="-1"></a>In this instance, it is the tidyverse code that is the more elaborate. This is partly because there is more customisation of it to mimic the previous plot, which has added the final two lines of code. However, it is also because it is using the package <span class="co">[</span><span class="ot">ggplot2</span><span class="co">](https://ggplot2.tidyverse.org/)</span>{target="_blank"} to produce the histogram. We return to <span class="in">`ggplot2`</span> more in later sessions. For now it is sufficient to scan the code and observe how it is 'layering up' the various components of the graphic, which those components separated by the <span class="in">`+`</span> in the lines of code.</span>
+<span id="cb43-277"><a href="#cb43-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-278"><a href="#cb43-278" aria-hidden="true" tabindex="-1"></a>I prefer the <span class="in">`ggplot2`</span> to the <span class="in">`hist()`</span> graphics plot but that may be a matter of personal taste. However, <span class="in">`ggplot2`</span> can do 'clever things' with the visualisation, a hint of which is shown below.</span>
+<span id="cb43-279"><a href="#cb43-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-280"><a href="#cb43-280" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, warning=FALSE, message=FALSE, fig.height=4}</span></span>
+<span id="cb43-281"><a href="#cb43-281" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
+<span id="cb43-282"><a href="#cb43-282" aria-hidden="true" tabindex="-1"></a>df2 <span class="sc">%&gt;%</span></span>
+<span id="cb43-283"><a href="#cb43-283" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rate)) <span class="sc">+</span></span>
+<span id="cb43-284"><a href="#cb43-284" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">binwidth =</span> <span class="fl">0.05</span>, <span class="at">center =</span> <span class="sc">-</span><span class="fl">0.025</span>) <span class="sc">+</span></span>
+<span id="cb43-285"><a href="#cb43-285" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_rug</span>(<span class="fu">aes</span>(<span class="at">colour =</span> regionName), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb43-286"><a href="#cb43-286" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"rate (cases as % of population)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb43-287"><a href="#cb43-287" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>) <span class="sc">+</span></span>
+<span id="cb43-288"><a href="#cb43-288" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_colour_discrete</span>(<span class="at">name =</span> <span class="st">"Region"</span>) <span class="sc">+</span></span>
+<span id="cb43-289"><a href="#cb43-289" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb43-290"><a href="#cb43-290" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()) </span>
+<span id="cb43-291"><a href="#cb43-291" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-292"><a href="#cb43-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-293"><a href="#cb43-293" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/br&gt;</span></span>
+<span id="cb43-294"><a href="#cb43-294" aria-hidden="true" tabindex="-1"></a>Please don't form that impression that <span class="in">`ggplot2`</span> is hard-wired to tidverse, and base R to the base <span class="in">`graphics`</span>.  In practice, they are interchangeable.</span>
+<span id="cb43-295"><a href="#cb43-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-296"><a href="#cb43-296" aria-hidden="true" tabindex="-1"></a>Here is an example of using <span class="in">`ggplot2`</span> after a sequence of base R commands.</span>
+<span id="cb43-297"><a href="#cb43-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-300"><a href="#cb43-300" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-301"><a href="#cb43-301" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"covid.csv"</span>)</span>
+<span id="cb43-302"><a href="#cb43-302" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df1[, <span class="fu">c</span>(<span class="st">"regionName"</span>, <span class="st">"X2021.12.04"</span>, <span class="st">"All.Ages"</span>)]</span>
+<span id="cb43-303"><a href="#cb43-303" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df1)[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"population"</span>)</span>
+<span id="cb43-304"><a href="#cb43-304" aria-hidden="true" tabindex="-1"></a>df1<span class="sc">$</span>rate <span class="ot">&lt;-</span> <span class="fu">round</span>(df1<span class="sc">$</span>cases <span class="sc">/</span> df1<span class="sc">$</span>population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)</span>
+<span id="cb43-305"><a href="#cb43-305" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df1, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> regionName)) <span class="sc">+</span></span>
+<span id="cb43-306"><a href="#cb43-306" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb43-307"><a href="#cb43-307" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"rate (cases as % of population)"</span>,</span>
+<span id="cb43-308"><a href="#cb43-308" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"region"</span>,</span>
+<span id="cb43-309"><a href="#cb43-309" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>) <span class="sc">+</span></span>
+<span id="cb43-310"><a href="#cb43-310" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb43-311"><a href="#cb43-311" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-312"><a href="#cb43-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-313"><a href="#cb43-313" aria-hidden="true" tabindex="-1"></a>And here is an example of using the base R graphic <span class="in">`boxplot()`</span> after a chain of tidyverse commands.</span>
+<span id="cb43-314"><a href="#cb43-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-315"><a href="#cb43-315" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, warning=FALSE, message=FALSE, fig.height=6}</span></span>
+<span id="cb43-316"><a href="#cb43-316" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"covid.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb43-317"><a href="#cb43-317" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(regionName, <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb43-318"><a href="#cb43-318" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">cases =</span> <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="at">population =</span> <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb43-319"><a href="#cb43-319" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rate =</span> <span class="fu">round</span>(cases <span class="sc">/</span> population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)) <span class="ot">-&gt;</span> df2</span>
+<span id="cb43-320"><a href="#cb43-320" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mai=</span><span class="fu">c</span>(<span class="fl">0.8</span>,<span class="dv">2</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>), <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">pch =</span> <span class="dv">20</span>)  <span class="co"># See text below</span></span>
+<span id="cb43-321"><a href="#cb43-321" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(df2<span class="sc">$</span>rate <span class="sc">~</span> df2<span class="sc">$</span>regionName, <span class="at">horizontal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb43-322"><a href="#cb43-322" aria-hidden="true" tabindex="-1"></a>        <span class="at">whisklty =</span> <span class="st">"solid"</span>, <span class="at">staplelty =</span> <span class="dv">0</span>,</span>
+<span id="cb43-323"><a href="#cb43-323" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"white"</span>, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">cex =</span> <span class="fl">0.9</span>, <span class="at">cex.axis =</span> <span class="fl">0.75</span>,</span>
+<span id="cb43-324"><a href="#cb43-324" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"rate (cases as % of population)"</span>, <span class="at">ylab=</span><span class="st">""</span>,</span>
+<span id="cb43-325"><a href="#cb43-325" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>)</span>
+<span id="cb43-326"><a href="#cb43-326" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">ylab =</span> <span class="st">"region"</span>, <span class="at">line =</span> <span class="dv">6</span>)</span>
+<span id="cb43-327"><a href="#cb43-327" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-328"><a href="#cb43-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-329"><a href="#cb43-329" aria-hidden="true" tabindex="-1"></a>I would argue that, in this instance, the base R graphic is as nice as the ggplot2 one but it took more customisation to get it that way and I had to go digging around in the help files, <span class="in">`?boxplot`</span>, <span class="in">`?bxp`</span> and <span class="in">`?par`</span> to find what I needed, which included changing the graphic's margins (<span class="in">`par(mai=...))`</span>), moving and changing the size of the text on the vertical axis (the argument <span class="in">`cex.axis`</span> and the use of the <span class="in">`title()`</span> function), changing the appearance of the 'whiskers' (<span class="in">`whisklty = "solid"`</span> and <span class="in">`staplelty = 0`</span>), and so forth. Still, it does demonstrate that you can have a lot of control over what is produced, if you have the patience and tenacity to do so.</span>
+<span id="cb43-330"><a href="#cb43-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-331"><a href="#cb43-331" aria-hidden="true" tabindex="-1"></a><span class="fu">## Which is better?</span></span>
+<span id="cb43-332"><a href="#cb43-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-333"><a href="#cb43-333" aria-hidden="true" tabindex="-1"></a>Having provided a very small taste of tidyverse and how it differs from base R, we might be tempted to ask, "which is better?". However, the question is misguided: it is a little like deciding to go to South America and asking whether Spanish or Portuguese is the better language. It depends, of course, on what you intend to do and where you intend to travel.</span>
+<span id="cb43-334"><a href="#cb43-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-335"><a href="#cb43-335" aria-hidden="true" tabindex="-1"></a>I use both base R and tidyverse packages in my work, sometimes drifting between the two in rather haphazard ways. If I can get what I want to work then I am happy. Outcomes worry me more than means so, although I use tidyverse a lot, I am not always as tidy as it would want me to be!</span>
+<span id="cb43-336"><a href="#cb43-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-337"><a href="#cb43-337" aria-hidden="true" tabindex="-1"></a><span class="fu">## Futher reading</span></span>
+<span id="cb43-338"><a href="#cb43-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-339"><a href="#cb43-339" aria-hidden="true" tabindex="-1"></a><span class="al">![](data_science.png)</span>{width=100}</span>
+<span id="cb43-340"><a href="#cb43-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-341"><a href="#cb43-341" aria-hidden="true" tabindex="-1"></a>There is **much** more to tidyverse than has been covered here. See <span class="co">[</span><span class="ot">here</span><span class="co">](https://www.tidyverse.org/packages/)</span>{target="_blank} for further information about it and its core packages.</span>
+<span id="cb43-342"><a href="#cb43-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-343"><a href="#cb43-343" aria-hidden="true" tabindex="-1"></a>A full introduction to using tidyverse for Data Science is provided by the book R for Data Science by Hadley Wickham and Garrett Grolemund. There is a free <span class="co">[</span><span class="ot">online version</span><span class="co">](https://r4ds.had.co.nz/)</span>{target="_blank"} of it available.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
