@@ -194,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Mapping and Modelling Geographic Data in R</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Overview</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -240,6 +240,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./programming.html" class="sidebar-item-text sidebar-link">Programming</a>
+  </div>
+</li>
+    </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">From Maps towards Models</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./themap.html" class="sidebar-item-text sidebar-link">The Map as a Representation of Spatial Variation</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./thematicmaps.html" class="sidebar-item-text sidebar-link">Vector maps in R</a>
   </div>
 </li>
     </ul>
@@ -528,7 +548,7 @@ lm(formula = y ~ x, data = .)
 
 Coefficients:
 (Intercept)            x  
-    -0.1103       2.0030  </code></pre>
+      0.107        1.998  </code></pre>
 </div>
 </div>
 <p>However, it does <em>not</em> work with the pipe, <code>|&gt;</code> because it does not recognise the place holder <code>.</code>, which receives the data frame from the line above and contains the variables for the model.</p>
@@ -558,7 +578,7 @@ lm(formula = y ~ x, data = z)
 
 Coefficients:
 (Intercept)            x  
-   -0.04649      2.00177  </code></pre>
+    0.02924      2.00109  </code></pre>
 </div>
 </div>
 <p>Over time, expect <code>|&gt;</code> to be developed and to supersede <code>%&gt;%</code>. For now, however, you are unlikely to encounter errors using <code>%&gt;%</code> as a substitute for <code>|&gt;</code> but you might using <code>|&gt;</code> instead of <code>%&gt;%</code>. In other words, <code>%&gt;%</code> is the safer choice and the one which will be used for these tutorials.</p>
