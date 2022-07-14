@@ -9,21 +9,21 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
 ## Programming in R
 
 So far in this course we have been cutting and pasting from these webpages into the Console of R Studio. Working in the Console is useful if you want to work with code on a line-by-line basis -- sometimes it is helpful to see if something will work; to try things out. However, in practice, it is better to write and work with more reproducible code, either for your own benefit so you can modify something without having entirely to start-over, or for the benefit of others who would like to reproduce your work. Reproducibility is an important component of open research and is to be encouraged wherever possible.
 
 ## Scripts
 
-A script is a text file containing a sequence of commands that can be run together, one after the other, without entering them separately in the Console. Here is an example of a script:
+A script is a text file containing a sequence of commands that can be run together, one after the other, without entering them separately in the Console. Let's download an example of a script:
 
-```{r, eval=FALSE}
+```{r}
 download.file("https://github.com/profrichharris/profrichharris.github.io/raw/main/MandM/scripts/script1.R",
               "script1.R", mode = "wb", quiet = TRUE)
-file.edit("script1.R")  # You can also use File -> Open to open the file
 ```
 
-It should look something like this:
+You can now use `file.edit("script1.R") ` to view its contents. It should look like this:
 
 ![](script1.png)
 
@@ -48,13 +48,7 @@ download.file("https://github.com/profrichharris/profrichharris.github.io/raw/ma
 source("script1.R", echo = FALSE, print.eval = TRUE)
 ```
 
-Try also typing the following into the Console:
-
-```{r, eval=FALSE}
-source("script1.R", echo = TRUE)
-```
-
-Again, the script should run in its entirety.
+Try also typing `source("script1.R", echo = TRUE)` into the R Console. Again, the script should run in its entirety.
 
 As suggested earlier, an advantage of using a script is that it is easy to make changes to and then re-run it either in part or in full. In the script, find the `type = "cartolight"` argument in the line that says `annotation_map_tile(type = "cartolight", progress = "none") +` and change the `type` to any other of the following, such as cartodark.
 
@@ -86,12 +80,47 @@ It is self-evident what knitting the document does -- it produce an html file wh
 
 ![](publish.jpg)
 
-This whole course is written based on R Markdown. The markdown file for this session can be viewed as follows.
+</br>
+This whole course is written based on R Markdown. You can download the markdown file for this session
 
 ```{r}
-download.file("https://github.com/profrichharris/profrichharris.github.io/raw/main/MandM/scripts/script1.R",
-              "script1.R", mode = "wb", quiet = TRUE)
-file.edit("programming.Rmd")  
+download.file("https://github.com/profrichharris/profrichharris.github.io/raw/main/MandM/markdown/programming.Rmd", "markdown_example.Rmd", mode = "wb", quiet = TRUE)
 ```
 
+and view it using `file.edit("markdown_example.Rmd")`. You may note that it begins with a YAML header, to which various arguments can be added or changed -- [see here](https://zsmith27.github.io/rmarkdown_crash-course/lesson-4-yaml-headers.html){rarget="_blank"} for an introduction.
 
+```{verbatim}
+---
+title: "Programming"
+author: "Rich Harris"
+date: '2022-07-11'
+output: html_document
+---
+```
+
+It then consists of a mixture of text and code chunks. Those code chunks can be executed within the document using the Run drop-down menus and buttons.
+
+![](markdown2.jpg){}
+
+</br>
+The document also includes various syntax, including `##header` for a header, `**bold**` for **bold**, `![](image.png)` to insert an existing image file, and so forth. To learn more, see the [R Markdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf){target="_blank"}.
+
+### The source code for this document
+
+This page has actually been authored in a variant of R markdown, using [quarto](https://quarto.org/){target="_blank"}. You can view the source code for this and other pages using View Source from the drop-down Code options at the top of the page.
+
+![](source.jpg)
+
+## Summary
+
+Although a lot of what we will do in this course will involve cutting and pasting into the Console, keep in mind that there are better ways of programming that are more reproducible than entering commands one at a time into the Console. These include scripting and using markdown. Note also that as commands are entered into the Console, they are saved in the History to the top right of the screen. All or part of that history can be selected and moved to a source file (a new R Script) as the following shows. The history can also be saved -- see `?save.history()`.
+
+![](hist.png)
+
+## Further reading
+
+![](efficient_programming.png){width=150}
+
+The book, Efficient R programming by Colin Gillespie and Robin Lovelace has an [online version here](https://csgillespie.github.io/efficientR/){target="_blank"}.
+
+More about R Markdown can be learned from [https://rmarkdown.rstudio.com/](https://rmarkdown.rstudio.com/){target="_blank"}.
