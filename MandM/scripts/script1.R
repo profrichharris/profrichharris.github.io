@@ -55,10 +55,11 @@ ipumsi <- ipums_shape_inner_join(
 
 # Map the data
 
+breaks <- classIntervals(ipumsi$SOLIDFUEL, n = 5, style = "equal")$brks
 ggplot(data = ipumsi) +
   annotation_map_tile(type = "cartolight", progress = "none") +
   geom_sf(aes(fill = SOLIDFUEL), alpha = 0.8) +
-  scale_fill_gradient("%", breaks = round(classIntervals(ipumsi$SOLIDFUEL, n = 5, style = "jenks")$brks, 0),
+  scale_fill_gradient("%", breaks = breaks, labels = round(breaks, 1),
                       low = "white", high = "dark red") +
   facet_wrap(~ YEAR) +
   xlim(c(79, 67)) +
@@ -70,7 +71,5 @@ ggplot(data = ipumsi) +
     caption = "Source: IPUMS-International"
   )
   
-# Save the map and data as a shapefile
 
-write_sf(ipumsi, "ipumsi.shp")
 
