@@ -262,6 +262,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./thematicmaps.html" class="sidebar-item-text sidebar-link">Thematic maps in R</a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./autocorrelation.html" class="sidebar-item-text sidebar-link">Measuring spatial autocorrelation</a>
+  </div>
+</li>
     </ul>
   </li>
     </ul>
@@ -548,7 +553,7 @@ lm(formula = y ~ x, data = .)
 
 Coefficients:
 (Intercept)            x  
-    -0.0182       1.9985  </code></pre>
+   -0.07291      2.00212  </code></pre>
 </div>
 </div>
 <p>However, it does <em>not</em> work with the pipe, <code>|&gt;</code> because it does not recognise the place holder <code>.</code>, which receives the data frame from the line above and contains the variables for the model.</p>
@@ -578,7 +583,7 @@ lm(formula = y ~ x, data = z)
 
 Coefficients:
 (Intercept)            x  
-      0.295        1.996  </code></pre>
+    0.00849      2.00106  </code></pre>
 </div>
 </div>
 <p>Over time, expect <code>|&gt;</code> to be developed and to supersede <code>%&gt;%</code>. For now, however, you are unlikely to encounter errors using <code>%&gt;%</code> as a substitute for <code>|&gt;</code> but you might using <code>|&gt;</code> instead of <code>%&gt;%</code>. In other words, <code>%&gt;%</code> is the safer choice and the one which will be used for these tutorials.</p>
@@ -759,7 +764,7 @@ Coefficients:
 </section>
 <section id="which-is-better" class="level2">
 <h2 class="anchored" data-anchor-id="which-is-better">Which is better?</h2>
-<p>Having provided a very small taste of tidyverse and how it differs from base R, we might be tempted to ask, “which is better?”. However, the question is misguided: it is a little like deciding to go to South America and asking whether Spanish or Portuguese is the better language. It depends, of course, on what you intend to do and where you intend to travel.</p>
+<p>Having provided a very small taste of tidyverse and how it differs from base R, we might be tempted to ask, “which is better?” However, the question is misguided: it is a little like deciding to go to South America and asking whether Spanish or Portuguese is the better language. It depends, of course, on what you intend to do and where you intend to travel.</p>
 <p>I use both base R and tidyverse packages in my work, sometimes drifting between the two in rather haphazard ways. If I can get what I want to work then I am happy. Outcomes worry me more than means so, although I use tidyverse a lot, I am not always as tidy as it would want me to be!</p>
 </section>
 <section id="futher-reading" class="level2">
@@ -1223,7 +1228,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb43-349"><a href="#cb43-349" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-350"><a href="#cb43-350" aria-hidden="true" tabindex="-1"></a><span class="fu">## Which is better?</span></span>
 <span id="cb43-351"><a href="#cb43-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-352"><a href="#cb43-352" aria-hidden="true" tabindex="-1"></a>Having provided a very small taste of tidyverse and how it differs from base R, we might be tempted to ask, "which is better?". However, the question is misguided: it is a little like deciding to go to South America and asking whether Spanish or Portuguese is the better language. It depends, of course, on what you intend to do and where you intend to travel.</span>
+<span id="cb43-352"><a href="#cb43-352" aria-hidden="true" tabindex="-1"></a>Having provided a very small taste of tidyverse and how it differs from base R, we might be tempted to ask, "which is better?" However, the question is misguided: it is a little like deciding to go to South America and asking whether Spanish or Portuguese is the better language. It depends, of course, on what you intend to do and where you intend to travel.</span>
 <span id="cb43-353"><a href="#cb43-353" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-354"><a href="#cb43-354" aria-hidden="true" tabindex="-1"></a>I use both base R and tidyverse packages in my work, sometimes drifting between the two in rather haphazard ways. If I can get what I want to work then I am happy. Outcomes worry me more than means so, although I use tidyverse a lot, I am not always as tidy as it would want me to be!</span>
 <span id="cb43-355"><a href="#cb43-355" aria-hidden="true" tabindex="-1"></a></span>
