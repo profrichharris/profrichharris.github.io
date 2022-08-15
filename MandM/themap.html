@@ -183,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="./" class="sidebar-logo-link">
-      <img src="./logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./logo.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
@@ -271,6 +271,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./autocorrelation.html" class="sidebar-item-text sidebar-link">Measuring spatial autocorrelation</a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gwstats.html" class="sidebar-item-text sidebar-link">Geographically Weighted Statistics</a>
+  </div>
+</li>
     </ul>
   </li>
     </ul>
@@ -323,15 +328,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>With the above questions in mind, we might imagine the map as a first stage in a process of geographical enquiry where what we do is look for and then quantify some of the geographical patterns in the data before beginning to model them. Here the map is not simply a tool for visualising and communicating data, it is also a tool for exploring data and thinking geographically about them.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-9c18c54aac4de1d7930b" style="width:100%;height:464px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9c18c54aac4de1d7930b">{"x":{"diagram":"\ndigraph boxes_and_circles {\n      \n      # a \"graph\" statement\n      graph [overlap = true, fontsize = 10, rankdir = TB]\n      \n      # several \"node\" statements\n      \n      node [fontname = Helvetica, style = filled, fillcolor = white]\n      A [label = \"Map\", fillcolor = orange]\n      1 [label = \"Measure\"]\n      I [label = \"Model\"]\n      \n      # several \"edge\" statements\n      A->1->I\n      }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3c9fb12a8796ab2dd29e" style="width:100%;height:464px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3c9fb12a8796ab2dd29e">{"x":{"diagram":"\ndigraph boxes_and_circles {\n      \n      # a \"graph\" statement\n      graph [overlap = true, fontsize = 10, rankdir = TB]\n      \n      # several \"node\" statements\n      \n      node [fontname = Helvetica, style = filled, fillcolor = white]\n      A [label = \"Map\", fillcolor = orange]\n      1 [label = \"Measure\"]\n      I [label = \"Model\"]\n      \n      # several \"edge\" statements\n      A->1->I\n      }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br> In practice, the process of analysis is likely to involve greater cycling between the various stages. Nevertheless, there is a good argument for starting with the map.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-042a4d9a237843c87b3f" style="width:100%;height:464px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-042a4d9a237843c87b3f">{"x":{"diagram":"\ndigraph boxes_and_circles {\n      \n      # a \"graph\" statement\n      graph [overlap = true, fontsize = 10, rankdir = TB]\n      \n      # several \"node\" statements\n      \n      node [fontname = Helvetica, style = filled, fillcolor = white]\n      A [label = \"Map\", fillcolor = orange]\n      1 [label = \"Measure\"]\n      I [label = \"Model\"]\n      \n      # several \"edge\" statements\n      A->1->I\n      1->A\n      I->1\n      I->A\n      A->I\n      }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1309c3595f107f270981" style="width:100%;height:464px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1309c3595f107f270981">{"x":{"diagram":"\ndigraph boxes_and_circles {\n      \n      # a \"graph\" statement\n      graph [overlap = true, fontsize = 10, rankdir = TB]\n      \n      # several \"node\" statements\n      \n      node [fontname = Helvetica, style = filled, fillcolor = white]\n      A [label = \"Map\", fillcolor = orange]\n      1 [label = \"Measure\"]\n      I [label = \"Model\"]\n      \n      # several \"edge\" statements\n      A->1->I\n      1->A\n      I->1\n      I->A\n      A->I\n      }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 
