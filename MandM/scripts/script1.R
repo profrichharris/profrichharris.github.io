@@ -10,7 +10,7 @@ while(!require(XML)) install.packages("XML", dependencies = TRUE)
 while(!require(tidyverse)) install.packages("tidyverse", dependencies = TRUE)
 while(!require(sf)) install.packages("sf", dependencies = TRUE)
 while(!require(ggplot2)) install.packages("ggplot2", dependencies = TRUE)
-while(!require(classInt)) install.packages("ggspatial", dependencies = TRUE)
+while(!require(classInt)) install.packages("classInt", dependencies = TRUE)
 while(!require(ggspatial)) install.packages("ggspatial", dependencies = TRUE)
 
 # The rest of this code is adapted from the first parts of
