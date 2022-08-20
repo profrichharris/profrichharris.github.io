@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title></title>
+<title>Welcome</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -165,7 +165,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">(Untitled)</h1>
+      <h1 class="quarto-secondary-nav-title">Welcome</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -193,7 +193,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">Overview</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">Welcome</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -213,7 +213,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./why.html" class="sidebar-item-text sidebar-link">A Cartographic Answer</a>
+  <a href="./why.html" class="sidebar-item-text sidebar-link">Why R?</a>
   </div>
 </li>
     </ul>
@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./themap.html" class="sidebar-item-text sidebar-link">Maps as Representations of Spatial Variation</a>
+  <a href="./themap.html" class="sidebar-item-text sidebar-link">The Spatial Variable</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -271,6 +271,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./gwstats.html" class="sidebar-item-text sidebar-link">Geographically Weighted Statistics</a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./spregress.html" class="sidebar-item-text sidebar-link">Spatial Regression</a>
+  </div>
+</li>
     </ul>
   </li>
     </ul>
@@ -282,8 +287,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#about-the-course" id="toc-about-the-course" class="nav-link" data-scroll-target="#about-the-course">About the course</a></li>
+  <li><a href="#about-the-course" id="toc-about-the-course" class="nav-link active" data-scroll-target="#about-the-course">About the course</a></li>
   <li><a href="#about-the-author" id="toc-about-the-author" class="nav-link" data-scroll-target="#about-the-author">About the author</a></li>
   <li><a href="#useful-resources" id="toc-useful-resources" class="nav-link" data-scroll-target="#useful-resources">Useful Resources</a></li>
   <li><a href="#copyright-notice" id="toc-copyright-notice" class="nav-link" data-scroll-target="#copyright-notice">Copyright notice</a></li>
@@ -293,39 +297,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">Welcome</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Mapping and Modelling Geographic Data in R</p>
+</div>
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
 <p><img src="MandM.png" class="img-fluid" width="300"></p>
-<p><font size="5"><strong>Mapping and Modelling Geographic Data in R</strong></font></p>
-<p>Richard Harris, <a href="http://www.bristol.ac.uk/geography/" target="_blank">School of Geographical Sciences</a>, <a href="http://www.bristol.ac.uk/" target="_blank">University of Bristol</a></p>
-<p><img src="at_work.gif" class="img-fluid" width="100"></p>
-<p><strong>This is a work in progress and a long way from completion.</strong></p>
-</section>
 <section id="about-the-course" class="level2">
 <h2 class="anchored" data-anchor-id="about-the-course">About the course</h2>
-<p>The aims of this course are to:</p>
-<p>[TO BE ADDED]</p>
+<p>The contents of this course were first developed for a short course at the <a href="https://www.uct.ac.za/" target="_blank">University of Cape Town (UCT)</a> in August 2022. It also forms part of the <a href="http://www.bristol.ac.uk/study/postgraduate/2022/sci/msc-geographic-data-science-and-spatial-analytics/">MSc Geographic Data Science and Spatial Analytics</a> in the <a href="http://www.bristol.ac.uk/geography/" target="_blank">School of Geographical Sciences</a>, <a href="https://www.bristol.ac.uk/" target="_blank">University of Bristol</a>.</p>
+<p>The aims of this course are to teach an introduction to mapping and spatial modelling in R. It is a course in geographic data science with a particular focus on mapping, measuring and quantifying spatial patterns in data. The present parts of the course are:</p>
+<ul>
+<li>Why use R for mapping and spatial modelling?</li>
+<li>The basics of mapping in R</li>
+<li>The Spatial Variable: from maps towards models</li>
+<li>Spatial clustering and spatial heterogeneity: measuring patterns in data</li>
+<li>Harnessing spatial autocorrelation with geographically weighted statistics</li>
+<li>Spatial regression models</li>
+</ul>
+<p><img src="at_work.gif" class="img-fluid" width="75"></p>
+<p><strong>This is a work in progress</strong></p>
+<p>Additional content will be added over time so check back here for the latest updates.</p>
 </section>
 <section id="about-the-author" class="level2">
 <h2 class="anchored" data-anchor-id="about-the-author">About the author</h2>
 <p>This course is authored by Richard Harris, Professor of Quantitative Social Geography at the University of Bristol. You can find out more about me, my research and other interests at <a href="https://profrichharris.github.io/" target="_blank">https://profrichharris.github.io/</a>.</p>
 <p><img src="twitter.svg" class="img-fluid"> <a href="https://twitter.com/profrichharris" target="_blank"><span class="citation" data-cites="profrichharris">@profrichharris</span></a></p>
+<p><img src="me.jpg" class="img-fluid"></p>
 </section>
 <section id="useful-resources" class="level2">
 <h2 class="anchored" data-anchor-id="useful-resources">Useful Resources</h2>
-<p>[TO BE ADDED]</p>
+<p><strong>The following short pre-reading is recommended for the course:</strong></p>
+<p>Harris RJ (2019). Not just nuisance: spatialising social statistics. In A Whitworth (ed.) Towards a Spatial Social Policy: Bridging the Gap Between Geography and Social Policy. Chapter 8. Bristol: Policy Press. <a href="https://research-information.bris.ac.uk/admin/files/218309996/Harris_chapter_revised.pdf" target="_blank">Available here</a></p>
+<p>In addition, the following book offers an extremely useful reference to have to hand if you are stuck when undertaking geocomputation with R. There is a <a href="https://geocompr.robinlovelace.net/index.html" target="_blank">free online version</a> available.</p>
+<p><img src="geocomputation.png" class="img-fluid" width="100"></p>
+<p><a href="https://geocompr.robinlovelace.net/index.html" target="_blank">Geocomputation with R</a> by Robin Lovelace, Jakub Nawosad &amp; Jannes Muenchow.</p>
 </section>
 <section id="copyright-notice" class="level2">
 <h2 class="anchored" data-anchor-id="copyright-notice">Copyright notice</h2>
 <p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
 <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
 <p><br> <img src="REF.jpg" class="img-fluid"></p>
+</a><p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"></a><a href="https://twitter.com/geogbristol?lang=en" target="_blank"><span class="citation" data-cites="GeogBristol">@GeogBristol</span></a> #justsaying!</p>
 
 
 <!-- -->
-</a>
+
 </section>
 
 </main> <!-- /main -->
@@ -467,48 +496,65 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         <span class="nav-page-text">Getting Started</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class=""><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
-</a><div class="sourceCode" id="cb1" data-shortcodes="false"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"></a><pre class="sourceCode markdown code-with-copy"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><code class="sourceCode markdown"><span id="cb1-1"></span></code></a><code class="sourceCode markdown"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> ""</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="al">![](MandM.png)</span>{width=300}</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;font</span> <span class="er">size</span> <span class="ot">=</span> <span class="st">5</span><span class="kw">&gt;</span>**Mapping and Modelling Geographic Data in R**<span class="kw">&lt;/font&gt;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Richard Harris, <span class="co">[</span><span class="ot">School of Geographical Sciences</span><span class="co">](http://www.bristol.ac.uk/geography/)</span>{target="_blank"}, [University of Bristol](http://www.bristol.ac.uk/){target="_blank"}</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="al">![](at_work.gif)</span>{width=100}</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>**This is a work in progress and a long way from completion.**</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## About the course</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>The aims of this course are to:</span>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Welcome"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Mapping and Modelling Geographic Data in R"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="al">![](MandM.png)</span>{width=300}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## About the course</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>The contents of this course were first developed for a short course at the <span class="co">[</span><span class="ot">University of Cape Town (UCT)</span><span class="co">](https://www.uct.ac.za/)</span>{target="_blank"} in August 2022. It also forms part of the [MSc Geographic Data Science and Spatial Analytics](http://www.bristol.ac.uk/study/postgraduate/2022/sci/msc-geographic-data-science-and-spatial-analytics/) in the [School of Geographical Sciences](http://www.bristol.ac.uk/geography/){target="_blank"}, [University of Bristol](https://www.bristol.ac.uk/){target="_blank"}.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>The aims of this course are to teach an introduction to mapping and spatial modelling in R. It is a course in geographic data science with a particular focus on mapping, measuring and quantifying spatial patterns in data. The present parts of the course are:</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why use R for mapping and spatial modelling?</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The basics of mapping in R</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The Spatial Variable: from maps towards models</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Spatial clustering and spatial heterogeneity: measuring patterns in data</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Harnessing spatial autocorrelation with geographically weighted statistics</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Spatial regression models</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">TO BE ADDED</span><span class="co">]</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="al">![](at_work.gif)</span>{width=75}</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## About the author</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>**This is a work in progress**</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>This course is authored by Richard Harris, Professor of Quantitative Social Geography at the University of Bristol. You can find out more about me, my research and other interests at <span class="co">[</span><span class="ot">https://profrichharris.github.io/</span><span class="co">](https://profrichharris.github.io/)</span>{target="_blank"}.</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>Additional content will be added over time so check back here for the latest updates.</span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="al">![](twitter.svg)</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@profrichharris</span><span class="co">](https://twitter.com/profrichharris)</span>{target="_blank"}</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Useful Resources</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">TO BE ADDED</span><span class="co">]</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## About the author</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>This course is authored by Richard Harris, Professor of Quantitative Social Geography at the University of Bristol. You can find out more about me, my research and other interests at <span class="co">[</span><span class="ot">https://profrichharris.github.io/</span><span class="co">](https://profrichharris.github.io/)</span>{target="_blank"}.</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="al">![](twitter.svg)</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@profrichharris</span><span class="co">](https://twitter.com/profrichharris)</span>{target="_blank"}</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Copyright notice</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="al">![](me.jpg)</span></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/a&gt;</span>This work is licensed under a <span class="kw">&lt;a</span> <span class="er">rel</span><span class="ot">=</span><span class="st">"license"</span> <span class="er">href</span><span class="ot">=</span><span class="st">"http://creativecommons.org/licenses/by-nc-sa/4.0/"</span><span class="kw">&gt;</span>Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License<span class="kw">&lt;/a&gt;</span>.</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Useful Resources</span></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">rel</span><span class="ot">=</span><span class="st">"license"</span> <span class="er">href</span><span class="ot">=</span><span class="st">"http://creativecommons.org/licenses/by-nc-sa/4.0/"</span><span class="kw">&gt;&lt;img</span> <span class="er">alt</span><span class="ot">=</span><span class="st">"Creative Commons Licence"</span> <span class="er">style</span><span class="ot">=</span><span class="st">"border-width:0"</span> <span class="er">src</span><span class="ot">=</span><span class="st">"https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"</span> <span class="kw">/&gt;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>**The following short pre-reading is recommended for the course:**</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/br&gt;</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="al">![](REF.jpg)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>Harris RJ (2019). Not just nuisance: spatialising social statistics. In A Whitworth (ed.) Towards a Spatial Social Policy: Bridging the Gap Between Geography and Social Policy. Chapter 8. Bristol: Policy Press. <span class="co">[</span><span class="ot">Available here</span><span class="co">](https://research-information.bris.ac.uk/admin/files/218309996/Harris_chapter_revised.pdf)</span>{target="_blank"}</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>In addition, the following book offers an extremely useful reference to have to hand if you are stuck when undertaking geocomputation with R. There is a <span class="co">[</span><span class="ot">free online version</span><span class="co">](https://geocompr.robinlovelace.net/index.html)</span>{target="_blank"} available.</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="al">![](geocomputation.png)</span>{width=100}</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Geocomputation with R </span><span class="co">](https://geocompr.robinlovelace.net/index.html)</span>{target="_blank"} by Robin Lovelace, Jakub Nawosad &amp; Jannes Muenchow.</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="fu">## Copyright notice</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/a&gt;</span>This work is licensed under a <span class="kw">&lt;a</span> <span class="er">rel</span><span class="ot">=</span><span class="st">"license"</span> <span class="er">href</span><span class="ot">=</span><span class="st">"http://creativecommons.org/licenses/by-nc-sa/4.0/"</span><span class="kw">&gt;</span>Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License<span class="kw">&lt;/a&gt;</span>.</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">rel</span><span class="ot">=</span><span class="st">"license"</span> <span class="er">href</span><span class="ot">=</span><span class="st">"http://creativecommons.org/licenses/by-nc-sa/4.0/"</span><span class="kw">&gt;&lt;img</span> <span class="er">alt</span><span class="ot">=</span><span class="st">"Creative Commons Licence"</span> <span class="er">style</span><span class="ot">=</span><span class="st">"border-width:0"</span> <span class="er">src</span><span class="ot">=</span><span class="st">"https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"</span> <span class="kw">/&gt;</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/br&gt;</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="al">![](REF.jpg)</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@GeogBristol</span><span class="co">](https://twitter.com/geogbristol?lang=en)</span>{target="_blank"} #justsaying!</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
