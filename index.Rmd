@@ -19,6 +19,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## About Me
 
+![](punk.jpg){width=200}
+
 I am a social geographer in the [School of Geographical Sciences](http://www.bristol.ac.uk/geography/) interested in **socio-spatial inequalities** within society and their causes. Presently I am Director of the [South West Doctoral Training Partnership](https://www.swdtp.ac.uk/) and was founding director of [the University of Bristol](https://www.bristol.ac.uk/)’s £1.3 million funded [Q-Step Centre](https://www.nuffieldfoundation.org/students-teachers/q-step) for undergraduate, quantitative social science.
 
 My early research looked at the application of spatial statistics, geographic information science and geodemographics in marketing, public policy and urban geography – all examples of what are now described as **geographic data science**. More recent work has been in urban analytics and cartographic geovisualisation of administrative datasets, focusing on developing and applying innovative computational methods to analyse the **geographies of Covid-19**, to measure and to visualise spatial scales of **social and ethnic segregation**, and to study choice and markets in educational systems; also in the **geographies of education**, supporting quantitative and statistical literacy amongst geographers and undergraduate and postgraduate social scientists.
@@ -32,6 +34,9 @@ I am a Fellow of the [Academy of Social Sciences](https://acss.org.uk/) and of t
 
 Social Geography. Quantitative Methods and Geographic Data Science. Socio-spatial inequality. Geographies of education.
 
+## Online courses
+
+[Mapping and Modelling Geographic Data in R](https://profrichharris.github.io/MandM/){target="_blank"}
 
 ## Publications
 
