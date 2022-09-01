@@ -1,0 +1,17 @@
+---
+title: "(Very) Recent Presentations"
+output:
+  rmdformats::downcute:
+    self_contained: true
+    thumbnails: false
+    lightbox: true
+    downcute_theme: "chaos"
+pkgdown:
+  as_is: true
+---
+
+## Conference presentations
+
+**Levelling up? COVID infections and areas of affluence/deprivation in England**</br>
+*Royal Geographical Society (with IBG) annual conference, Newcastle, Sept 1, 2022*</br>
+[pdf](levelling-up.pdf){target="_blank"}
