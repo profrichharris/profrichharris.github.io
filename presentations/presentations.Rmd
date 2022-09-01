@@ -15,3 +15,5 @@ pkgdown:
 **Levelling up? COVID infections and areas of affluence/deprivation in England**</br>
 *Royal Geographical Society (with IBG) annual conference, Newcastle, Sept 1, 2022*</br>
 [pdf](levelling-up.pdf){target="_blank"}
+
+[**BACK**](https://profrichharris.github.io/)
