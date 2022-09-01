@@ -34,6 +34,8 @@ I am a Fellow of the [Academy of Social Sciences](https://acss.org.uk/) and of t
 
 Social Geography. Quantitative Methods and Geographic Data Science. Socio-spatial inequality. Geographies of education.
 
+Some (very) recent research presentations are [here](https://profrichharris.github.io/presentations/presentations.html)
+
 ## Online courses
 
 [Mapping and Modelling Geographic Data in R](https://profrichharris.github.io/MandM/){target="_blank"}
