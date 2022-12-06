@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Rich Harris">
+<meta name="dcterms.date" content="2022-12-06">
 
-<title>Creating harmonised pseudo-Output Areas for the 2001, 2011 &amp; 2021 Censuses (England and Wales)</title>
+<title>Creating harmonised pseudo-Output Areas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -96,15 +97,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="fullcontent">
+<body>
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#source-data" id="toc-source-data" class="nav-link" data-scroll-target="#source-data">Source data</a></li>
+  <li><a href="#stage-1" id="toc-stage-1" class="nav-link" data-scroll-target="#stage-1">Stage 1</a></li>
+  <li><a href="#stage-2" id="toc-stage-2" class="nav-link" data-scroll-target="#stage-2">Stage 2</a></li>
+  <li><a href="#stage-3" id="toc-stage-3" class="nav-link" data-scroll-target="#stage-3">Stage 3</a></li>
+  <li><a href="#recoding" id="toc-recoding" class="nav-link" data-scroll-target="#recoding">Recoding</a></li>
+  <li><a href="#look-up-files" id="toc-look-up-files" class="nav-link" data-scroll-target="#look-up-files">Look-up files</a></li>
+  <li><a href="#higher-level-geographies" id="toc-higher-level-geographies" class="nav-link" data-scroll-target="#higher-level-geographies">Higher-level geographies</a></li>
+  <li><a href="#boundary-file-for-the-pseudo-oas" id="toc-boundary-file-for-the-pseudo-oas" class="nav-link" data-scroll-target="#boundary-file-for-the-pseudo-oas">Boundary file for the pseudo-OAs</a></li>
+  <li><a href="#creating-census-counts-for-the-pseudo-oas" id="toc-creating-census-counts-for-the-pseudo-oas" class="nav-link" data-scroll-target="#creating-census-counts-for-the-pseudo-oas">Creating census counts for the pseudo-OAs</a></li>
+  </ul>
+</nav>
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Creating harmonised pseudo-Output Areas for the 2001, 2011 &amp; 2021 Censuses (England and Wales)</h1>
+<h1 class="title">Creating harmonised pseudo-Output Areas</h1>
+<p class="subtitle lead">for the 2001, 2011 &amp; 2021 Censuses (England and Wales)</p>
 </div>
 
 
@@ -118,6 +137,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 6, 2022</p>
+    </div>
+  </div>
     
   </div>
   
@@ -129,13 +154,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The resulting files can be downloaded from <a href="https://www.dropbox.com/sh/jq4dkokxyflxpei/AAD1GOvoN7R_YyRQSN3aSMQ4a?dl=0" class="uri">https://www.dropbox.com/sh/jq4dkokxyflxpei/AAD1GOvoN7R_YyRQSN3aSMQ4a?dl=0</a></p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>One of the great step forwards from the 2001 Census onwards was the use of statistical Output Areas (OAs) at the most granular scale that are kept as consistent as possible from one census to the next. However, a few do change so, to make analysing change over time a little easier, we can lightly aggregate them into a consistent set of pseudo-OAs that have the same geography for each census.</p>
+<p>One of the great step forwards from the 2001 Census onwards was the use of statistical Output Areas (OAs) at the most granular scale that are kept as consistent as possible from one census to the next. However, a few do change so, to make analysing change over time a little easier, we can lightly aggregate them into a consistent set of pseudo-OAs that have the same geography for each census. In many cases the pseudo-OA and the actual OAs will be the same but in some neighbouring OAs will be merged together.</p>
 </section>
 <section id="source-data" class="level2">
 <h2 class="anchored" data-anchor-id="source-data">Source data</h2>
 <p>The key to it all are the following lookup files: <a href="https://geoportal.statistics.gov.uk/maps/output-area-2001-to-output-area-2011-to-local-authority-district-2011-lookup-in-england-and-wales-1" class="uri">https://geoportal.statistics.gov.uk/maps/output-area-2001-to-output-area-2011-to-local-authority-district-2011-lookup-in-england-and-wales-1</a></p>
 <p>and, <a href="https://geoportal.statistics.gov.uk/maps/output-areas-2011-to-output-areas-2021-to-local-authority-district-2022-lookup-in-england-and-wales-version-2-1" class="uri">https://geoportal.statistics.gov.uk/maps/output-areas-2011-to-output-areas-2021-to-local-authority-district-2022-lookup-in-england-and-wales-version-2-1</a></p>
-<p>We can begin by reading them into R, joining them together, and tidying them up a little:</p>
+<p>They show which OAs are modified or stay the same from one census to the next. We can begin by reading them into R, joining them together, and tidying them up a little:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(data.table)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(tidyverse)</span>
@@ -173,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 2 E00000004 00AAFA0004 E00166758 M     E00190433 S     E09000001 City of London</code></pre>
 </div>
 </div>
-<p>The extra <code>OA01CDO</code> arises because the original 2001 Census Output Area codes were recoded prior to 2011. <code>OA01CDO</code> are the original codes. <code>OA01CD</code> are what they became.</p>
+<p>The extra <code>OA01CDO</code> arises because the original 2001 Census Output Area codes were recoded prior to 2011. <code>OA01CDO</code> are the original codes, <code>OA01CD</code> are what they became.</p>
 </section>
 <section id="stage-1" class="level2">
 <h2 class="anchored" data-anchor-id="stage-1">Stage 1</h2>
@@ -190,7 +215,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OAXXCD =</span> <span class="fu">ifelse</span>(CHG11 <span class="sc">==</span> <span class="st">"M"</span> <span class="sc">&amp;</span> CHG21 <span class="sc">==</span> <span class="st">"M"</span>, OA21CD, OAXXCD)) <span class="sc">|&gt;</span> </span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OAXXCD =</span> <span class="fu">ifelse</span>(CHG11 <span class="sc">==</span> <span class="st">"M"</span> <span class="sc">&amp;</span> CHG21 <span class="sc">==</span> <span class="st">"S"</span>, OA11CD, OAXXCD)) <span class="ot">-&gt;</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>However, there are some cases that cannot be resolved in this way:</p>
+<p>However, there are some cases that cannot be resolved in this way, of which some are,</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(OAXXCD))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -211,7 +236,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # … with 1,136 more rows</code></pre>
 </div>
 </div>
-<p>and they arise in the following circumstances,</p>
+<p>They arise in the following circumstances,</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(OAXXCD)) <span class="sc">|&gt;</span></span>
@@ -239,10 +264,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 9 &lt;NA&gt;  U        38</code></pre>
 </div>
 </div>
+<p>They are very few of them – only <code>r length(which(is.na(df$OAXXCD)))`</code> of 190743 entries in the file – but it is good to resolve them.</p>
 </section>
 <section id="stage-2" class="level2">
 <h2 class="anchored" data-anchor-id="stage-2">Stage 2</h2>
-<p>Some of the cases that have yet to be resolved arise because there is no connection between the 2001 Census codes and the 2011 Census ones.</p>
+<p>A small number of the cases that have yet to be resolved arise because there is no connection between the 2001 Census codes and the 2011 Census ones:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(CHG11))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -310,7 +336,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="stage-3" class="level2">
 <h2 class="anchored" data-anchor-id="stage-3">Stage 3</h2>
-<p>The next stage is to best illustrated with an example. The Output Area E00000233 has yet to be assigned an <code>OAXXCD</code> because of how it has been split but subsequently merged in successive censuses:</p>
+<p>The next stage is best illustrated with an example. The Output Area E00000233 has yet to be assigned an <code>OAXXCD</code> because of how it has been split but subsequently merged in successive censuses:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(OAXXCD)) <span class="sc">|&gt;</span></span>
@@ -323,7 +349,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 1 E00000233 E00175112 E00185671 &lt;NA&gt;   S     M    </code></pre>
 </div>
 </div>
-<p>What we need to do is find every output area that is connected to E00000233 through any of the censuses. Initially, these are,</p>
+<p>What we need to do is find every output area that is connected to E00000233 through any of the censuses. An initial search reveals,</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(OAXXCD)) <span class="sc">|&gt;</span></span>
@@ -376,7 +402,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                         found<span class="sc">$</span>OA21CD[<span class="dv">1</span>],</span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                         OAXXCD)) <span class="ot">-&gt;</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>And this whole process needs to be repeated for every instance of where <code>is.na(OAXXCD</code>), which will take a few minutes to complete.</p>
+<p>This whole process now needs to be repeated for every instance of where <code>is.na(OAXXCD</code>) until they are all exhausted, which will take a few minutes to complete.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(<span class="fu">nrow</span>(df <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(OAXXCD))) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -434,7 +460,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>[1] 174363</code></pre>
 </div>
 </div>
-<p>These <code>OAXXCD</code> are a combination of various <code>OA01CD</code>, <code>OA11CD</code> and <code>OA21CD</code> codes. To avoid confusion, it may be better to replace those with custom numbered identifiers:</p>
+</section>
+<section id="recoding" class="level2">
+<h2 class="anchored" data-anchor-id="recoding">Recoding</h2>
+<p>These pseudo-OAs are a light aggregation of the 175434 2001 Census, 181408 2011 Census, and 188880 2021 Census Output Areas. The <code>OAXXCD</code> that have been assigned to them are a combination of various <code>OA01CD</code>, <code>OA11CD</code> and <code>OA21CD</code> codes. To avoid confusion, it may be better to replace those with custom numbered identifiers:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(OA01CD) <span class="ot">-&gt;</span> df</span>
@@ -480,7 +509,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="higher-level-geographies" class="level2">
 <h2 class="anchored" data-anchor-id="higher-level-geographies">Higher-level geographies</h2>
-<p>It is helpful to know which higher-level geographies the pseudo-OAs fall within. Some of these include MSOAs and their ‘friendly names’ , available from the <a href="https://houseofcommonslibrary.github.io/msoanames/">House of Commons Library</a>, <a href="https://geoportal.statistics.gov.uk/datasets/output-area-to-lower-layer-super-output-area-to-middle-layer-super-output-area-to-local-authority-district-december-2021-lookup-in-england-and-wales-v2-1">local authority districts</a>, and <a href="https://geoportal.statistics.gov.uk/datasets/output-area-to-country-december-2021-lookup-in-england-and-wales-1">regions</a>. We begin by matching these geographies to the 2021 Census OA geography and adding in their residential population counts from <a href="https://www.nomisweb.co.uk/census/2021/bulk">census table TS021</a>, which will needed in the next step.</p>
+<p>It is helpful to know which higher-level geographies the pseudo-OAs fall within. Some of the various that could be used include MSOAs and their ‘friendly names’ (available from the <a href="https://houseofcommonslibrary.github.io/msoanames/">House of Commons Library</a>), <a href="https://geoportal.statistics.gov.uk/datasets/output-area-to-lower-layer-super-output-area-to-middle-layer-super-output-area-to-local-authority-district-december-2021-lookup-in-england-and-wales-v2-1">local authority districts</a>, and <a href="https://geoportal.statistics.gov.uk/datasets/output-area-to-country-december-2021-lookup-in-england-and-wales-1">regions</a>. We begin by matching these geographies to the 2021 Census OA geography and adding in their residential population counts from <a href="https://www.nomisweb.co.uk/census/2021/bulk">census table TS021</a>, which are needed in the next step.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(df <span class="sc">|&gt;</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(OAXXCD, OA21CD, LAD22CD, LAD22NM),</span>
@@ -582,7 +611,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="boundary-file-for-the-pseudo-oas" class="level2">
 <h2 class="anchored" data-anchor-id="boundary-file-for-the-pseudo-oas">Boundary file for the pseudo-OAs</h2>
-<p>To map the pseudo-OAs, we need to create a boundary file for them, based on the <a href="https://geoportal.statistics.gov.uk/maps/output-areas-december-2021-boundaries-generalised-clipped-ew-bgc">2021 Census OA boundaries</a>. We begin by loading in those boundaries and appending the <code>OAXXCD</code> codes.</p>
+<p>To map the pseudo-OAs, we will create a boundary file for them, based on the <a href="https://geoportal.statistics.gov.uk/maps/output-areas-december-2021-boundaries-generalised-clipped-ew-bgc">2021 Census OA boundaries</a>. We begin by loading in those boundaries and appending the <code>OAXXCD</code> codes.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(sf)</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">st_read</span>(<span class="st">"https://www.dropbox.com/s/2ffk5mwezyyjzre/Output_Areas_%28December_2021%29_Boundaries_Generalised_Clipped_EW_%28BGC%29.geojson?dl=1"</span>) <span class="sc">|&gt;</span></span>
@@ -693,6 +722,105 @@ be emitted anymore.</code></pre>
 <span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="creating-census-counts-for-the-pseudo-oas" class="level2">
+<h2 class="anchored" data-anchor-id="creating-census-counts-for-the-pseudo-oas">Creating census counts for the pseudo-OAs</h2>
+<p>The following file is sourced from 2001 Census data and gives counts of the various ethnic groups per 2001 Census Output Area.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"https://www.dropbox.com/s/xd256vgc98qvtct/ethnicity2001.csv?dl=1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 175,434 × 15
+   OA01CD    Persons.01 WBRI.01 WIRI.01 WOTH.01 INDN.01 PKST.01 BANG.01 AOTH.01
+   &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 E00000001        215     170       4      28      10       0       0       0
+ 2 E00000002        101      70       3      19       3       0       0       0
+ 3 E00000003        207     166       0      23       8       0       3       0
+ 4 E00000004        278     227       6      29       4       0       0       0
+ 5 E00000005        234     175       9      24      16       0       0       0
+ 6 E00000006        221     184       8      20       3       0       0       3
+ 7 E00000007        168      91       9      42       3       0       0       0
+ 8 E00000008        169     111       3      30       8       3       0       0
+ 9 E00000009        104      67       9      22       0       3       0       0
+10 E00000010        134     106       4       9       0       0       0       3
+# … with 175,424 more rows, and 6 more variables: BCAR.01 &lt;dbl&gt;, BAFR.01 &lt;dbl&gt;,
+#   BOTH.01 &lt;dbl&gt;, CHNE.01 &lt;dbl&gt;, OTHR.01 &lt;dbl&gt;, MIXD.01 &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Those counts can be tallied up into the pseudo-OAs:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"https://www.dropbox.com/s/xd256vgc98qvtct/ethnicity2001.csv?dl=1"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(<span class="fu">read_csv</span>(<span class="st">"OA01CD_to_OAXXCD.csv"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(OA01CD, OAXXCD), <span class="at">by =</span> <span class="st">"OA01CD"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(OAXXCD) <span class="sc">|&gt;</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), sum)) <span class="ot">-&gt;</span> census<span class="fl">.01</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>census<span class="fl">.01</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 174,363 × 15
+   OAXXCD    Persons.01 WBRI.01 WIRI.01 WOTH.01 INDN.01 PKST.01 BANG.01 AOTH.01
+   &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 X0000001E        215     170       4      28      10       0       0       0
+ 2 X0000002E        270     181       6      49      11       3       0       0
+ 3 X0000003E        207     166       0      23       8       0       3       0
+ 4 X0000004E        499     411      14      49       7       0       0       3
+ 5 X0000005E        234     175       9      24      16       0       0       0
+ 6 X0000006E        168      91       9      42       3       0       0       0
+ 7 X0000007E        213     143      16      39       0       3       0       3
+ 8 X0000008E        134     106       4       9       0       0       0       3
+ 9 X0000009E        255     161      14      31      12       3       0       0
+10 X0000010E        393     278      25      43      11       0       3       3
+# … with 174,353 more rows, and 6 more variables: BCAR.01 &lt;dbl&gt;, BAFR.01 &lt;dbl&gt;,
+#   BOTH.01 &lt;dbl&gt;, CHNE.01 &lt;dbl&gt;, OTHR.01 &lt;dbl&gt;, MIXD.01 &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>The same process can be applied to the 2021 Census counts.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"https://www.dropbox.com/s/5b4nm5a6wrtwjcv/ethnicity2021.csv?dl=1"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(<span class="fu">read_csv</span>(<span class="st">"OA21CD_to_OAXXCD.csv"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(OA21CD, OAXXCD), <span class="at">by =</span> <span class="st">"OA21CD"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(OAXXCD) <span class="sc">|&gt;</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), sum)) <span class="ot">-&gt;</span> census<span class="fl">.21</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>census<span class="fl">.21</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 174,363 × 15
+   OAXXCD    Persons.21 WBRI.21 WIRI.21 WOTH.21 INDN.21 PKST.21 BANG.21 AOTH.21
+   &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 X0000001E        176     112       0      43       0       1       0       0
+ 2 X0000002E        279      83       9      90      22       0       4       7
+ 3 X0000003E        255     174       0      35      11       0       0       7
+ 4 X0000004E        507     326      18     101      11       1       0      11
+ 5 X0000005E        112      65       0      20       4       0       0       5
+ 6 X0000006E        144      62       4      40       1       0       0       7
+ 7 X0000007E        348     126       5     109      40       7       1       4
+ 8 X0000008E        175      83       0      37       3       0       1       3
+ 9 X0000009E        503     297      13     115      13       0       0       8
+10 X0000010E        255     128       6      54       3       1       2       9
+# … with 174,353 more rows, and 6 more variables: BCAR.21 &lt;dbl&gt;, BAFR.21 &lt;dbl&gt;,
+#   BOTH.21 &lt;dbl&gt;, CHNE.21 &lt;dbl&gt;, OTHR.21 &lt;dbl&gt;, MIXD.21 &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Because the geography is consistent across the censuses, it is possible to calculate change. For example, to calculate and to map the percentage change in the White British population in London’s neighbourhoods from 2001 to 2011:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>map <span class="sc">|&gt;</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(RGN21NM <span class="sc">==</span> <span class="st">"London"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(census<span class="fl">.01</span> <span class="sc">|&gt;</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(OAXXCD, WBRI<span class="fl">.01</span>),</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"OAXXCD"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(census<span class="fl">.21</span> <span class="sc">|&gt;</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>             <span class="fu">select</span>(OAXXCD, WBRI<span class="fl">.21</span>),</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">by =</span> <span class="st">"OAXXCD"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PCTCHG =</span> (WBRI<span class="fl">.21</span> <span class="sc">-</span> WBRI<span class="fl">.01</span>) <span class="sc">/</span> WBRI<span class="fl">.01</span> <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">PCTCHG =</span> <span class="fu">sign</span>(PCTCHG) <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="fu">abs</span>(PCTCHG))) <span class="sc">|&gt;</span></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> PCTCHG), <span class="at">col =</span> <span class="st">"transparent"</span>) <span class="sc">+</span></span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradient2</span>(<span class="st">"Sq root of PCTCHG"</span>, <span class="at">low =</span> <span class="st">"dark blue"</span>,</span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>                         <span class="at">mid =</span> <span class="st">"white"</span>,</span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>                         <span class="at">high =</span> <span class="st">"dark red"</span>, <span class="at">midpoint =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"Percentage change in White British population, 2001-11"</span>) <span class="sc">+</span></span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_dark</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
