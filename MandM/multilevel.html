@@ -206,7 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Why R</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Why R?</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -214,7 +214,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./why.html" class="sidebar-item-text sidebar-link">Why R?</a>
+  <a href="./why.html" class="sidebar-item-text sidebar-link">A Cartographic Answer</a>
   </div>
 </li>
       </ul>
@@ -297,6 +297,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./spregress.html" class="sidebar-item-text sidebar-link">Spatial Regression</a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Representations of geographic space</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multilevel.html" class="sidebar-item-text sidebar-link active">Continuous and discrete views of the spatial variable</a>
@@ -427,14 +437,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gwrt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 2.823295 secs</code></pre>
+<pre><code>Time difference of 2.784072 secs</code></pre>
 </div>
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mlmt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 0.011585 secs</code></pre>
+<pre><code>Time difference of 0.01118588 secs</code></pre>
 </div>
 </div>
 <p>Admittedly, neither took very long to fit, with the GWR taking 0.05 minutes and the multilevel model (MLM) taking 0.01 seconds on my laptop. However, these differences become more noticeable with more complex models or larger study regions. The multilevel model is estimating far fewer model parameters than the GWR. This is because the GWR is really lots of models that are fitted separately (one for each location) and then compared, whereas the multilevel model is one model but one which allows for variance at the geographic level(s) of the model, so better local authorities, for example. Put another way, the GWR is a series of local models that are compared, whereas the multilevel model is a global model that allows for local variations around it: at the moment, all it is doing is estimating the average COVID rate for the whole study region but also recognising that different local authorities have rates that vary around the overall average.</p>

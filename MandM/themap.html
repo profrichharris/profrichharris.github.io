@@ -210,7 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Why R</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Why R?</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./why.html" class="sidebar-item-text sidebar-link">Why R?</a>
+  <a href="./why.html" class="sidebar-item-text sidebar-link">A Cartographic Answer</a>
   </div>
 </li>
       </ul>
@@ -301,6 +301,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./spregress.html" class="sidebar-item-text sidebar-link">Spatial Regression</a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Representations of geographic space</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multilevel.html" class="sidebar-item-text sidebar-link">Continuous and discrete views of the spatial variable</a>
@@ -360,15 +370,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>With the above questions in mind, we might imagine the map as a first stage in a process of geographical enquiry where what we do is look for and then quantify some of the geographical patterns in the data before beginning to model them. Here the map is not simply a tool for visualising and communicating data, it is also a tool for exploring data and thinking geographically about them.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-aea1fd471ebafc5fde28" style="width:100%;height:464px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-aea1fd471ebafc5fde28">{"x":{"diagram":"\ndigraph boxes_and_circles {\n      \n      # a \"graph\" statement\n      graph [overlap = true, fontsize = 10, rankdir = TB]\n      \n      # several \"node\" statements\n      \n      node [fontname = Helvetica, style = filled, fillcolor = white]\n      A [label = \"Map\", fillcolor = orange]\n      1 [label = \"Measure\"]\n      I [label = \"Model\"]\n      \n      # several \"edge\" statements\n      A->1->I\n      }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b8d0aa6072583c105e65" style="width:100%;height:464px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b8d0aa6072583c105e65">{"x":{"diagram":"\ndigraph boxes_and_circles {\n      \n      # a \"graph\" statement\n      graph [overlap = true, fontsize = 10, rankdir = TB]\n      \n      # several \"node\" statements\n      \n      node [fontname = Helvetica, style = filled, fillcolor = white]\n      A [label = \"Map\", fillcolor = orange]\n      1 [label = \"Measure\"]\n      I [label = \"Model\"]\n      \n      # several \"edge\" statements\n      A->1->I\n      }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br> In practice, the process of analysis is likely to involve greater cycling between the various stages. Nevertheless, there is a good argument for starting with the map.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-d7fb72cbbafc1c529554" style="width:100%;height:464px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d7fb72cbbafc1c529554">{"x":{"diagram":"\ndigraph boxes_and_circles {\n      \n      # a \"graph\" statement\n      graph [overlap = true, fontsize = 10, rankdir = TB]\n      \n      # several \"node\" statements\n      \n      node [fontname = Helvetica, style = filled, fillcolor = white]\n      A [label = \"Map\", fillcolor = orange]\n      1 [label = \"Measure\"]\n      I [label = \"Model\"]\n      \n      # several \"edge\" statements\n      A->1->I\n      1->A\n      I->1\n      I->A\n      A->I\n      }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-99e6bf9204f4e60d3e0b" style="width:100%;height:464px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-99e6bf9204f4e60d3e0b">{"x":{"diagram":"\ndigraph boxes_and_circles {\n      \n      # a \"graph\" statement\n      graph [overlap = true, fontsize = 10, rankdir = TB]\n      \n      # several \"node\" statements\n      \n      node [fontname = Helvetica, style = filled, fillcolor = white]\n      A [label = \"Map\", fillcolor = orange]\n      1 [label = \"Measure\"]\n      I [label = \"Model\"]\n      \n      # several \"edge\" statements\n      A->1->I\n      1->A\n      I->1\n      I->A\n      A->I\n      }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
