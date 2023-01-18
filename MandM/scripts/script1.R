@@ -23,14 +23,14 @@ fuel_solid_vals <- c(50:56, 61, 73, 74, 75)
 # Read in some example IPUMS data for individuals and then aggregate (group) it to the
 # geographic level, calculating the percentages using solid fuel for cooking in each year
 
-system.file("extdata", "ipumsi_00011.xml", package = "ipumsexamples") %>%
-  read_ipums_micro(., verbose = FALSE) %>%
-  filter(COUNTRY == 170) %>%
-  select(COUNTRY, GEOLEV1, YEAR, PERWT, FUELCOOK) %>%
-  mutate(SOLIDFUEL = ifelse(FUELCOOK %in% fuel_solid_vals, 1, 0)) %>%
-  filter(!(FUELCOOK %in% fuel_missing_vals)) %>%
-  group_by(COUNTRY, GEOLEV1, YEAR) %>%
-  summarise(SOLIDFUELWT = weighted.mean(SOLIDFUEL, w = PERWT), SOLIDFUEL = mean(SOLIDFUEL), .groups = "keep") %>%
+system.file("extdata", "ipumsi_00011.xml", package = "ipumsexamples") |>
+  read_ipums_micro(verbose = FALSE) |>
+  filter(COUNTRY == 170) |>
+  select(COUNTRY, GEOLEV1, YEAR, PERWT, FUELCOOK) |>
+  mutate(SOLIDFUEL = ifelse(FUELCOOK %in% fuel_solid_vals, 1, 0)) |>
+  filter(!(FUELCOOK %in% fuel_missing_vals)) |>
+  group_by(COUNTRY, GEOLEV1, YEAR) |>
+  summarise(SOLIDFUELWT = weighted.mean(SOLIDFUEL, w = PERWT), SOLIDFUEL = mean(SOLIDFUEL), .groups = "keep") |>
   mutate(across(starts_with("SOLID"), ~ . * 100)) ->
   ipumsi_summary
  
