@@ -52,6 +52,8 @@ Try also typing `source("script1.R", echo = TRUE)` into the R Console. Again, th
 
 As suggested earlier, an advantage of using a script is that it is easy to make changes to and then re-run it either in part or in full. In the script, find the `type = "cartolight"` argument in the line that says `annotation_map_tile(type = "cartolight", progress = "none") +` and change the `type` to any other of the following, such as cartodark.
 
+### To Do
+
 ```{r}
 rosm::osm.types()
 ```
@@ -62,7 +64,7 @@ Once you have made the change, select the parts of the script you wish to rerun 
 
 ### A note about the `::` notation
 
-The use of the `::` notation in the code `rosm::osm.types()` allows a function to be run from a package that has not been loaded. In the example, `osm.types()` is a function in the `rosm` package. That package provides access to Open Steet Map and other maps tiles. We could also `require(rosm)` and then use the function directly as we have in other cases, i.e. using `osm.types()` instead of `rosm::osm.types()`. However, sometimes, if a function only is to be used once then there is no need to require the whole package. Also, sometimes we load multiple packages that have functions within them that share the same name. In such circumstances, the `package::function` format may be required to make sure the correct function (from the correct package) is being called.
+The use of the `::` notation in the code `rosm::osm.types()` allows a function to be run from a package that has not been loaded. In the example, `osm.types` is a function in the `rosm` package. That package provides access to Open Steet Map and other maps tiles. We could also `require(rosm)` and then use the function directly as we have in other cases, i.e. using `osm.types()` instead of `rosm::osm.types()`. However, sometimes, if a function only is to be used once then there is no need to require the whole package. Also, sometimes we load multiple packages that have functions within them that share the same name and could conflict with each other. In such circumstances, the `package::function` format may be required to make sure the correct function (from the correct package) is being called.
 
 ## R markdown
 
