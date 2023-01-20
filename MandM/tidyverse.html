@@ -267,6 +267,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./thematicmaps.html" class="sidebar-item-text sidebar-link">Thematic maps in R</a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise2.html" class="sidebar-item-text sidebar-link">Follow-up exercise</a>
+  </div>
+</li>
     </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -385,7 +390,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </details>
 </div>
 <p><img src="hazard.gif" class="img-fluid" width="75"></p>
-<p><font size="3">If you get a warning message saying there is no package called tidyverse then you need to install it: <code>install.packages("tidyverse", dependencies = TRUE)</code>.</font></p>
+<p><font size="3">If you get a warning message saying there is no package called tidyverse then you need to install it: <code>install.packages("tidyverse", dependencies = TRUE)</code>. You will find that some people prefer to use <code>library()</code> instead of <code>require()</code>. The difference between them is subtle but you can find an argument in favour of using <code>library()</code> <a href="https://www.r-bloggers.com/2016/12/difference-between-library-and-require-in-r/" target="_blank">here</a> even though I usually don’t.</font></p>
 </section>
 <section id="reading-in-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="reading-in-the-data">Reading-in the data</h2>
@@ -624,7 +629,7 @@ lm(formula = y ~ x, data = .)
 
 Coefficients:
 (Intercept)            x  
-     0.1608       1.9988  </code></pre>
+     0.1568       1.9979  </code></pre>
 </div>
 </div>
 <p>However, it does <em>not</em> work with the pipe, <code>|&gt;</code> because it does not recognise the place holder <code>.</code> that would receive the data frame from the line above and contains the variables for the model.</p>
@@ -654,7 +659,7 @@ lm(formula = y ~ x, data = z)
 
 Coefficients:
 (Intercept)            x  
-   -0.08402      2.00288  </code></pre>
+    -0.0846       2.0030  </code></pre>
 </div>
 </div>
 <p>Over time, expect <code>|&gt;</code> to be developed and to supersede <code>%&gt;%</code>. For now, you are unlikely to encounter errors using <code>%&gt;%</code> as a substitute for <code>|&gt;</code> but you might using <code>|&gt;</code> instead of <code>%&gt;%</code>. In other words, <code>%&gt;%</code> is the safer choice if you are unsure.</p>
@@ -1038,7 +1043,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb46-48"><a href="#cb46-48" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-49"><a href="#cb46-49" aria-hidden="true" tabindex="-1"></a><span class="al">![](hazard.gif)</span>{width=75}</span>
 <span id="cb46-50"><a href="#cb46-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-51"><a href="#cb46-51" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;font</span> <span class="er">size</span> <span class="ot">=</span> <span class="st">3</span><span class="kw">&gt;</span>If you get a warning message saying there is no package called tidyverse then you need to install it: <span class="in">`install.packages("tidyverse", dependencies = TRUE)`</span>.<span class="kw">&lt;/font&gt;</span></span>
+<span id="cb46-51"><a href="#cb46-51" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;font</span> <span class="er">size</span> <span class="ot">=</span> <span class="st">3</span><span class="kw">&gt;</span>If you get a warning message saying there is no package called tidyverse then you need to install it: <span class="in">`install.packages("tidyverse", dependencies = TRUE)`</span>. You will find that some people prefer to use <span class="in">`library()`</span> instead of <span class="in">`require()`</span>. The difference between them is subtle but you can find an argument in favour of using <span class="in">`library()`</span> <span class="co">[</span><span class="ot">here</span><span class="co">](https://www.r-bloggers.com/2016/12/difference-between-library-and-require-in-r/)</span>{target="_blank"} even though I usually don't.<span class="kw">&lt;/font&gt;</span></span>
 <span id="cb46-52"><a href="#cb46-52" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-53"><a href="#cb46-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading-in the data</span></span>
 <span id="cb46-54"><a href="#cb46-54" aria-hidden="true" tabindex="-1"></a></span>

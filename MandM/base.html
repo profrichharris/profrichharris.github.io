@@ -268,6 +268,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./thematicmaps.html" class="sidebar-item-text sidebar-link">Thematic maps in R</a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise2.html" class="sidebar-item-text sidebar-link">Follow-up exercise</a>
+  </div>
+</li>
     </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -393,7 +398,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>[1] 10</code></pre>
 </div>
 </div>
-<p>This calls the function <code>round</code>, which is operating on the numeric object, <code>10.32</code>. The argument <code>digits</code> specifies the number of digits to round to. It is set to zero in the example above.</p>
+<p>This calls the function <code>round()</code>, which is operating on the numeric object, <code>10.32</code>. The argument <code>digits</code> specifies the number of digits to round to. It is set to zero in the example above.</p>
 <p>Because <code>digits = 0</code> is the default value for the function, we could just write</p>
 <div class="cell">
 <details open="">
@@ -488,7 +493,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>[1] 1</code></pre>
 </div>
 </div>
-<p>However, the <code>round</code> function can operate on numeric vectors of other lengths too.</p>
+<p>However, the <code>round()</code> function can operate on numeric vectors of other lengths too.</p>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
@@ -498,7 +503,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>[1] 1 2 3 4 6 7 8</code></pre>
 </div>
 </div>
-<p>Here the combine function, <code>c</code> is used to create a vector of length 7, which is the input into <code>round</code>. The output is of length 7 too.</p>
+<p>Here the combine function, <code>c</code> is used to create a vector of length 7, which is the input into <code>round()</code>. The output is of length 7 too.</p>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
@@ -583,7 +588,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>[1] 2 3 4 5 6 7 8 9</code></pre>
 </div>
 </div>
-<p><code>ifelse</code> is another logical statement. It takes the form, <code>ifelse(condition, a, b)</code>: if the <code>condition</code> is met then do <code>a</code>, else do <code>b</code>. In the prime number function it is checking whether dividing <span class="math inline">\(x\)</span> by any of the numbers from <span class="math inline">\(2\)</span> to <span class="math inline">\(x-1\)</span> generates a whole number.</p>
+<p><code>ifelse()</code> is another logical statement. It takes the form, <code>ifelse(condition, a, b)</code>: if the <code>condition</code> is met then do <code>a</code>, else do <code>b</code>. In the prime number function it is checking whether dividing <span class="math inline">\(x\)</span> by any of the numbers from <span class="math inline">\(2\)</span> to <span class="math inline">\(x-1\)</span> generates a whole number.</p>
 <p>Finally, the function <code>return()</code> returns an output from the function; specifically, a logical vector of length 1 that is <code>TRUE</code>, <code>FALSE</code> or <code>NA</code> dependent upon whether <span class="math inline">\(x\)</span> is or is not a prime number, or if it is not a whole number above <span class="math inline">\(1\)</span>.</p>
 <p>Note that in newer versions of R, functions can also take the form,</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>f &lt;- \(x) {</span>
@@ -621,7 +626,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>There are other classes of object in R. Some of the most common are listed below.</p>
 <section id="logical" class="level3">
 <h3 class="anchored" data-anchor-id="logical">Logical</h3>
-<p>The output from the <code>is.prime</code> function is an example of an object of class logical because the answer is <code>TRUE</code> or <code>FALSE</code> (or <code>NA</code>, not applicable).</p>
+<p>The output from the <code>is.prime()</code> function is an example of an object of class logical because the answer is <code>TRUE</code> or <code>FALSE</code> (or <code>NA</code>, not applicable).</p>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
@@ -1950,7 +1955,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb274-24"><a href="#cb274-24" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">10.32</span>, <span class="at">digits =</span> <span class="dv">0</span>)</span>
 <span id="cb274-25"><a href="#cb274-25" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb274-26"><a href="#cb274-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb274-27"><a href="#cb274-27" aria-hidden="true" tabindex="-1"></a>This calls the function <span class="in">`round`</span>, which is operating on the numeric object, <span class="in">`10.32`</span>. The argument <span class="in">`digits`</span> specifies the number of digits to round to. It is set to zero in the example above.</span>
+<span id="cb274-27"><a href="#cb274-27" aria-hidden="true" tabindex="-1"></a>This calls the function <span class="in">`round()`</span>, which is operating on the numeric object, <span class="in">`10.32`</span>. The argument <span class="in">`digits`</span> specifies the number of digits to round to. It is set to zero in the example above.</span>
 <span id="cb274-28"><a href="#cb274-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb274-29"><a href="#cb274-29" aria-hidden="true" tabindex="-1"></a>Because <span class="in">`digits = 0`</span> is the default value for the function, we could just write</span>
 <span id="cb274-30"><a href="#cb274-30" aria-hidden="true" tabindex="-1"></a></span>
@@ -2012,13 +2017,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb274-102"><a href="#cb274-102" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fl">10.32</span>)</span>
 <span id="cb274-103"><a href="#cb274-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb274-104"><a href="#cb274-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb274-105"><a href="#cb274-105" aria-hidden="true" tabindex="-1"></a>However, the <span class="in">`round`</span> function can operate on numeric vectors of other lengths too.</span>
+<span id="cb274-105"><a href="#cb274-105" aria-hidden="true" tabindex="-1"></a>However, the <span class="in">`round()`</span> function can operate on numeric vectors of other lengths too.</span>
 <span id="cb274-106"><a href="#cb274-106" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb274-109"><a href="#cb274-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb274-110"><a href="#cb274-110" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">c</span>(<span class="fl">1.1</span>, <span class="fl">2.2</span>, <span class="fl">3.3</span>, <span class="fl">4.4</span>, <span class="fl">5.5</span>, <span class="fl">6.6</span>, <span class="fl">7.7</span>))</span>
 <span id="cb274-111"><a href="#cb274-111" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb274-112"><a href="#cb274-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb274-113"><a href="#cb274-113" aria-hidden="true" tabindex="-1"></a>Here the combine function, <span class="in">`c`</span> is used to create a vector of length 7, which is the input into <span class="in">`round`</span>. The output is of length 7 too.</span>
+<span id="cb274-113"><a href="#cb274-113" aria-hidden="true" tabindex="-1"></a>Here the combine function, <span class="in">`c`</span> is used to create a vector of length 7, which is the input into <span class="in">`round()`</span>. The output is of length 7 too.</span>
 <span id="cb274-114"><a href="#cb274-114" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb274-117"><a href="#cb274-117" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb274-118"><a href="#cb274-118" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">round</span>(<span class="fu">c</span>(<span class="fl">1.1</span>, <span class="fl">2.2</span>, <span class="fl">3.3</span>, <span class="fl">4.4</span>, <span class="fl">5.5</span>, <span class="fl">6.6</span>, <span class="fl">7.7</span>)))</span>
@@ -2075,7 +2080,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb274-175"><a href="#cb274-175" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> (x<span class="dv">-1</span>), <span class="at">by =</span> <span class="dv">1</span>)</span>
 <span id="cb274-176"><a href="#cb274-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb274-177"><a href="#cb274-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb274-178"><a href="#cb274-178" aria-hidden="true" tabindex="-1"></a><span class="in">`ifelse`</span> is another logical statement. It takes the form, <span class="in">`ifelse(condition, a, b)`</span>: if the <span class="in">`condition`</span> is met then do <span class="in">`a`</span>, else do <span class="in">`b`</span>. In the prime number function it is checking whether dividing $x$ by any of the numbers from $2$ to $x-1$ generates a whole number.</span>
+<span id="cb274-178"><a href="#cb274-178" aria-hidden="true" tabindex="-1"></a><span class="in">`ifelse()`</span> is another logical statement. It takes the form, <span class="in">`ifelse(condition, a, b)`</span>: if the <span class="in">`condition`</span> is met then do <span class="in">`a`</span>, else do <span class="in">`b`</span>. In the prime number function it is checking whether dividing $x$ by any of the numbers from $2$ to $x-1$ generates a whole number.</span>
 <span id="cb274-179"><a href="#cb274-179" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb274-180"><a href="#cb274-180" aria-hidden="true" tabindex="-1"></a>Finally, the function <span class="in">`return()`</span> returns an output from the function; specifically, a logical vector of length 1 that is <span class="in">`TRUE`</span>, <span class="in">`FALSE`</span> or <span class="in">`NA`</span> dependent upon whether $x$ is or is not a prime number, or if it is not a whole number above $1$.</span>
 <span id="cb274-181"><a href="#cb274-181" aria-hidden="true" tabindex="-1"></a> </span>
@@ -2113,7 +2118,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb274-217"><a href="#cb274-217" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb274-218"><a href="#cb274-218" aria-hidden="true" tabindex="-1"></a><span class="fu">### Logical</span></span>
 <span id="cb274-219"><a href="#cb274-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb274-220"><a href="#cb274-220" aria-hidden="true" tabindex="-1"></a>The output from the <span class="in">`is.prime`</span> function is an example of an object of class logical because the answer is <span class="in">`TRUE`</span> or <span class="in">`FALSE`</span> (or <span class="in">`NA`</span>, not applicable).</span>
+<span id="cb274-220"><a href="#cb274-220" aria-hidden="true" tabindex="-1"></a>The output from the <span class="in">`is.prime()`</span> function is an example of an object of class logical because the answer is <span class="in">`TRUE`</span> or <span class="in">`FALSE`</span> (or <span class="in">`NA`</span>, not applicable).</span>
 <span id="cb274-221"><a href="#cb274-221" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb274-224"><a href="#cb274-224" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb274-225"><a href="#cb274-225" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">is.prime</span>(<span class="dv">10</span>)</span>

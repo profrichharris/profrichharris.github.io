@@ -267,6 +267,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./thematicmaps.html" class="sidebar-item-text sidebar-link">Thematic maps in R</a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise2.html" class="sidebar-item-text sidebar-link">Follow-up exercise</a>
+  </div>
+</li>
     </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -332,10 +337,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#install-r-studio" id="toc-install-r-studio" class="nav-link" data-scroll-target="#install-r-studio">Install R Studio</a></li>
   <li><a href="#open-r-studio" id="toc-open-r-studio" class="nav-link" data-scroll-target="#open-r-studio">Open R Studio</a></li>
   <li><a href="#install-additional-librariespackages" id="toc-install-additional-librariespackages" class="nav-link" data-scroll-target="#install-additional-librariespackages">Install additional libraries/packages</a></li>
-  <li><a href="#changing-the-working-directory" id="toc-changing-the-working-directory" class="nav-link" data-scroll-target="#changing-the-working-directory">Changing the working directory</a>
-  <ul class="collapse">
+  <li><a href="#changing-the-working-directory" id="toc-changing-the-working-directory" class="nav-link" data-scroll-target="#changing-the-working-directory">Changing the working directory</a></li>
   <li><a href="#organising-your-files-in-a-project" id="toc-organising-your-files-in-a-project" class="nav-link" data-scroll-target="#organising-your-files-in-a-project">Organising your files in a project</a></li>
-  </ul></li>
   <li><a href="#changing-the-appearance-of-r-studio" id="toc-changing-the-appearance-of-r-studio" class="nav-link" data-scroll-target="#changing-the-appearance-of-r-studio">Changing the appearance of R Studio</a></li>
   </ul>
 </nav>
@@ -389,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="install-additional-librariespackages" class="level2">
 <h2 class="anchored" data-anchor-id="install-additional-librariespackages">Install additional libraries/packages</h2>
-<p>The base functions of R are greatly extended by the very many packages/libraries that have been developed for it. At the time of writing, there are 19081 of these on <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html" target="_blank">CRAN</a>, which is the main repository for them. Many of these have been grouped into ‘tasks’ and topic areas, which can be viewed <a href="https://cran.r-project.org/web/views/" target="_blank">here</a>.</p>
+<p>The base functions of R are greatly extended by the very many packages/libraries that have been developed for it. At the time of writing, there are 19096 of these on <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html" target="_blank">CRAN</a>, which is the main repository for them. Many of these have been grouped into ‘tasks’ and topic areas, which can be viewed <a href="https://cran.r-project.org/web/views/" target="_blank">here</a>.</p>
 <p>Most of the packages that will be needed for this course will be installed as they are needed. However, some will be used so regularly that we should install them now. Cut and paste the following code chunk into the Console and hit Enter/Return.</p>
 <div class="cell">
 <details open="">
@@ -415,12 +418,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>You may wish to change this to something else each time you start R. You can do this using the drop-down menus. There is also the function <code>setwd(dir)</code> – type <code>?setwd</code> in the R Console to learn more.</p>
 <p><img src="change_dir.png" class="img-fluid"></p>
-<section id="organising-your-files-in-a-project" class="level3">
-<h3 class="anchored" data-anchor-id="organising-your-files-in-a-project">Organising your files in a project</h3>
+</section>
+<section id="organising-your-files-in-a-project" class="level2">
+<h2 class="anchored" data-anchor-id="organising-your-files-in-a-project">Organising your files in a project</h2>
 <p>You could also create a new project in R by using File –&gt; New Project… from the dropdown menus and create it either in a new directory (probably most sensible) or an existing one. There is nothing especially magical about a project in R. As stated <a href="https://bookdown.org/ndphillips/YaRrr/projects-in-rstudio.html" target="_blank">here</a>, “a project is simply a working directory designated with a .RProj file. When you open a project (using File/Open Project in RStudio or by double–clicking on the .Rproj file outside of R), the working directory will automatically be set to the directory that the .RProj file is located in.” However, it is that which makes it useful: when you open a project you know that you are going to be working in a specific folder on your computer which them becomes the default ‘container’ to save files to or to download them from.”</p>
 <p><img src="hazard.gif" class="img-fluid" width="75"></p>
 <p><font size="3">It would be a good idea to create a new project now which can then be the folder and working directory for this course and its contents.</font></p>
-</section>
 </section>
 <section id="changing-the-appearance-of-r-studio" class="level2">
 <h2 class="anchored" data-anchor-id="changing-the-appearance-of-r-studio">Changing the appearance of R Studio</h2>
@@ -648,9 +651,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a><span class="al">![](change_dir.png)</span></span>
 <span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a><span class="fu">### Organising your files in a project</span></span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## Organising your files in a project</span></span>
 <span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>You could also create a new project in R by using File --&gt;  New Project... from the dropdown menus and create it either in a new directory (probably most sensible) or an existing one. There is nothing especially magical about a project in R. As stated <span class="co">[</span><span class="ot">here</span><span class="co">](https://bookdown.org/ndphillips/YaRrr/projects-in-rstudio.html)</span>{target="_blank"}, "a project is simply a working directory designated with a .RProj file. When you open a project (using File/Open Project in RStudio or by double–clicking on the .Rproj file outside of R), the working directory will automatically be set to the directory that the .RProj file is located in." However, it is that which makes it useful: when you open a project you know that you are going to be working in a specific folder on your computer which them becomes the default 'container' to save files to or to download them from."</span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>You could also create a new project in R by using File --<span class="sc">\&gt;</span> New Project... from the dropdown menus and create it either in a new directory (probably most sensible) or an existing one. There is nothing especially magical about a project in R. As stated <span class="co">[</span><span class="ot">here</span><span class="co">](https://bookdown.org/ndphillips/YaRrr/projects-in-rstudio.html)</span>{target="_blank"}, "a project is simply a working directory designated with a .RProj file. When you open a project (using File/Open Project in RStudio or by double--clicking on the .Rproj file outside of R), the working directory will automatically be set to the directory that the .RProj file is located in." However, it is that which makes it useful: when you open a project you know that you are going to be working in a specific folder on your computer which them becomes the default 'container' to save files to or to download them from."</span>
 <span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a><span class="al">![](hazard.gif)</span>{width="75"}</span>
 <span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a></span>
