@@ -1,10 +1,8 @@
 # Load the required packages and install them if they are not available
-# Because I am presently using R version 4.2.1 but there is not yet a version of the package
-# ipumsr available for it, I use install_version() in the remotes package to use an older version
-# It also allows the development package ipsumexamples to be installed from github
+# The remotes package allows the development package ipsumexamples to be installed from github
 
 while(!require(remotes)) install.packages("remotes", dependencies = TRUE)
-while(!require(ipumsr)) install_version("ipumsr", version = "0.5.0", upgrade = "never")
+while(!require(ipumsr)) install.packages("ipumsr", dependencies = TRUE)
 while(!require(ipumsexamples)) install_github("ipums/ipumsr/ipumsexamples")
 while(!require(XML)) install.packages("XML", dependencies = TRUE)
 while(!require(tidyverse)) install.packages("tidyverse", dependencies = TRUE)
