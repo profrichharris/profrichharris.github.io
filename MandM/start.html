@@ -392,13 +392,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="install-additional-librariespackages" class="level2">
 <h2 class="anchored" data-anchor-id="install-additional-librariespackages">Install additional libraries/packages</h2>
-<p>The base functions of R are greatly extended by the very many packages/libraries that have been developed for it. At the time of writing, there are 19096 of these on <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html" target="_blank">CRAN</a>, which is the main repository for them. Many of these have been grouped into ‘tasks’ and topic areas, which can be viewed <a href="https://cran.r-project.org/web/views/" target="_blank">here</a>.</p>
+<p>The base functions of R are greatly extended by the very many packages/libraries that have been developed for it. At the time of writing, there are 19156 of these on <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html" target="_blank">CRAN</a>, which is the main repository for them. Many of these have been grouped into ‘tasks’ and topic areas, which can be viewed <a href="https://cran.r-project.org/web/views/" target="_blank">here</a>.</p>
 <p>Most of the packages that will be needed for this course will be installed as they are needed. However, some will be used so regularly that we should install them now. Cut and paste the following code chunk into the Console and hit Enter/Return.</p>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"sf"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"proxy"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"sf"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><img src="hazard.gif" class="img-fluid" width="75"></p>
@@ -631,37 +632,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"sf"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a><span class="al">![](hazard.gif)</span>{width="75"}</span>
-<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;font</span> <span class="er">size</span> <span class="ot">=</span> <span class="st">3</span><span class="kw">&gt;</span>Run the code above even if you have the packages installed already so that you also have available all the packages that these depend upon and link to.<span class="kw">&lt;/font&gt;</span></span>
-<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a><span class="fu">## Changing the working directory</span></span>
-<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>If you type <span class="in">`getwd()`</span> into the R Console you will obtain your current working directory -- the default location to look for files and to save content to. Mine is,</span>
-<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span>
-<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>You may wish to change this to something else each time you start R. You can do this using the drop-down menus. There is also the function <span class="in">`setwd(dir)`</span> -- type <span class="in">`?setwd`</span> in the R Console to learn more.</span>
-<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a><span class="al">![](change_dir.png)</span></span>
-<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## Organising your files in a project</span></span>
-<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>You could also create a new project in R by using File --<span class="sc">\&gt;</span> New Project... from the dropdown menus and create it either in a new directory (probably most sensible) or an existing one. There is nothing especially magical about a project in R. As stated <span class="co">[</span><span class="ot">here</span><span class="co">](https://bookdown.org/ndphillips/YaRrr/projects-in-rstudio.html)</span>{target="_blank"}, "a project is simply a working directory designated with a .RProj file. When you open a project (using File/Open Project in RStudio or by double--clicking on the .Rproj file outside of R), the working directory will automatically be set to the directory that the .RProj file is located in." However, it is that which makes it useful: when you open a project you know that you are going to be working in a specific folder on your computer which them becomes the default 'container' to save files to or to download them from."</span>
-<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a><span class="al">![](hazard.gif)</span>{width="75"}</span>
-<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;font</span> <span class="er">size</span> <span class="ot">=</span> <span class="st">3</span><span class="kw">&gt;</span>It would be a good idea to create a new project now which can then be the folder and working directory for this course and its contents.<span class="kw">&lt;/font&gt;</span></span>
-<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a><span class="fu">## Changing the appearance of R Studio</span></span>
-<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>You may notice that I prefer a blue to a white screen when working in R. To change it to this, from the drop-down menus use Tools --<span class="sc">\&gt;</span> Global Options... -<span class="sc">\&gt;</span> Appearance and select Solarized Dark as the Editor theme. You may, of course, have your own preference.</span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"proxy"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"sf"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a><span class="al">![](hazard.gif)</span>{width="75"}</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;font</span> <span class="er">size</span> <span class="ot">=</span> <span class="st">3</span><span class="kw">&gt;</span>Run the code above even if you have the packages installed already so that you also have available all the packages that these depend upon and link to.<span class="kw">&lt;/font&gt;</span></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## Changing the working directory</span></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>If you type <span class="in">`getwd()`</span> into the R Console you will obtain your current working directory -- the default location to look for files and to save content to. Mine is,</span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>You may wish to change this to something else each time you start R. You can do this using the drop-down menus. There is also the function <span class="in">`setwd(dir)`</span> -- type <span class="in">`?setwd`</span> in the R Console to learn more.</span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a><span class="al">![](change_dir.png)</span></span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## Organising your files in a project</span></span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>You could also create a new project in R by using File --<span class="sc">\&gt;</span> New Project... from the dropdown menus and create it either in a new directory (probably most sensible) or an existing one. There is nothing especially magical about a project in R. As stated <span class="co">[</span><span class="ot">here</span><span class="co">](https://bookdown.org/ndphillips/YaRrr/projects-in-rstudio.html)</span>{target="_blank"}, "a project is simply a working directory designated with a .RProj file. When you open a project (using File/Open Project in RStudio or by double--clicking on the .Rproj file outside of R), the working directory will automatically be set to the directory that the .RProj file is located in." However, it is that which makes it useful: when you open a project you know that you are going to be working in a specific folder on your computer which them becomes the default 'container' to save files to or to download them from."</span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a><span class="al">![](hazard.gif)</span>{width="75"}</span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;font</span> <span class="er">size</span> <span class="ot">=</span> <span class="st">3</span><span class="kw">&gt;</span>It would be a good idea to create a new project now which can then be the folder and working directory for this course and its contents.<span class="kw">&lt;/font&gt;</span></span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a><span class="fu">## Changing the appearance of R Studio</span></span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>You may notice that I prefer a blue to a white screen when working in R. To change it to this, from the drop-down menus use Tools --<span class="sc">\&gt;</span> Global Options... -<span class="sc">\&gt;</span> Appearance and select Solarized Dark as the Editor theme. You may, of course, have your own preference.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
