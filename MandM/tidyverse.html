@@ -287,6 +287,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./autocorrelation.html" class="sidebar-item-text sidebar-link">Measuring spatial autocorrelation</a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise3.html" class="sidebar-item-text sidebar-link">Follow-up exercise</a>
+  </div>
+</li>
     </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -629,7 +634,7 @@ lm(formula = y ~ x, data = .)
 
 Coefficients:
 (Intercept)            x  
-   -0.06597      2.00275  </code></pre>
+     0.1867       1.9963  </code></pre>
 </div>
 </div>
 <p>However, it does <em>not</em> work with the pipe, <code>|&gt;</code> because it does not recognise the place holder <code>.</code> that would receive the data frame from the line above and contains the variables for the model.</p>
@@ -659,7 +664,7 @@ lm(formula = y ~ x, data = z)
 
 Coefficients:
 (Intercept)            x  
-     0.2805       1.9952  </code></pre>
+     0.2908       1.9946  </code></pre>
 </div>
 </div>
 <p>Over time, expect <code>|&gt;</code> to be developed and to supersede <code>%&gt;%</code>. For now, you are unlikely to encounter errors using <code>%&gt;%</code> as a substitute for <code>|&gt;</code> but you might using <code>|&gt;</code> instead of <code>%&gt;%</code>. In other words, <code>%&gt;%</code> is the safer choice if you are unsure.</p>

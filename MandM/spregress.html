@@ -288,6 +288,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./autocorrelation.html" class="sidebar-item-text sidebar-link">Measuring spatial autocorrelation</a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise3.html" class="sidebar-item-text sidebar-link">Follow-up exercise</a>
+  </div>
+</li>
     </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -1059,14 +1064,14 @@ poly(density, 2)2 -174.1746600 -251.8338663 -426.008526</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                         direct      indirect        total
-IMD                 -0.41142938   -0.59718889   -1.0086183
-age0.11              1.52587241    2.21480061    3.7406730
-age25.34             2.96594379    4.30506121    7.2710050
-age35.39             2.08785606    3.03051871    5.1183748
-age50.59             4.02700732    5.84519270    9.8722000
-carebeds             0.04734121    0.06871567    0.1160569
-poly(density, 2)1  -77.20711435 -112.06596503 -189.2730794
-poly(density, 2)2 -173.77460694 -252.23347859 -426.0080855</code></pre>
+IMD                 -0.41276674   -0.59585153   -1.0086183
+age0.11              1.53083228    2.20984074    3.7406730
+age25.34             2.97558463    4.29542037    7.2710050
+age35.39             2.09464266    3.02373211    5.1183748
+age50.59             4.04009716    5.83210287    9.8722000
+carebeds             0.04749509    0.06856179    0.1160569
+poly(density, 2)1  -77.45807700 -111.81500237 -189.2730794
+poly(density, 2)2 -174.33946340 -251.66862214 -426.0080855</code></pre>
 </div>
 </div>
 <p>An advantage of this approach is that we can also obtain z and p-values for the impact measures:</p>
@@ -1077,14 +1082,14 @@ poly(density, 2)2 -173.77460694 -252.23347859 -426.0080855</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                     Direct  Indirect     Total
-IMD               -5.148999 -4.568661 -4.962013
-age0.11            3.449399  3.195736  3.352306
-age25.34           7.428725  5.516971  6.485068
-age35.39           1.549883  1.531049  1.546094
-age50.59           6.685408  5.318285  6.082699
-carebeds           3.850479  3.497609  3.706999
-poly(density, 2)1 -1.992085 -1.927193 -1.966741
-poly(density, 2)2 -5.461937 -4.574332 -5.078008</code></pre>
+IMD               -4.758261 -4.152050 -4.520891
+age0.11            3.363119  3.140226  3.287467
+age25.34           7.032445  5.255953  6.165184
+age35.39           1.505774  1.482949  1.499816
+age50.59           6.478342  5.169889  5.927228
+carebeds           3.962109  3.611946  3.838361
+poly(density, 2)1 -2.047776 -1.992567 -2.030694
+poly(density, 2)2 -5.573957 -4.554897 -5.112842</code></pre>
 </div>
 <details open="">
 <summary>Code</summary>
@@ -1092,14 +1097,14 @@ poly(density, 2)2 -5.461937 -4.574332 -5.078008</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                        Direct     Indirect        Total
-IMD               2.618809e-07 4.908493e-06 6.976650e-07
-age0.11           5.618356e-04 1.394745e-03 8.014153e-04
-age25.34          1.096900e-13 3.448913e-08 8.869150e-11
-age35.39          1.211697e-01 1.257572e-01 1.220818e-01
-age50.59          2.302825e-11 1.047501e-07 1.181762e-09
-carebeds          1.178870e-04 4.694481e-04 2.097298e-04
-poly(density, 2)1 4.636172e-02 5.395557e-02 4.921311e-02
-poly(density, 2)2 4.709674e-08 4.777409e-06 3.814121e-07</code></pre>
+IMD               1.952676e-06 3.295099e-05 6.157988e-06
+age0.11           7.706707e-04 1.688176e-03 1.010929e-03
+age25.34          2.029488e-12 1.472601e-07 7.040108e-10
+age35.39          1.321251e-01 1.380881e-01 1.336622e-01
+age50.59          9.273582e-11 2.342327e-07 3.080912e-09
+carebeds          7.429076e-05 3.039083e-04 1.238583e-04
+poly(density, 2)1 4.058192e-02 4.630893e-02 4.228608e-02
+poly(density, 2)2 2.490173e-08 5.241128e-06 3.173482e-07</code></pre>
 </div>
 </div>
 <p>Most but not all of the impacts are significant. We can drop <code>age35.39</code> from the model with little loss of fit.</p>
@@ -1287,7 +1292,7 @@ RLMlag = 54.693, df = 1, p-value = 1.409e-13</code></pre>
 <pre><code>   ***********************************************************************
    *                       Package   GWmodel                             *
    ***********************************************************************
-   Program starts at: 2023-02-07 12:08:13 
+   Program starts at: 2023-02-07 14:50:28 
    Call:
    gwr.basic(formula = formula(ols4), data = covid_sp, bw = bw, 
     adaptive = TRUE)
@@ -1361,7 +1366,7 @@ RLMlag = 54.693, df = 1, p-value = 1.409e-13</code></pre>
    Adjusted R-square value:  0.6151951 
 
    ***********************************************************************
-   Program stops at: 2023-02-07 12:08:14 </code></pre>
+   Program stops at: 2023-02-07 14:50:29 </code></pre>
 </div>
 </div>
 <p>The output requires some interpretation! The results of the global regression are those obtained from a standard OLS regression (i.e.&nbsp;<code>summary(lm(formula(ols4), data = covid_sp))</code>). It is ‘global’ because it is a model for the entire study region, without spatial variation in the regression estimates. The results of the geographically weighted regression are the results from, in this case, 924 separate but spatially overlapping regression models fitted, with geographic weighting, to spatial subsets of the data. All the local estimates are contained in the spatial data frame, <code>gwrmod$SDF</code>, including those for <code>age0.11</code> which are in <code>gwrmod$SDF$age0.11</code> and have the following distribution,</p>
