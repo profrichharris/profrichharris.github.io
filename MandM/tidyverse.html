@@ -634,7 +634,7 @@ lm(formula = y ~ x, data = .)
 
 Coefficients:
 (Intercept)            x  
-     0.1867       1.9963  </code></pre>
+   -0.03514      2.00195  </code></pre>
 </div>
 </div>
 <p>However, it does <em>not</em> work with the pipe, <code>|&gt;</code> because it does not recognise the place holder <code>.</code> that would receive the data frame from the line above and contains the variables for the model.</p>
@@ -664,7 +664,7 @@ lm(formula = y ~ x, data = z)
 
 Coefficients:
 (Intercept)            x  
-     0.2908       1.9946  </code></pre>
+      0.162        1.998  </code></pre>
 </div>
 </div>
 <p>Over time, expect <code>|&gt;</code> to be developed and to supersede <code>%&gt;%</code>. For now, you are unlikely to encounter errors using <code>%&gt;%</code> as a substitute for <code>|&gt;</code> but you might using <code>|&gt;</code> instead of <code>%&gt;%</code>. In other words, <code>%&gt;%</code> is the safer choice if you are unsure.</p>
