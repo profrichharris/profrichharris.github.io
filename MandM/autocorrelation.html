@@ -997,7 +997,7 @@ correlation 0.6643967 0.4013773</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      2.5%      97.5% 
--0.2080537  0.1294310 </code></pre>
+-0.2120648  0.1299547 </code></pre>
 </div>
 </div>
 </section>
@@ -1155,17 +1155,21 @@ correlation 0.6643967 0.4013773</code></pre>
 <span id="cb68-21"><a href="#cb68-21" aria-hidden="true" tabindex="-1"></a>          <span class="fu">max</span>(maps<span class="sc">$</span>localG, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb68-22"><a href="#cb68-22" aria-hidden="true" tabindex="-1"></a>maps<span class="sc">$</span>localG_gp <span class="ot">&lt;-</span> <span class="fu">cut</span>(maps<span class="sc">$</span>localG, brks, <span class="at">include.lowest =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb68-23"><a href="#cb68-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-24"><a href="#cb68-24" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> maps, <span class="fu">aes</span>(<span class="at">fill =</span> localG_gp)) <span class="sc">+</span></span>
-<span id="cb68-25"><a href="#cb68-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">colour =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb68-26"><a href="#cb68-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete_c4a_div</span>(<span class="at">name =</span> <span class="st">"G"</span>, <span class="at">palette =</span> <span class="st">"brewer.rd_yl_bu"</span>,</span>
-<span id="cb68-27"><a href="#cb68-27" aria-hidden="true" tabindex="-1"></a>                              <span class="at">reverse =</span> <span class="cn">TRUE</span>, <span class="at">na.translate =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb68-28"><a href="#cb68-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> distance) <span class="sc">+</span></span>
-<span id="cb68-29"><a href="#cb68-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
-<span id="cb68-30"><a href="#cb68-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb68-31"><a href="#cb68-31" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb68-32"><a href="#cb68-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb68-33"><a href="#cb68-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
-<span id="cb68-34"><a href="#cb68-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb68-24"><a href="#cb68-24" aria-hidden="true" tabindex="-1"></a><span class="co"># This function is used with the labeller argument in the</span></span>
+<span id="cb68-25"><a href="#cb68-25" aria-hidden="true" tabindex="-1"></a><span class="co"># facet_wrap function to customise the title of each sub-plot</span></span>
+<span id="cb68-26"><a href="#cb68-26" aria-hidden="true" tabindex="-1"></a>facet_labels <span class="ot">&lt;-</span> \(x) <span class="fu">paste0</span>(x, <span class="st">"km radius"</span>)</span>
+<span id="cb68-27"><a href="#cb68-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-28"><a href="#cb68-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> maps, <span class="fu">aes</span>(<span class="at">fill =</span> localG_gp)) <span class="sc">+</span></span>
+<span id="cb68-29"><a href="#cb68-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">colour =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb68-30"><a href="#cb68-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete_c4a_div</span>(<span class="at">name =</span> <span class="st">"G"</span>, <span class="at">palette =</span> <span class="st">"brewer.rd_yl_bu"</span>,</span>
+<span id="cb68-31"><a href="#cb68-31" aria-hidden="true" tabindex="-1"></a>                              <span class="at">reverse =</span> <span class="cn">TRUE</span>, <span class="at">na.translate =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb68-32"><a href="#cb68-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> distance, <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">distance =</span> facet_labels)) <span class="sc">+</span></span>
+<span id="cb68-33"><a href="#cb68-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb68-34"><a href="#cb68-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb68-35"><a href="#cb68-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb68-36"><a href="#cb68-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb68-37"><a href="#cb68-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
+<span id="cb68-38"><a href="#cb68-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="autocorrelation_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid" width="672"></p>
@@ -1900,28 +1904,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb69-645"><a href="#cb69-645" aria-hidden="true" tabindex="-1"></a>          <span class="fu">max</span>(maps<span class="sc">$</span>localG, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb69-646"><a href="#cb69-646" aria-hidden="true" tabindex="-1"></a>maps<span class="sc">$</span>localG_gp <span class="ot">&lt;-</span> <span class="fu">cut</span>(maps<span class="sc">$</span>localG, brks, <span class="at">include.lowest =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb69-647"><a href="#cb69-647" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-648"><a href="#cb69-648" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> maps, <span class="fu">aes</span>(<span class="at">fill =</span> localG_gp)) <span class="sc">+</span></span>
-<span id="cb69-649"><a href="#cb69-649" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">colour =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb69-650"><a href="#cb69-650" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete_c4a_div</span>(<span class="at">name =</span> <span class="st">"G"</span>, <span class="at">palette =</span> <span class="st">"brewer.rd_yl_bu"</span>,</span>
-<span id="cb69-651"><a href="#cb69-651" aria-hidden="true" tabindex="-1"></a>                              <span class="at">reverse =</span> <span class="cn">TRUE</span>, <span class="at">na.translate =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb69-652"><a href="#cb69-652" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> distance) <span class="sc">+</span></span>
-<span id="cb69-653"><a href="#cb69-653" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
-<span id="cb69-654"><a href="#cb69-654" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb69-655"><a href="#cb69-655" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb69-656"><a href="#cb69-656" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb69-657"><a href="#cb69-657" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
-<span id="cb69-658"><a href="#cb69-658" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb69-659"><a href="#cb69-659" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb69-660"><a href="#cb69-660" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-661"><a href="#cb69-661" aria-hidden="true" tabindex="-1"></a><span class="fu">## Further Reading</span></span>
-<span id="cb69-662"><a href="#cb69-662" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-663"><a href="#cb69-663" aria-hidden="true" tabindex="-1"></a><span class="al">![](spatial_regression_models.jpg)</span>{width="100"}</span>
+<span id="cb69-648"><a href="#cb69-648" aria-hidden="true" tabindex="-1"></a><span class="co"># This function is used with the labeller argument in the</span></span>
+<span id="cb69-649"><a href="#cb69-649" aria-hidden="true" tabindex="-1"></a><span class="co"># facet_wrap function to customise the title of each sub-plot</span></span>
+<span id="cb69-650"><a href="#cb69-650" aria-hidden="true" tabindex="-1"></a>facet_labels <span class="ot">&lt;-</span> \(x) <span class="fu">paste0</span>(x, <span class="st">"km radius"</span>)</span>
+<span id="cb69-651"><a href="#cb69-651" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-652"><a href="#cb69-652" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> maps, <span class="fu">aes</span>(<span class="at">fill =</span> localG_gp)) <span class="sc">+</span></span>
+<span id="cb69-653"><a href="#cb69-653" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">colour =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb69-654"><a href="#cb69-654" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete_c4a_div</span>(<span class="at">name =</span> <span class="st">"G"</span>, <span class="at">palette =</span> <span class="st">"brewer.rd_yl_bu"</span>,</span>
+<span id="cb69-655"><a href="#cb69-655" aria-hidden="true" tabindex="-1"></a>                              <span class="at">reverse =</span> <span class="cn">TRUE</span>, <span class="at">na.translate =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb69-656"><a href="#cb69-656" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> distance, <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">distance =</span> facet_labels)) <span class="sc">+</span></span>
+<span id="cb69-657"><a href="#cb69-657" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb69-658"><a href="#cb69-658" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb69-659"><a href="#cb69-659" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb69-660"><a href="#cb69-660" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb69-661"><a href="#cb69-661" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
+<span id="cb69-662"><a href="#cb69-662" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb69-663"><a href="#cb69-663" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb69-664"><a href="#cb69-664" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-665"><a href="#cb69-665" aria-hidden="true" tabindex="-1"></a>Chapter 2 of <span class="co">[</span><span class="ot">Spatial Regression Models for the Social Sciences</span><span class="co">](https://uk.sagepub.com/en-gb/eur/spatial-regression-models-for-the-social-sciences/book258546)</span> by Guangqing Chi and Jun Zhu is recommended. For University of Bristol students, it is available to view as an eBook <span class="co">[</span><span class="ot">here</span><span class="co">](https://bris.on.worldcat.org/oclc/1106114802)</span>.</span>
+<span id="cb69-665"><a href="#cb69-665" aria-hidden="true" tabindex="-1"></a><span class="fu">## Further Reading</span></span>
 <span id="cb69-666"><a href="#cb69-666" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-667"><a href="#cb69-667" aria-hidden="true" tabindex="-1"></a><span class="al">![](Rspatial.jpg)</span>{width=100}</span>
+<span id="cb69-667"><a href="#cb69-667" aria-hidden="true" tabindex="-1"></a><span class="al">![](spatial_regression_models.jpg)</span>{width="100"}</span>
 <span id="cb69-668"><a href="#cb69-668" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-669"><a href="#cb69-669" aria-hidden="true" tabindex="-1"></a>Chapter 8 on Localised Spatial Analysis in <span class="co">[</span><span class="ot">An Introduction to R for Spatial Analysis &amp; Mapping</span><span class="co">](https://us.sagepub.com/en-us/nam/an-introduction-to-r-for-spatial-analysis-and-mapping/book258267)</span>{target="_blank"} by Chris Brunsdon and Lex Comber.</span>
+<span id="cb69-669"><a href="#cb69-669" aria-hidden="true" tabindex="-1"></a>Chapter 2 of <span class="co">[</span><span class="ot">Spatial Regression Models for the Social Sciences</span><span class="co">](https://uk.sagepub.com/en-gb/eur/spatial-regression-models-for-the-social-sciences/book258546)</span> by Guangqing Chi and Jun Zhu is recommended. For University of Bristol students, it is available to view as an eBook <span class="co">[</span><span class="ot">here</span><span class="co">](https://bris.on.worldcat.org/oclc/1106114802)</span>.</span>
+<span id="cb69-670"><a href="#cb69-670" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-671"><a href="#cb69-671" aria-hidden="true" tabindex="-1"></a><span class="al">![](Rspatial.jpg)</span>{width=100}</span>
+<span id="cb69-672"><a href="#cb69-672" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-673"><a href="#cb69-673" aria-hidden="true" tabindex="-1"></a>Chapter 8 on Localised Spatial Analysis in <span class="co">[</span><span class="ot">An Introduction to R for Spatial Analysis &amp; Mapping</span><span class="co">](https://us.sagepub.com/en-us/nam/an-introduction-to-r-for-spatial-analysis-and-mapping/book258267)</span>{target="_blank"} by Chris Brunsdon and Lex Comber.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

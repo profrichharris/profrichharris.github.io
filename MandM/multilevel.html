@@ -452,17 +452,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gwrt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 5.380515 secs</code></pre>
+<pre><code>Time difference of 4.060842 secs</code></pre>
 </div>
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mlmt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 0.04232502 secs</code></pre>
+<pre><code>Time difference of 0.02234483 secs</code></pre>
 </div>
 </div>
-<p>Admittedly, neither took very long to fit, with the GWR taking 0.09 minutes and the multilevel model (MLM) taking 0.04 seconds on my laptop. However, these differences become more noticeable with more complex models or larger study regions. The multilevel model is estimating far fewer model parameters than the GWR. This is because the GWR is really lots of models that are fitted separately (one for each location) and then compared, whereas the multilevel model is one model but one which allows for variance at the geographic level(s) of the model, so better local authorities, for example. Put another way, the GWR is a series of local models that are compared, whereas the multilevel model is a global model that allows for local variations around it: at the moment, all it is doing is estimating the average COVID rate for the whole study region but also recognising that different local authorities have rates that vary around the overall average.</p>
+<p>Admittedly, neither took very long to fit, with the GWR taking 0.07 minutes and the multilevel model (MLM) taking 0.02 seconds on my laptop. However, these differences become more noticeable with more complex models or larger study regions. The multilevel model is estimating far fewer model parameters than the GWR. This is because the GWR is really lots of models that are fitted separately (one for each location) and then compared, whereas the multilevel model is one model but one which allows for variance at the geographic level(s) of the model, so better local authorities, for example. Put another way, the GWR is a series of local models that are compared, whereas the multilevel model is a global model that allows for local variations around it: at the moment, all it is doing is estimating the average COVID rate for the whole study region but also recognising that different local authorities have rates that vary around the overall average.</p>
 <p>Second, multilevel models can be used – as their name suggests! – to fit multi-level models to examine the scale of the geographic pattern of a variable. Consider the following example, which fits a multilevel model to the COVID-19 rates of all English neighbourhoods in the week before Christmas 2021. There are now three levels in the model, which are the base neighbourhoods level, then the local authorities in which the neighourhoods are located, and then the English regions to which the local authorities belong. Hence, three levels and three simultaneous scales of analysis: neighbourhoods, local authorities and regions. Although the resulting map suffers a little from the ‘invisibility problem’ of some small areas within it, the higher COVID-19 rate in parts of London and the South East is evident (but not solely confined to these regions, as there is also a high rate evident in the North West).</p>
 <div class="cell">
 <details open="">
