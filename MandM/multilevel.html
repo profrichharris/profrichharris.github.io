@@ -452,14 +452,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gwrt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 4.060842 secs</code></pre>
+<pre><code>Time difference of 3.967246 secs</code></pre>
 </div>
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mlmt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 0.02234483 secs</code></pre>
+<pre><code>Time difference of 0.02489805 secs</code></pre>
 </div>
 </div>
 <p>Admittedly, neither took very long to fit, with the GWR taking 0.07 minutes and the multilevel model (MLM) taking 0.02 seconds on my laptop. However, these differences become more noticeable with more complex models or larger study regions. The multilevel model is estimating far fewer model parameters than the GWR. This is because the GWR is really lots of models that are fitted separately (one for each location) and then compared, whereas the multilevel model is one model but one which allows for variance at the geographic level(s) of the model, so better local authorities, for example. Put another way, the GWR is a series of local models that are compared, whereas the multilevel model is a global model that allows for local variations around it: at the moment, all it is doing is estimating the average COVID rate for the whole study region but also recognising that different local authorities have rates that vary around the overall average.</p>
