@@ -572,11 +572,11 @@ Link number distribution:
 <section id="dealing-with-places-that-dont-have-any-neighbours" class="level4">
 <h4 class="anchored" data-anchor-id="dealing-with-places-that-dont-have-any-neighbours">Dealing with places that don’t have any neighbours</h4>
 <p>Not all places have neighbours. Islands, for example, can be separated from the mainland by the sea. If you attempt to create spatial weights using the <code>nb2listw()</code> function with a neighbours list that includes places without neighbours, then you will get an error message:</p>
-<p><span style="color:red">(Error in nb2listw(neighbours) : Empty neighbour sets found)</span>.</p>
+<p><span style="color:red">Error in nb2listw(neighbours) : Empty neighbour sets found</span>.</p>
 <p>There are four ways you can address this problem.</p>
 <ul>
-<li>Change the <code>snap</code> distance in the function <code>poly2nb()</code> to include, as neighbours, places that may not actually share a border but are within a certain threshold distance apart.</li>
-<li>Change the way you are defining the neighbourhood relationships – for example, by identifying the <span class="math inline">\(k\)</span> nearest neighbours of each location, regardless of whether they share a border or not (see below).</li>
+<li>Change the <code>snap</code> distance in the function <code>poly2nb()</code> to include, as neighbours, places that appear not to actually share a border but are within a certain threshold distance apart. This can be helpful to deal with digitisation errors – when, for example, there are small gaps between places that do really share a boundary.</li>
+<li>Change the way you are defining the neighbourhood relationships – for example, by identifying the <span class="math inline">\(k\)</span> nearest neighbours of each location, regardless of whether they share a border or not (see below). Everywhere has somewhere that is closest to it.</li>
 <li>Save the .gal file using <code>write.nb.gal()</code> and then manually edit it to make any connections you wish to between places. You can read the revised version back into R using the function <code>read.gal()</code> – see <code>?read.gal()</code>.</li>
 <li>Leave it as it, with some places not having any neighbours, but specify the argument <code>zero.policy = TRUE</code> in <code>nb2listw</code> so it allows empty sets. For example, <code>spweight &lt;- nb2listw(neighbours, zero.policy = TRUE)</code>. Other related functions will also need <code>zero.policy = TRUE</code> to be included, such as <code>moran.test()</code>, <code>moran.plot()</code> and <code>localmoran()</code>.</li>
 </ul>
@@ -1021,7 +1021,7 @@ correlation 0.6643967 0.4013773</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      2.5%      97.5% 
--0.2213420  0.1445682 </code></pre>
+-0.2127023  0.1330545 </code></pre>
 </div>
 </div>
 </section>
@@ -1533,12 +1533,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb69-197"><a href="#cb69-197" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb69-198"><a href="#cb69-198" aria-hidden="true" tabindex="-1"></a>Not all places have neighbours. Islands, for example, can be separated from the mainland by the sea. If you attempt to create spatial weights using the <span class="in">`nb2listw()`</span> function with a neighbours list that includes places without neighbours, then you will get an error message:</span>
 <span id="cb69-199"><a href="#cb69-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-200"><a href="#cb69-200" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;span</span> <span class="er">style</span><span class="ot">=</span><span class="st">"color:red"</span><span class="kw">&gt;</span>(Error in nb2listw(neighbours) : Empty neighbour sets found)<span class="kw">&lt;/span&gt;</span>.</span>
+<span id="cb69-200"><a href="#cb69-200" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;span</span> <span class="er">style</span><span class="ot">=</span><span class="st">"color:red"</span><span class="kw">&gt;</span>Error in nb2listw(neighbours) : Empty neighbour sets found<span class="kw">&lt;/span&gt;</span>.</span>
 <span id="cb69-201"><a href="#cb69-201" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb69-202"><a href="#cb69-202" aria-hidden="true" tabindex="-1"></a>There are four ways you can address this problem. </span>
 <span id="cb69-203"><a href="#cb69-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-204"><a href="#cb69-204" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Change the <span class="in">`snap`</span> distance in the function <span class="in">`poly2nb()`</span> to include, as neighbours, places that may not actually share a border but are within a certain threshold distance apart.</span>
-<span id="cb69-205"><a href="#cb69-205" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Change the way you are defining the neighbourhood relationships -- for example, by identifying the $k$ nearest neighbours of each location, regardless of whether they share a border or not (see below).</span>
+<span id="cb69-204"><a href="#cb69-204" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Change the <span class="in">`snap`</span> distance in the function <span class="in">`poly2nb()`</span> to include, as neighbours, places that appear not to actually share a border but are within a certain threshold distance apart. This can be helpful to deal with digitisation errors -- when, for example, there are small gaps between places that do really share a boundary.</span>
+<span id="cb69-205"><a href="#cb69-205" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Change the way you are defining the neighbourhood relationships -- for example, by identifying the $k$ nearest neighbours of each location, regardless of whether they share a border or not (see below). Everywhere has somewhere that is closest to it.</span>
 <span id="cb69-206"><a href="#cb69-206" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Save the .gal file using <span class="in">`write.nb.gal()`</span> and then manually edit it to make any connections you wish to between places. You can read the revised version back into R using the function <span class="in">`read.gal()`</span> -- see <span class="in">`?read.gal()`</span>.</span>
 <span id="cb69-207"><a href="#cb69-207" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Leave it as it, with some places not having any neighbours, but specify the argument <span class="in">`zero.policy = TRUE`</span> in <span class="in">`nb2listw`</span> so it allows empty sets. For example, <span class="in">`spweight &lt;- nb2listw(neighbours, zero.policy = TRUE)`</span>. Other related functions will also need <span class="in">`zero.policy = TRUE`</span> to be included, such as <span class="in">`moran.test()`</span>, <span class="in">`moran.plot()`</span> and <span class="in">`localmoran()`</span>.</span>
 <span id="cb69-208"><a href="#cb69-208" aria-hidden="true" tabindex="-1"></a></span>
