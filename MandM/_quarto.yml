@@ -1,0 +1,68 @@
+project:
+  type: website
+
+website:
+  search:
+    location: navbar
+    type: textbox
+    algolia:
+      index-name: dev_profrichharris
+      application-id: J0U99Q1IO1
+      search-only-api-key: 133b4b1fa29f2b12275f6a48a26418db
+      show-logo: true
+  page-navigation: true
+  reader-mode: true
+  navbar:
+    left:
+    - icon: house
+      href: index.html
+    - text: "Mapping and Modelling Geographic Data in R"
+      file: index.qmd
+  sidebar:
+    style: "docked"
+    search: false
+    pinned: false
+    logo: logo.jpg
+    contents:
+      - section: "Introduction"
+        contents:
+          - index.qmd
+          - start.qmd
+      - section: "Why R?"
+        contents:
+          - why.qmd
+      - section: "Flavours of R"
+        contents:
+          - base.qmd
+          - tidyverse.qmd
+          - program.qmd
+          - exercise1.qmd          
+      - section: "Mapping the spatial variable"
+        contents:
+          - themap.qmd  
+          - thematicmaps.qmd
+          - exercise2.qmd    
+      - section: "Measuring spatial autocorrelation"
+        contents:
+          - autocorrelation.qmd
+          - exercise3.qmd  
+      - section: "From Maps to models"
+        contents:          
+          - gwstats.qmd
+          - spregress.qmd
+      - section: "Representations of geographic space"
+        contents:            
+          - multilevel.qmd
+  page-footer:
+    left: "Copyright 2022-2023, Richard Harris"
+    right:
+      - icon: twitter 
+        href: https://twitter.com/profrichharris
+        
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    toc: true
+    code-fold: show
+    code-tools: true
