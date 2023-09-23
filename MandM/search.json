@@ -341,5 +341,26 @@
     "title": "Programming",
     "section": "Further reading",
     "text": "Further reading\n\nThe book, Efficient R programming by Colin Gillespie and Robin Lovelace has an online version here.\nMore about R Markdown can be learned from https://rmarkdown.rstudio.com/. It is a bit advanced for this stage of the course but it is worth noting that there is a cheatsheet available."
+  },
+  {
+    "objectID": "exercise1.html",
+    "href": "exercise1.html",
+    "title": "Follow-up exercise",
+    "section": "",
+    "text": "For this short follow-up exercise, create a simple R markdown file (I suggest in HTML output format) that, when knitted, includes the code and output for the following:\n\nTo read the following file into R: https://github.com/profrichharris/profrichharris.github.io/raw/main/MandM/data/diversity2.csv. The file is in .csv format. It contains headers (i.e. the top row of the data is the variable names).\nTo draw a scatterplot using the following variables in the data: E.01 as the x-axis and E.21 as the y-axis. In the plot, name the x-axis, “Diversity (2001)” and the y-axis “Diversity (2021)”. For your information, E.01 and E.21 measure the ethnic diversity of various places in England and Wales in 2001 and 2021, respectively. The measure ranges from 0 (no diversity) to 1 (‘maximum diversity’).\nTo add a reference line to the plot, with a gradient of 1 and a y-intercept of 0, showing where E.01 = E.21 (no change in diversity),\nTo add a rug plot to the plot on both axes.\n\nRun through the stages above twice in your markdown file, first using base R and the base R graphics, then second using tidyverse and ggplot**. Then add a very brief textual comment beneath your code and output interpreting the graphs in terms of whether places are becoming more ethnically diverse or not. This only needs to be a sentence or two of text, nothing longer."
+  },
+  {
+    "objectID": "exercise1.html#to-do",
+    "href": "exercise1.html#to-do",
+    "title": "Follow-up exercise",
+    "section": "",
+    "text": "For this short follow-up exercise, create a simple R markdown file (I suggest in HTML output format) that, when knitted, includes the code and output for the following:\n\nTo read the following file into R: https://github.com/profrichharris/profrichharris.github.io/raw/main/MandM/data/diversity2.csv. The file is in .csv format. It contains headers (i.e. the top row of the data is the variable names).\nTo draw a scatterplot using the following variables in the data: E.01 as the x-axis and E.21 as the y-axis. In the plot, name the x-axis, “Diversity (2001)” and the y-axis “Diversity (2021)”. For your information, E.01 and E.21 measure the ethnic diversity of various places in England and Wales in 2001 and 2021, respectively. The measure ranges from 0 (no diversity) to 1 (‘maximum diversity’).\nTo add a reference line to the plot, with a gradient of 1 and a y-intercept of 0, showing where E.01 = E.21 (no change in diversity),\nTo add a rug plot to the plot on both axes.\n\nRun through the stages above twice in your markdown file, first using base R and the base R graphics, then second using tidyverse and ggplot**. Then add a very brief textual comment beneath your code and output interpreting the graphs in terms of whether places are becoming more ethnically diverse or not. This only needs to be a sentence or two of text, nothing longer."
+  },
+  {
+    "objectID": "exercise1.html#to-help",
+    "href": "exercise1.html#to-help",
+    "title": "Follow-up exercise",
+    "section": "To help",
+    "text": "To help\nMost of the code you need to complete this task is included in the ‘Flavours of R’ section of this course. However, you may also find it useful to look at the help files for ?read.csv, ?read_csv, ?plot,?abline and ?rug, the example ggplot2 code available here, here and here, and perhaps also the ggplot2 cheatsheet. You might also look at this introduction to R Markdown but it covers more about R Markdown than you need at this stage. Simply creating a new document using File -&gt; New File -&gt; R Markdown… should be sufficient to get you started."
   }
 ]
