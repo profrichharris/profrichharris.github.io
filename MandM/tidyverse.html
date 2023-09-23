@@ -648,7 +648,7 @@ lm(formula = y ~ x, data = .)
 
 Coefficients:
 (Intercept)            x  
-    -0.1237       2.0012  </code></pre>
+     0.3328       1.9930  </code></pre>
 </div>
 </div>
 <p>(note: the output you get will likely different from mine because the function <code>rnorm()</code> adds some random variations to the data)</p>
@@ -677,7 +677,7 @@ lm(formula = y ~ x, data = z)
 
 Coefficients:
 (Intercept)            x  
-    -0.2388       2.0010  </code></pre>
+    -0.1939       2.0005  </code></pre>
 </div>
 </div>
 <p>Over time, expect <code>|&gt;</code> to be developed and to supersede <code>%&gt;%</code>. For now, you are unlikely to encounter errors using <code>%&gt;%</code> as a substitute for <code>|&gt;</code> but you might using <code>|&gt;</code> instead of <code>%&gt;%</code>. In other words, <code>%&gt;%</code> is the safer choice if you are unsure, although the <code>|&gt;</code> is faster:</p>
@@ -704,8 +704,8 @@ Coefficients:
                        1:100 %&gt;% data.frame(x = ., y = 2 * . + rnorm(100)) %&gt;% lm(y ~      x, data = .)
  (function(z) lm(y ~ x, data = z))((function(z) data.frame(x = z,      y = 2 * z + rnorm(100)))(1:100))
    min     lq    mean median    uq    max neval
- 454.9 488.40 528.519  505.6 571.2  711.9   100
- 455.0 476.85 531.233  500.2 574.5 1017.5   100</code></pre>
+ 468.0 495.00 564.998  536.2 623.4 1063.2   100
+ 461.2 494.95 564.994  536.9 616.6 1124.0   100</code></pre>
 </div>
 </div>
 </section>
@@ -1212,8 +1212,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
 <span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>installed <span class="ot">&lt;-</span> <span class="fu">installed.packages</span>()[,<span class="dv">1</span>]</span>
-<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>required <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"XML"</span>, <span class="st">"tidyverse"</span>, <span class="st">"ggplot2"</span>, <span class="st">"microbenchmark"</span>)</span>
-<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>install <span class="ot">&lt;-</span> required[<span class="sc">!</span>(required <span class="sc">%in%</span> installed)]</span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"XML"</span>, <span class="st">"tidyverse"</span>, <span class="st">"ggplot2"</span>, <span class="st">"microbenchmark"</span>)</span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>install <span class="ot">&lt;-</span> pkgs[<span class="sc">!</span>(pkgs <span class="sc">%in%</span> installed)]</span>
 <span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(install)) <span class="fu">install.packages</span>(install, <span class="at">dependencies =</span> <span class="cn">TRUE</span>, <span class="at">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)</span>
 <span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a></span>

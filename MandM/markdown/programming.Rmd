@@ -8,8 +8,8 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 installed <- installed.packages()[,1]
-required <- c("remotes", "ipumsr", "XML", "tidyverse", "sf", "ggplot2", "classInt", "ggspatial")
-install <- required[!(required %in% installed)]
+pkgs <- c("remotes", "ipumsr", "XML", "tidyverse", "sf", "ggplot2", "classInt", "ggspatial")
+install <- pkgs[!(pkgs %in% installed)]
 if(length(install)) install.packages(install, dependencies = TRUE, repos = "https://cloud.r-project.org")
 ```
 
@@ -26,50 +26,30 @@ download.file("https://github.com/profrichharris/profrichharris.github.io/raw/ma
               "script1.R", mode = "wb", quiet = TRUE)
 ```
 
-You can now use `file.edit("script1.R") ` to view its contents. It should look like this:
+You can now use `file.edit("script1.R")` to view its contents. It should look like this:
 
 ![](script1.png)
 
 </br>
-The script is based on the opening parts of [Geographic Data in ipumsr](https://cran.r-project.org/web/packages/ipumsr/vignettes/ipums-geography.html){target="_blank"}, where [ipumsr](https://cran.r-project.org/web/packages/ipumsr/index.html){target="_blank"} provides "an easy way to import census, survey and geographic data provided by 'IPUMS' into R", and [IPUMS](https://www.ipums.org/){target="_blank"} "provides census and survey data from around the world integrated across time and space." I have modified their code for greater consistency with other parts of this course but what it does is largely the same:
+The script is essentially the same code that was used previously when answering the question "why R?", producing maps of ethnic diversity in the English cities of Birmingham, Leicester, London and Manchester. The main difference is that the maps are output to create a .pdf file rather than to screen. 
 
-- It loads some example data and manipulates it to calculate the percentages of people using solid fuels for cooking in regions of Colombia at three time periods. These are the attribute data
-- It loads a geographic boundary file of those regions. This is the map.
-- It simplifies (reduces the detail of) the map to make it faster for plotting.
-- It joins the attribute data to the map by means of their common geography.
-- It produces a choropleth map (thematic map) of the geographic variation in the percentages using solid fuel.
-- It saves the spatially joined data as a shapefile.
+If you now click within the window of the script and use command-A (Mac) or ctrl-A (Windows) to select all the code, followed by command-Enter/Return (Mac) or ctrl-Enter/Return (Windows) -- or use the Run button towards the top-right of the script window -- then the script will run in its entirety and should, at its conclusion, produce the document maps.pdf in your Working Directory.
 
-If you now click within the window of the script and use command-A (Mac) or ctrl-A (Windows) to select all the code, followed by command-Enter/Return (Mac) or ctrl-Enter/Return (Windows) -- or use the Run button towards the top-right of the script window -- then the script will run in its entirety and should, at its conclusion, produce the following maps.
+**Be patient whilst the code takes a few moments to run.**
 
-Be patient whilst the code takes a few moments to run.
+You can check the document is there with,
 
-```{r echo=false, eval: true, warning: false, message: false, fig-height: 4.5}
-download.file("https://github.com/profrichharris/profrichharris.github.io/raw/main/MandM/scripts/script1.R", "script1.R", mode = "wb", quiet = TRUE)
-source("script1.R", echo = FALSE, print.eval = TRUE)
+```{r}
+file.exists("maps.pdf")
+```
+
+and you should be able to open it with,
+
+```{r, eval=FALSE}
+system("open maps.pdf")
 ```
 
 Try also typing `source("script1.R", echo = TRUE)` into the R Console. Again, the script should run in its entirety.
-
-![](hazard.gif){width=75}
-
-<font size = 3>If the script doesn't run to completion then it may be because it is not very sensibly coded on my part and risks introducing an infinite loop that will never finish! This can happen because I have tried (unwisely) to be clever: the script tries to load (to `require()`), for example, the `remotes` library and, if that fails, tries to install it instead, before repeating the attempt to require it. The problem is that if it doesn't install for whatever reason, then the library will never successfully load and the process will just go around and around in circles.</font>
-
-### To Do
-
-As suggested earlier, an advantage of using a script is that it is easy to make changes to and then re-run it either in part or in full. In the script, find the `type = "cartolight"` argument in the line that says `annotation_map_tile(type = "cartolight", progress = "none") +` and change the `type` to any other of the following, such as cartodark.
-
-```{r}
-rosm::osm.types()
-```
-
-If you wish to view what the different types look like, [you can do so here](http://leaflet-extras.github.io/leaflet-providers/preview/index.html){target="_blank"}.
-
-Once you have made the change, select the parts of the script you wish to rerun (everything under Map the data should be sufficient) and press the Run button or hit command-Enter/Return (Mac) or ctrl-Enter/Return (Windows) to execute the selected code.
-
-### A note about the `::` notation
-
-The use of the `::` notation in the code `rosm::osm.types()` allows a function to be run from a package that has not been loaded. In the example, `osm.types` is a function in the `rosm` package. That package provides access to Open Steet Map and other maps tiles. We could also `require(rosm)` and then use the function directly as we have in other cases, i.e. using `osm.types()` instead of `rosm::osm.types()`. However, sometimes, if a function only is to be used once then there is no need to require the whole package. Also, sometimes we load multiple packages that have functions within them that share the same name and could conflict with each other. In such circumstances, the `package::function` format may be required to make sure the correct function (from the correct package) is being called.
 
 ## R markdown
 
@@ -90,11 +70,11 @@ It is self-evident what knitting the document does -- it produce an html file wh
 </br>
 This whole course is written based on R Markdown. You can download the markdown file for this session
 
-```{r eval=false}
+```{r, eval=FALSE}
 download.file("https://github.com/profrichharris/profrichharris.github.io/raw/main/MandM/markdown/programming.Rmd", "markdown_example.Rmd", mode = "wb", quiet = TRUE)
 ```
 
-and view it using `file.edit("markdown_example.Rmd")`. You may note that it begins with a YAML header, to which various arguments can be added or changed -- [see here](https://zsmith27.github.io/rmarkdown_crash-course/lesson-4-yaml-headers.html){rarget="_blank"} for an introduction.
+and view it using `file.edit("markdown_example.Rmd")`. You may note that it begins with a YAML header, to which various arguments can be added or changed -- [see here](https://zsmith27.github.io/rmarkdown_crash-course/lesson-4-yaml-headers.html){target="_blank"} for an introduction.
 
 ```{verbatim}
 ---
