@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Tidyverse</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<script src="site_libs/quarto-search/autocomplete-preset-algolia.umd.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./program.html" rel="next">
+<link href="./base.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 20,
+  "algolia": {
+    "application-id": "J0U99Q1IO1",
+    "search-only-api-key": "133b4b1fa29f2b12275f6a48a26418db",
+    "index-name": "dev_profrichharris",
+    "analytics-events": false,
+    "show-logo": true,
+    "libDir": "site_libs"
+  },
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js"></script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item compact">
+    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page"><i class="bi bi-house" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Mapping and Modelling Geographic Data in R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./lectures.html" rel="" target="">
+ <span class="menu-text">Lectures</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./base.html">Flavours of R</a></li><li class="breadcrumb-item"><a href="./tidyverse.html">Tidyverse</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./logo.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting Started</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Why R?</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./why.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A Cartographic Answer</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Flavours of R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./base.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Base R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Tidyverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./program.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Follow-up exercise</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Mapping the spatial variable</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./themap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Spatial Variable</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./thematicmaps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Thematic maps in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Follow-up exercise</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Measuring spatial autocorrelation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./autocorrelation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Measuring spatial autocorrelation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercise3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Follow-up exercise</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">From Maps to models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gwstats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geographically Weighted Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./spregress.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Regression</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">Representations of geographic space</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multilevel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous and discrete views of the spatial variable</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#to-start" id="toc-to-start" class="nav-link" data-scroll-target="#to-start">To Start</a></li>
+  <li><a href="#reading-in-the-data" id="toc-reading-in-the-data" class="nav-link" data-scroll-target="#reading-in-the-data">Reading-in the data</a></li>
+  <li><a href="#selecting-and-renaming-variables" id="toc-selecting-and-renaming-variables" class="nav-link" data-scroll-target="#selecting-and-renaming-variables">Selecting and renaming variables</a></li>
+  <li><a href="#piping" id="toc-piping" class="nav-link" data-scroll-target="#piping">Piping</a></li>
+  <li><a href="#back-to-the-example" id="toc-back-to-the-example" class="nav-link" data-scroll-target="#back-to-the-example">Back to the example</a></li>
+  <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting">Plotting</a></li>
+  <li><a href="#which-is-better" id="toc-which-is-better" class="nav-link" data-scroll-target="#which-is-better">Which is better?</a></li>
+  <li><a href="#futher-reading" id="toc-futher-reading" class="nav-link" data-scroll-target="#futher-reading">Futher reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Tidyverse</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<p class="subtitle lead">What Is the Tidyverse?</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><img src="tidyverse.png" class="img-fluid" width="300"></p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>If base R is R Classic then tidyverse is a new flavour of R, designed for data science. It consists of <a href="https://www.tidyverse.org/" target="_blank">a collection of R packages</a> that “share an underlying design philosophy, grammar, and data structures.”</p>
+<p>Tidyverse is easier to demonstrate than to pin-down to some basics so let’s work through an example using both base R and tidyverse to illustrate some differences.</p>
+</section>
+<section id="to-start" class="level2">
+<h2 class="anchored" data-anchor-id="to-start">To Start</h2>
+<p>If, as suggested in ‘Getting Started’, you have created an R Project to contain all the files you create and download for this course then open it now by using File –&gt; Open Project… from the dropdown menus in R Studio. If you have not created one then now might be a good time!</p>
+<p>We will begin by downloading a data file to use. It will be downloaded to your working directory, which is the folder associated with your R Project if you are using one. You can check the working directory by using <code>getwd()</code> and change it using Session –&gt; Set Working Directory or with the function <code>setwd(dir)</code> where <code>dir</code> is the chosen directory. If you have created a Project then the working directory is that of the Project.</p>
+<p>The data are an extract of the <a href="https://coronavirus.data.gov.uk/" target="_blank">Covid Data Dashboard</a> for England in December 2021. Some prior manipulation and adjustments to those data have been undertaken for another project so treat them as indicative only. The actual reported numbers may have been changed slightly from their originals although only marginally so.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://github.com/profrichharris/profrichharris.github.io/raw/main/MandM/data/covid_extract.csv"</span>, <span class="st">"covid.csv"</span>, <span class="at">mode =</span> <span class="st">"wb"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>We also need to <code>require(tidyverse)</code> ready for use.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><img src="hazard.gif" class="img-fluid" width="75"></p>
+<p><font size="3">If you get a warning message saying there is no package called tidyverse then you need to install it: <code>install.packages("tidyverse", dependencies = TRUE)</code>. You will find that some people prefer to use <code>library()</code> instead of <code>require()</code>. The difference between them is subtle but you can find an argument in favour of using <code>library()</code> <a href="https://www.r-bloggers.com/2016/12/difference-between-library-and-require-in-r/" target="_blank">here</a> even though I usually don’t.</font></p>
+</section>
+<section id="reading-in-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="reading-in-the-data">Reading-in the data</h2>
+<p>Let’s read-in and take a look at the data. First in base R.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"covid.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   MSOA11CD regionName X2021.12.04 X2021.12.11 X2021.12.18 X2021.12.25 All.Ages
+1 E02000002     London          25          48         148         176     7726
+2 E02000003     London          46          58         165         215    11246
+3 E02000004     London          24          44         100         141     6646
+4 E02000005     London          58          97         185         231    10540
+5 E02000007     London          38          94         153         205    10076
+6 E02000008     London          54         101         232         245    12777</code></pre>
+</div>
+</div>
+<p>Now using tidyverse,</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"covid.csv"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(df2, <span class="at">n =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+  MSOA11CD  regionName `2021-12-04` `2021-12-11` `2021-12-18` `2021-12-25`
+  &lt;chr&gt;     &lt;chr&gt;             &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+1 E02000002 London               25           48          148          176
+2 E02000003 London               46           58          165          215
+3 E02000004 London               24           44          100          141
+4 E02000005 London               58           97          185          231
+5 E02000007 London               38           94          153          205
+6 E02000008 London               54          101          232          245
+# ℹ 1 more variable: `All Ages` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>There are some similarities – for example the function <code>read.csv</code> reads-in a file of comma separated variables, as does <code>read_csv</code>. However, the output from these functions differ. First, tidyverse has, in this case, handled the names of the variables better. It has also created what is described as a <code>tibble</code> which is “a modern reimagining of the data.frame, keeping what time has proven to be effective, and throwing out what is not.” You can find out more about them and how they differ from traditional data frames <a href="https://tibble.tidyverse.org/" target="_blank">here</a>. Basically, they are a form of data frame that fit into tidyverse’s philosophy to try and keep ‘things’ tidy through a shared underlying design philosophy, grammar and data structures.</p>
+</section>
+<section id="selecting-and-renaming-variables" class="level2">
+<h2 class="anchored" data-anchor-id="selecting-and-renaming-variables">Selecting and renaming variables</h2>
+<p>We will now: - select the <code>regionName</code>, <code>2021-12-04</code> and <code>All Ages</code> variables; - rename the second of these as <code>cases</code> and the third as <code>population</code>; - and look at the data again to check that it has worked.</p>
+<p>In base R,</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df1[, <span class="fu">c</span>(<span class="st">"regionName"</span>, <span class="st">"X2021.12.04"</span>, <span class="st">"All.Ages"</span>)]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df1)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"population"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  regionName cases population
+1     London    25       7726
+2     London    46      11246
+3     London    24       6646
+4     London    58      10540
+5     London    38      10076
+6     London    54      12777</code></pre>
+</div>
+</div>
+<p>In tidyverse,</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">select</span>(df2, regionName, <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">rename</span>(df2, <span class="at">cases =</span> <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="at">population =</span> <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(df2, <span class="at">n =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  regionName cases population
+  &lt;chr&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+1 London        25       7726
+2 London        46      11246
+3 London        24       6646
+4 London        58      10540
+5 London        38      10076
+6 London        54      12777</code></pre>
+</div>
+</div>
+<p>Comparing the two, the tidyverse code may be more intuitive to understand because of its use of verbs as functions: <code>select()</code>, <code>rename()</code> and so forth.</p>
+</section>
+<section id="piping" class="level2">
+<h2 class="anchored" data-anchor-id="piping">Piping</h2>
+<p>Now we shall bring the two previous stages together, using what is referred to as a pipe. Without worrying about the detail, which we will return to presently, here is an example of a pipe, <code>|&gt;</code> being used in base R:</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"covid.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  (\(x) x[, <span class="fu">c</span>(<span class="st">"regionName"</span>, <span class="st">"X2021.12.04"</span>, <span class="st">"All.Ages"</span>)])() <span class="ot">-&gt;</span> df1</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df1)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"population"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>df1 <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  regionName cases population
+1     London    25       7726
+2     London    46      11246
+3     London    24       6646
+4     London    58      10540
+5     London    38      10076
+6     London    54      12777</code></pre>
+</div>
+</div>
+<p><img src="hazard.gif" class="img-fluid" width="75"></p>
+<p><font size="3">The above will only work if you are using R version 4.1.0 or above. You can check which version you are running by using <code>R.Version()$version</code>.</font></p>
+<p>Here is the same process using tidyverse and a different pipe, <code>%&gt;%</code>,</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"covid.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(regionName, <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">cases =</span> <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="at">population =</span> <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  regionName cases population
+  &lt;chr&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+1 London        25       7726
+2 London        46      11246
+3 London        24       6646
+4 London        58      10540
+5 London        38      10076
+6 London        54      12777</code></pre>
+</div>
+</div>
+<p>The obvious difference here is that the tidyverse code is more elegant. But what is the pipe and what is the difference between <code>|&gt;</code> in the base R code and <code>%&gt;%</code> in the tidyverse example?</p>
+<p>A pipe is really just a way of sending (’piping`) something from one line of code to the next, to create a chain of commands (forgive the mixed metaphors). For example,</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<p>Could be calculated as</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<p>As</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<p>or, if you want to save on a few characters of code,</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<p>However, this won’t work:</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>This is confusing but it is because of the different pipes, one (<code>|&gt;</code>) a more recent development than the other (<code>%&gt;%</code>).</p>
+<p>A more complicated example of piping is below. It employs the function <code>sapply()</code>, a variant of the function <code>lapply(X, FUN)</code> that takes a list <code>X</code> and applies the function <code>FUN</code> to each part of it. In the example, it is the function <code>mean</code>.</p>
+<p>Here it is without any pipes:</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Creates a list with two parts: the numbers 0 to 10, and 10 to 20</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sapply</span>(x, mean)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculates the mean for each part of the list, which are 5 and 15</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sums together the two means, giving 20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>With pipes, the above could instead be written as</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(mean) <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20</code></pre>
+</div>
+</div>
+<p>or as</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(mean) <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20</code></pre>
+</div>
+</div>
+<p>All three arrive at the same answer, which is 20.</p>
+<p>So far, so good but what is the difference between <code>|&gt;</code> and <code>%&gt;%</code>? The answer is that <code>%&gt;%</code> was developed before <code>|&gt;</code> in the <a href="https://cran.r-project.org/web/packages/magrittr/" target="_blank">magrittr package</a>, whereas <code>|&gt;</code> is <a href="https://www.r-bloggers.com/2021/05/the-new-r-pipe/" target="_blank">R’s new native pipe</a>. They are often interchangeable <strong>but not always</strong>.</p>
+<p>At the moment, the <code>|&gt;</code> pipe is less flexible to use than <code>%&gt;%</code>. Consider the following example. The final two lines of code work fine using <code>%&gt;%</code> to pipe the data frame into the regression model, which is a line of best fit between the <code>x</code> and <code>y</code> values (the function <code>lm()</code> fits a linear model which can be used to predict a <code>y</code> value from a value of <code>x</code>).</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">x =</span> ., <span class="at">y =</span> <span class="dv">2</span><span class="sc">*</span>. <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x, data = .)
+
+Coefficients:
+(Intercept)            x  
+     0.3328       1.9930  </code></pre>
+</div>
+</div>
+<p>(note: the output you get will likely different from mine because the function <code>rnorm()</code> adds some random variations to the data)</p>
+<p>However, it does <em>not</em> work with the pipe, <code>|&gt;</code> because it does not recognise the place holder <code>.</code> that we had previously used to represent what was flowing through the pipe.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The following code does not work</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">|&gt;</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">x =</span> ., <span class="at">y =</span> <span class="dv">2</span><span class="sc">*</span>. <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>To solve the problem, the above code can be modified by wrapping the regression part in another function but the end result is rather ‘clunky’.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  (\(z) <span class="fu">data.frame</span>(<span class="at">x =</span> z, <span class="at">y =</span> <span class="dv">2</span><span class="sc">*</span>z <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)))() <span class="sc">|&gt;</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  (\(z) <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> z))() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x, data = z)
+
+Coefficients:
+(Intercept)            x  
+    -0.1939       2.0005  </code></pre>
+</div>
+</div>
+<p>Over time, expect <code>|&gt;</code> to be developed and to supersede <code>%&gt;%</code>. For now, you are unlikely to encounter errors using <code>%&gt;%</code> as a substitute for <code>|&gt;</code> but you might using <code>|&gt;</code> instead of <code>%&gt;%</code>. In other words, <code>%&gt;%</code> is the safer choice if you are unsure, although the <code>|&gt;</code> is faster:</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"microbenchmark"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">"microbenchmark"</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">microbenchmark</span>(</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">%&gt;%</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">x =</span> ., <span class="at">y =</span> <span class="dv">2</span><span class="sc">*</span>. <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> .),</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">|&gt;</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    (\(z) <span class="fu">data.frame</span>(<span class="at">x =</span> z, <span class="at">y =</span> <span class="dv">2</span><span class="sc">*</span>z <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)))() <span class="sc">|&gt;</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    (\(z) <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> z))(),</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">100</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Unit: microseconds
+                                                                                                   expr
+                       1:100 %&gt;% data.frame(x = ., y = 2 * . + rnorm(100)) %&gt;% lm(y ~      x, data = .)
+ (function(z) lm(y ~ x, data = z))((function(z) data.frame(x = z,      y = 2 * z + rnorm(100)))(1:100))
+   min     lq    mean median    uq    max neval
+ 468.0 495.00 564.998  536.2 623.4 1063.2   100
+ 461.2 494.95 564.994  536.9 616.6 1124.0   100</code></pre>
+</div>
+</div>
+</section>
+<section id="back-to-the-example" class="level2">
+<h2 class="anchored" data-anchor-id="back-to-the-example">Back to the example</h2>
+<p>After that digression into piping, let’s return to our example that is comparing base R and tidyverse to read-in a table of data, select variables, rename one and, in the following, to calculate the number of COVID-19 cases per English region as a percentage of their estimated populations in the week ending 2021-12-04.</p>
+<p>First, in base R:</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"covid.csv"</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df1[, <span class="fu">c</span>(<span class="st">"regionName"</span>, <span class="st">"X2021.12.04"</span>, <span class="st">"All.Ages"</span>)]</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df1)[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"population"</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>cases <span class="ot">&lt;-</span> <span class="fu">tapply</span>(df1<span class="sc">$</span>cases, df1<span class="sc">$</span>regionName, sum)  <span class="co"># Total cases per region</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>cases</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>           East Midlands          East of England                   London 
+                   25472                    35785                    43060 
+              North East               North West               South East 
+                   10796                    31185                    62807 
+              South West            West Midlands Yorkshire and The Humber 
+                   33846                    26554                    21079 </code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This step isn't necessary but is included</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># to show the result of the line above</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">tapply</span>(df1<span class="sc">$</span>population, df1<span class="sc">$</span>regionName, sum)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Total population per region</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>rate <span class="ot">&lt;-</span> <span class="fu">round</span>(cases <span class="sc">/</span> population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>rate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>           East Midlands          East of England                   London 
+                   0.524                    0.571                    0.479 
+              North East               North West               South East 
+                   0.403                    0.423                    0.681 
+              South West            West Midlands Yorkshire and The Humber 
+                   0.598                    0.445                    0.381 </code></pre>
+</div>
+</div>
+<p>Now using tidyverse,</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"covid.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(regionName, <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">cases =</span> <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="at">population =</span> <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(regionName) <span class="sc">|&gt;</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), sum)) <span class="sc">|&gt;</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rate =</span> <span class="fu">round</span>(cases <span class="sc">/</span> population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 4
+  regionName               cases population  rate
+  &lt;chr&gt;                    &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;
+1 East Midlands            25472    4865583 0.524
+2 East of England          35785    6269161 0.571
+3 London                   43060    8991550 0.479
+4 North East               10796    2680763 0.403
+5 North West               31185    7367456 0.423
+6 South East               62807    9217265 0.681
+7 South West               33846    5656917 0.598
+8 West Midlands            26554    5961929 0.445
+9 Yorkshire and The Humber 21079    5526350 0.381</code></pre>
+</div>
+</div>
+<p>Either way produces the same answers but, again, there is an elegance and consistency to the tidyverse way of doing it (which works just fine with the <code>|&gt;</code> pipe) that is, perhaps, missing from base R.</p>
+</section>
+<section id="plotting" class="level2">
+<h2 class="anchored" data-anchor-id="plotting">Plotting</h2>
+<p>As a final step for the comparison, we will extend the code to visualise the regional COVID-19 rates in a histogram, with a <a href="https://en.wikipedia.org/wiki/Rug_plot#:~:text=A%20rug%20plot%20is%20a,a%20one%2Ddimensional%20scatter%20plot" target="_blank">rug plot</a> included. A rug plot is a way of preserving the individual data values that would otherwise be ‘lost’ within the bins of a histogram.</p>
+<p>As previously, we begin with base R,</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"covid.csv"</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df1[, <span class="fu">c</span>(<span class="st">"regionName"</span>, <span class="st">"X2021.12.04"</span>, <span class="st">"All.Ages"</span>)]</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df1)[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"population"</span>)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>cases <span class="ot">&lt;-</span> <span class="fu">tapply</span>(df1<span class="sc">$</span>cases, df1<span class="sc">$</span>regionName, sum)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">tapply</span>(df1<span class="sc">$</span>population, df1<span class="sc">$</span>regionName, sum)</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>rate <span class="ot">&lt;-</span> <span class="fu">round</span>(cases <span class="sc">/</span> population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(rate, <span class="at">xlab =</span> <span class="st">"rate (cases as % of population)"</span>,</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>)</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rug</span>(rate, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>…and continue with tidyverse, creating the output in such a way that it mimics the previous plot.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"covid.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(regionName, <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">cases =</span> <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="at">population =</span> <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(regionName) <span class="sc">|&gt;</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), sum)) <span class="sc">|&gt;</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rate =</span> <span class="fu">round</span>(cases <span class="sc">/</span> population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)) <span class="ot">-&gt;</span> df2</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>df2 <span class="sc">|&gt;</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rate)) <span class="sc">+</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">binwidth =</span> <span class="fl">0.05</span>,</span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>                   <span class="at">center =</span> <span class="sc">-</span><span class="fl">0.025</span>) <span class="sc">+</span></span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_rug</span>(<span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"rate (cases as % of population)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>) <span class="sc">+</span></span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>In this instance, it is the tidyverse code that is the more elaborate. This is partly because there is more customisation of it to mimic the base R plot. However, it is also because it is using the package <a href="https://ggplot2.tidyverse.org/" target="_blank">ggplot2</a> to produce the histogram. We return to <code>ggplot2</code> more in later sessions. For now it is sufficient to scan the code and observe how it is ‘layering up’ the various components of the graphic, which those components separated by the <code>+</code> in the lines of code.</p>
+<p><img src="hazard.gif" class="img-fluid" width="75"></p>
+<p><font size="3">The use of the <code>+</code> notation in <code>ggplot2</code> operates a little like a pipe in that the outcome of one operation is handed on to the next to modify the graphic being produced. It doesn’t use the pipe because the package’s origins are somewhat older but just think of the <code>+</code> as layering-up – adding to – the graphic.</font></p>
+<p>I prefer the <code>ggplot2</code> to the <code>hist()</code> graphics plot but that may be a matter of personal taste. However, <code>ggplot2</code> can do ‘clever things’ with the visualisation, a hint of which is shown below.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="sc">|&gt;</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rate)) <span class="sc">+</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">binwidth =</span> <span class="fl">0.05</span>,</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">center =</span> <span class="sc">-</span><span class="fl">0.025</span>) <span class="sc">+</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_rug</span>(<span class="fu">aes</span>(<span class="at">colour =</span> regionName), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"rate (cases as % of population)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>) <span class="sc">+</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_colour_discrete</span>(<span class="at">name =</span> <span class="st">"Region"</span>) <span class="sc">+</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><br> Please don’t form that impression that <code>ggplot2</code> is hard-wired to tidverse and base R to the base <code>graphics</code>. In practice, they are interchangeable.</p>
+<p>Here is an example of using <code>ggplot2</code> after a sequence of base R commands.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"covid.csv"</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df1[, <span class="fu">c</span>(<span class="st">"regionName"</span>, <span class="st">"X2021.12.04"</span>, <span class="st">"All.Ages"</span>)]</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df1)[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"population"</span>)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>df1<span class="sc">$</span>rate <span class="ot">&lt;-</span> <span class="fu">round</span>(df1<span class="sc">$</span>cases <span class="sc">/</span> df1<span class="sc">$</span>population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df1, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> regionName)) <span class="sc">+</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"rate (cases as % of population)"</span>,</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"region"</span>,</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>) <span class="sc">+</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>And here is an example of using the base R graphic <code>boxplot()</code> after a chain of tidyverse commands.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"covid.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(regionName, <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">cases =</span> <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="at">population =</span> <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rate =</span> <span class="fu">round</span>(cases <span class="sc">/</span> population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)) <span class="ot">-&gt;</span> df2</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mai=</span><span class="fu">c</span>(<span class="fl">0.8</span>,<span class="dv">2</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>), <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">pch =</span> <span class="dv">20</span>)  <span class="co"># See text below</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(df2<span class="sc">$</span>rate <span class="sc">~</span> df2<span class="sc">$</span>regionName, <span class="at">horizontal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">whisklty =</span> <span class="st">"solid"</span>, <span class="at">staplelty =</span> <span class="dv">0</span>,</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"white"</span>, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">cex =</span> <span class="fl">0.9</span>, <span class="at">cex.axis =</span> <span class="fl">0.75</span>,</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"rate (cases as % of population)"</span>, <span class="at">ylab=</span><span class="st">""</span>,</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>)</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">ylab =</span> <span class="st">"region"</span>, <span class="at">line =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="tidyverse_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>I would argue that, in this instance, the base R graphic is as nice as the ggplot2 one but it took more customisation to get it that way and I had to go digging around in the help files, <code>?boxplot</code>, <code>?bxp</code> and <code>?par</code> to find what I needed, which included changing the graphic’s margins (<code>par(mai=...))</code>), moving and changing the size of the text on the vertical axis (the argument <code>cex.axis</code> and the use of the <code>title</code> function), changing the appearance of the ‘whiskers’ (<code>whisklty = "solid"</code> and <code>staplelty = 0</code>), and so forth. Still, it does demonstrate that you can have a lot of control over what is produced, if you have the patience and tenacity to do so.</p>
+</section>
+<section id="which-is-better" class="level2">
+<h2 class="anchored" data-anchor-id="which-is-better">Which is better?</h2>
+<p>Having provided a <strong>very</strong> small taste of tidyverse and how it differs from base R, we might ask, “which is better?” However, the question is misguided: it is a little like deciding to go to South America and asking whether Spanish or Portuguese is the better language to use. It depends, of course, on what you intend to do and where you intend to travel.</p>
+<p>I use both base R and tidyverse packages in my work, sometimes drifting between the two in rather haphazard ways. If I can get what I want to work then I am happy. Outcomes worry me more than means so, although I use tidyverse a lot, I am not always as tidy as it would want me to be!</p>
+</section>
+<section id="futher-reading" class="level2">
+<h2 class="anchored" data-anchor-id="futher-reading">Futher reading</h2>
+<p><img src="data_science.jpg" class="img-fluid" width="100"></p>
+<p>There is <strong>much</strong> more to tidyverse than has been covered here. See <a href="https://www.tidyverse.org/packages/" target="&quot;_blank">here</a> for further information about it and its core packages.</p>
+<p>A full introduction to using tidyverse for Data Science is provided by the book <a href="https://www.oreilly.com/library/view/r-for-data/9781492097396/" target="_blank">R for Data Science</a> (2nd edition) by Hadley Wickham and Garrett Grolemund. There is a free <a href="http://r4ds.hadley.nz/" target="_blank">online version</a>.</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./base.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Base R</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./program.html" class="pagination-link">
+        <span class="nav-page-text">Programming</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb49" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Tidyverse"</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "What Is the Tidyverse?"</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span><span class="co"> </span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>installed <span class="ot">&lt;-</span> <span class="fu">installed.packages</span>()[,<span class="dv">1</span>]</span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"XML"</span>, <span class="st">"tidyverse"</span>, <span class="st">"ggplot2"</span>, <span class="st">"microbenchmark"</span>)</span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>install <span class="ot">&lt;-</span> pkgs[<span class="sc">!</span>(pkgs <span class="sc">%in%</span> installed)]</span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(install)) <span class="fu">install.packages</span>(install, <span class="at">dependencies =</span> <span class="cn">TRUE</span>, <span class="at">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)</span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a><span class="al">![](tidyverse.png)</span>{width=300}</span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a>If base R is R Classic then tidyverse is a new flavour of R, designed for data science. It consists of <span class="co">[</span><span class="ot">a collection of R packages</span><span class="co">](https://www.tidyverse.org/)</span>{target="_blank"} that "share an underlying design philosophy, grammar, and data structures."</span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>Tidyverse is easier to demonstrate than to pin-down to some basics so let's work through an example using both base R and tidyverse to illustrate some differences.</span>
+<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## To Start</span></span>
+<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a>If, as suggested in 'Getting Started', you have created an R Project to contain all the files you create and download for this course then open it now by using File --&gt; Open Project... from the dropdown menus in R Studio. If you have not created one then now might be a good time!</span>
+<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a>We will begin by downloading a data file to use. It will be downloaded to your working directory, which is the folder associated with your R Project if you are using one. You can check the working directory by using <span class="in">`getwd()`</span> and change it using Session --&gt; Set Working Directory or with the function <span class="in">`setwd(dir)`</span> where <span class="in">`dir`</span> is the chosen directory. If you have created a Project then the working directory is that of the Project.</span>
+<span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-33"><a href="#cb49-33" aria-hidden="true" tabindex="-1"></a>The data are an extract of the <span class="co">[</span><span class="ot">Covid Data Dashboard</span><span class="co">](https://coronavirus.data.gov.uk/)</span>{target="_blank"} for England in December 2021. Some prior manipulation and adjustments to those data have been undertaken for another project so treat them as indicative only. The actual reported numbers may have been changed slightly from their originals although only marginally so.</span>
+<span id="cb49-34"><a href="#cb49-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-37"><a href="#cb49-37" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-38"><a href="#cb49-38" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://github.com/profrichharris/profrichharris.github.io/raw/main/MandM/data/covid_extract.csv"</span>, <span class="st">"covid.csv"</span>, <span class="at">mode =</span> <span class="st">"wb"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb49-39"><a href="#cb49-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-40"><a href="#cb49-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-41"><a href="#cb49-41" aria-hidden="true" tabindex="-1"></a>We also need to <span class="in">`require(tidyverse)`</span> ready for use.</span>
+<span id="cb49-42"><a href="#cb49-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-45"><a href="#cb49-45" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-46"><a href="#cb49-46" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(tidyverse)</span>
+<span id="cb49-47"><a href="#cb49-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-48"><a href="#cb49-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-49"><a href="#cb49-49" aria-hidden="true" tabindex="-1"></a><span class="al">![](hazard.gif)</span>{width=75}</span>
+<span id="cb49-50"><a href="#cb49-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-51"><a href="#cb49-51" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;font</span> <span class="er">size</span> <span class="ot">=</span> <span class="st">3</span><span class="kw">&gt;</span>If you get a warning message saying there is no package called tidyverse then you need to install it: <span class="in">`install.packages("tidyverse", dependencies = TRUE)`</span>. You will find that some people prefer to use <span class="in">`library()`</span> instead of <span class="in">`require()`</span>. The difference between them is subtle but you can find an argument in favour of using <span class="in">`library()`</span> <span class="co">[</span><span class="ot">here</span><span class="co">](https://www.r-bloggers.com/2016/12/difference-between-library-and-require-in-r/)</span>{target="_blank"} even though I usually don't.<span class="kw">&lt;/font&gt;</span></span>
+<span id="cb49-52"><a href="#cb49-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-53"><a href="#cb49-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading-in the data</span></span>
+<span id="cb49-54"><a href="#cb49-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-55"><a href="#cb49-55" aria-hidden="true" tabindex="-1"></a>Let's read-in and take a look at the data. First in base R.</span>
+<span id="cb49-56"><a href="#cb49-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-59"><a href="#cb49-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-60"><a href="#cb49-60" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"covid.csv"</span>)</span>
+<span id="cb49-61"><a href="#cb49-61" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df1)</span>
+<span id="cb49-62"><a href="#cb49-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-63"><a href="#cb49-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-64"><a href="#cb49-64" aria-hidden="true" tabindex="-1"></a>Now using tidyverse,</span>
+<span id="cb49-65"><a href="#cb49-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-68"><a href="#cb49-68" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-69"><a href="#cb49-69" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"covid.csv"</span>)</span>
+<span id="cb49-70"><a href="#cb49-70" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(df2, <span class="at">n =</span> <span class="dv">6</span>)</span>
+<span id="cb49-71"><a href="#cb49-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-72"><a href="#cb49-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-73"><a href="#cb49-73" aria-hidden="true" tabindex="-1"></a>There are some similarities -- for example the function <span class="in">`read.csv`</span> reads-in a file of comma separated variables, as does <span class="in">`read_csv`</span>. However, the output from these functions differ. First, tidyverse has, in this case, handled the names of the variables better. It has also created what is described as a <span class="in">`tibble`</span> which is "a modern reimagining of the data.frame, keeping what time has proven to be effective, and throwing out what is not." You can find out more about them and how they differ from traditional data frames <span class="co">[</span><span class="ot">here</span><span class="co">](https://tibble.tidyverse.org/)</span>{target="_blank"}. Basically, they are a form of data frame that fit into tidyverse's philosophy to try and keep 'things' tidy through a shared underlying design philosophy, grammar and data structures.</span>
+<span id="cb49-74"><a href="#cb49-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-75"><a href="#cb49-75" aria-hidden="true" tabindex="-1"></a><span class="fu">## Selecting and renaming variables</span></span>
+<span id="cb49-76"><a href="#cb49-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-77"><a href="#cb49-77" aria-hidden="true" tabindex="-1"></a>We will now:</span>
+<span id="cb49-78"><a href="#cb49-78" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>select the <span class="in">`regionName`</span>, <span class="in">`2021-12-04`</span> and <span class="in">`All Ages`</span> variables;</span>
+<span id="cb49-79"><a href="#cb49-79" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>rename the second of these as <span class="in">`cases`</span> and the third as <span class="in">`population`</span>;</span>
+<span id="cb49-80"><a href="#cb49-80" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>and look at the data again to check that it has worked.</span>
+<span id="cb49-81"><a href="#cb49-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-82"><a href="#cb49-82" aria-hidden="true" tabindex="-1"></a>In base R,</span>
+<span id="cb49-83"><a href="#cb49-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-86"><a href="#cb49-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-87"><a href="#cb49-87" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df1[, <span class="fu">c</span>(<span class="st">"regionName"</span>, <span class="st">"X2021.12.04"</span>, <span class="st">"All.Ages"</span>)]</span>
+<span id="cb49-88"><a href="#cb49-88" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df1)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"population"</span>)</span>
+<span id="cb49-89"><a href="#cb49-89" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df1)</span>
+<span id="cb49-90"><a href="#cb49-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-91"><a href="#cb49-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-92"><a href="#cb49-92" aria-hidden="true" tabindex="-1"></a>In tidyverse,</span>
+<span id="cb49-93"><a href="#cb49-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-96"><a href="#cb49-96" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-97"><a href="#cb49-97" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">select</span>(df2, regionName, <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>)</span>
+<span id="cb49-98"><a href="#cb49-98" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">rename</span>(df2, <span class="at">cases =</span> <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="at">population =</span> <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>)</span>
+<span id="cb49-99"><a href="#cb49-99" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(df2, <span class="at">n =</span> <span class="dv">6</span>)</span>
+<span id="cb49-100"><a href="#cb49-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-101"><a href="#cb49-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-102"><a href="#cb49-102" aria-hidden="true" tabindex="-1"></a>Comparing the two, the tidyverse code may be more intuitive to understand because of its use of verbs as functions: <span class="in">`select()`</span>, <span class="in">`rename()`</span> and so forth.</span>
+<span id="cb49-103"><a href="#cb49-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-104"><a href="#cb49-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## Piping</span></span>
+<span id="cb49-105"><a href="#cb49-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-106"><a href="#cb49-106" aria-hidden="true" tabindex="-1"></a>Now we shall bring the two previous stages together, using what is referred to as a pipe. Without worrying about the detail, which we will return to presently, here is an example of a pipe, <span class="in">`|&gt;`</span> being used in base R:</span>
+<span id="cb49-107"><a href="#cb49-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-110"><a href="#cb49-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-111"><a href="#cb49-111" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"covid.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-112"><a href="#cb49-112" aria-hidden="true" tabindex="-1"></a>  (\(x) x[, <span class="fu">c</span>(<span class="st">"regionName"</span>, <span class="st">"X2021.12.04"</span>, <span class="st">"All.Ages"</span>)])() <span class="ot">-&gt;</span> df1</span>
+<span id="cb49-113"><a href="#cb49-113" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df1)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"population"</span>)</span>
+<span id="cb49-114"><a href="#cb49-114" aria-hidden="true" tabindex="-1"></a>df1 <span class="sc">|&gt;</span></span>
+<span id="cb49-115"><a href="#cb49-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb49-116"><a href="#cb49-116" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-117"><a href="#cb49-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-118"><a href="#cb49-118" aria-hidden="true" tabindex="-1"></a><span class="al">![](hazard.gif)</span>{width=75}</span>
+<span id="cb49-119"><a href="#cb49-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-120"><a href="#cb49-120" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;font</span> <span class="er">size</span> <span class="ot">=</span> <span class="st">3</span><span class="kw">&gt;</span>The above will only work if you are using R version 4.1.0 or above. You can check which version you are running by using <span class="in">`R.Version()$version`</span>.<span class="kw">&lt;/font&gt;</span></span>
+<span id="cb49-121"><a href="#cb49-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-122"><a href="#cb49-122" aria-hidden="true" tabindex="-1"></a>Here is the same process using tidyverse and a different pipe, <span class="in">`%&gt;%`</span>,</span>
+<span id="cb49-123"><a href="#cb49-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-124"><a href="#cb49-124" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, message=FALSE, warning=FALSE}</span></span>
+<span id="cb49-125"><a href="#cb49-125" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"covid.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-126"><a href="#cb49-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(regionName, <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-127"><a href="#cb49-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">cases =</span> <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="at">population =</span> <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-128"><a href="#cb49-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">6</span>)</span>
+<span id="cb49-129"><a href="#cb49-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-130"><a href="#cb49-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-131"><a href="#cb49-131" aria-hidden="true" tabindex="-1"></a>The obvious difference here is that the tidyverse code is more elegant. But what is the pipe and what is the difference between <span class="in">`|&gt;`</span> in the base R code and <span class="in">`%&gt;%`</span> in the tidyverse example?</span>
+<span id="cb49-132"><a href="#cb49-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-133"><a href="#cb49-133" aria-hidden="true" tabindex="-1"></a>A pipe is really just a way of sending ('piping`) something from one line of code to the next, to create a chain of commands (forgive the mixed metaphors). For example,</span>
+<span id="cb49-134"><a href="#cb49-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-137"><a href="#cb49-137" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-138"><a href="#cb49-138" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb49-139"><a href="#cb49-139" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
+<span id="cb49-140"><a href="#cb49-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-141"><a href="#cb49-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-142"><a href="#cb49-142" aria-hidden="true" tabindex="-1"></a>Could be calculated as</span>
+<span id="cb49-143"><a href="#cb49-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-146"><a href="#cb49-146" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-147"><a href="#cb49-147" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">|&gt;</span></span>
+<span id="cb49-148"><a href="#cb49-148" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>()</span>
+<span id="cb49-149"><a href="#cb49-149" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-150"><a href="#cb49-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-151"><a href="#cb49-151" aria-hidden="true" tabindex="-1"></a>As</span>
+<span id="cb49-152"><a href="#cb49-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-155"><a href="#cb49-155" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-156"><a href="#cb49-156" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span></span>
+<span id="cb49-157"><a href="#cb49-157" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>()</span>
+<span id="cb49-158"><a href="#cb49-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-159"><a href="#cb49-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-160"><a href="#cb49-160" aria-hidden="true" tabindex="-1"></a>or, if you want to save on a few characters of code,</span>
+<span id="cb49-161"><a href="#cb49-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-164"><a href="#cb49-164" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-165"><a href="#cb49-165" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span></span>
+<span id="cb49-166"><a href="#cb49-166" aria-hidden="true" tabindex="-1"></a>  mean</span>
+<span id="cb49-167"><a href="#cb49-167" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-168"><a href="#cb49-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-169"><a href="#cb49-169" aria-hidden="true" tabindex="-1"></a>However, this won't work:</span>
+<span id="cb49-170"><a href="#cb49-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-173"><a href="#cb49-173" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-174"><a href="#cb49-174" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb49-175"><a href="#cb49-175" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">|&gt;</span></span>
+<span id="cb49-176"><a href="#cb49-176" aria-hidden="true" tabindex="-1"></a>  mean</span>
+<span id="cb49-177"><a href="#cb49-177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-178"><a href="#cb49-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-179"><a href="#cb49-179" aria-hidden="true" tabindex="-1"></a>This is confusing but it is because of the different pipes, one (<span class="in">`|&gt;`</span>) a more recent development than the other (<span class="in">`%&gt;%`</span>).</span>
+<span id="cb49-180"><a href="#cb49-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-181"><a href="#cb49-181" aria-hidden="true" tabindex="-1"></a>A more complicated example of piping is below. It employs the function <span class="in">`sapply()`</span>, a variant of the function <span class="in">`lapply(X, FUN)`</span> that takes a list <span class="in">`X`</span> and applies the function <span class="in">`FUN`</span> to each part of it. In the example, it is the function <span class="in">`mean`</span>.</span>
+<span id="cb49-182"><a href="#cb49-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-183"><a href="#cb49-183" aria-hidden="true" tabindex="-1"></a>Here it is without any pipes:</span>
+<span id="cb49-184"><a href="#cb49-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-187"><a href="#cb49-187" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-188"><a href="#cb49-188" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb49-189"><a href="#cb49-189" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Creates a list with two parts: the numbers 0 to 10, and 10 to 20</span></span>
+<span id="cb49-190"><a href="#cb49-190" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sapply</span>(x, mean)</span>
+<span id="cb49-191"><a href="#cb49-191" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculates the mean for each part of the list, which are 5 and 15</span></span>
+<span id="cb49-192"><a href="#cb49-192" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(y)</span>
+<span id="cb49-193"><a href="#cb49-193" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sums together the two means, giving 20</span></span>
+<span id="cb49-194"><a href="#cb49-194" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-195"><a href="#cb49-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-196"><a href="#cb49-196" aria-hidden="true" tabindex="-1"></a>With pipes, the above could instead be written as</span>
+<span id="cb49-197"><a href="#cb49-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-200"><a href="#cb49-200" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-201"><a href="#cb49-201" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-202"><a href="#cb49-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(mean) <span class="sc">|&gt;</span></span>
+<span id="cb49-203"><a href="#cb49-203" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>()</span>
+<span id="cb49-204"><a href="#cb49-204" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-205"><a href="#cb49-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-206"><a href="#cb49-206" aria-hidden="true" tabindex="-1"></a>or as</span>
+<span id="cb49-207"><a href="#cb49-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-210"><a href="#cb49-210" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-211"><a href="#cb49-211" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-212"><a href="#cb49-212" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(mean) <span class="sc">%&gt;%</span></span>
+<span id="cb49-213"><a href="#cb49-213" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>()</span>
+<span id="cb49-214"><a href="#cb49-214" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-215"><a href="#cb49-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-216"><a href="#cb49-216" aria-hidden="true" tabindex="-1"></a>All three arrive at the same answer, which is 20.</span>
+<span id="cb49-217"><a href="#cb49-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-218"><a href="#cb49-218" aria-hidden="true" tabindex="-1"></a>So far, so good but what is the difference between <span class="in">`|&gt;`</span> and <span class="in">`%&gt;%`</span>? The answer is that <span class="in">`%&gt;%`</span> was developed before <span class="in">`|&gt;`</span> in the <span class="co">[</span><span class="ot">magrittr package</span><span class="co">](https://cran.r-project.org/web/packages/magrittr/)</span>{target="_blank"}, whereas `|&gt;` is [R's new native pipe](https://www.r-bloggers.com/2021/05/the-new-r-pipe/){target="_blank"}. They are often interchangeable **but not always**.</span>
+<span id="cb49-219"><a href="#cb49-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-220"><a href="#cb49-220" aria-hidden="true" tabindex="-1"></a>At the moment, the <span class="in">`|&gt;`</span> pipe is less flexible to use than <span class="in">`%&gt;%`</span>. Consider the following example. The final two lines of code work fine using <span class="in">`%&gt;%`</span> to pipe the data frame into the regression model, which is a line of best fit between the <span class="in">`x`</span> and <span class="in">`y`</span> values (the function <span class="in">`lm()`</span> fits a linear model which can be used to predict a <span class="in">`y`</span> value from a value of <span class="in">`x`</span>).</span>
+<span id="cb49-221"><a href="#cb49-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-224"><a href="#cb49-224" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-225"><a href="#cb49-225" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">%&gt;%</span></span>
+<span id="cb49-226"><a href="#cb49-226" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">x =</span> ., <span class="at">y =</span> <span class="dv">2</span><span class="sc">*</span>. <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb49-227"><a href="#cb49-227" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> .)</span>
+<span id="cb49-228"><a href="#cb49-228" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-229"><a href="#cb49-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-230"><a href="#cb49-230" aria-hidden="true" tabindex="-1"></a>(note: the output you get will likely different from mine because the function <span class="in">`rnorm()`</span> adds some random variations to the data)</span>
+<span id="cb49-231"><a href="#cb49-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-232"><a href="#cb49-232" aria-hidden="true" tabindex="-1"></a>However, it does *not* work with the pipe, <span class="in">`|&gt;`</span> because it does not recognise the place holder <span class="in">`.`</span> that we had previously used to represent what was flowing through the pipe.</span>
+<span id="cb49-233"><a href="#cb49-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-236"><a href="#cb49-236" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-237"><a href="#cb49-237" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb49-238"><a href="#cb49-238" aria-hidden="true" tabindex="-1"></a><span class="co"># The following code does not work</span></span>
+<span id="cb49-239"><a href="#cb49-239" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">|&gt;</span></span>
+<span id="cb49-240"><a href="#cb49-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">x =</span> ., <span class="at">y =</span> <span class="dv">2</span><span class="sc">*</span>. <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb49-241"><a href="#cb49-241" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> .)</span>
+<span id="cb49-242"><a href="#cb49-242" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-243"><a href="#cb49-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-244"><a href="#cb49-244" aria-hidden="true" tabindex="-1"></a>To solve the problem, the above code can be modified by wrapping the regression part in another function but the end result is rather 'clunky'.</span>
+<span id="cb49-245"><a href="#cb49-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-248"><a href="#cb49-248" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-249"><a href="#cb49-249" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">|&gt;</span></span>
+<span id="cb49-250"><a href="#cb49-250" aria-hidden="true" tabindex="-1"></a>  (\(z) <span class="fu">data.frame</span>(<span class="at">x =</span> z, <span class="at">y =</span> <span class="dv">2</span><span class="sc">*</span>z <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)))() <span class="sc">|&gt;</span></span>
+<span id="cb49-251"><a href="#cb49-251" aria-hidden="true" tabindex="-1"></a>  (\(z) <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> z))() </span>
+<span id="cb49-252"><a href="#cb49-252" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-253"><a href="#cb49-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-254"><a href="#cb49-254" aria-hidden="true" tabindex="-1"></a>Over time, expect <span class="in">`|&gt;`</span> to be developed and to supersede <span class="in">`%&gt;%`</span>. For now, you are unlikely to encounter errors using <span class="in">`%&gt;%`</span> as a substitute for <span class="in">`|&gt;`</span> but you might using <span class="in">`|&gt;`</span> instead of <span class="in">`%&gt;%`</span>. In other words, <span class="in">`%&gt;%`</span> is the safer choice if you are unsure, although the <span class="in">`|&gt;`</span> is faster:</span>
+<span id="cb49-255"><a href="#cb49-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-258"><a href="#cb49-258" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-259"><a href="#cb49-259" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb49-260"><a href="#cb49-260" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"microbenchmark"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb49-261"><a href="#cb49-261" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">"microbenchmark"</span>)</span>
+<span id="cb49-262"><a href="#cb49-262" aria-hidden="true" tabindex="-1"></a><span class="fu">microbenchmark</span>(</span>
+<span id="cb49-263"><a href="#cb49-263" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">%&gt;%</span></span>
+<span id="cb49-264"><a href="#cb49-264" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">x =</span> ., <span class="at">y =</span> <span class="dv">2</span><span class="sc">*</span>. <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb49-265"><a href="#cb49-265" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> .),</span>
+<span id="cb49-266"><a href="#cb49-266" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">|&gt;</span></span>
+<span id="cb49-267"><a href="#cb49-267" aria-hidden="true" tabindex="-1"></a>    (\(z) <span class="fu">data.frame</span>(<span class="at">x =</span> z, <span class="at">y =</span> <span class="dv">2</span><span class="sc">*</span>z <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)))() <span class="sc">|&gt;</span></span>
+<span id="cb49-268"><a href="#cb49-268" aria-hidden="true" tabindex="-1"></a>    (\(z) <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> z))(),</span>
+<span id="cb49-269"><a href="#cb49-269" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">100</span></span>
+<span id="cb49-270"><a href="#cb49-270" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb49-271"><a href="#cb49-271" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-272"><a href="#cb49-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-273"><a href="#cb49-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-276"><a href="#cb49-276" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-277"><a href="#cb49-277" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb49-278"><a href="#cb49-278" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">"microbenchmark"</span>)</span>
+<span id="cb49-279"><a href="#cb49-279" aria-hidden="true" tabindex="-1"></a><span class="fu">microbenchmark</span>(</span>
+<span id="cb49-280"><a href="#cb49-280" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">%&gt;%</span></span>
+<span id="cb49-281"><a href="#cb49-281" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">x =</span> ., <span class="at">y =</span> <span class="dv">2</span><span class="sc">*</span>. <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb49-282"><a href="#cb49-282" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> .),</span>
+<span id="cb49-283"><a href="#cb49-283" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">|&gt;</span></span>
+<span id="cb49-284"><a href="#cb49-284" aria-hidden="true" tabindex="-1"></a>    (\(z) <span class="fu">data.frame</span>(<span class="at">x =</span> z, <span class="at">y =</span> <span class="dv">2</span><span class="sc">*</span>z <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)))() <span class="sc">|&gt;</span></span>
+<span id="cb49-285"><a href="#cb49-285" aria-hidden="true" tabindex="-1"></a>    (\(z) <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> z))(),</span>
+<span id="cb49-286"><a href="#cb49-286" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">100</span></span>
+<span id="cb49-287"><a href="#cb49-287" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb49-288"><a href="#cb49-288" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-289"><a href="#cb49-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-290"><a href="#cb49-290" aria-hidden="true" tabindex="-1"></a><span class="fu">## Back to the example</span></span>
+<span id="cb49-291"><a href="#cb49-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-292"><a href="#cb49-292" aria-hidden="true" tabindex="-1"></a>After that digression into piping, let's return to our example that is comparing base R and tidyverse to read-in a table of data, select variables, rename one and, in the following, to calculate the number of COVID-19 cases per English region as a percentage of their estimated populations in the week ending 2021-12-04.</span>
+<span id="cb49-293"><a href="#cb49-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-294"><a href="#cb49-294" aria-hidden="true" tabindex="-1"></a>First, in base R:</span>
+<span id="cb49-295"><a href="#cb49-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-298"><a href="#cb49-298" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-299"><a href="#cb49-299" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"covid.csv"</span>)</span>
+<span id="cb49-300"><a href="#cb49-300" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df1[, <span class="fu">c</span>(<span class="st">"regionName"</span>, <span class="st">"X2021.12.04"</span>, <span class="st">"All.Ages"</span>)]</span>
+<span id="cb49-301"><a href="#cb49-301" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df1)[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"population"</span>)</span>
+<span id="cb49-302"><a href="#cb49-302" aria-hidden="true" tabindex="-1"></a>cases <span class="ot">&lt;-</span> <span class="fu">tapply</span>(df1<span class="sc">$</span>cases, df1<span class="sc">$</span>regionName, sum)  <span class="co"># Total cases per region</span></span>
+<span id="cb49-303"><a href="#cb49-303" aria-hidden="true" tabindex="-1"></a>cases</span>
+<span id="cb49-304"><a href="#cb49-304" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This step isn't necessary but is included</span></span>
+<span id="cb49-305"><a href="#cb49-305" aria-hidden="true" tabindex="-1"></a>  <span class="co"># to show the result of the line above</span></span>
+<span id="cb49-306"><a href="#cb49-306" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">tapply</span>(df1<span class="sc">$</span>population, df1<span class="sc">$</span>regionName, sum)</span>
+<span id="cb49-307"><a href="#cb49-307" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Total population per region</span></span>
+<span id="cb49-308"><a href="#cb49-308" aria-hidden="true" tabindex="-1"></a>rate <span class="ot">&lt;-</span> <span class="fu">round</span>(cases <span class="sc">/</span> population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)</span>
+<span id="cb49-309"><a href="#cb49-309" aria-hidden="true" tabindex="-1"></a>rate</span>
+<span id="cb49-310"><a href="#cb49-310" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-311"><a href="#cb49-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-312"><a href="#cb49-312" aria-hidden="true" tabindex="-1"></a>Now using tidyverse,</span>
+<span id="cb49-313"><a href="#cb49-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-316"><a href="#cb49-316" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-317"><a href="#cb49-317" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"covid.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-318"><a href="#cb49-318" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(regionName, <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-319"><a href="#cb49-319" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">cases =</span> <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="at">population =</span> <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-320"><a href="#cb49-320" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(regionName) <span class="sc">|&gt;</span></span>
+<span id="cb49-321"><a href="#cb49-321" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), sum)) <span class="sc">|&gt;</span></span>
+<span id="cb49-322"><a href="#cb49-322" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rate =</span> <span class="fu">round</span>(cases <span class="sc">/</span> population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb49-323"><a href="#cb49-323" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span>
+<span id="cb49-324"><a href="#cb49-324" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-325"><a href="#cb49-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-326"><a href="#cb49-326" aria-hidden="true" tabindex="-1"></a>Either way produces the same answers but, again, there is an elegance and consistency to the tidyverse way of doing it (which works just fine with the <span class="in">`|&gt;`</span> pipe) that is, perhaps, missing from base R.</span>
+<span id="cb49-327"><a href="#cb49-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-328"><a href="#cb49-328" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plotting</span></span>
+<span id="cb49-329"><a href="#cb49-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-330"><a href="#cb49-330" aria-hidden="true" tabindex="-1"></a>As a final step for the comparison, we will extend the code to visualise the regional COVID-19 rates in a histogram, with a <span class="co">[</span><span class="ot">rug plot</span><span class="co">](https://en.wikipedia.org/wiki/Rug_plot#:~:text=A%20rug%20plot%20is%20a,a%20one%2Ddimensional%20scatter%20plot)</span>{target="_blank"} included. A rug plot is a way of preserving the individual data values that would otherwise be 'lost' within the bins of a histogram.</span>
+<span id="cb49-331"><a href="#cb49-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-332"><a href="#cb49-332" aria-hidden="true" tabindex="-1"></a>As previously, we begin with base R,</span>
+<span id="cb49-333"><a href="#cb49-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-336"><a href="#cb49-336" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-337"><a href="#cb49-337" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"covid.csv"</span>)</span>
+<span id="cb49-338"><a href="#cb49-338" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df1[, <span class="fu">c</span>(<span class="st">"regionName"</span>, <span class="st">"X2021.12.04"</span>, <span class="st">"All.Ages"</span>)]</span>
+<span id="cb49-339"><a href="#cb49-339" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df1)[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"population"</span>)</span>
+<span id="cb49-340"><a href="#cb49-340" aria-hidden="true" tabindex="-1"></a>cases <span class="ot">&lt;-</span> <span class="fu">tapply</span>(df1<span class="sc">$</span>cases, df1<span class="sc">$</span>regionName, sum)</span>
+<span id="cb49-341"><a href="#cb49-341" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">tapply</span>(df1<span class="sc">$</span>population, df1<span class="sc">$</span>regionName, sum)</span>
+<span id="cb49-342"><a href="#cb49-342" aria-hidden="true" tabindex="-1"></a>rate <span class="ot">&lt;-</span> <span class="fu">round</span>(cases <span class="sc">/</span> population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)</span>
+<span id="cb49-343"><a href="#cb49-343" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(rate, <span class="at">xlab =</span> <span class="st">"rate (cases as % of population)"</span>,</span>
+<span id="cb49-344"><a href="#cb49-344" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>)</span>
+<span id="cb49-345"><a href="#cb49-345" aria-hidden="true" tabindex="-1"></a><span class="fu">rug</span>(rate, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb49-346"><a href="#cb49-346" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-347"><a href="#cb49-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-348"><a href="#cb49-348" aria-hidden="true" tabindex="-1"></a>...and continue with tidyverse, creating the output in such a way that it mimics the previous plot.</span>
+<span id="cb49-349"><a href="#cb49-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-352"><a href="#cb49-352" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-353"><a href="#cb49-353" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
+<span id="cb49-354"><a href="#cb49-354" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"covid.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-355"><a href="#cb49-355" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(regionName, <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-356"><a href="#cb49-356" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">cases =</span> <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="at">population =</span> <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-357"><a href="#cb49-357" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(regionName) <span class="sc">|&gt;</span></span>
+<span id="cb49-358"><a href="#cb49-358" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), sum)) <span class="sc">|&gt;</span></span>
+<span id="cb49-359"><a href="#cb49-359" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rate =</span> <span class="fu">round</span>(cases <span class="sc">/</span> population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)) <span class="ot">-&gt;</span> df2</span>
+<span id="cb49-360"><a href="#cb49-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-361"><a href="#cb49-361" aria-hidden="true" tabindex="-1"></a>df2 <span class="sc">|&gt;</span></span>
+<span id="cb49-362"><a href="#cb49-362" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rate)) <span class="sc">+</span></span>
+<span id="cb49-363"><a href="#cb49-363" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">binwidth =</span> <span class="fl">0.05</span>,</span>
+<span id="cb49-364"><a href="#cb49-364" aria-hidden="true" tabindex="-1"></a>                   <span class="at">center =</span> <span class="sc">-</span><span class="fl">0.025</span>) <span class="sc">+</span></span>
+<span id="cb49-365"><a href="#cb49-365" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_rug</span>(<span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb49-366"><a href="#cb49-366" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"rate (cases as % of population)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb49-367"><a href="#cb49-367" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>) <span class="sc">+</span></span>
+<span id="cb49-368"><a href="#cb49-368" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb49-369"><a href="#cb49-369" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb49-370"><a href="#cb49-370" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-371"><a href="#cb49-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-372"><a href="#cb49-372" aria-hidden="true" tabindex="-1"></a>In this instance, it is the tidyverse code that is the more elaborate. This is partly because there is more customisation of it to mimic the base R plot. However, it is also because it is using the package <span class="co">[</span><span class="ot">ggplot2</span><span class="co">](https://ggplot2.tidyverse.org/)</span>{target="_blank"} to produce the histogram. We return to <span class="in">`ggplot2`</span> more in later sessions. For now it is sufficient to scan the code and observe how it is 'layering up' the various components of the graphic, which those components separated by the <span class="in">`+`</span> in the lines of code.</span>
+<span id="cb49-373"><a href="#cb49-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-374"><a href="#cb49-374" aria-hidden="true" tabindex="-1"></a><span class="al">![](hazard.gif)</span>{width=75}</span>
+<span id="cb49-375"><a href="#cb49-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-376"><a href="#cb49-376" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;font</span> <span class="er">size</span> <span class="ot">=</span> <span class="st">3</span><span class="kw">&gt;</span>The use of the <span class="in">`+`</span> notation in <span class="in">`ggplot2`</span> operates a little like a pipe in that the outcome of one operation is handed on to the next to modify the graphic being produced. It doesn't use the pipe because the package's origins are somewhat older but just think of the <span class="in">`+`</span> as layering-up -- adding to -- the graphic.<span class="kw">&lt;/font&gt;</span></span>
+<span id="cb49-377"><a href="#cb49-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-378"><a href="#cb49-378" aria-hidden="true" tabindex="-1"></a>I prefer the <span class="in">`ggplot2`</span> to the <span class="in">`hist()`</span> graphics plot but that may be a matter of personal taste. However, <span class="in">`ggplot2`</span> can do 'clever things' with the visualisation, a hint of which is shown below.</span>
+<span id="cb49-379"><a href="#cb49-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-382"><a href="#cb49-382" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-383"><a href="#cb49-383" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb49-384"><a href="#cb49-384" aria-hidden="true" tabindex="-1"></a>df2 <span class="sc">|&gt;</span></span>
+<span id="cb49-385"><a href="#cb49-385" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rate)) <span class="sc">+</span></span>
+<span id="cb49-386"><a href="#cb49-386" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">binwidth =</span> <span class="fl">0.05</span>,</span>
+<span id="cb49-387"><a href="#cb49-387" aria-hidden="true" tabindex="-1"></a>                   <span class="at">center =</span> <span class="sc">-</span><span class="fl">0.025</span>) <span class="sc">+</span></span>
+<span id="cb49-388"><a href="#cb49-388" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_rug</span>(<span class="fu">aes</span>(<span class="at">colour =</span> regionName), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb49-389"><a href="#cb49-389" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"rate (cases as % of population)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb49-390"><a href="#cb49-390" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>) <span class="sc">+</span></span>
+<span id="cb49-391"><a href="#cb49-391" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_colour_discrete</span>(<span class="at">name =</span> <span class="st">"Region"</span>) <span class="sc">+</span></span>
+<span id="cb49-392"><a href="#cb49-392" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb49-393"><a href="#cb49-393" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()) </span>
+<span id="cb49-394"><a href="#cb49-394" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-395"><a href="#cb49-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-396"><a href="#cb49-396" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/br&gt;</span></span>
+<span id="cb49-397"><a href="#cb49-397" aria-hidden="true" tabindex="-1"></a>Please don't form that impression that <span class="in">`ggplot2`</span> is hard-wired to tidverse and base R to the base <span class="in">`graphics`</span>.  In practice, they are interchangeable.</span>
+<span id="cb49-398"><a href="#cb49-398" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-399"><a href="#cb49-399" aria-hidden="true" tabindex="-1"></a>Here is an example of using <span class="in">`ggplot2`</span> after a sequence of base R commands.</span>
+<span id="cb49-400"><a href="#cb49-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-403"><a href="#cb49-403" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-404"><a href="#cb49-404" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"covid.csv"</span>)</span>
+<span id="cb49-405"><a href="#cb49-405" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df1[, <span class="fu">c</span>(<span class="st">"regionName"</span>, <span class="st">"X2021.12.04"</span>, <span class="st">"All.Ages"</span>)]</span>
+<span id="cb49-406"><a href="#cb49-406" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df1)[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"population"</span>)</span>
+<span id="cb49-407"><a href="#cb49-407" aria-hidden="true" tabindex="-1"></a>df1<span class="sc">$</span>rate <span class="ot">&lt;-</span> <span class="fu">round</span>(df1<span class="sc">$</span>cases <span class="sc">/</span> df1<span class="sc">$</span>population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)</span>
+<span id="cb49-408"><a href="#cb49-408" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df1, <span class="fu">aes</span>(<span class="at">x =</span> rate, <span class="at">y =</span> regionName)) <span class="sc">+</span></span>
+<span id="cb49-409"><a href="#cb49-409" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb49-410"><a href="#cb49-410" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"rate (cases as % of population)"</span>,</span>
+<span id="cb49-411"><a href="#cb49-411" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"region"</span>,</span>
+<span id="cb49-412"><a href="#cb49-412" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>) <span class="sc">+</span></span>
+<span id="cb49-413"><a href="#cb49-413" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb49-414"><a href="#cb49-414" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-415"><a href="#cb49-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-416"><a href="#cb49-416" aria-hidden="true" tabindex="-1"></a>And here is an example of using the base R graphic <span class="in">`boxplot()`</span> after a chain of tidyverse commands.</span>
+<span id="cb49-417"><a href="#cb49-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-420"><a href="#cb49-420" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb49-421"><a href="#cb49-421" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
+<span id="cb49-422"><a href="#cb49-422" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"covid.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-423"><a href="#cb49-423" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(regionName, <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-424"><a href="#cb49-424" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">cases =</span> <span class="st">`</span><span class="at">2021-12-04</span><span class="st">`</span>, <span class="at">population =</span> <span class="st">`</span><span class="at">All Ages</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-425"><a href="#cb49-425" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rate =</span> <span class="fu">round</span>(cases <span class="sc">/</span> population <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">3</span>)) <span class="ot">-&gt;</span> df2</span>
+<span id="cb49-426"><a href="#cb49-426" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mai=</span><span class="fu">c</span>(<span class="fl">0.8</span>,<span class="dv">2</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>), <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">pch =</span> <span class="dv">20</span>)  <span class="co"># See text below</span></span>
+<span id="cb49-427"><a href="#cb49-427" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(df2<span class="sc">$</span>rate <span class="sc">~</span> df2<span class="sc">$</span>regionName, <span class="at">horizontal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb49-428"><a href="#cb49-428" aria-hidden="true" tabindex="-1"></a>        <span class="at">whisklty =</span> <span class="st">"solid"</span>, <span class="at">staplelty =</span> <span class="dv">0</span>,</span>
+<span id="cb49-429"><a href="#cb49-429" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"white"</span>, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">cex =</span> <span class="fl">0.9</span>, <span class="at">cex.axis =</span> <span class="fl">0.75</span>,</span>
+<span id="cb49-430"><a href="#cb49-430" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"rate (cases as % of population)"</span>, <span class="at">ylab=</span><span class="st">""</span>,</span>
+<span id="cb49-431"><a href="#cb49-431" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Regional COVID-19 rates: week ending 2021-12-04"</span>)</span>
+<span id="cb49-432"><a href="#cb49-432" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">ylab =</span> <span class="st">"region"</span>, <span class="at">line =</span> <span class="dv">6</span>)</span>
+<span id="cb49-433"><a href="#cb49-433" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb49-434"><a href="#cb49-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-435"><a href="#cb49-435" aria-hidden="true" tabindex="-1"></a>I would argue that, in this instance, the base R graphic is as nice as the ggplot2 one but it took more customisation to get it that way and I had to go digging around in the help files, <span class="in">`?boxplot`</span>, <span class="in">`?bxp`</span> and <span class="in">`?par`</span> to find what I needed, which included changing the graphic's margins (<span class="in">`par(mai=...))`</span>), moving and changing the size of the text on the vertical axis (the argument <span class="in">`cex.axis`</span> and the use of the <span class="in">`title`</span> function), changing the appearance of the 'whiskers' (<span class="in">`whisklty = "solid"`</span> and <span class="in">`staplelty = 0`</span>), and so forth. Still, it does demonstrate that you can have a lot of control over what is produced, if you have the patience and tenacity to do so.</span>
+<span id="cb49-436"><a href="#cb49-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-437"><a href="#cb49-437" aria-hidden="true" tabindex="-1"></a><span class="fu">## Which is better?</span></span>
+<span id="cb49-438"><a href="#cb49-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-439"><a href="#cb49-439" aria-hidden="true" tabindex="-1"></a>Having provided a **very** small taste of tidyverse and how it differs from base R, we might ask, "which is better?" However, the question is misguided: it is a little like deciding to go to South America and asking whether Spanish or Portuguese is the better language to use. It depends, of course, on what you intend to do and where you intend to travel.</span>
+<span id="cb49-440"><a href="#cb49-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-441"><a href="#cb49-441" aria-hidden="true" tabindex="-1"></a>I use both base R and tidyverse packages in my work, sometimes drifting between the two in rather haphazard ways. If I can get what I want to work then I am happy. Outcomes worry me more than means so, although I use tidyverse a lot, I am not always as tidy as it would want me to be!</span>
+<span id="cb49-442"><a href="#cb49-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-443"><a href="#cb49-443" aria-hidden="true" tabindex="-1"></a><span class="fu">## Futher reading</span></span>
+<span id="cb49-444"><a href="#cb49-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-445"><a href="#cb49-445" aria-hidden="true" tabindex="-1"></a><span class="al">![](data_science.jpg)</span>{width=100}</span>
+<span id="cb49-446"><a href="#cb49-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-447"><a href="#cb49-447" aria-hidden="true" tabindex="-1"></a>There is **much** more to tidyverse than has been covered here. See <span class="co">[</span><span class="ot">here</span><span class="co">](https://www.tidyverse.org/packages/)</span>{target="_blank} for further information about it and its core packages.</span>
+<span id="cb49-448"><a href="#cb49-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-449"><a href="#cb49-449" aria-hidden="true" tabindex="-1"></a>A full introduction to using tidyverse for Data Science is provided by the book <span class="co">[</span><span class="ot">R for Data Science</span><span class="co">](https://www.oreilly.com/library/view/r-for-data/9781492097396/)</span>{target="_blank"} (2nd edition) by Hadley Wickham and Garrett Grolemund. There is a free [online version](http://r4ds.hadley.nz/){target="_blank"}.</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2022-2023, Richard Harris</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/profrichharris">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
