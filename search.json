@@ -102,7 +102,7 @@
     "href": "index.html#course-text",
     "title": "Welcome",
     "section": "Course text",
-    "text": "Course text\nThe most relevant text for this course is Parts II (Chapters 7 to 9) and III (Chapters 10 to 17) of Spatial Data Science with Applications in R. An online version of the book is available here."
+    "text": "Course text\nThe most relevant text for this course is Parts II (Chapters 7 to 9) and III (Chapters 10 to 17) of Spatial Data Science with Applications in R. An online version of the book is available here. It takes a deeper dive into the fundamentals of spatial data science than this course does and is more ‘technical’ but is a good resource to extend your knowledge of geographical/spatial data science."
   },
   {
     "objectID": "index.html#pre-reading",
@@ -390,5 +390,12 @@
     "title": "The Spatial Variable",
     "section": "Further Reading",
     "text": "Further Reading\nThe Spatial Variable was the name of the inaugural lecture given by Ron Johnston, one of the most influential geographers of recent times, on his appointment as Professor at the University of Sheffield. A transcript and brief commentary on that lecture is available here and is highly recommended reading."
+  },
+  {
+    "objectID": "lectures.html",
+    "href": "lectures.html",
+    "title": "Lectures",
+    "section": "",
+    "text": "The lecture presentations for the course are available to view below.\nLecture 1. Introduction to the course\n\nThis is a work in progress\nAdditional lectures will be added as they become available."
   }
 ]
