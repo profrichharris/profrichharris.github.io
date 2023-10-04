@@ -17,7 +17,8 @@ pkgdown:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-*(This is a personal website. For links to my institutional pages, please see below)*
+</br>
+**This is a personal website. For links to my institutional pages, please see below.**
 
 ## About Me
 
@@ -29,7 +30,7 @@ My early research looked at the application of spatial statistics, geographic in
 
 I am a Fellow of the [Academy of Social Sciences](https://acss.org.uk/) and of the [Royal Geographical Society (with IBG)](https://www.rgs.org/). I am also a licensed lay minister in the [Church of England](https://www.churchofengland.org/) so have some theological interests too.
 
-[My CV, *last updated October 4, 2023*](Curriculum Vitae19.pdf)
+[My CV, last updated October 4, 2023](Curriculum Vitae19.pdf)
 
 [\@profrichharris on Twitter](https://twitter.com/profrichharris)
 
@@ -77,7 +78,7 @@ Social Geography. Quantitative Methods and Geographic Data Science. Socio-spatia
 
 ## Listening choices
 
-What I have been listening to on [Tidal](https://tidal.com/) (July 2023). Excludes my vinyl choices!
+What I have been listening to on [Tidal](https://tidal.com/) (September 2023). Excludes my vinyl choices!
 
 ![](stories_sticker.png){width="300"}
 
