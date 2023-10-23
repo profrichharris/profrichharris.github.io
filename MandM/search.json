@@ -102,7 +102,7 @@
     "href": "index.html#course-text",
     "title": "Welcome",
     "section": "Course text",
-    "text": "Course text\nThe most relevant text for this course is Parts II (Chapters 7 to 9) and III (Chapters 10 to 17) of Spatial Data Science with Applications in R. An online version of the book is available here. It takes a deeper dive into the fundamentals of spatial data science than this course does and is more ‘technical’ but is a good resource to extend your knowledge of geographical/spatial data science."
+    "text": "Course text\nThe most relevant texts for this course are:\nFirst, parts II (Chapters 7 to 9) and III (Chapters 10 to 17) of Spatial Data Science with Applications in R. An online version of the book is available here. It takes a deeper dive into the fundamentals of spatial data science than this course does and is more ‘technical’ but is a good resource to extend your knowledge of geographical/spatial data science.\n\nSecond, Chapters 2, 3, 5, 7 and 8 of of Spatial Data Science with Applications in R. An online version of the book is available here."
   },
   {
     "objectID": "index.html#pre-reading",
