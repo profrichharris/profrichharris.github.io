@@ -1,0 +1,21 @@
+---
+title: "Follow-up exercise"
+execute: 
+  warning: false
+  message: false
+---
+
+## To do
+
+For this short follow-up exercise, **create a *simple* R markdown file** (I suggest in HTML output format) that, when *knit*ted, includes the code and output for the following:
+
+-   **To read the following file into R**: [https://github.com/profrichharris/profrichharris.github.io/raw/main/MandM/data/diversity2.csv](https://github.com/profrichharris/profrichharris.github.io/raw/main/MandM/data/diversity2.csv){target="_blank"}. The file is in .csv format. It contains headers (i.e. the top row of the data is the variable names).
+-   **To draw a scatterplot** using the following variables in the data: E.01 as the x-axis and E.21 as the y-axis. In the plot, name the x-axis, "Diversity (2001)" and the y-axis "Diversity (2021)". For your information, E.01 and E.21 measure the ethnic diversity of various places in England and Wales in 2001 and 2021, respectively. The measure ranges from 0 (no diversity) to 1 ('maximum diversity').
+-   **To add a reference line** to the plot, with a gradient of 1 and a y-intercept of 0, showing where E.01 = E.21 (no change in diversity),
+-   **To add a rug plot** to the plot on both axes.
+
+Run through the stages above **twice** in your markdown file, **first** using base R and the base R graphics, then **second** using tidyverse and ggplot**. Then add a very brief textual comment beneath your code and output interpreting the graphs in terms of whether places are becoming more ethnically diverse or not. This only needs to be a sentence or two of text, nothing longer.
+
+## To help
+
+Most of the code you need to complete this task is included in the 'Flavours of R' section of this course. However, you may also find it useful to look at the help files for `?read.csv`, `?read_csv`, `?plot`,`?abline` and `?rug`, the example `ggplot2` code available [here](https://ggplot2.tidyverse.org/reference/geom_point.html){target="_blank"}, [here](https://ggplot2.tidyverse.org/reference/geom_abline.html){target="_blank"} and [here](https://ggplot2.tidyverse.org/reference/geom_rug.html){target="_blank"}, and perhaps also the [ggplot2 cheatsheet](https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf){target="_blank"}. You might also look at [this introduction to R Markdown](https://rmarkdown.rstudio.com/lesson-1.html){target="_blank"} but it covers more about R Markdown than you need at this stage. Simply creating a new document using File -\> New File -\> R Markdown... should be sufficient to get you started.

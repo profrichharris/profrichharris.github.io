@@ -1,0 +1,50 @@
+{
+  "index.qmd": {
+    "index.html": "e7490758"
+  },
+  "Follow-up exercise/exercise1.Rmd": {
+    "exercise1.html": "4fa0f229"
+  },
+  "temp.qmd": {
+    "temp.html": "d5e3a92a"
+  },
+  "answers-exercise1.Rmd": {
+    "answers-exercise1.html": "d54b4d6d"
+  },
+  "start.qmd": {
+    "start.html": "cf58c122"
+  },
+  "why.qmd": {
+    "why.html": "ed9413f4"
+  },
+  "base.qmd": {
+    "base.html": "53646a67"
+  },
+  "tidyverse.qmd": {
+    "tidyverse.html": "3a80135e"
+  },
+  "program.qmd": {
+    "program.html": "44da36a4"
+  },
+  "exercise1.qmd": {
+    "exercise1.html": "cc63a49b"
+  },
+  "themap.qmd": {
+    "themap.html": "0f56d628"
+  },
+  "lectures.qmd": {
+    "lectures.html": "b548177a"
+  },
+  "thematicmaps.qmd": {
+    "thematicmaps.html": "71717c67"
+  },
+  "autocorrelation.qmd": {
+    "autocorrelation.html": "6b3ed70a"
+  },
+  "gwstats.qmd": {
+    "gwstats.html": "fa735336"
+  },
+  "multilevel.qmd": {
+    "multilevel.html": "f3c51512"
+  }
+}

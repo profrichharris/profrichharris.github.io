@@ -1,0 +1,14 @@
+{
+  "hash": "9604037fb49530822e90d3146487ab58",
+  "result": {
+    "markdown": "---\ntitle: \"\"\n---\n\n\n## Mapping and Modelling Geographic Data in R\n\n![](MandM.png){width=300}\n\nRichard Harris, [School of Geographical Sciences](http://www.bristol.ac.uk/geography/){target=\"_blank\"}, [University of Bristol](http://www.bristol.ac.uk/){target=\"_blank\"}\n\n![](at_work.gif){width=100}\n\n**This is a work in progress and a long way from completion.**\n\nLast updated: 2022-07-01\n\n## About the course\n\nThe aims of this course are to:\n\n[TO BE ADDED]\n\n## About the author\n\nThis course is authored by Richard Harris, Professor of Quantitative Social Geography at the University of Bristol. You can find out more about me, my research and other interests at [https://profrichharris.github.io/](https://profrichharris.github.io/){target=\"_blank\"}.\n\n![](twitter.svg)\n[@profrichharris](https://twitter.com/profrichharris){target=\"_blank\"}\n\n## Useful Resources\n\n[TO BE ADDED]\n\n## Copyright notice\n\n</a>This work is licensed under a <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc-sa/4.0/\">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.\n\n<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc-sa/4.0/\"><img alt=\"Creative Commons Licence\" style=\"border-width:0\" src=\"https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png\" />\n\n</br>\n![](REF.jpg)",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
