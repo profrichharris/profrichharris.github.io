@@ -7,7 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 installed <- installed.packages()[,1]
-pkgs <- c("remotes", "ipumsr", "XML", "tidyverse", "sf", "ggplot2", "classInt", "ggspatial")
+pkgs <- c("remotes", "XML", "tidyverse", "sf", "ggplot2", "classInt", "ggspatial")
 install <- pkgs[!(pkgs %in% installed)]
 if(length(install)) install.packages(install, dependencies = TRUE, repos = "https://cloud.r-project.org")
 ```
