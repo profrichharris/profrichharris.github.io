@@ -643,7 +643,7 @@ lm(formula = y ~ x, data = .)
 
 Coefficients:
 (Intercept)            x  
-     0.3165       1.9939  </code></pre>
+    -0.2172       2.0057  </code></pre>
 </div>
 </div>
 <p>(note: the output you get will likely differ from mine because the function <code>rnorm()</code> adds some random variations to the data)</p>
@@ -672,7 +672,7 @@ lm(formula = y ~ x, data = z)
 
 Coefficients:
 (Intercept)            x  
-    -0.2703       2.0040  </code></pre>
+    -0.0239       2.0051  </code></pre>
 </div>
 </div>
 <p>Over time, expect <code>|&gt;</code> to be developed and to supersede <code>%&gt;%</code>. For now, you are unlikely to encounter errors using <code>%&gt;%</code> as a substitute for <code>|&gt;</code> but you might using <code>|&gt;</code> instead of <code>%&gt;%</code>. In other words, <code>%&gt;%</code> is the safer choice if you are unsure, although the <code>|&gt;</code> is faster:</p>
@@ -698,9 +698,9 @@ Coefficients:
                                                                                                    expr
                        1:100 %&gt;% data.frame(x = ., y = 2 * . + rnorm(100)) %&gt;% lm(y ~      x, data = .)
  (function(z) lm(y ~ x, data = z))((function(z) data.frame(x = z,      y = 2 * z + rnorm(100)))(1:100))
-     min       lq     mean   median       uq      max neval cld
- 244.278 253.0110 301.5222 266.7870 280.2965 3069.629   100   a
- 242.269 253.1955 274.9644 261.8055 278.9435  495.280   100   a</code></pre>
+     min      lq     mean   median       uq      max neval cld
+ 243.294 254.897 296.7551 272.4245 281.0960 2877.872   100   a
+ 241.818 257.644 276.1104 272.8755 283.4535  451.574   100   a</code></pre>
 </div>
 </div>
 </section>
