@@ -263,49 +263,77 @@
     "href": "index.html#about-the-course",
     "title": "Welcome",
     "section": "About the course",
-    "text": "About the course\nThe contents of this course were first developed for a short course at the University of Cape Town (UCT) in August 2022. It also forms part of the MSc Geographic Data Science and Spatial Analytics in the School of Geographical Sciences, University of Bristol.\nThe aims of this course are to teach an introduction to mapping, spatial analysis in R. It is a course in geographic data science with a particular focus on mapping, measuring and modelling spatial patterns in data. The core parts of the course are:\n\nWhy use R for mapping and spatial modelling?\nThe basics of mapping in R\nThe Spatial Variable: from maps towards models\nSpatial clustering and spatial heterogeneity: measuring patterns in data\nHarnessing spatial autocorrelation with geographically weighted statistics\nSpatial regression models\n\n\nThis is a work in progress\nChanges will be made and additional content added over time so check back here for the latest updates."
+    "text": "About the course\nThe contents of this course were first developed for a short course at the University of Cape Town (UCT) in August 2022. It also forms part of the MSc Geographic Data Science and Spatial Analytics in the School of Geographical Sciences, University of Bristol.\nThe aims of this course are to teach an introduction to mapping, spatial analysis in R. It is a course in geographic data science with a particular focus on mapping, measuring and modelling spatial patterns in data. The core parts of the course are:\n\nWhy use R for mapping and spatial modelling?\nThe basics of mapping in R\nThe Spatial Variable: from maps towards models\nSpatial clustering and spatial heterogeneity: measuring patterns in data\nHarnessing spatial autocorrelation with geographically weighted statistics\nSpatial regression models\n\n\nThis is a work in progress\nChanges will be made and additional content added over time so check back here for the latest updates.",
+    "crumbs": [
+      "Introduction",
+      "Welcome"
+    ]
   },
   {
     "objectID": "index.html#course-text",
     "href": "index.html#course-text",
     "title": "Welcome",
     "section": "Course text",
-    "text": "Course text\nThe most relevant texts for this course are:\nFirst, parts II (Chapters 7 to 9) and III (Chapters 10 to 17) of Spatial Data Science with Applications in R. An online version of the book is available here. It takes a deeper dive into the fundamentals of spatial data science than this course does and is more ‘technical’ but is a good resource to extend your knowledge of geographical/spatial data science.\n\nSecond, Chapters 2, 3, 5, 7 and 8 of of Spatial Data Science with Applications in R. An online version of the book is available here."
+    "text": "Course text\nThe most relevant texts for this course are:\nFirst, parts II (Chapters 7 to 9) and III (Chapters 10 to 17) of Spatial Data Science with Applications in R. An online version of the book is available here. It takes a deeper dive into the fundamentals of spatial data science than this course does and is more ‘technical’ but is a good resource to extend your knowledge of geographical/spatial data science.\n\nSecond, Chapters 2, 3, 5, 7 and 8 of of Spatial Data Science with Applications in R. An online version of the book is available here.",
+    "crumbs": [
+      "Introduction",
+      "Welcome"
+    ]
   },
   {
     "objectID": "index.html#pre-reading",
     "href": "index.html#pre-reading",
     "title": "Welcome",
     "section": "Pre-reading",
-    "text": "Pre-reading\nThe following short pre-reading is recommended for the course:\nHarris RJ (2019). Not just nuisance: spatialising social statistics. In A Whitworth (ed.) Towards a Spatial Social Policy: Bridging the Gap Between Geography and Social Policy. Chapter 8. Bristol: Policy Press. Available here (or, if that doesn’t work try here)."
+    "text": "Pre-reading\nThe following short pre-reading is recommended for the course:\nHarris RJ (2019). Not just nuisance: spatialising social statistics. In A Whitworth (ed.) Towards a Spatial Social Policy: Bridging the Gap Between Geography and Social Policy. Chapter 8. Bristol: Policy Press. Available here (or, if that doesn’t work try here).",
+    "crumbs": [
+      "Introduction",
+      "Welcome"
+    ]
   },
   {
     "objectID": "index.html#other-useful-resources",
     "href": "index.html#other-useful-resources",
     "title": "Welcome",
     "section": "Other useful resources",
-    "text": "Other useful resources\nSpatial Regression Models for the Social Sciences covers similar statistical ground to this course, For University of Bristol students, it is available to view as an eBook here.\n\nIn addition, Geocomputation with R by Robin Lovelace, Jakub Nawosad & Jannes Muenchow offers an extremely useful reference to have to hand if you are stuck when undertaking geocomputation with R. There is a free online version available."
+    "text": "Other useful resources\nSpatial Regression Models for the Social Sciences covers similar statistical ground to this course, For University of Bristol students, it is available to view as an eBook here.\n\nIn addition, Geocomputation with R by Robin Lovelace, Jakub Nawosad & Jannes Muenchow offers an extremely useful reference to have to hand if you are stuck when undertaking geocomputation with R. There is a free online version available.",
+    "crumbs": [
+      "Introduction",
+      "Welcome"
+    ]
   },
   {
     "objectID": "index.html#provisional-masters-programme",
     "href": "index.html#provisional-masters-programme",
     "title": "Welcome",
     "section": "Provisional Masters programme",
-    "text": "Provisional Masters programme\nFor the 2023-4 iteration of the Masters unit, the teaching schedule is:\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nLecture\nPractical\nContent\n\n\n\n\n1\n-\n-\n-\n-\n\n\n2\nMon Oct 2\n11am - noon\n2 - 4pm\nWhy R and set-up practical\n\n\n3\nMon Oct 9\n-\n1 - 3pm\nFlavours of R\n\n\n4\nMon Oct 16\n11am - noon\n1 - 3pm\nMapping the spatial variable 1\n\n\n5\nMon Oct 23\n-\n1 - 3pm\nMapping the spatial variable 2\n\n\n6\n-\n-\n-\n-\n\n\n7\n-\n-\n-\n-\n\n\n8\nMon Nov 13\n11am - noon\n1 - 3pm\nMeasuring spatial autocorrelation\n\n\n9\nMon Nov 20\n11am - noon\n1 - 3pm\nGeographically Weighted Statistics\n\n\n10\n-\n-\n-\n-\n\n\n11\nMon Dec 4\n11am - noon\n1 - 3pm\nSpatial regression + opportunity to work on assessment\n\n\n12\nMon Dec 11\n11am - noon\n1 - 3pm\nGeographically weighted regression + opportunity to work on assessment"
+    "text": "Provisional Masters programme\nFor the 2024-5 iteration of the Masters unit, the teaching schedule is:\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nLecture\nPractical\nContent\nLed by\n\n\n\n\n1\nTues Sep 17\n9 - 10am\n10.30 - 1pm\nIntroduction to the course, why R and set-up practical\nRH\n\n\n2\nTues Sep 24\n-\n10.30 - 1pm\nFlavours of R\nRH\n\n\n3\nTues Oct 1\n9 - 10am\n10.30 - 1pm\nIntroduction to statistics\nRT\n\n\n4\nTues Oct 8\n9 - 10am\n10.30 - 1pm\nIntroduction to regression\nRT\n\n\n5\nTues Oct 15\n9 - 10am\n10.30 - 1pm\nMapping the spatial variable 1\nRH\n\n\n6\n-\n-\n-\n-\n\n\n\n7\nTues Oct 29\n9 - 10am\n10.30 - 1pm\nMapping the spatial variable 2\nRH\n\n\n8\nTues Nov 5\n9 - 10am\n10.30 - 1pm\nGetting started on the assignment\nRH\n\n\n9\nTues Nov 12\n9 - 10am\n10.30 - 1pm\nMeasuring spatial autocorrelation\nRH\n\n\n10\nTues Nov 19\n9 - 10am\n10.30 - 1pm\nGeographical Weighted Statistics\nRH\n\n\n11\nTues Nov 26\n-\n10.30 - 1pm\nSpatial regression\nRH\n\n\n12\nTBC\n-\nTBC\nTBC\nTBC",
+    "crumbs": [
+      "Introduction",
+      "Welcome"
+    ]
   },
   {
     "objectID": "index.html#about-the-author",
     "href": "index.html#about-the-author",
     "title": "Welcome",
     "section": "About the author",
-    "text": "About the author\nThis course is authored by Richard Harris, Professor of Quantitative Social Geography at the University of Bristol. You can find out more about me, my research and other interests at https://profrichharris.github.io/. It is taught at the University with the assistance of Dr. Richard Timmerman.\n @profrichharris"
+    "text": "About the author\nThis course is authored by Richard Harris (RH), Professor of Quantitative Social Geography at the University of Bristol. You can find out more about me, my research and other interests at https://profrichharris.github.io/. It is taught at the University with the assistance of Dr. Richard Timmerman (RT).\n @profrichharris",
+    "crumbs": [
+      "Introduction",
+      "Welcome"
+    ]
   },
   {
     "objectID": "index.html#copyright-notice",
     "href": "index.html#copyright-notice",
     "title": "Welcome",
     "section": "Copyright notice",
-    "text": "Copyright notice\nThis work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.\n\n \n@GeogBristol #justsaying!"
+    "text": "Copyright notice\nThis work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.\n\n \n@GeogBristol #justsaying!",
+    "crumbs": [
+      "Introduction",
+      "Welcome"
+    ]
   },
   {
     "objectID": "spregress.html",
