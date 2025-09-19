@@ -535,49 +535,77 @@
     "href": "start.html",
     "title": "Getting Started",
     "section": "",
-    "text": "For this course we will be using R. R is a free software environment for statistical computing and graphics. To run the code blocks for this course on your own computer you will need to have installed R. This is available for Linux, MacOS and Windows.\n\nIMPORTANT: Mac users, make sure you have installed the right version of R for your laptop’s processor (M1/M2 or Intel)\nAt the time of publishing, I am using R version 4.3.0 (2023-04-21)."
+    "text": "For this course we will be using R. R is a free software environment for statistical computing and graphics. To run the code blocks for this course on your own computer you will need to have installed R. This is available for Linux, MacOS and Windows.\n\nIMPORTANT: Mac users, make sure you have installed the right version of R for your laptop’s processor (M1/M2 or Intel)\nAt the time of publishing, I am using R version 4.5.1 (2025-06-13 ucrt).",
+    "crumbs": [
+      "Introduction",
+      "Getting Started"
+    ]
   },
   {
     "objectID": "start.html#install-r-studio",
     "href": "start.html#install-r-studio",
     "title": "Getting Started",
     "section": "Install R Studio",
-    "text": "Install R Studio\nRStudio is an integrated development environment (IDE) that can make programming and other tasks easier in R. An open source edition is available to download and install.\n\nYou need to install R before you install R Studio."
+    "text": "Install R Studio\nRStudio is an integrated development environment (IDE) that can make programming and other tasks easier in R. An open source edition is available to download and install.\n\nYou need to install R before you install R Studio.",
+    "crumbs": [
+      "Introduction",
+      "Getting Started"
+    ]
   },
   {
     "objectID": "start.html#open-r-studio",
     "href": "start.html#open-r-studio",
     "title": "Getting Started",
     "section": "Open R Studio",
-    "text": "Open R Studio\nOnce R and R Studio are installed, open R Studio on your computer and type the following in the Console to the left or bottom left of the screen, alongside the prompt, >.\n\n\nCode\n1 + 1\n\n\nthen hit Enter/Return. You should, of course, obtain the answer 2, as below.\n\n\n[1] 2\n\n\nYou will also find that if you move your mouse to over the code block above, an option appears to copy the code to the clipboard, allowing you to then paste it into the R Console window in R Studio."
+    "text": "Open R Studio\nOnce R and R Studio are installed, open R Studio on your computer and type the following in the Console to the left or bottom left of the screen, alongside the prompt, &gt;.\n\n\nCode\n1 + 1\n\n\nthen hit Enter/Return. You should, of course, obtain the answer 2, as below.\n\n\n[1] 2\n\n\nYou will also find that if you move your mouse to over the code block above, an option appears to copy the code to the clipboard, allowing you to then paste it into the R Console window in R Studio.",
+    "crumbs": [
+      "Introduction",
+      "Getting Started"
+    ]
   },
   {
     "objectID": "start.html#install-additional-librariespackages",
     "href": "start.html#install-additional-librariespackages",
     "title": "Getting Started",
     "section": "Install additional libraries/packages",
-    "text": "Install additional libraries/packages\nThe base functions of R are greatly extended by the very many packages/libraries that have been developed for it. At the time of writing, there are 20103 of these on CRAN, which is the main repository for them. Many of these have been grouped into ‘tasks’ and topic areas, which can be viewed here.\nMost of the packages that will be needed for this course will be installed as they are needed. However, some will be used so regularly that we should install them now. Cut and paste the following code chunk into the Console and hit Enter/Return.\n\n\nCode\ninstall.packages(\"proxy\", dependencies = TRUE)\ninstall.packages(\"sf\", dependencies = TRUE)\ninstall.packages(\"tidyverse\", dependencies = TRUE)\n\n\n\nRun the code above even if you have the packages installed already so that you also have available all the packages that these depend upon and link to."
+    "text": "Install additional libraries/packages\nThe base functions of R are greatly extended by the very many packages/libraries that have been developed for it. At the time of writing, there are 22739 of these on CRAN, which is the main repository for them. Many of these have been grouped into ‘tasks’ and topic areas, which can be viewed here.\nMost of the packages that will be needed for this course will be installed as they are needed. However, some will be used so regularly that we should install them now. Cut and paste the following code chunk into the Console and hit Enter/Return.\n\n\nCode\ninstall.packages(\"proxy\", dependencies = TRUE)\ninstall.packages(\"sf\", dependencies = TRUE)\ninstall.packages(\"tidyverse\", dependencies = TRUE)\n\n\n\nRun the code above even if you have the packages installed already so that you also have available all the packages that these depend upon and link to.",
+    "crumbs": [
+      "Introduction",
+      "Getting Started"
+    ]
   },
   {
     "objectID": "start.html#changing-the-working-directory",
     "href": "start.html#changing-the-working-directory",
     "title": "Getting Started",
     "section": "Changing the working directory",
-    "text": "Changing the working directory\nIf you type getwd() into the R Console you will obtain your current working directory – the default location to look for files and to save content to. Mine is,\n\n\nCode\ngetwd()\n\n\n[1] \"/Users/ggrjh/Dropbox/github/MandM\"\n\n\nYou may wish to change this to something else each time you start R. You can do this using the drop-down menus. There is also the function setwd(dir) – type ?setwd in the R Console to learn more."
+    "text": "Changing the working directory\nIf you type getwd() into the R Console you will obtain your current working directory – the default location to look for files and to save content to. Mine is,\n\n\nCode\ngetwd()\n\n\n[1] \"C:/Users/profr/Dropbox/github/MandM\"\n\n\nYou may wish to change this to something else each time you start R. You can do this using the drop-down menus. There is also the function setwd(dir) – type ?setwd in the R Console to learn more.",
+    "crumbs": [
+      "Introduction",
+      "Getting Started"
+    ]
   },
   {
     "objectID": "start.html#organising-your-files-in-a-project",
     "href": "start.html#organising-your-files-in-a-project",
     "title": "Getting Started",
     "section": "Organising your files in a project",
-    "text": "Organising your files in a project\nRather than having to set your working directory each time you restart R, you could also create a new project in R by using File –> New Project… from the dropdown menus and create it either in a new directory (probably most sensible) or an existing one.\nThere is nothing especially magical about a project in R. As stated here, “a project is simply a working directory designated with a .RProj file. When you open a project (using File/Open Project in RStudio or by double–clicking on the .Rproj file outside of R), the working directory will automatically be set to the directory that the .RProj file is located in.” However, it is that which makes it useful: when you open a project you know that you are going to be working in a specific folder on your computer which them becomes the default ‘container’ to save files to or to download them from.”\n\nIt would be a good idea to create a new project now which can then be the folder and working directory for this course and its contents."
+    "text": "Organising your files in a project\nRather than having to set your working directory each time you restart R, you could also create a new project in R by using File –&gt; New Project… from the dropdown menus and create it either in a new directory (probably most sensible) or an existing one.\nThere is nothing especially magical about a project in R. As stated here, “a project is simply a working directory designated with a .RProj file. When you open a project (using File/Open Project in RStudio or by double–clicking on the .Rproj file outside of R), the working directory will automatically be set to the directory that the .RProj file is located in.” However, it is that which makes it useful: when you open a project you know that you are going to be working in a specific folder on your computer which them becomes the default ‘container’ to save files to or to download them from.”\n\nIt would be a good idea to create a new project now which can then be the folder and working directory for this course and its contents.",
+    "crumbs": [
+      "Introduction",
+      "Getting Started"
+    ]
   },
   {
     "objectID": "start.html#changing-the-appearance-of-r-studio",
     "href": "start.html#changing-the-appearance-of-r-studio",
     "title": "Getting Started",
     "section": "Changing the appearance of R Studio",
-    "text": "Changing the appearance of R Studio\nYou may notice that I prefer a blue to a white screen when working in R. To change it to this, from the drop-down menus use Tools –> Global Options… -> Appearance, and select Solarized Dark as the Editor theme. You may, of course, have your own preference."
+    "text": "Changing the appearance of R Studio\nYou may notice that I prefer a blue to a white screen when working in R. To change it to this, from the drop-down menus use Tools –&gt; Global Options… -&gt; Appearance, and select Solarized Dark as the Editor theme. You may, of course, have your own preference.",
+    "crumbs": [
+      "Introduction",
+      "Getting Started"
+    ]
   },
   {
     "objectID": "answers-exercise1.html",
@@ -802,6 +830,17 @@
     "crumbs": [
       "Why R?",
       "A Cartographic Answer"
+    ]
+  },
+  {
+    "objectID": "start.html#install-r",
+    "href": "start.html#install-r",
+    "title": "Getting Started",
+    "section": "",
+    "text": "For this course we will be using R. R is a free software environment for statistical computing and graphics. To run the code blocks for this course on your own computer you will need to have installed R. This is available for Linux, MacOS and Windows.\n\nIMPORTANT: Mac users, make sure you have installed the right version of R for your laptop’s processor (M1/M2 or Intel)\nAt the time of publishing, I am using R version 4.5.1 (2025-06-13 ucrt).",
+    "crumbs": [
+      "Introduction",
+      "Getting Started"
     ]
   }
 ]
