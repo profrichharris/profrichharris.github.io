@@ -647,18 +647,18 @@ lm(formula = y ~ x, data = .)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--2.26729 -0.60554  0.02561  0.51331  2.61121 
+-1.91530 -0.55171 -0.08834  0.60607  2.16562 
 
 Coefficients:
              Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) -0.224898   0.187957  -1.197    0.234    
-x            2.002185   0.003231 619.626   &lt;2e-16 ***
+(Intercept) -0.063581   0.194757  -0.326    0.745    
+x            2.003590   0.003348 598.411   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.9327 on 98 degrees of freedom
+Residual standard error: 0.9665 on 98 degrees of freedom
 Multiple R-squared:  0.9997,    Adjusted R-squared:  0.9997 
-F-statistic: 3.839e+05 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+F-statistic: 3.581e+05 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>(note: the output you get will likely differ from mine because the function <code>rnorm()</code> adds some random variations to the data)</p>
@@ -689,21 +689,21 @@ lm(formula = y ~ x, data = z)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--2.11234 -0.68623  0.03872  0.83431  2.76960 
+-2.31003 -0.72248 -0.03099  0.73903  2.65471 
 
 Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) -0.098459   0.205650  -0.479    0.633    
-x            2.002161   0.003535 566.310   &lt;2e-16 ***
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 0.003846   0.210004   0.018    0.985    
+x           2.001087   0.003610 554.271   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 1.021 on 98 degrees of freedom
+Residual standard error: 1.042 on 98 degrees of freedom
 Multiple R-squared:  0.9997,    Adjusted R-squared:  0.9997 
-F-statistic: 3.207e+05 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+F-statistic: 3.072e+05 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<p>Over time, expect <code>|&gt;</code> to be developed and to supersede <code>%&gt;%</code>. For now, you are unlikely to encounter errors using <code>%&gt;%</code> as a substitute for <code>|&gt;</code> but you might using <code>|&gt;</code> instead of <code>%&gt;%</code>. In other words, <code>%&gt;%</code> is the safer choice if you are unsure, although the <code>|&gt;</code> should be faster:</p>
+<p>Over time, expect <code>|&gt;</code> to be developed and to supersede <code>%&gt;%</code>. For now, you are unlikely to encounter errors using <code>%&gt;%</code> as a substitute for <code>|&gt;</code> but you might using <code>|&gt;</code> instead of <code>%&gt;%</code>. In other words, <code>%&gt;%</code> is the safer choice if you are unsure, although the <code>|&gt;</code> should be faster but might not be:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -724,13 +724,13 @@ F-statistic: 3.207e+05 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Unit: microseconds
+<pre><code>Unit: milliseconds
                                                                                                             expr
                   1:100 %&gt;% data.frame(x = ., y = 2 * . + rnorm(100)) %&gt;% lm(y ~      x, data = .) %&gt;% summary()
  summary((function(z) lm(y ~ x, data = z))((function(z) data.frame(x = z,      y = 2 * z + rnorm(100)))(1:100)))
-     min      lq      mean  median       uq      max neval cld
- 816.301 867.101  946.9259 936.551 996.4015 1516.501   100   a
- 802.401 876.701 1001.6701 935.451 990.8510 4511.301   100   a</code></pre>
+      min       lq     mean   median       uq      max neval cld
+ 1.044701 1.115601 1.345628 1.280752 1.409352 5.124201   100   a
+ 1.032402 1.101901 1.279479 1.164351 1.391401 2.559400   100   a</code></pre>
 </div>
 </div>
 </section>
@@ -1640,7 +1640,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb49-254"><a href="#cb49-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span>
 <span id="cb49-255"><a href="#cb49-255" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb49-256"><a href="#cb49-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-257"><a href="#cb49-257" aria-hidden="true" tabindex="-1"></a>Over time, expect <span class="in">`|&gt;`</span> to be developed and to supersede <span class="in">`%&gt;%`</span>. For now, you are unlikely to encounter errors using <span class="in">`%&gt;%`</span> as a substitute for <span class="in">`|&gt;`</span> but you might using <span class="in">`|&gt;`</span> instead of <span class="in">`%&gt;%`</span>. In other words, <span class="in">`%&gt;%`</span> is the safer choice if you are unsure, although the <span class="in">`|&gt;`</span> should be faster:</span>
+<span id="cb49-257"><a href="#cb49-257" aria-hidden="true" tabindex="-1"></a>Over time, expect <span class="in">`|&gt;`</span> to be developed and to supersede <span class="in">`%&gt;%`</span>. For now, you are unlikely to encounter errors using <span class="in">`%&gt;%`</span> as a substitute for <span class="in">`|&gt;`</span> but you might using <span class="in">`|&gt;`</span> instead of <span class="in">`%&gt;%`</span>. In other words, <span class="in">`%&gt;%`</span> is the safer choice if you are unsure, although the <span class="in">`|&gt;`</span> should be faster but might not be:</span>
 <span id="cb49-258"><a href="#cb49-258" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-261"><a href="#cb49-261" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb49-262"><a href="#cb49-262" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
