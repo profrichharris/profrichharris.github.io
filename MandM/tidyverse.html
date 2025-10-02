@@ -256,8 +256,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./thematicmaps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Thematic maps in R</span></a>
+  <a href="./thematicmaps1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Thematic maps in R (Part 1)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./thematicmaps2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Thematic maps in R (Part 2)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -647,18 +653,18 @@ lm(formula = y ~ x, data = .)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--1.91530 -0.55171 -0.08834  0.60607  2.16562 
+-2.82168 -0.82551  0.00308  0.85229  1.77659 
 
 Coefficients:
              Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) -0.063581   0.194757  -0.326    0.745    
-x            2.003590   0.003348 598.411   &lt;2e-16 ***
+(Intercept) -0.129235   0.212120  -0.609    0.544    
+x            2.004212   0.003647 549.599   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.9665 on 98 degrees of freedom
+Residual standard error: 1.053 on 98 degrees of freedom
 Multiple R-squared:  0.9997,    Adjusted R-squared:  0.9997 
-F-statistic: 3.581e+05 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+F-statistic: 3.021e+05 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>(note: the output you get will likely differ from mine because the function <code>rnorm()</code> adds some random variations to the data)</p>
@@ -688,19 +694,19 @@ Call:
 lm(formula = y ~ x, data = z)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--2.31003 -0.72248 -0.03099  0.73903  2.65471 
+    Min      1Q  Median      3Q     Max 
+-2.8942 -0.7092  0.1085  0.7695  3.3349 
 
 Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 0.003846   0.210004   0.018    0.985    
-x           2.001087   0.003610 554.271   &lt;2e-16 ***
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -0.027888   0.233310   -0.12    0.905    
+x            1.999735   0.004011  498.56   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 1.042 on 98 degrees of freedom
-Multiple R-squared:  0.9997,    Adjusted R-squared:  0.9997 
-F-statistic: 3.072e+05 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 1.158 on 98 degrees of freedom
+Multiple R-squared:  0.9996,    Adjusted R-squared:  0.9996 
+F-statistic: 2.486e+05 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>Over time, expect <code>|&gt;</code> to be developed and to supersede <code>%&gt;%</code>. For now, you are unlikely to encounter errors using <code>%&gt;%</code> as a substitute for <code>|&gt;</code> but you might using <code>|&gt;</code> instead of <code>%&gt;%</code>. In other words, <code>%&gt;%</code> is the safer choice if you are unsure, although the <code>|&gt;</code> should be faster but might not be:</p>
@@ -724,13 +730,13 @@ F-statistic: 3.072e+05 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Unit: milliseconds
+<pre><code>Unit: microseconds
                                                                                                             expr
                   1:100 %&gt;% data.frame(x = ., y = 2 * . + rnorm(100)) %&gt;% lm(y ~      x, data = .) %&gt;% summary()
  summary((function(z) lm(y ~ x, data = z))((function(z) data.frame(x = z,      y = 2 * z + rnorm(100)))(1:100)))
-      min       lq     mean   median       uq      max neval cld
- 1.044701 1.115601 1.345628 1.280752 1.409352 5.124201   100   a
- 1.032402 1.101901 1.279479 1.164351 1.391401 2.559400   100   a</code></pre>
+    min     lq     mean  median     uq    max neval cld
+ 1001.3 1051.0 1144.801 1086.95 1134.8 5120.7   100   a
+  976.3 1044.6 1107.619 1085.65 1118.6 1637.9   100   a</code></pre>
 </div>
 </div>
 </section>
