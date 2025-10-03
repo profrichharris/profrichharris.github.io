@@ -1,0 +1,235 @@
+LocalMunicipalityName.x,LocalMunicipalityCode,Population2011
+Buffalo City,BUF,755200.0
+Camdeboo,EC101,14000.0
+Blue Crane Route,EC102,37000.0
+Ikwezi,EC103,10000.0
+Makana,EC104,80500.0
+Ndlambe,EC105,325590.0
+Sundays River Valley,EC106,321138.0
+Baviaans,EC107,16110.0
+Kouga,EC108,62214.0
+Kou-Kamma,EC109,422214.0
+Mbhashe,EC121,143784.0
+Mnquma,EC122,40324.0
+Great Kei,EC123,196854.0
+Amahlathi,EC124,337040.0
+Ngqushwa,EC126,18323.0
+Nkonkobe,EC127,437005.0
+Nxuba,EC128,256299.0
+Inxuba Yethemba,EC131,115324.0
+Tsolwana,EC132,153589.0
+Inkwanca,EC133,455715.0
+Lukanji,EC134,28322.0
+Intsika Yethu,EC135,490561.0
+Emalahleni,EC136,263655.0
+Engcobo,EC137,154688.0
+Sakhisizwe,EC138,193102.0
+Elundini,EC141,308282.0
+Senqu,EC142,412045.0
+Maletswai,EC143,179762.0
+Gariep,EC144,49655.0
+Ngquza Hill,EC153,220567.0
+Port St Johns,EC154,325764.0
+Nyandeni,EC155,463599.0
+Mhlontlo,EC156,24623.0
+King Sabata Dalindye,EC157,211577.0
+Matatiele,EC441,11347.0
+Umzimvubu,EC442,53789.0
+Mbizana,EC443,34468.0
+Ntabankulu,EC444,492186.0
+Nelson Mandela Bay,NMA,80776.0
+Letsemeng,FS161,262007.0
+Kopanong,FS162,200800.0
+Mohokare,FS163,114535.0
+Naledi,FS164,459401.0
+Masilonyana,FS181,335696.0
+Tokologo,FS182,438685.0
+Tswelopele,FS183,210083.0
+Matjhabeng,FS184,469253.0
+Nala,FS185,491120.0
+Setsoto,FS191,324862.0
+Dihlabeng,FS192,357681.0
+Nketoana,FS193,308013.0
+Maluti a Phofung,FS194,141615.0
+Phumelela,FS195,248800.0
+Mantsopa,FS196,468416.0
+Moqhaka,FS201,418712.0
+Ngwathe,FS203,13450.0
+Metsimaholo,FS204,433416.0
+Mafube,FS205,176682.0
+Mangaung,MAN,43767.0
+Ekurhuleni,EKU,47631.0
+Emfuleni,GT421,387290.0
+Midvaal,GT422,399966.0
+Lesedi,GT423,288248.0
+Mogale City,GT481,173421.0
+Randfontein,GT482,396387.0
+Westonaria,GT483,322632.0
+Merafong City,GT484,129014.0
+City of Johannesburg,JHB,113810.0
+City of Tshwane,TSH,101260.0
+eThekwini,ETH,363663.0
+Vulamehlo,KZN211,58134.0
+Umdoni,KZN212,107633.0
+Umzumbe,KZN213,133541.0
+uMuziwabantu,KZN214,105856.0
+Ezinqoleni,KZN215,451908.0
+Hibiscus Coast,KZN216,92894.0
+uMshwathi,KZN221,352123.0
+uMngeni,KZN222,325842.0
+Mpofana,KZN223,159533.0
+Impendle,KZN224,54196.0
+The Msunduzi,KZN225,230125.0
+Mkhambathini,KZN226,433421.0
+Richmond,KZN227,453983.0
+Emnambithi/Ladysmith,KZN232,279831.0
+Indaka,KZN233,421077.0
+Umtshezi,KZN234,263584.0
+Okhahlamba,KZN235,449511.0
+Imbabazane,KZN236,57813.0
+Endumeni,KZN241,479762.0
+Nqutu,KZN242,18888.0
+Msinga,KZN244,299489.0
+Umvoti,KZN245,354508.0
+Newcastle,KZN252,412575.0
+Emadlangeni,KZN253,256746.0
+Dannhauser,KZN254,267785.0
+eDumbe,KZN261,375304.0
+uPhongolo,KZN262,43071.0
+Abaqulusi,KZN263,401436.0
+Nongoma,KZN265,200907.0
+Ulundi,KZN266,351974.0
+Umhlabuyalingana,KZN271,277103.0
+Jozini,KZN272,240484.0
+The Big 5 False Bay,KZN273,194734.0
+Hlabisa,KZN274,394225.0
+Mtubatuba,KZN275,149482.0
+Mfolozi,KZN281,409558.0
+uMhlathuze,KZN282,43687.0
+Ntambanana,KZN283,21674.0
+uMlalazi,KZN284,449203.0
+Mthonjaneni,KZN285,371711.0
+Nkandla,KZN286,66778.0
+Mandeni,KZN291,236361.0
+KwaDukuza,KZN292,77295.0
+Ndwedwe,KZN293,141394.0
+Maphumulo,KZN294,113381.0
+Ingwe,KZN431,369457.0
+Kwa Sani,KZN432,118748.0
+Greater Kokstad,KZN433,150521.0
+Ubuhlebezwe,KZN434,52411.0
+Umzimkhulu,KZN435,293140.0
+Greater Giyani,LIM331,311463.0
+Greater Letaba,LIM332,243080.0
+Greater Tzaneen,LIM333,114835.0
+Ba-Phalaborwa,LIM334,363870.0
+Maruleng,LIM335,483336.0
+Musina,LIM341,293474.0
+Mutale,LIM342,288773.0
+Thulamela,LIM343,62214.0
+Makhado,LIM344,183199.0
+Blouberg,LIM351,132697.0
+Aganang,LIM352,367399.0
+Molemole,LIM353,14197.0
+Polokwane,LIM354,159251.0
+Lepele-Nkumpi,LIM355,379913.0
+Thabazimbi,LIM361,295465.0
+Lephalale,LIM362,312277.0
+Mookgopong,LIM364,66440.0
+Modimolle,LIM365,446225.0
+Bela-Bela,LIM366,52883.0
+Mogalakwena,LIM367,474866.0
+Ephraim Mogale,LIM471,192685.0
+Elias Motsoaledi,LIM472,487910.0
+Makhuduthamaga,LIM473,257079.0
+Fetakgomo,LIM474,102858.0
+Greater Tubatse,LIM475,316062.0
+Chief Albert Luthuli,MP301,244839.0
+Msukaligwa,MP302,208970.0
+Mkhondo,MP303,480759.0
+Dr Pixley Ka Isaka S,MP304,390708.0
+Lekwa,MP305,186441.0
+Dipaleseng,MP306,264663.0
+Govan Mbeki,MP307,189326.0
+Victor Khanye,MP311,34287.0
+Emalahleni,MP312,482324.0
+Steve Tshwete,MP313,204517.0
+Emakhazeni,MP314,386572.0
+Thembisile,MP315,82237.0
+Dr JS Moroka,MP316,452972.0
+Thaba Chweu,MP321,370074.0
+Mbombela,MP322,380975.0
+Umjindi,MP323,116066.0
+Nkomazi,MP324,124045.0
+Bushbuckridge,MP325,119365.0
+Moretele,NW371,430433.0
+Local Municipality o,NW372,423332.0
+Rustenburg,NW373,81606.0
+Kgetlengrivier,NW374,81989.0
+Moses Kotane,NW375,340992.0
+Ratlou,NW381,335065.0
+Tswaing,NW382,313866.0
+Mafikeng,NW383,392996.0
+Ditsobotla,NW384,321472.0
+Ramotshere Moiloa,NW385,149132.0
+Naledi,NW392,83328.0
+Mamusa,NW393,439040.0
+Greater Taung,NW394,298574.0
+Lekwa-Teemane,NW396,341043.0
+Kagisano/Molopo,NW397,463250.0
+Ventersdorp,NW401,13129.0
+Tlokwe City Council,NW402,138833.0
+City of Matlosana,NW403,393015.0
+Maquassi Hills,NW404,246767.0
+Richtersveld,NC061,249716.0
+Nama Khoi,NC062,316801.0
+Kamiesberg,NC064,119430.0
+Hantam,NC065,48193.0
+Karoo Hoogland,NC066,488309.0
+Khâi-Ma,NC067,366984.0
+Ubuntu,NC071,201222.0
+Umsobomvu,NC072,301966.0
+Emthanjeni,NC073,192307.0
+Kareeberg,NC074,383296.0
+Renosterberg,NC075,126232.0
+Thembelihle,NC076,366262.0
+Siyathemba,NC077,337410.0
+Siyancuma,NC078,473649.0
+Mier,NC081,315727.0
+Kai !Garib,NC082,302460.0
+//Khara Hais,NC083,319886.0
+!Kheis,NC084,390754.0
+Tsantsabane,NC085,395348.0
+Kgatelopele,NC086,59108.0
+Sol Plaatjie,NC091,391099.0
+Dikgatlong,NC092,288604.0
+Magareng,NC093,20815.0
+Phokwane,NC094,367376.0
+Joe Morolong,NC451,216014.0
+Ga-Segonyana,NC452,92584.0
+Gamagara,NC453,346815.0
+City of Cape Town,CPT,249624.0
+Matzikama,WC011,292273.0
+Cederberg,WC012,164800.0
+Bergrivier,WC013,54968.0
+Saldanha Bay,WC014,175605.0
+Swartland,WC015,419121.0
+Witzenberg,WC022,122845.0
+Drakenstein,WC023,140479.0
+Stellenbosch,WC024,269147.0
+Breede Valley,WC025,87171.0
+Langeberg,WC026,241676.0
+Theewaterskloof,WC031,102348.0
+Overstrand,WC032,304489.0
+Cape Agulhas,WC033,10009.0
+Swellendam,WC034,145799.0
+Kannaland,WC041,408056.0
+Hessequa,WC042,311291.0
+Mossel Bay,WC043,374133.0
+George,WC044,477351.0
+Oudtshoorn,WC045,249542.0
+Bitou,WC047,28668.0
+Knysna,WC048,184411.0
+Laingsburg,WC051,474835.0
+Prince Albert,WC052,162583.0
+Beaufort West,WC053,250719.0
