@@ -22,4 +22,8 @@ knitr::opts_chunk$set(echo = TRUE)
 [About the book](https://press.lse.ac.uk/books/e/10.31389/lsepress.gag){target="_blank"} at the publisher's website
 
 # Ron's Publication List
+
 **Coming Soon**
+
+![](papers.jpg){width="800"}
+
