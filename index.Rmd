@@ -24,19 +24,25 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ![](punk.jpg){width="200"}
 
-I am a social geographer in the [School of Geographical Sciences](http://www.bristol.ac.uk/geography/) interested in **socio-spatial inequalities** within society and their causes. Presently I am Director of the [South West Doctoral Training Partnership](https://www.swdtp.ac.uk/) and was founding director of [the University of Bristol](https://www.bristol.ac.uk/)'s £1.3 million funded [Q-Step Centre](https://www.nuffieldfoundation.org/students-teachers/q-step) for undergraduate, quantitative social science.
+I am a social geographer in the [School of Geographical Sciences](http://www.bristol.ac.uk/geography/) interested in **socio-spatial inequalities** within society and their causes. Presently I am Director of the [South West Doctoral Training Partnership](https://www.swdtp.ac.uk/) and was founding director of [the University of Bristol](https://www.bristol.ac.uk/)'s £1.3 million funded [Q-Step Centre](https://www.nuffieldfoundation.org/students-teachers/q-step) for undergraduate, quantitative social science. I have particular professional interest in **supporting postgraduate study and students**.
 
-My early research looked at the application of spatial statistics, geographic information science and geodemographics in marketing, public policy and urban geography -- all examples of what are now described as **geographic data science**. More recent work has been in urban analytics and cartographic geovisualisation of administrative datasets, focusing on developing and applying innovative computational methods to analyse the **geographies of Covid-19**, to measure and to visualise spatial scales of **social and ethnic segregation**, and to study choice and markets in educational systems; also in the **geographies of education**, supporting quantitative and statistical literacy amongst geographers and undergraduate and postgraduate social scientists.
+My early research looked at the application of spatial statistics, geographic information science and geodemographics in marketing, public policy and urban geography -- all examples of what are now described as **geographic data science**. More recent work has been in urban analytics, applications of machine learning and AI, and cartographic geovisualisation of administrative datasets, with topics such as the **geographies of Covid-19**, the spatial scales of **social and ethnic segregation**, and **choice and markets in educational systems**, as well as in the **geographies of education**, supporting quantitative and statistical literacy among geographers and undergraduate and postgraduate social scientists.
 
 I am a Fellow of the [Academy of Social Sciences](https://acss.org.uk/) and of the [Royal Geographical Society (with IBG)](https://www.rgs.org/). I am also a licensed lay minister in the [Church of England](https://www.churchofengland.org/) so have some theological interests too.
 
-[My CV, last updated October 4, 2023](Curriculum Vitae19.pdf)
-
-[\@profrichharris on Twitter](https://twitter.com/profrichharris)
+[A slightly CV, last updated October 4, 2023](Curriculum Vitae19.pdf). See links below for an updated publication list.
 
 ## Come Study With Me!
 
-I have supervised PhD students from across the world, including Europe, Asia, Africa and the Middle East. Applicants are invited in topics aligned with my research interests. Please see the [School of Geographical Sciences webpages](http://www.bristol.ac.uk/geography/courses/postgraduate/humanphd.html) for funding opportunities and how to apply.
+I have supervised PhD students from across the world, including Europe, Asia, Africa and the Middle East. Applicants are invited in topics aligned with my research interests. I particularly invite applications in:
+
+- Social Geography
+- Place-based classifications
+- Advanced Quantitative Methods including machine learning and (Geo)AI
+- Geographical analysis of administrative, Census and other data
+- Socio-spatial inequalities
+
+Please see the [School of Geographical Sciences webpages](http://www.bristol.ac.uk/geography/courses/postgraduate/humanphd.html) for funding opportunities and how to apply.
 
 Funders for my students have included the [South West Doctoral Training Partnership](https://www.swdtp.ac.uk/) and [China Scholarship Council](https://www.bristol.ac.uk/students/support/finances/scholarships/china-scholarship-council/).
 
@@ -56,9 +62,17 @@ Social Geography. Quantitative Methods and Geographic Data Science. Socio-spatia
 
 [My ORCiD page](https://orcid.org/0000-0001-7943-9005) (includes some papers I had forgotten about)
 
-[My RPubs page](https://rpubs.com/profrichharris) (occasional tutorials, working ideas, supplementary material and other 'stuff' [in R](https://cran.r-project.org/))
+[My (largely archived) RPubs page](https://rpubs.com/profrichharris) (occasional tutorials, working ideas, supplementary material and other 'stuff' [in R](https://cran.r-project.org/))
 
 ## Books
+
+[**Geography and a Geographer: Reimagining the Discipline After Ron Johnston**](https://doi.org/10.31389/lsepress.gag) (with Levi Wolf and Alison Heppenstall)(ed., with David Manley and Robert Mayhew)
+
+![](ron.jpg){width="80"}
+
+[**A Research Agenda for Spatial Analysis**](https://www.e-elgar.com/shop/gbp/a-research-agenda-for-spatial-analysis-9781802203226.html) (ed., with Levi Wolf and Alison Heppenstall)
+
+![](agenda.jpg){width="80"}
 
 [**Ethnic Segregation Between Schools**](https://bristoluniversitypress.co.uk/ethnic-segregation-between-schools) (with Ron Johnston)
 
@@ -75,12 +89,6 @@ Social Geography. Quantitative Methods and Geographic Data Science. Socio-spatia
 [**Geodemographics, GIS and Neighbourhood Targeting**](https://www.google.co.uk/books/edition/Geodemographics_GIS_and_Neighbourhood_Ta/f62DTuyRe0UC?hl=en&gbpv=1&printsec=frontcover) (with Peter Sleight and Richard Webber)
 
 ![](geodemographics.jpg){width="80"}
-
-## Listening choices
-
-What I have been listening to on [Tidal](https://tidal.com/) (September 2023). Excludes my vinyl choices!
-
-![](stories_sticker.png){width="300"}
 
 ### Credits
 
