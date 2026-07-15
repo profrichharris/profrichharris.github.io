@@ -1309,7 +1309,7 @@ reCAPTCHA's high z-index challenge iframe render above it as intended. */
       var d = byId[o];
       if (!d) return;
       var li = document.createElement("li");
-      li.textContent = (d.year ? d.year : "n.d.") + " — " + d.citation;
+      li.textContent = "#" + d.id + " (" + (d.year ? d.year : "n.d.") + ") — " + d.citation;
       reportList.appendChild(li);
     });
     reportStatus.textContent = "";
@@ -1360,7 +1360,7 @@ reCAPTCHA's high z-index challenge iframe render above it as intended. */
     selectedRows.forEach(function (o) {
       var d = byId[o];
       if (!d) return;
-      refLines.push("- [" + (d.year ? d.year : "n.d.") + "] " + d.citation + (d.link ? " (" + d.link + ")" : ""));
+      refLines.push("- #" + d.id + " (" + (d.year ? d.year : "n.d.") + ") " + d.citation + (d.link ? " (" + d.link + ")" : ""));
     });
     var fullMessage = reportComment.value + "\n\nFlagged references:\n" + refLines.join("\n");
 
