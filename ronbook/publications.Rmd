@@ -1,0 +1,1127 @@
+---
+title: "Publications of Ron Johnston"
+subtitle: "A searchable list of his published works, 1965&ndash;2020"
+output:
+  tint::tintHtml
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+[&larr; Back to *Geography and a Geographer*](index.html)
+
+Ron Johnston published prolifically across six decades.<span class="marginnote">Using AI, some publications are matched against various research
+themes using their abstract where possible (via
+[OpenAlex](https://openalex.org){target="_blank"} and, where available, the
+publisher's webpage) or title, plus the journal name or year if
+informative. The three themes marked \* are those that Ron used to
+describe his research interests. Keywords are recurring words drawn from
+the titles and abstracts only.<br><br>
+<span style="color:#888;">Last updated: 15 July 2026</span></span> This page lists
+**1,621** of his works. **879** are drawn from his own, chronologically
+numbered publication archive (the numbering system is his). A further **742** -
+chiefly books, book chapters and reviews - are drawn from a 2013 CV. We have
+'numbered' those A, B, C&hellip; onward. The list remains incomplete and
+will continue to be checked, cleaned and updated.
+
+Use the search boxes to find and filter publications. Where a DOI or other
+persistent link is available it is included. Please let us know about any
+missing references and, if you spot any errors, please select and report them
+so we can update the records.
+
+<div class="fullwidth" id="pubs-app">
+
+```{=html}
+<div id="pubs-controls">
+<input type="text" id="pubs-search" placeholder="Search citations (e.g. author, journal, keyword)&hellip;" autocomplete="off">
+<select id="pubs-decade"></select>
+<select id="pubs-type"></select>
+<select id="pubs-theme"></select>
+<select id="pubs-keyword"></select>
+<select id="pubs-coauthor"></select>
+<select id="pubs-link-filter">
+<option value="all">All entries</option>
+<option value="link">With a link only</option>
+</select>
+<span id="pubs-count"></span>
+<span id="pubs-selected-count">0 selected</span>
+<button type="button" id="pubs-select-all" class="pubs-toolbar-btn">Select all</button>
+<button type="button" id="pubs-deselect-all" class="pubs-toolbar-btn" disabled>Deselect all</button>
+<button type="button" id="pubs-export-btn" class="pubs-toolbar-btn" disabled>Export</button>
+<button type="button" id="pubs-report-btn" class="pubs-toolbar-btn" disabled>Report error</button>
+</div>
+```
+
+<table class="fullwidth" id="pubs-table">
+  <thead>
+    <tr>
+      <th style="width:3.5em;" title="Ron's own publication number">#<span class="pubs-sort-btns" data-sort-key="o"><button type="button" class="pubs-sort-btn" data-key="o" data-dir="1" aria-label="Sort by # ascending">&#9650;</button><button type="button" class="pubs-sort-btn" data-key="o" data-dir="-1" aria-label="Sort by # descending">&#9660;</button></span></th>
+      <th style="width:5em;">Year<span class="pubs-sort-btns" data-sort-key="year"><button type="button" class="pubs-sort-btn" data-key="year" data-dir="1" aria-label="Sort by year ascending">&#9650;</button><button type="button" class="pubs-sort-btn" data-key="year" data-dir="-1" aria-label="Sort by year descending">&#9660;</button></span></th>
+      <th>Publication<span class="pubs-sort-btns" data-sort-key="title"><button type="button" class="pubs-sort-btn" data-key="title" data-dir="1" aria-label="Sort by title ascending">&#9650;</button><button type="button" class="pubs-sort-btn" data-key="title" data-dir="-1" aria-label="Sort by title descending">&#9660;</button></span></th>
+      <th style="width:3.5em;" title="Select to report an error, suggest an addition, or export">Select</th>
+    </tr>
+  </thead>
+  <tbody id="pubs-tbody"></tbody>
+</table>
+
+<p id="pubs-empty" style="display:none;">No publications match your search.</p>
+
+<dialog id="pubs-report-dialog">
+<form id="pubs-report-form" method="dialog">
+<h3 style="margin-top:0;">Report an error</h3>
+<p>You're reporting a problem with:</p>
+<ul id="pubs-report-list"></ul>
+<label for="pubs-report-comment"><strong>What's wrong?</strong></label><br>
+<textarea id="pubs-report-comment" rows="5" placeholder="Describe the error or mistake&hellip;" required></textarea>
+
+<!-- Honeypot: real visitors never see or fill this in; if it's non-empty
+on submission, Formspree silently discards the message as spam. -->
+<input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+<div class="g-recaptcha" data-sitekey="6Lc7oFMtAAAAACJToABdUhdrwIQmF1bT07B5lVVL"></div>
+
+<p id="pubs-report-status" role="status"></p>
+
+<div class="pubs-report-actions">
+<button type="button" id="pubs-report-cancel">Cancel</button>
+<button type="submit" id="pubs-report-send">Send</button>
+</div>
+</form>
+</dialog>
+
+<dialog id="pubs-suggest-dialog">
+<form id="pubs-suggest-form" method="dialog">
+<h3 style="margin-top:0;">Suggest a publication to add</h3>
+<p>Fill in whatever you know - not every field will apply in every case.</p>
+
+<label for="pubs-suggest-year">Year</label>
+<input type="text" id="pubs-suggest-year" name="Year" autocomplete="off">
+
+<label for="pubs-suggest-coauthors">Co-authors</label>
+<input type="text" id="pubs-suggest-coauthors" name="Co-authors" autocomplete="off">
+
+<label for="pubs-suggest-title">Title <span aria-hidden="true">*</span></label>
+<input type="text" id="pubs-suggest-title" name="Title" autocomplete="off" required>
+
+<label for="pubs-suggest-journal">Journal name</label>
+<input type="text" id="pubs-suggest-journal" name="Journal Name" autocomplete="off">
+
+<label for="pubs-suggest-volume">Volume</label>
+<input type="text" id="pubs-suggest-volume" name="Volume" autocomplete="off">
+
+<label for="pubs-suggest-number">Number</label>
+<input type="text" id="pubs-suggest-number" name="Number" autocomplete="off">
+
+<label for="pubs-suggest-publisher">Book publisher</label>
+<input type="text" id="pubs-suggest-publisher" name="Book Publisher" autocomplete="off">
+
+<label for="pubs-suggest-pages">Pages</label>
+<input type="text" id="pubs-suggest-pages" name="Pages" autocomplete="off">
+
+<label for="pubs-suggest-link">Link to online version</label>
+<input type="text" id="pubs-suggest-link" name="Link" autocomplete="off">
+
+<label for="pubs-suggest-other">Anything else</label>
+<textarea id="pubs-suggest-other" name="Anything else" rows="3"></textarea>
+
+<!-- Honeypot: real visitors never see or fill this in; if it's non-empty
+on submission, Formspree silently discards the message as spam. -->
+<input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+<div class="g-recaptcha" data-sitekey="6Lc7oFMtAAAAACJToABdUhdrwIQmF1bT07B5lVVL"></div>
+
+<p id="pubs-suggest-status" role="status"></p>
+
+<div class="pubs-report-actions">
+<button type="button" id="pubs-suggest-cancel">Cancel</button>
+<button type="submit" id="pubs-suggest-send">Send</button>
+</div>
+</form>
+</dialog>
+
+<dialog id="pubs-abstract-dialog">
+<div id="pubs-abstract-inner">
+<button type="button" id="pubs-abstract-close" aria-label="Close">&times;</button>
+<h3 id="pubs-abstract-title">Abstract</h3>
+<div id="pubs-abstract-text"></div>
+</div>
+</dialog>
+
+</div>
+
+<style>
+#pubs-app { font-family: Roboto, Calibri, sans-serif; }
+
+:root { --pubs-controls-h: 4.4rem; }
+
+#pubs-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0.9rem 0;
+  position: sticky;
+  top: 0;
+  background: #fefefe;
+  border-bottom: 1px solid #ddd;
+  z-index: 20;
+}
+
+#pubs-search {
+  flex: 1 1 20rem;
+  padding: 0.45rem 0.7rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid #999;
+  background: #fffff8;
+  color: #111;
+}
+
+#pubs-decade, #pubs-type, #pubs-theme, #pubs-keyword, #pubs-coauthor, #pubs-link-filter {
+  padding: 0.45rem 0.6rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid #999;
+  background: #fffff8;
+  color: #111;
+}
+
+#pubs-count {
+  font-size: 0.95rem;
+  color: #555;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+table#pubs-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#pubs-table th {
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  font-family: "Roboto Condensed Bold", Arial, sans-serif;
+  font-weight: 400;
+  user-select: none;
+  position: sticky;
+  top: var(--pubs-controls-h);
+  background: #fefefe;
+  box-shadow: 0 1px 0 #111;
+  z-index: 10;
+}
+
+.pubs-sort-btns {
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: middle;
+  margin-left: 0.3em;
+  line-height: 0.6;
+}
+
+.pubs-sort-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.6em;
+  color: #000;
+  opacity: 0.35;
+  cursor: pointer;
+  line-height: 0.7;
+}
+
+.pubs-sort-btn:hover { opacity: 0.8; }
+.pubs-sort-btn.pubs-sort-active { opacity: 1; }
+
+#pubs-table td {
+  padding: 0.5rem 0.6rem;
+  border-top: 1px solid #ddd;
+  vertical-align: top;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+#pubs-table tr:hover td { background: #f3f1e7; }
+
+.pubs-year-cell { font-family: "Roboto Mono", Consolas, monospace; color: #444; }
+.pubs-num-cell { font-family: "Roboto Mono", Consolas, monospace; color: #888; }
+
+a.pubs-link, a.pubs-link:link, a.pubs-link:visited {
+  margin-left: 0.5em;
+  white-space: nowrap;
+  font-size: 0.9em;
+  color: #1565c0;
+  text-decoration: underline;
+  text-shadow: none;
+  background: none;
+}
+
+button.pubs-abstract-link {
+  margin-left: 0.5em;
+  white-space: nowrap;
+  font-size: 0.9em;
+  color: #5b2c83;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+#pubs-abstract-dialog {
+  width: min(34rem, 90vw);
+  max-height: 80vh;
+  overflow: hidden;
+  border: 1px solid #999;
+  border-radius: 0.4em;
+  padding: 0;
+  background: transparent;
+  color: #222;
+}
+
+#pubs-abstract-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+#pubs-abstract-inner {
+  position: relative;
+  box-sizing: border-box;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 1.2rem 1.6rem;
+  border-radius: 0.4em;
+  background: #eaeaea;
+  font-family: "Roboto Condensed", Arial, Helvetica, sans-serif;
+  color: #222;
+}
+
+#pubs-abstract-title {
+  margin: 0 1.6rem 0.6rem 0;
+  font-size: 1.05rem;
+}
+
+#pubs-abstract-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+#pubs-abstract-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.9rem;
+  border: none;
+  background: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #555;
+}
+
+.pubs-theme-tag {
+  display: inline-block;
+  margin: 0.3em 0.35em 0 0;
+  padding: 0.1em 0.5em;
+  font-size: 0.78em;
+  font-family: "Roboto Condensed", Arial, sans-serif;
+  border-radius: 0.9em;
+  white-space: nowrap;
+}
+
+.pubs-theme-high {
+  background: #ded6a3;
+  color: #3a2f00;
+}
+
+.pubs-theme-medium {
+  background: #eae7da;
+  color: #444;
+}
+
+.pubs-keyword-tag {
+  display: inline-block;
+  margin: 0.3em 0.3em 0 0;
+  padding: 0.05em 0.45em;
+  font-size: 0.75em;
+  font-family: "Roboto Condensed", Arial, sans-serif;
+  border-radius: 0.3em;
+  white-space: nowrap;
+  background: #eef3f1;
+  color: #3d6b5c;
+  border: 1px solid #cfe0da;
+}
+
+@media screen and (max-width: 760px) {
+  #pubs-count, #pubs-selected-count { margin-left: 0; }
+  .pubs-toolbar-btn { margin-left: 0; }
+}
+
+#pubs-selected-count {
+  margin-left: 0.8rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.pubs-toolbar-btn {
+  margin-left: 0.5rem;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 1px solid #999;
+  background: #fffff8;
+  color: #111;
+  cursor: pointer;
+  border-radius: 0.25em;
+}
+
+.pubs-toolbar-btn:disabled {
+  color: #aaa;
+  border-color: #ddd;
+  background: #f5f5f0;
+  cursor: not-allowed;
+}
+
+.pubs-toolbar-btn:not(:disabled):hover {
+  background: #eae7da;
+}
+
+.pubs-select-cell { text-align: center; }
+
+#pubs-report-dialog, #pubs-suggest-dialog {
+  width: min(32rem, 90vw);
+  max-height: 85vh;
+  overflow-y: auto;
+  border: 1px solid #999;
+  border-radius: 0.4em;
+  padding: 1.2rem 1.5rem;
+  font-family: Roboto, Calibri, sans-serif;
+  background: #fffff8;
+  color: #222;
+}
+
+#pubs-report-dialog::backdrop, #pubs-suggest-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+#pubs-suggest-form label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin: 0.6rem 0 0.2rem 0;
+}
+
+#pubs-suggest-form input[type="text"],
+#pubs-suggest-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.4rem;
+}
+
+#pubs-suggest-status {
+  font-size: 0.9rem;
+  min-height: 1.2em;
+}
+
+#pubs-suggest-status.pubs-status-error { color: #a33; }
+#pubs-suggest-status.pubs-status-ok { color: #2a7a2a; }
+
+#pubs-report-list {
+  max-height: 8rem;
+  overflow-y: auto;
+  font-size: 0.92rem;
+  padding-left: 1.2rem;
+  border: 1px solid #ddd;
+  background: #f8f7f2;
+}
+
+#pubs-report-comment {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin: 0.4rem 0 1rem 0;
+}
+
+#pubs-report-status {
+  font-size: 0.9rem;
+  min-height: 1.2em;
+}
+
+#pubs-report-status.pubs-status-error { color: #a33; }
+#pubs-report-status.pubs-status-ok { color: #2a7a2a; }
+
+.pubs-report-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
+.pubs-report-actions button {
+  padding: 0.45rem 1rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 1px solid #999;
+  border-radius: 0.25em;
+  cursor: pointer;
+  background: #fffff8;
+}
+
+#pubs-report-send {
+  background: #1565c0;
+  color: #fff;
+  border-color: #1565c0;
+}
+
+#pubs-report-send:disabled {
+  background: #aac4e0;
+  border-color: #aac4e0;
+  cursor: not-allowed;
+}
+
+#pubs-suggest-send {
+  background: #1565c0;
+  color: #fff;
+  border-color: #1565c0;
+}
+
+#pubs-suggest-send:disabled {
+  background: #aac4e0;
+  border-color: #aac4e0;
+  cursor: not-allowed;
+}
+</style>
+
+<script src="publications_data.js"></script>
+<script>
+(function () {
+  // Always start at the top of the page - browsers sometimes restore a
+  // previous scroll position on reload or back/forward navigation, which is
+  // disorienting on a page this long.
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  window.scrollTo(0, 0);
+  window.addEventListener("pageshow", function () { window.scrollTo(0, 0); });
+
+  var data = PUBLICATIONS.slice();
+
+  var tbody = document.getElementById("pubs-tbody");
+  var searchBox = document.getElementById("pubs-search");
+  var decadeSelect = document.getElementById("pubs-decade");
+  var typeSelect = document.getElementById("pubs-type");
+  var themeSelect = document.getElementById("pubs-theme");
+  var keywordSelect = document.getElementById("pubs-keyword");
+  var coauthorSelect = document.getElementById("pubs-coauthor");
+  var linkFilter = document.getElementById("pubs-link-filter");
+  var countEl = document.getElementById("pubs-count");
+  var emptyEl = document.getElementById("pubs-empty");
+  var sortButtons = document.querySelectorAll(".pubs-sort-btn");
+
+  // Themes Ron himself used to describe his research interests - marked
+  // with an asterisk wherever a theme name is displayed. The underlying
+  // name (used for matching/filtering) is unchanged.
+  var PRIMARY_MARKED_THEMES = [
+    "Electoral and political geography",
+    "History of human geography",
+    "Urban social geography",
+  ];
+  function themeLabel(name) {
+    return PRIMARY_MARKED_THEMES.indexOf(name) !== -1 ? name + " *" : name;
+  }
+
+  var selectedCountEl = document.getElementById("pubs-selected-count");
+  var selectAllBtn = document.getElementById("pubs-select-all");
+  var deselectAllBtn = document.getElementById("pubs-deselect-all");
+  var exportBtn = document.getElementById("pubs-export-btn");
+  var reportBtn = document.getElementById("pubs-report-btn");
+  var reportDialog = document.getElementById("pubs-report-dialog");
+  var reportForm = document.getElementById("pubs-report-form");
+  var reportList = document.getElementById("pubs-report-list");
+  var reportComment = document.getElementById("pubs-report-comment");
+  var reportCancel = document.getElementById("pubs-report-cancel");
+  var reportSend = document.getElementById("pubs-report-send");
+  var reportStatus = document.getElementById("pubs-report-status");
+  var suggestDialog = document.getElementById("pubs-suggest-dialog");
+  var suggestForm = document.getElementById("pubs-suggest-form");
+  var suggestCancel = document.getElementById("pubs-suggest-cancel");
+  var suggestSend = document.getElementById("pubs-suggest-send");
+  var suggestStatus = document.getElementById("pubs-suggest-status");
+  var abstractDialog = document.getElementById("pubs-abstract-dialog");
+  var abstractTitle = document.getElementById("pubs-abstract-title");
+  var abstractText = document.getElementById("pubs-abstract-text");
+  var abstractClose = document.getElementById("pubs-abstract-close");
+  var byId = {};
+  data.forEach(function (d) { byId[d.o] = d; });
+  var selectedRows = new Set();
+  var lastFiltered = [];
+
+  var sortKey = "o";
+  var sortDir = 1;
+
+  function titleOnly(citation) {
+    return citation.replace(/^\(with[^)]*\)\s*/i, "");
+  }
+
+  function compareForSort(a, b) {
+    if (sortKey === "year") {
+      var aNull = a.year === null, bNull = b.year === null;
+      if (aNull && bNull) return a.o - b.o;
+      if (aNull) return 1;
+      if (bNull) return -1;
+      if (a.year !== b.year) return (a.year - b.year) * sortDir;
+      return a.o - b.o;
+    }
+    if (sortKey === "title") {
+      var at = titleOnly(a.citation).toLowerCase();
+      var bt = titleOnly(b.citation).toLowerCase();
+      if (at < bt) return -1 * sortDir;
+      if (at > bt) return 1 * sortDir;
+      return a.o - b.o;
+    }
+    // "o" - the site's own internal sequence: archive records (numbered by
+    // Ron) sort before CV records (lettered), and numerically/alphabetically
+    // within each, since o is assigned continuously across both.
+    return (a.o - b.o) * sortDir;
+  }
+
+  // Build decade options
+  var decades = {};
+  data.forEach(function (d) {
+    var key = d.year ? (Math.floor(d.year / 10) * 10) + "s" : "Undated";
+    decades[key] = true;
+  });
+  var decadeKeys = Object.keys(decades).filter(function (k) { return k !== "Undated"; }).sort();
+  if (decades["Undated"]) decadeKeys.push("Undated");
+
+  var allOption = document.createElement("option");
+  allOption.value = "all";
+  allOption.textContent = "All decades";
+  decadeSelect.appendChild(allOption);
+  decadeKeys.forEach(function (k) {
+    var opt = document.createElement("option");
+    opt.value = k;
+    opt.textContent = k === "Undated" ? "Undated" : k;
+    decadeSelect.appendChild(opt);
+  });
+
+  function decadeOf(year) {
+    return year ? (Math.floor(year / 10) * 10) + "s" : "Undated";
+  }
+
+  // Build type options
+  var typeCounts = {};
+  data.forEach(function (d) {
+    typeCounts[d.type] = (typeCounts[d.type] || 0) + 1;
+  });
+  var typeKeys = Object.keys(typeCounts)
+    .sort(function (a, b) { return typeCounts[b] - typeCounts[a]; });
+
+  var allTypeOption = document.createElement("option");
+  allTypeOption.value = "all";
+  allTypeOption.textContent = "All types";
+  typeSelect.appendChild(allTypeOption);
+  typeKeys.forEach(function (k) {
+    var opt = document.createElement("option");
+    opt.value = k;
+    opt.textContent = k + " (" + typeCounts[k] + ")";
+    typeSelect.appendChild(opt);
+  });
+
+  // Build theme options. d.themes is a list of [name, score] pairs.
+  var themeCounts = {};
+  var noThemeCount = 0;
+  data.forEach(function (d) {
+    if (d.themes && d.themes.length) {
+      d.themes.forEach(function (t) { themeCounts[t[0]] = (themeCounts[t[0]] || 0) + 1; });
+    } else {
+      noThemeCount++;
+    }
+  });
+  var themeKeys = Object.keys(themeCounts).sort();
+
+  var allThemeOption = document.createElement("option");
+  allThemeOption.value = "all";
+  allThemeOption.textContent = "All themes";
+  themeSelect.appendChild(allThemeOption);
+  themeKeys.forEach(function (k) {
+    var opt = document.createElement("option");
+    opt.value = k;
+    opt.textContent = themeLabel(k) + " (" + themeCounts[k] + ")";
+    themeSelect.appendChild(opt);
+  });
+  if (noThemeCount) {
+    var noThemeOption = document.createElement("option");
+    noThemeOption.value = "__unclassified__";
+    noThemeOption.textContent = "Unclassified (" + noThemeCount + ")";
+    themeSelect.appendChild(noThemeOption);
+  }
+
+  // Build keyword options
+  var keywordCounts = {};
+  var noKeywordCount = 0;
+  data.forEach(function (d) {
+    if (d.keywords && d.keywords.length) {
+      d.keywords.forEach(function (k) { keywordCounts[k] = (keywordCounts[k] || 0) + 1; });
+    } else {
+      noKeywordCount++;
+    }
+  });
+  var keywordKeys = Object.keys(keywordCounts).sort();
+
+  var allKeywordOption = document.createElement("option");
+  allKeywordOption.value = "all";
+  allKeywordOption.textContent = "All keywords";
+  keywordSelect.appendChild(allKeywordOption);
+  keywordKeys.forEach(function (k) {
+    var opt = document.createElement("option");
+    opt.value = k;
+    opt.textContent = k + " (" + keywordCounts[k] + ")";
+    keywordSelect.appendChild(opt);
+  });
+  if (noKeywordCount) {
+    var noKeywordOption = document.createElement("option");
+    noKeywordOption.value = "__none__";
+    noKeywordOption.textContent = "No keywords (" + noKeywordCount + ")";
+    keywordSelect.appendChild(noKeywordOption);
+  }
+
+  // Build co-author options. Collaborators who appear only once are folded
+  // into an "Others" bucket so the list of ~120 names doesn't overwhelm the
+  // dropdown; anyone with at least MIN_COAUTHOR_WORKS gets their own entry.
+  var MIN_COAUTHOR_WORKS = 2;
+  var coauthorCounts = {};
+  data.forEach(function (d) {
+    (d.coauthors || []).forEach(function (c) {
+      coauthorCounts[c] = (coauthorCounts[c] || 0) + 1;
+    });
+  });
+  // Labels are "Initial Surname" (e.g. "R Harris") - sort by surname, not
+  // by the leading initial, so "R Harris" comes before "C Harrison".
+  function surnameOf(label) { return label.slice(label.indexOf(" ") + 1); }
+  var namedCoauthors = Object.keys(coauthorCounts)
+    .filter(function (k) { return coauthorCounts[k] >= MIN_COAUTHOR_WORKS; })
+    .sort(function (a, b) {
+      var sa = surnameOf(a), sb = surnameOf(b);
+      return sa === sb ? a.localeCompare(b) : sa.localeCompare(sb);
+    });
+  var othersCount = Object.keys(coauthorCounts)
+    .filter(function (k) { return coauthorCounts[k] < MIN_COAUTHOR_WORKS; }).length;
+
+  var allCoauthorOption = document.createElement("option");
+  allCoauthorOption.value = "all";
+  allCoauthorOption.textContent = "All collaborators";
+  coauthorSelect.appendChild(allCoauthorOption);
+  var soleOption = document.createElement("option");
+  soleOption.value = "__sole__";
+  soleOption.textContent = "Sole-authored only";
+  coauthorSelect.appendChild(soleOption);
+  namedCoauthors.forEach(function (k) {
+    var opt = document.createElement("option");
+    opt.value = k;
+    opt.textContent = k + " (" + coauthorCounts[k] + ")";
+    coauthorSelect.appendChild(opt);
+  });
+  if (othersCount) {
+    var othersOption = document.createElement("option");
+    othersOption.value = "__others__";
+    othersOption.textContent = "Others (" + othersCount + " one-off collaborators)";
+    coauthorSelect.appendChild(othersOption);
+  }
+
+  function render() {
+    var q = searchBox.value.trim().toLowerCase();
+    var decadeVal = decadeSelect.value;
+    var typeVal = typeSelect.value;
+    var themeVal = themeSelect.value;
+    var keywordVal = keywordSelect.value;
+    var coauthorVal = coauthorSelect.value;
+    var linkVal = linkFilter.value;
+
+    var filtered = data.filter(function (d) {
+      if (q) {
+        var themeText = (d.themes || []).map(function (t) { return t[0]; }).join(" ");
+        var keywordText = (d.keywords || []).join(" ");
+        var haystack = (d.citation + " " + themeText + " " + keywordText).toLowerCase();
+        if (haystack.indexOf(q) === -1) return false;
+      }
+      if (decadeVal !== "all" && decadeOf(d.year) !== decadeVal) return false;
+      if (typeVal !== "all" && d.type !== typeVal) return false;
+      if (themeVal === "__unclassified__" && d.themes && d.themes.length) return false;
+      if (themeVal !== "all" && themeVal !== "__unclassified__" &&
+          (!d.themes || !d.themes.some(function (t) { return t[0] === themeVal; }))) return false;
+      if (keywordVal === "__none__" && d.keywords && d.keywords.length) return false;
+      if (keywordVal !== "all" && keywordVal !== "__none__" &&
+          (!d.keywords || d.keywords.indexOf(keywordVal) === -1)) return false;
+      if (coauthorVal === "__sole__" && d.coauthors && d.coauthors.length) return false;
+      if (coauthorVal === "__others__" && !(d.coauthors || []).some(function (c) { return coauthorCounts[c] < MIN_COAUTHOR_WORKS; })) return false;
+      if (coauthorVal !== "all" && coauthorVal !== "__sole__" && coauthorVal !== "__others__" && (!d.coauthors || d.coauthors.indexOf(coauthorVal) === -1)) return false;
+      if (linkVal === "link" && !d.link) return false;
+      return true;
+    });
+
+    filtered.sort(compareForSort);
+
+    tbody.textContent = "";
+    var frag = document.createDocumentFragment();
+
+    filtered.forEach(function (d) {
+      var tr = document.createElement("tr");
+
+      var tdNum = document.createElement("td");
+      tdNum.className = "pubs-num-cell";
+      tdNum.textContent = d.id;
+      tr.appendChild(tdNum);
+
+      var tdYear = document.createElement("td");
+      tdYear.className = "pubs-year-cell";
+      tdYear.textContent = d.year ? d.year : "n.d.";
+      tr.appendChild(tdYear);
+
+      var tdCite = document.createElement("td");
+      tdCite.textContent = d.citation;
+      if (d.abstract) {
+        var abstractBtn = document.createElement("button");
+        abstractBtn.type = "button";
+        abstractBtn.className = "pubs-abstract-link";
+        abstractBtn.textContent = "[abstract]";
+        abstractBtn.setAttribute("data-o", d.o);
+        tdCite.appendChild(document.createTextNode(" "));
+        tdCite.appendChild(abstractBtn);
+      }
+      if (d.synopsis) {
+        var synopsisBtn = document.createElement("button");
+        synopsisBtn.type = "button";
+        synopsisBtn.className = "pubs-abstract-link pubs-synopsis-link";
+        synopsisBtn.textContent = "[synopsis]";
+        synopsisBtn.setAttribute("data-o", d.o);
+        tdCite.appendChild(document.createTextNode(" "));
+        tdCite.appendChild(synopsisBtn);
+      }
+      if (d.list) {
+        var listBtn = document.createElement("button");
+        listBtn.type = "button";
+        listBtn.className = "pubs-abstract-link pubs-list-link";
+        listBtn.textContent = d.listPartial ? "[partial list]" : "[list]";
+        listBtn.setAttribute("data-o", d.o);
+        tdCite.appendChild(document.createTextNode(" "));
+        tdCite.appendChild(listBtn);
+      }
+      (d.themes || []).forEach(function (t) {
+        var name = t[0], score = t[1];
+        var confidence = score >= 0.25 ? "high" : "medium";
+        var tag = document.createElement("span");
+        tag.className = "pubs-theme-tag pubs-theme-" + confidence;
+        tag.textContent = themeLabel(name);
+        tdCite.appendChild(tag);
+      });
+      (d.keywords || []).forEach(function (k) {
+        var tag = document.createElement("span");
+        tag.className = "pubs-keyword-tag";
+        tag.textContent = k;
+        tdCite.appendChild(tag);
+      });
+      if (d.link) {
+        var a = document.createElement("a");
+        a.href = d.link;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.className = "pubs-link";
+        a.textContent = "[view]";
+        tdCite.appendChild(document.createTextNode(" "));
+        tdCite.appendChild(a);
+      }
+      tr.appendChild(tdCite);
+
+      var tdSelect = document.createElement("td");
+      tdSelect.className = "pubs-select-cell";
+      var checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.className = "pubs-select-checkbox";
+      checkbox.setAttribute("data-o", d.o);
+      checkbox.checked = selectedRows.has(d.o);
+      checkbox.setAttribute("aria-label", "Select this publication");
+      tdSelect.appendChild(checkbox);
+      tr.appendChild(tdSelect);
+
+      frag.appendChild(tr);
+    });
+
+    tbody.appendChild(frag);
+    emptyEl.style.display = filtered.length ? "none" : "block";
+    countEl.textContent = "Showing " + filtered.length + " of " + data.length + " works";
+    lastFiltered = filtered;
+    updateSelectionUI();
+  }
+
+  searchBox.addEventListener("input", render);
+  decadeSelect.addEventListener("change", render);
+  typeSelect.addEventListener("change", render);
+  themeSelect.addEventListener("change", render);
+  keywordSelect.addEventListener("change", render);
+  coauthorSelect.addEventListener("change", render);
+  linkFilter.addEventListener("change", render);
+
+  function updateSortButtonStyles() {
+    sortButtons.forEach(function (btn) {
+      var active = btn.getAttribute("data-key") === sortKey &&
+        Number(btn.getAttribute("data-dir")) === sortDir;
+      btn.classList.toggle("pubs-sort-active", active);
+    });
+  }
+
+  sortButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      sortKey = btn.getAttribute("data-key");
+      sortDir = Number(btn.getAttribute("data-dir"));
+      updateSortButtonStyles();
+      render();
+    });
+  });
+  updateSortButtonStyles();
+
+  // The controls bar can wrap onto a second line on narrow screens, so its
+  // height isn't fixed - measure it and feed the sticky table header the
+  // right offset to sit directly beneath it, with no gap or overlap.
+  var controlsEl = document.getElementById("pubs-controls");
+  function syncStickyOffset() {
+    document.documentElement.style.setProperty("--pubs-controls-h", controlsEl.offsetHeight + "px");
+  }
+  syncStickyOffset();
+  window.addEventListener("resize", syncStickyOffset);
+
+  // --- Error reporting ---
+  var FORMSPREE_ENDPOINT = "https://formspree.io/f/xnjenvjj";
+  var REPORT_FALLBACK_EMAIL = "profrichharris@gmail.com";
+
+  function updateSelectionUI() {
+    var n = selectedRows.size;
+    selectedCountEl.textContent = n + " selected";
+    deselectAllBtn.disabled = n === 0;
+    exportBtn.disabled = n === 0;
+    selectAllBtn.disabled = lastFiltered.length === 0;
+    reportBtn.disabled = false;
+    reportBtn.textContent = n === 0 ? "Report missing reference" : "Report error";
+  }
+
+  tbody.addEventListener("change", function (e) {
+    if (!e.target.classList.contains("pubs-select-checkbox")) return;
+    var o = Number(e.target.getAttribute("data-o"));
+    if (e.target.checked) {
+      selectedRows.add(o);
+    } else {
+      selectedRows.delete(o);
+    }
+    updateSelectionUI();
+  });
+
+  selectAllBtn.addEventListener("click", function () {
+    lastFiltered.forEach(function (d) { selectedRows.add(d.o); });
+    render();
+  });
+
+  deselectAllBtn.addEventListener("click", function () {
+    selectedRows.clear();
+    render();
+  });
+
+  function exportSelected() {
+    var selected = data.filter(function (d) { return selectedRows.has(d.o); });
+    selected.sort(function (a, b) { return a.o - b.o; });
+    var lines = selected.map(function (d) {
+      return "[" + (d.year ? d.year : "n.d.") + "] " + d.citation + (d.link ? " (" + d.link + ")" : "");
+    });
+    var blob = new Blob([lines.join("\n\n")], { type: "text/plain" });
+    var filename = "ron-johnston-selected-publications.txt";
+
+    if (window.showSaveFilePicker) {
+      window.showSaveFilePicker({
+        suggestedName: filename,
+        types: [{ description: "Text file", accept: { "text/plain": [".txt"] } }],
+      }).then(function (handle) {
+        return handle.createWritable().then(function (writable) {
+          return writable.write(blob).then(function () { return writable.close(); });
+        });
+      }).catch(function (err) {
+        if (err && err.name !== "AbortError") downloadBlob(blob, filename);
+      });
+    } else {
+      downloadBlob(blob, filename);
+    }
+  }
+
+  function downloadBlob(blob, filename) {
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  exportBtn.addEventListener("click", exportSelected);
+
+  reportBtn.addEventListener("click", function () {
+    if (selectedRows.size === 0) {
+      suggestForm.reset();
+      suggestStatus.textContent = "";
+      suggestStatus.className = "";
+      suggestSend.disabled = false;
+      suggestSend.textContent = "Send";
+      // Two reCAPTCHA widgets now exist on the page (report dialog's is
+      // widget 0, this one is widget 1, in DOM order) - a bare reset()
+      // always targets widget 0, so this must reset explicitly by index.
+      if (window.grecaptcha && window.grecaptcha.reset) window.grecaptcha.reset(1);
+      suggestDialog.showModal();
+      return;
+    }
+    reportList.textContent = "";
+    selectedRows.forEach(function (o) {
+      var d = byId[o];
+      if (!d) return;
+      var li = document.createElement("li");
+      li.textContent = (d.year ? d.year : "n.d.") + " — " + d.citation;
+      reportList.appendChild(li);
+    });
+    reportStatus.textContent = "";
+    reportStatus.className = "";
+    reportComment.value = "";
+    reportSend.disabled = false;
+    reportSend.textContent = "Send";
+    if (window.grecaptcha && window.grecaptcha.reset) window.grecaptcha.reset(0);
+    reportDialog.showModal();
+  });
+
+  reportCancel.addEventListener("click", function () {
+    reportDialog.close();
+  });
+
+  suggestCancel.addEventListener("click", function () {
+    suggestDialog.close();
+  });
+
+  // --- Abstract / Synopsis / List pop-up (shared dialog) ---
+  tbody.addEventListener("click", function (e) {
+    var btn = e.target.closest(".pubs-abstract-link");
+    if (!btn) return;
+    var d = byId[Number(btn.getAttribute("data-o"))];
+    if (!d) return;
+    var kind = btn.classList.contains("pubs-synopsis-link") ? "synopsis" :
+      btn.classList.contains("pubs-list-link") ? "list" : "abstract";
+    var text = d[kind];
+    if (!text) return;
+    abstractTitle.textContent = kind === "synopsis" ? "Synopsis" :
+      kind === "list" ? (d.listPartial ? "Entries (partial list)" : "Entries") : "Abstract";
+    abstractText.textContent = text;
+    abstractDialog.showModal();
+  });
+
+  abstractClose.addEventListener("click", function () {
+    abstractDialog.close();
+  });
+
+  abstractDialog.addEventListener("click", function (e) {
+    if (e.target === abstractDialog) abstractDialog.close();
+  });
+
+  reportForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    var refLines = [];
+    selectedRows.forEach(function (o) {
+      var d = byId[o];
+      if (!d) return;
+      refLines.push("- [" + (d.year ? d.year : "n.d.") + "] " + d.citation + (d.link ? " (" + d.link + ")" : ""));
+    });
+    var fullMessage = reportComment.value + "\n\nFlagged references:\n" + refLines.join("\n");
+
+    var formData = new FormData(reportForm);
+    formData.set("_subject", "Ron's Publications");
+    formData.set("message", fullMessage);
+
+    reportSend.disabled = true;
+    reportSend.textContent = "Sending…";
+    reportStatus.textContent = "";
+    reportStatus.className = "";
+
+    fetch(FORMSPREE_ENDPOINT, {
+      method: "POST",
+      body: formData,
+      headers: { "Accept": "application/json" },
+    }).then(function (response) {
+      if (!response.ok) throw new Error("submission failed");
+      reportStatus.textContent = "Thank you — your report has been sent.";
+      reportStatus.className = "pubs-status-ok";
+      selectedRows.clear();
+      render();
+      setTimeout(function () { reportDialog.close(); }, 1500);
+    }).catch(function () {
+      var mailtoBody = encodeURIComponent(fullMessage);
+      reportStatus.innerHTML = "Something went wrong sending this automatically. " +
+        "<a href=\"mailto:" + REPORT_FALLBACK_EMAIL + "?subject=" + encodeURIComponent("Ron's Publications") +
+        "&body=" + mailtoBody + "\">Click here to send it by email instead</a>.";
+      reportStatus.className = "pubs-status-error";
+      reportSend.disabled = false;
+      reportSend.textContent = "Send";
+      if (window.grecaptcha && window.grecaptcha.reset) window.grecaptcha.reset(0);
+    });
+  });
+
+  suggestForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    var fieldIds = [
+      "pubs-suggest-year", "pubs-suggest-coauthors", "pubs-suggest-title",
+      "pubs-suggest-journal", "pubs-suggest-volume", "pubs-suggest-number",
+      "pubs-suggest-publisher", "pubs-suggest-pages", "pubs-suggest-link",
+      "pubs-suggest-other",
+    ];
+    var lines = [];
+    fieldIds.forEach(function (id) {
+      var el = document.getElementById(id);
+      var value = el.value.trim();
+      if (!value) return;
+      var label = el.previousElementSibling ? el.previousElementSibling.textContent.replace("*", "").trim() : id;
+      lines.push(label + ": " + value);
+    });
+    var fullMessage = "Suggested publication to add:\n\n" + lines.join("\n");
+
+    var formData = new FormData(suggestForm);
+    formData.set("_subject", "Ron's Publications - Suggested addition");
+    formData.set("message", fullMessage);
+
+    suggestSend.disabled = true;
+    suggestSend.textContent = "Sending…";
+    suggestStatus.textContent = "";
+    suggestStatus.className = "";
+
+    fetch(FORMSPREE_ENDPOINT, {
+      method: "POST",
+      body: formData,
+      headers: { "Accept": "application/json" },
+    }).then(function (response) {
+      if (!response.ok) throw new Error("submission failed");
+      suggestStatus.textContent = "Thank you — your suggestion has been sent.";
+      suggestStatus.className = "pubs-status-ok";
+      setTimeout(function () { suggestDialog.close(); }, 1500);
+    }).catch(function () {
+      var mailtoBody = encodeURIComponent(fullMessage);
+      suggestStatus.innerHTML = "Something went wrong sending this automatically. " +
+        "<a href=\"mailto:" + REPORT_FALLBACK_EMAIL + "?subject=" + encodeURIComponent("Ron's Publications - Suggested addition") +
+        "&body=" + mailtoBody + "\">Click here to send it by email instead</a>.";
+      suggestStatus.className = "pubs-status-error";
+      suggestSend.disabled = false;
+      suggestSend.textContent = "Send";
+      if (window.grecaptcha && window.grecaptcha.reset) window.grecaptcha.reset(1);
+    });
+  });
+
+  render();
+})();
+</script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>

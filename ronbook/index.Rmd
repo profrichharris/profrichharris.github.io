@@ -4,26 +4,27 @@ subtitle: "Reimagining the Discipline After Ron Johnston"
 author: "Richard Harris, David Manley, Robert Mayhew (eds.)"
 date: "Published 2026"
 output:
-  tint::tintHtml:
-    toc: true
+  tint::tintHtml
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
- 
-![](ron.jpg){width="200" style="display:block;margin:0 auto;"}
 
-
-> *Geography and a Geographer* speaks to the work and influence of a man who shaped, profoundly, the discipline he professed. Intellectually curious, always collegial, astonishingly productive and forward thinking about geography’s past and present, Ron Johnston was geography’s modest colossus. This book is a tribute and a clarion call for geography in better futures</br></br>(Charles W. J. Withers, Professor Emeritus of Historical Geography, The University of Edinburgh)
- 
+```{=html}
+<div class="fullwidth" style="display:flex; align-items:center; gap:3rem; flex-wrap:wrap;">
+<div style="flex:1 1 320px; text-align:center;">
+<img src="ron.jpg" width="260">
+</div>
+<span class="marginnote" style="float:none; width:auto; margin:0; flex:1 1 260px;"><em>Geography and a Geographer</em> speaks to the work and influence of a man who shaped, profoundly, the discipline he professed. Intellectually curious, always collegial, astonishingly productive and forward thinking about geography&rsquo;s past and present, Ron Johnston was geography&rsquo;s modest colossus. This book is a tribute and a clarion call for geography in better futures.<br><br>(Charles W. J. Withers, Professor Emeritus of Historical Geography, The University of Edinburgh)</span>
+</div>
+```
 
 # Learn More
 [About the book](https://press.lse.ac.uk/books/e/10.31389/lsepress.gag){target="_blank"} at the publisher's website
 
 # Ron's Publication List
 
-**Coming Soon**
+[Browse the searchable list of Ron's publications](publications.html){target="_blank"}
 
 ![](papers.jpg){width="800"}
-
