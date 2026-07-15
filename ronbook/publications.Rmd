@@ -140,6 +140,8 @@ on submission, Formspree silently discards the message as spam. -->
 </form>
 </dialog>
 
+<div id="pubs-modal-backdrop"></div>
+
 <dialog id="pubs-abstract-dialog">
 <div id="pubs-abstract-inner">
 <button type="button" id="pubs-abstract-close" aria-label="Close">&times;</button>
@@ -390,7 +392,20 @@ button.pubs-abstract-link {
 
 .pubs-select-cell { text-align: center; }
 
+/* These two dialogs are opened with .show() rather than .showModal() (paired
+with #pubs-modal-backdrop below), not .showModal() - a native modal <dialog>
+renders in the browser's top layer, which sits above everything on the page
+including reCAPTCHA's own challenge popup, so the picture-verification step
+was rendering behind the dialog and was unreachable. A manually-positioned
+dialog plus a manual backdrop avoids the top layer entirely, letting
+reCAPTCHA's high z-index challenge iframe render above it as intended. */
 #pubs-report-dialog, #pubs-suggest-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  z-index: 1000;
   width: min(32rem, 90vw);
   max-height: 85vh;
   overflow-y: auto;
@@ -402,8 +417,12 @@ button.pubs-abstract-link {
   color: #222;
 }
 
-#pubs-report-dialog::backdrop, #pubs-suggest-dialog::backdrop {
+#pubs-modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
   background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
 }
 
 #pubs-suggest-form label {
@@ -554,6 +573,24 @@ button.pubs-abstract-link {
   var abstractTitle = document.getElementById("pubs-abstract-title");
   var abstractText = document.getElementById("pubs-abstract-text");
   var abstractClose = document.getElementById("pubs-abstract-close");
+  var modalBackdrop = document.getElementById("pubs-modal-backdrop");
+
+  // The report/suggest dialogs are opened with .show() + this manual backdrop
+  // rather than .showModal(), so reCAPTCHA's challenge popup (which renders
+  // outside the browser's top layer) can appear above them - see the CSS
+  // comment on #pubs-report-dialog for why.
+  function openManagedDialog(dialog) {
+    modalBackdrop.style.display = "block";
+    dialog.show();
+  }
+  function closeManagedDialog(dialog) {
+    dialog.close();
+    modalBackdrop.style.display = "none";
+  }
+  modalBackdrop.addEventListener("click", function () {
+    if (reportDialog.open) closeManagedDialog(reportDialog);
+    if (suggestDialog.open) closeManagedDialog(suggestDialog);
+  });
   var byId = {};
   data.forEach(function (d) { byId[d.o] = d; });
   var selectedRows = new Set();
@@ -895,7 +932,6 @@ button.pubs-abstract-link {
 
   // --- Error reporting ---
   var FORMSPREE_ENDPOINT = "https://formspree.io/f/xnjenvjj";
-  var REPORT_FALLBACK_EMAIL = "profrichharris@gmail.com";
 
   function updateSelectionUI() {
     var n = selectedRows.size;
@@ -977,7 +1013,7 @@ button.pubs-abstract-link {
       // widget 0, this one is widget 1, in DOM order) - a bare reset()
       // always targets widget 0, so this must reset explicitly by index.
       if (window.grecaptcha && window.grecaptcha.reset) window.grecaptcha.reset(1);
-      suggestDialog.showModal();
+      openManagedDialog(suggestDialog);
       return;
     }
     reportList.textContent = "";
@@ -994,15 +1030,15 @@ button.pubs-abstract-link {
     reportSend.disabled = false;
     reportSend.textContent = "Send";
     if (window.grecaptcha && window.grecaptcha.reset) window.grecaptcha.reset(0);
-    reportDialog.showModal();
+    openManagedDialog(reportDialog);
   });
 
   reportCancel.addEventListener("click", function () {
-    reportDialog.close();
+    closeManagedDialog(reportDialog);
   });
 
   suggestCancel.addEventListener("click", function () {
-    suggestDialog.close();
+    closeManagedDialog(suggestDialog);
   });
 
   // --- Abstract / Synopsis / List pop-up (shared dialog) ---
@@ -1059,12 +1095,9 @@ button.pubs-abstract-link {
       reportStatus.className = "pubs-status-ok";
       selectedRows.clear();
       render();
-      setTimeout(function () { reportDialog.close(); }, 1500);
+      setTimeout(function () { closeManagedDialog(reportDialog); }, 1500);
     }).catch(function () {
-      var mailtoBody = encodeURIComponent(fullMessage);
-      reportStatus.innerHTML = "Something went wrong sending this automatically. " +
-        "<a href=\"mailto:" + REPORT_FALLBACK_EMAIL + "?subject=" + encodeURIComponent("Ron's Publications") +
-        "&body=" + mailtoBody + "\">Click here to send it by email instead</a>.";
+      reportStatus.textContent = "Something went wrong sending this. Please try again in a moment.";
       reportStatus.className = "pubs-status-error";
       reportSend.disabled = false;
       reportSend.textContent = "Send";
@@ -1108,12 +1141,9 @@ button.pubs-abstract-link {
       if (!response.ok) throw new Error("submission failed");
       suggestStatus.textContent = "Thank you — your suggestion has been sent.";
       suggestStatus.className = "pubs-status-ok";
-      setTimeout(function () { suggestDialog.close(); }, 1500);
+      setTimeout(function () { closeManagedDialog(suggestDialog); }, 1500);
     }).catch(function () {
-      var mailtoBody = encodeURIComponent(fullMessage);
-      suggestStatus.innerHTML = "Something went wrong sending this automatically. " +
-        "<a href=\"mailto:" + REPORT_FALLBACK_EMAIL + "?subject=" + encodeURIComponent("Ron's Publications - Suggested addition") +
-        "&body=" + mailtoBody + "\">Click here to send it by email instead</a>.";
+      suggestStatus.textContent = "Something went wrong sending this. Please try again in a moment.";
       suggestStatus.className = "pubs-status-error";
       suggestSend.disabled = false;
       suggestSend.textContent = "Send";
