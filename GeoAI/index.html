@@ -99,6 +99,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 8px; }
     </ol>
   </details>
 
+  <details id="diagBox" class="help" style="display:none;margin-top:10px"><summary>Data check</summary><div id="diag"></div></details>
   <div id="warn" class="pill" style="display:none;margin-top:10px;color:#b45309;border-color:#b45309;border-radius:8px"></div>
 
   <div class="controls">
@@ -112,7 +113,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 8px; }
     <nav class="qlist" id="qlist" aria-label="Questions"></nav>
     <main id="main"></main>
   </div>
-  <footer>Percentages are of each group’s own responses.</footer>
+  <footer>Dashboard v6. Percentages are of each group’s own responses.</footer>
 </div>
 
 <dialog id="askDlg" style="border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:20px;max-width:380px">
@@ -170,33 +171,45 @@ function groupOf(v) {
   const g = GROUPS.find(g => g.test.test(String(v || '').trim()));
   return g ? g.id : null;
 }
+let diag = null;
 function parseWorkbook(buf) {
   const wb = XLSX.read(buf, { type: 'array' });
-  const ws = wb.Sheets[wb.SheetNames[0]];
-  const table = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
-  if (!table.length) return [];
-  const head = table[0].map(h => String(h));
+  // find the sheet and header row that hold the survey (not necessarily the first sheet / first row)
+  let table = null, hr = -1, sheet = '';
+  for (const name of wb.SheetNames) {
+    const t = XLSX.utils.sheet_to_json(wb.Sheets[name], { header: 1, defval: '' });
+    const i = t.slice(0, 15).findIndex(r => r.some(h => VISIT_RE.test(String(h))));
+    if (i >= 0) { table = t; hr = i; sheet = name; break; }
+  }
+  if (!table) throw new Error('Could not find the “why are you visiting today” column in any sheet — is this the right spreadsheet?');
+  const head = table[hr].map(h => String(h));
   const commentCol = head.findIndex(h => /other comments/i.test(h));
   const visitCol = head.findIndex(h => VISIT_RE.test(h));
   const qCols = QUESTIONS.map(q => head.findIndex(h => q.re.test(h)));
-  if (visitCol < 0 || qCols.some(c => c < 0)) {
-    throw new Error('Could not find all survey columns — is this the right spreadsheet?');
-  }
-  const out = [], bad = {};
-  for (const r of table.slice(1)) {
+  const missing = QUESTIONS.filter((q, i) => qCols[i] < 0).map(q => q.short);
+  if (missing.length) throw new Error('Could not find these question columns: ' + missing.join('; '));
+  const out = [], bad = {}, per = QUESTIONS.map(() => ({ ok: 0, blank: 0, bad: 0 }));
+  let noVisit = 0;
+  for (const r of table.slice(hr + 1)) {
+    if (r.every(c => String(c).trim() === '')) continue;
     const g = groupOf(r[visitCol]);
-    if (!g) continue;
-    const a = qCols.map(c => { const k = optIndex(r[c]); if (k < 0 && String(r[c]).trim()) bad[String(r[c]).trim()] = 1; return k; });
+    if (!g) { noVisit++; continue; }
+    const a = qCols.map((c, i) => {
+      const k = optIndex(r[c]), raw = String(r[c] == null ? '' : r[c]).trim();
+      if (k >= 0) per[i].ok++; else if (!raw) per[i].blank++; else { per[i].bad++; bad[raw] = 1; }
+      return k;
+    });
     out.push({ g, a, c: commentCol >= 0 ? String(r[commentCol] || '').trim() : '' });
   }
   const names = Object.keys(bad);
   issues = names.length ? `Some answers were not recognised and are left out, e.g. ${names.slice(0, 4).map(x => '“' + x.slice(0, 40) + '”').join(', ')}.` : '';
+  diag = { sheet, hr: hr + 1, total: out.length + noVisit, noVisit, per, qCols, head, visitCol };
   return out;
 }
 
 // ---------- demo data (imagined; replaced by the real spreadsheet on the day) ----------
 function demoData() {
-  issues = '';
+  issues = ''; diag = null;
   let seed = 7;
   const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
   // probability of each option per question: [SD, MD, MA, SA]
@@ -355,6 +368,13 @@ function groupLegend(groups) {
 function render() {
   renderChips(); renderQList();
   const groups = activeGroups(), main = $('main');
+  $('diagBox').style.display = diag ? '' : 'none';
+  if (diag) {
+    const col = i => { let n = '', c = i; do { n = String.fromCharCode(65 + c % 26) + n; c = Math.floor(c / 26) - 1; } while (c >= 0); return n; };
+    $('diag').innerHTML = `<p>Sheet “${esc(diag.sheet)}”, headers on row ${diag.hr}. ${diag.total} respondent rows; ${diag.noVisit} skipped because the visiting-reason cell (column ${col(diag.visitCol)}) was blank. Counts: ` +
+      GROUPS.map(g => `${g.label} ${groupN(g.id)}`).join(', ') + `.</p><table style="border-collapse:collapse;font-size:12px"><tr><th align=left>Question</th><th>Col</th><th>Read</th><th>Blank</th><th>Unreadable</th></tr>` +
+      QUESTIONS.map((q, i) => `<tr><td style="padding:1px 8px 1px 0">${i + 1}. ${esc(q.short)}</td><td align=center>${col(diag.qCols[i])}</td><td align=center>${diag.per[i].ok}</td><td align=center>${diag.per[i].blank}</td><td align=center>${diag.per[i].bad}</td></tr>`).join('') + '</table>';
+  } else $('diag').innerHTML = '';
   const w = $('warn'); w.textContent = '⚠ ' + issues; w.style.display = issues ? '' : 'none';
   if (!groups.length) {
     main.innerHTML = `<div class="card empty">${rows.length ? 'Tick at least one group that has responses.' : 'No responses yet.'}${waitingNote()}</div>`;
