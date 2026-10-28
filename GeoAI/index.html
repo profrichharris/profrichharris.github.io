@@ -112,6 +112,14 @@ footer { color: var(--muted); font-size: 13px; margin-top: 8px; }
   <footer>Percentages are of each group’s own responses.</footer>
 </div>
 
+<dialog id="askDlg" style="border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:20px;max-width:380px">
+  <p style="margin:0 0 14px">Last time you connected to <strong id="askName"></strong>.</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <button id="askReuse" class="primary">Reconnect to that file</button>
+    <button id="askChoose">Choose a different file…</button>
+    <button onclick="this.closest('dialog').close()">Cancel</button>
+  </div>
+</dialog>
 <script>
 // ---------- configuration ----------
 const OPTIONS = ['Strongly disagree', 'Mildly disagree', 'Mildly agree', 'Strongly agree'];
@@ -384,14 +392,28 @@ const idb = {
   async set(v) { try { const db = await this.open(); db.transaction('k', 'readwrite').objectStore('k').put(v, 'h'); } catch {} },
 };
 
+// ask whether to reuse the remembered file; resolves 'reuse' | 'choose' | null
+function askFile(name) {
+  return new Promise(res => {
+    const d = $('askDlg');
+    $('askName').textContent = name;
+    d.returnValue = '';
+    d.onclose = () => res(d.returnValue || null);
+    $('askReuse').onclick = () => d.close('reuse');
+    $('askChoose').onclick = () => d.close('choose');
+    d.showModal();
+  });
+}
 $('connect').onclick = async () => {
   if (!window.showOpenFilePicker) { alert('Live connection needs Chrome or Edge. In this browser, use “Load file” instead.'); return; }
   try {
     let h = await idb.get();
-    if (h && (await h.queryPermission({ mode: 'read' })) !== 'granted') {
-      if (!confirm(`Reconnect to “${h.name}”?\n(OK = yes, Cancel = choose a different file)`)) h = null;
-      else if ((await h.requestPermission({ mode: 'read' })) !== 'granted') h = null;
-    } else if (h && !confirm(`Reconnect to “${h.name}”?\n(OK = yes, Cancel = choose a different file)`)) h = null;
+    if (h) {
+      const choice = await askFile(h.name);
+      if (!choice) return;
+      if (choice === 'choose') h = null;
+      else if ((await h.queryPermission({ mode: 'read' })) !== 'granted' && (await h.requestPermission({ mode: 'read' })) !== 'granted') h = null;
+    }
     if (!h) {
       [h] = await window.showOpenFilePicker({ types: [{ description: 'Excel workbook', accept: { 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'] } }] });
       await idb.set(h);
