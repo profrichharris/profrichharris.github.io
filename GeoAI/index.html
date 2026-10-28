@@ -142,7 +142,7 @@ let source = 'demo', fileHandle = null, lastMod = 0, pollTimer = null;
 
 // ---------- parsing ----------
 function optIndex(v) {
-  const s = String(v || '').toLowerCase().replace('midly', 'mildly');
+  const s = String(v || '').toLowerCase().replace(/\s+/g, ' ').replace(/\bmi?l?dl?y\b/g, 'mildly');
   return OPTIONS.findIndex(o => s.includes(o.toLowerCase()));
 }
 function groupOf(v) {
