@@ -113,7 +113,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 8px; }
     <nav class="qlist" id="qlist" aria-label="Questions"></nav>
     <main id="main"></main>
   </div>
-  <footer>Dashboard v7. Percentages are of each group’s own responses.</footer>
+  <footer>Dashboard v8. Percentages are of each group’s own responses.</footer>
 </div>
 
 <dialog id="askDlg" style="border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:20px;max-width:380px">
@@ -185,7 +185,22 @@ function parseWorkbook(buf) {
   const head = table[hr].map(h => String(h));
   const commentCol = head.findIndex(h => /other comments/i.test(h));
   const visitCol = head.findIndex(h => VISIT_RE.test(h));
-  const qCols = QUESTIONS.map(q => head.findIndex(h => q.re.test(h)));
+  // A question can own several columns (e.g. points or feedback beside the answers), so pick the one
+  // that actually holds readable answers; if none of the matching headers do, try the neighbouring columns.
+  const body = table.slice(hr + 1);
+  const score = c => body.reduce((n, r) => n + (optIndex(r[c]) >= 0 ? 1 : 0), 0);
+  const qCols = QUESTIONS.map(q => {
+    const cand = head.map((h, i) => q.re.test(h) ? i : -1).filter(i => i >= 0);
+    if (!cand.length) return -1;
+    let best = cand[0], bs = -1;
+    for (const c of cand) { const sc = score(c); if (sc > bs) { bs = sc; best = c; } }
+    if (bs <= 0) for (const c of cand) for (let d = -4; d <= 4; d++) {
+      const j = c + d;
+      if (j < 0 || j >= head.length || cand.includes(j)) continue;
+      const sc = score(j); if (sc > bs) { bs = sc; best = j; }
+    }
+    return best;
+  });
   const missing = QUESTIONS.filter((q, i) => qCols[i] < 0).map(q => q.short);
   if (missing.length) throw new Error('Could not find these question columns: ' + missing.join('; '));
   const out = [], bad = {}, per = QUESTIONS.map(() => ({ ok: 0, blank: 0, bad: 0, ex: [] }));
