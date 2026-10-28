@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GeoAI Survey Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+:root {
+  --bg: #f6f7f9; --card: #ffffff; --ink: #1c2330; --muted: #5d6677; --line: #dfe3ea; --accent: #1d5fa8;
+  --sd: #c2410c; --md: #f0a064; --ma: #84b9dc; --sa: #1d6fa5;
+  --g-academic: #475569; --g-student: #c2377a; --g-parent: #8a8a1f;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12161d; --card: #1b212b; --ink: #e8ecf2; --muted: #9aa5b6; --line: #2d3644; --accent: #6aa8ee;
+    --sd: #e0663a; --md: #d98a4e; --ma: #5f98c0; --sa: #3d94d0;
+    --g-academic: #a3b1c6; --g-student: #ef6fa8; --g-parent: #c8c84a;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12161d; --card: #1b212b; --ink: #e8ecf2; --muted: #9aa5b6; --line: #2d3644; --accent: #6aa8ee;
+  --sd: #e0663a; --md: #d98a4e; --ma: #5f98c0; --sa: #3d94d0;
+  --g-academic: #a3b1c6; --g-student: #ef6fa8; --g-parent: #c8c84a;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 20px 16px 48px; }
+header { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: flex-start; justify-content: space-between; }
+h1 { font-size: 24px; margin: 0 0 2px; }
+.sub { color: var(--muted); margin: 0; }
+.status { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.pill { padding: 3px 10px; border-radius: 99px; font-size: 13px; font-weight: 600; border: 1px solid var(--line); background: var(--card); }
+.pill.demo { color: #b45309; border-color: #b45309; }
+.pill.live { color: #15803d; border-color: #15803d; }
+.pill.live::before { content: "● "; animation: blink 1.6s infinite; }
+@keyframes blink { 50% { opacity: .3; } }
+button, .btn { font: inherit; cursor: pointer; border: 1px solid var(--line); background: var(--card); color: var(--ink); padding: 6px 12px; border-radius: 8px; }
+button:hover { border-color: var(--accent); }
+button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; margin: 18px 0 14px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+.controls .lbl { color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
+.chip { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 99px; border: 2px solid var(--c); cursor: pointer; user-select: none; background: transparent; }
+.chip input { display: none; }
+.chip .sw { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+.chip.on { background: var(--c); color: #fff; }
+.chip.on .sw { background: #fff; }
+.chip small { opacity: .85; }
+.layout { display: grid; grid-template-columns: 270px 1fr; gap: 16px; align-items: start; }
+@media (max-width: 800px) { .layout { grid-template-columns: 1fr; } }
+.qlist { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 6px; }
+.qlist button { display: block; width: 100%; text-align: left; border: 0; background: transparent; border-radius: 8px; padding: 8px 10px; }
+.qlist button:hover { background: var(--bg); }
+.qlist button.sel { background: var(--accent); color: #fff; }
+.qlist .n { color: var(--muted); font-size: 12px; margin-right: 6px; }
+.qlist button.sel .n { color: #dbe8f8; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin-bottom: 16px; }
+.card h2 { font-size: 17px; margin: 0 0 4px; }
+.card p.note { margin: 0 0 12px; color: var(--muted); font-size: 13px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; margin: 6px 0 4px; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+svg { width: 100%; height: auto; display: block; }
+svg text { fill: var(--ink); font-family: inherit; }
+svg .m { fill: var(--muted); }
+.empty { color: var(--muted); padding: 24px 0; text-align: center; }
+.row-click { cursor: pointer; }
+.row-click:hover rect.hit { fill: var(--bg); }
+footer { color: var(--muted); font-size: 13px; margin-top: 8px; }
+.help { font-size: 13px; color: var(--muted); }
+.help summary { cursor: pointer; }
+.help ol { margin: 6px 0 0; padding-left: 20px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>GeoAI, Geography and Society</h1>
+      <p class="sub">Open day survey — how views on AI compare across visitor groups</p>
+    </div>
+    <div class="status">
+      <span id="mode" class="pill demo">DEMO DATA</span>
+      <span id="stamp" class="sub"></span>
+      <button id="connect" class="primary">Connect live spreadsheet…</button>
+      <button id="demoBtn" hidden>Back to demo data</button>
+    </div>
+  </header>
+
+  <details class="help" style="margin-top:10px">
+    <summary>How to go live on the day</summary>
+    <ol>
+      <li>In Excel Online / OneDrive, make <em>GeoAI, Geography and Society.xlsx</em> available offline so it syncs to this computer (OneDrive folder).</li>
+      <li>Open this page in Chrome or Edge, click <strong>Connect live spreadsheet…</strong> and pick that synced file. The page re-reads it every few seconds, so new survey responses appear as OneDrive syncs them down (usually within a minute).</li>
+      <li>Next time the page remembers the file — you just click once to re-grant access. In other browsers, use <strong>Load file</strong> (or drag the .xlsx onto the page) and reload it manually.</li>
+      <li>Your data never leaves the browser; the page only reads the file.</li>
+    </ol>
+  </details>
+
+  <div class="controls">
+    <span class="lbl">Compare</span>
+    <span id="chips"></span>
+    <span style="flex:1"></span>
+    <label class="btn" style="padding:5px 12px">Load file<input id="file" type="file" accept=".xlsx,.xls,.csv" hidden></label>
+  </div>
+
+  <div class="layout">
+    <nav class="qlist" id="qlist" aria-label="Questions"></nav>
+    <main id="main"></main>
+  </div>
+  <footer>Responses from “Other” visitors and the free-text comments are ignored. Percentages are of each group’s own responses.</footer>
+</div>
+
+<script>
+// ---------- configuration ----------
+const OPTIONS = ['Strongly disagree', 'Mildly disagree', 'Mildly agree', 'Strongly agree'];
+const OPT_COL = ['var(--sd)', 'var(--md)', 'var(--ma)', 'var(--sa)'];
+const QUESTIONS = [
+  { short: 'AI is environmentally destructive', re: /environmentally destructive/i },
+  { short: 'AI will increase inequalities', re: /increase social and economic/i },
+  { short: 'AI will create jobs and grow the economy', re: /create jobs/i },
+  { short: 'AI songs are music; AI pictures are art', re: /songs are music/i },
+  { short: 'AI will benefit society', re: /beneficial to society/i },
+  { short: 'AI outputs are reliable and trustworthy', re: /reliable and trustworthy/i },
+  { short: 'AI is a tool for discovery and innovation', re: /knowledge discovery/i },
+  { short: 'There should be a global pause in AI', re: /global pause/i },
+  { short: 'I trust AI developers to act ethically', re: /trust the developers/i },
+  { short: 'AI is a threat to human civilisation', re: /threat to human civili/i },
+  { short: 'Universities should penalise student AI use', re: /penalise students/i },
+];
+const GROUPS = [
+  { id: 'academic', label: 'Academic staff', color: 'var(--g-academic)', test: /academic staff/i, on: true },
+  { id: 'student', label: 'Prospective students', color: 'var(--g-student)', test: /^prospective student/i, on: true },
+  { id: 'parent', label: 'Parents / guardians', color: 'var(--g-parent)', test: /^parent/i, on: false },
+];
+const VISIT_RE = /why you are visiting/i;
+const POLL_MS = 5000;
+
+// ---------- state ----------
+let rows = [];          // {g: groupId, a: [idx|-1 x11]}
+let sel = -1;           // -1 = overview
+let source = 'demo', fileHandle = null, lastMod = 0, pollTimer = null;
+
+// ---------- parsing ----------
+function optIndex(v) {
+  const s = String(v || '').toLowerCase().replace('midly', 'mildly');
+  return OPTIONS.findIndex(o => s.includes(o.toLowerCase()));
+}
+function groupOf(v) {
+  const g = GROUPS.find(g => g.test.test(String(v || '').trim()));
+  return g ? g.id : null;
+}
+function parseWorkbook(buf) {
+  const wb = XLSX.read(buf, { type: 'array' });
+  const ws = wb.Sheets[wb.SheetNames[0]];
+  const table = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+  if (!table.length) return [];
+  const head = table[0].map(h => String(h));
+  const visitCol = head.findIndex(h => VISIT_RE.test(h));
+  const qCols = QUESTIONS.map(q => head.findIndex(h => q.re.test(h)));
+  if (visitCol < 0 || qCols.some(c => c < 0)) {
+    throw new Error('Could not find all survey columns — is this the right spreadsheet?');
+  }
+  const out = [];
+  for (const r of table.slice(1)) {
+    const g = groupOf(r[visitCol]);
+    if (!g) continue;
+    out.push({ g, a: qCols.map(c => optIndex(r[c])) });
+  }
+  return out;
+}
+
+// ---------- demo data (imagined; replaced by the real spreadsheet on the day) ----------
+function demoData() {
+  let seed = 7;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  // probability of each option per question: [SD, MD, MA, SA]
+  const prof = {
+    academic: [[.10,.25,.40,.25],[.05,.20,.40,.35],[.20,.40,.30,.10],[.30,.30,.25,.15],[.15,.40,.35,.10],[.35,.40,.20,.05],[.05,.15,.45,.35],[.30,.30,.25,.15],[.40,.35,.20,.05],[.25,.30,.30,.15],[.35,.35,.20,.10]],
+    student:  [[.15,.30,.35,.20],[.10,.25,.40,.25],[.10,.25,.40,.25],[.20,.30,.30,.20],[.05,.25,.45,.25],[.10,.35,.40,.15],[.03,.10,.45,.42],[.30,.30,.25,.15],[.25,.40,.25,.10],[.30,.35,.25,.10],[.20,.35,.30,.15]],
+    parent:   [[.10,.25,.40,.25],[.05,.20,.40,.35],[.10,.30,.40,.20],[.30,.35,.25,.10],[.10,.30,.40,.20],[.20,.40,.30,.10],[.05,.20,.45,.30],[.15,.25,.35,.25],[.25,.40,.25,.10],[.15,.25,.35,.25],[.20,.30,.30,.20]],
+  };
+  const sizes = { academic: 38, student: 64, parent: 21 };
+  const out = [];
+  for (const g of Object.keys(sizes)) {
+    for (let i = 0; i < sizes[g]; i++) {
+      out.push({ g, a: prof[g].map(p => { let u = rnd(), k = 0; while (k < 3 && u > p[k]) { u -= p[k]; k++; } return k; }) });
+    }
+  }
+  return out;
+}
+
+// ---------- aggregation ----------
+function tally(qi, gid) {
+  const c = [0, 0, 0, 0];
+  for (const r of rows) if (r.g === gid && r.a[qi] >= 0) c[r.a[qi]]++;
+  const n = c[0] + c[1] + c[2] + c[3];
+  return { c, n, p: c.map(x => n ? 100 * x / n : 0) };
+}
+const activeGroups = () => GROUPS.filter(g => g.on);
+const groupN = gid => rows.filter(r => r.g === gid).length;
+const f0 = x => Math.round(x);
+
+// ---------- rendering ----------
+const $ = id => document.getElementById(id);
+
+function renderChips() {
+  $('chips').innerHTML = '';
+  for (const g of GROUPS) {
+    const l = document.createElement('label');
+    l.className = 'chip' + (g.on ? ' on' : '');
+    l.style.setProperty('--c', g.color);
+    l.innerHTML = `<input type="checkbox" ${g.on ? 'checked' : ''}><span class="sw"></span>${g.label} <small>n=${groupN(g.id)}</small>`;
+    l.querySelector('input').onchange = e => { g.on = e.target.checked; render(); };
+    $('chips').appendChild(l);
+  }
+}
+function renderQList() {
+  const q = $('qlist');
+  q.innerHTML = '';
+  const mk = (i, text, num) => {
+    const b = document.createElement('button');
+    b.className = i === sel ? 'sel' : '';
+    b.innerHTML = `<span class="n">${num}</span>${text}`;
+    b.onclick = () => { sel = i; render(); };
+    q.appendChild(b);
+  };
+  mk(-1, 'Overview — all questions', '◎');
+  QUESTIONS.forEach((qq, i) => mk(i, qq.short, i + 1));
+}
+function legendHTML() {
+  return '<div class="legend">' + OPTIONS.map((o, i) => `<span><i style="background:${OPT_COL[i]}"></i>${o}</span>`).join('') + '</div>';
+}
+
+// Diverging stacked bars: one row per group
+function divergingSVG(qi, groups) {
+  const data = groups.map(g => ({ g, t: tally(qi, g.id) }));
+  const lab = 150, W = 760, rowH = 46, top = 22, H = top + data.length * rowH + 8;
+  const ext = Math.max(40, Math.ceil(Math.max(...data.map(d => Math.max(d.t.p[0] + d.t.p[1], d.t.p[2] + d.t.p[3]))) / 20) * 20);
+  const cx = lab + (W - lab) / 2, sc = ((W - lab) / 2 - 20) / ext;
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Distribution of answers by group">`;
+  const step = ext > 60 ? 20 : 10;
+  for (let v = -Math.floor(ext / step) * step; v <= ext; v += step) {
+    const x = cx + v * sc;
+    s += `<line x1="${x}" x2="${x}" y1="${top - 6}" y2="${H - 6}" stroke="var(--line)" ${v === 0 ? 'stroke-width="2"' : ''}/>`;
+    s += `<text class="m" x="${x}" y="12" font-size="11" text-anchor="middle">${Math.abs(v)}%</text>`;
+  }
+  data.forEach((d, i) => {
+    const y = top + i * rowH, h = 28;
+    s += `<text x="${lab - 10}" y="${y + 14}" font-size="13" text-anchor="end" font-weight="600" fill="${d.g.color}" style="fill:${d.g.color}">${d.g.label}</text>`;
+    s += `<text class="m" x="${lab - 10}" y="${y + 29}" font-size="11" text-anchor="end">n=${d.t.n}</text>`;
+    if (!d.t.n) { s += `<text class="m" x="${cx}" y="${y + 19}" font-size="12" text-anchor="middle">no responses yet</text>`; return; }
+    const seg = (a, b, k) => {
+      const w = Math.abs(b - a) * sc; if (w <= 0) return '';
+      const x = cx + Math.min(a, b) * sc, p = d.t.p[k];
+      const light = k === 1 || k === 2;
+      return `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${OPT_COL[k]}"><title>${d.g.label} · ${OPTIONS[k]}: ${f0(p)}% (${d.t.c[k]})</title></rect>` +
+        (w > 26 ? `<text x="${x + w / 2}" y="${y + 18}" font-size="12" font-weight="600" text-anchor="middle" style="fill:${light ? '#111' : '#fff'}">${f0(p)}%</text>` : '');
+    };
+    const [p0, p1, p2, p3] = d.t.p;
+    s += seg(-p1, 0, 1) + seg(-p1 - p0, -p1, 0) + seg(0, p2, 2) + seg(p2, p2 + p3, 3);
+  });
+  return s + '</svg>';
+}
+
+// Grouped horizontal bars: per option, one bar per group
+function groupedSVG(qi, groups) {
+  const data = groups.map(g => ({ g, t: tally(qi, g.id) }));
+  const lab = 130, W = 760, bh = 16, gap = 3, blockGap = 16;
+  const block = data.length * (bh + gap) + blockGap;
+  const H = OPTIONS.length * block + 4;
+  const mx = Math.max(30, Math.ceil(Math.max(...data.flatMap(d => d.t.p)) / 10) * 10 + 5);
+  const sc = (W - lab - 60) / mx;
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Percentage choosing each answer, by group">`;
+  OPTIONS.forEach((o, k) => {
+    const y0 = k * block;
+    s += `<text x="${lab - 12}" y="${y0 + (data.length * (bh + gap)) / 2 + 4}" font-size="13" text-anchor="end" font-weight="600">${o}</text>`;
+    s += `<rect x="${lab - 6}" y="${y0}" width="3" height="${data.length * (bh + gap) - gap}" fill="${OPT_COL[k]}" rx="1"/>`;
+    data.forEach((d, i) => {
+      const y = y0 + i * (bh + gap), w = d.t.p[k] * sc;
+      s += `<rect x="${lab}" y="${y}" width="${Math.max(w, 0)}" height="${bh}" rx="3" fill="${d.g.color}"><title>${d.g.label} · ${o}: ${f0(d.t.p[k])}% (${d.t.c[k]} of ${d.t.n})</title></rect>`;
+      s += `<text x="${lab + w + 6}" y="${y + 12}" font-size="12" class="m">${d.t.n ? f0(d.t.p[k]) + '%' : '–'}</text>`;
+    });
+  });
+  return s + '</svg>';
+}
+
+// Overview dumbbell: % agree per question, one dot per group
+function dumbbellSVG(groups) {
+  const lab = 330, W = 960, rowH = 34, top = 30, H = top + QUESTIONS.length * rowH + 6;
+  const x = v => lab + v * (W - lab - 40) / 100;
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Percentage agreeing with each statement, by group">`;
+  for (let v = 0; v <= 100; v += 25) {
+    s += `<line x1="${x(v)}" x2="${x(v)}" y1="${top - 8}" y2="${H - 6}" stroke="var(--line)" ${v === 50 ? 'stroke-dasharray="4 3" stroke-width="1.5"' : ''}/>`;
+    s += `<text class="m" x="${x(v)}" y="14" font-size="11" text-anchor="middle">${v}%</text>`;
+  }
+  QUESTIONS.forEach((q, qi) => {
+    const y = top + qi * rowH + rowH / 2;
+    const pts = groups.map(g => { const t = tally(qi, g.id); return { g, t, v: t.p[2] + t.p[3] }; }).filter(p => p.t.n);
+    s += `<g class="row-click" data-q="${qi}"><rect class="hit" x="0" y="${y - rowH / 2}" width="${W}" height="${rowH}" fill="transparent"/>`;
+    s += `<text x="${lab - 14}" y="${y + 4}" font-size="13" text-anchor="end">${qi + 1}. ${q.short}</text>`;
+    if (pts.length > 1) {
+      const vs = pts.map(p => p.v);
+      s += `<line x1="${x(Math.min(...vs))}" x2="${x(Math.max(...vs))}" y1="${y}" y2="${y}" stroke="var(--muted)" stroke-width="3" opacity=".45"/>`;
+    }
+    pts.forEach(p => {
+      s += `<circle cx="${x(p.v)}" cy="${y}" r="7" fill="${p.g.color}" stroke="var(--card)" stroke-width="2"><title>${p.g.label}: ${f0(p.v)}% agree (n=${p.t.n})</title></circle>`;
+    });
+    s += '</g>';
+  });
+  return s + '</svg>';
+}
+
+function groupLegend(groups) {
+  return '<div class="legend">' + groups.map(g => `<span><i style="background:${g.color};border-radius:50%"></i>${g.label}</span>`).join('') + '</div>';
+}
+
+function render() {
+  renderChips(); renderQList();
+  const groups = activeGroups(), main = $('main');
+  if (!groups.length) { main.innerHTML = '<div class="card empty">Select at least one group to compare.</div>'; return; }
+  if (sel < 0) {
+    main.innerHTML = `<div class="card"><h2>Share who agree with each statement</h2>
+      <p class="note">Mildly + strongly agree, as a % of each group. Right of the dashed line means most of that group agrees. Click a statement for the full breakdown.</p>
+      ${groupLegend(groups)}${dumbbellSVG(groups)}</div>`;
+    main.querySelectorAll('.row-click').forEach(el => el.onclick = () => { sel = +el.dataset.q; render(); });
+  } else {
+    const q = QUESTIONS[sel];
+    main.innerHTML = `<div class="card"><h2>${sel + 1}. ${q.short}</h2>
+        <p class="note">Disagreement extends left, agreement right. Hover a segment for counts.</p>
+        ${legendHTML()}${divergingSVG(sel, groups)}</div>
+      <div class="card"><h2>Side by side</h2><p class="note">% of each group choosing each answer.</p>
+        ${groupLegend(groups)}${groupedSVG(sel, groups)}</div>`;
+  }
+}
+
+// ---------- data sources ----------
+function setRows(r, label) {
+  rows = r; $('stamp').textContent = label;
+  render();
+}
+function setMode(m) {
+  source = m;
+  const el = $('mode');
+  el.className = 'pill ' + (m === 'live' ? 'live' : m === 'file' ? '' : 'demo');
+  el.textContent = m === 'live' ? 'LIVE' : m === 'file' ? 'FILE LOADED' : 'DEMO DATA';
+  $('demoBtn').hidden = m === 'demo';
+  if (m !== 'live' && pollTimer) { clearInterval(pollTimer); pollTimer = null; }
+}
+const clock = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+async function readHandle() {
+  const f = await fileHandle.getFile();
+  if (f.lastModified === lastMod) return;
+  lastMod = f.lastModified;
+  setRows(parseWorkbook(await f.arrayBuffer()), `${rows.length} responses · updated ${clock()}`);
+  $('stamp').textContent = `${rows.length} responses · checked ${clock()}`;
+}
+async function startLive(h) {
+  fileHandle = h; lastMod = 0; setMode('live');
+  try { await readHandle(); } catch (e) { alert(e.message); return; }
+  clearInterval(pollTimer);
+  pollTimer = setInterval(async () => {
+    try { await readHandle(); $('stamp').textContent = `${rows.length} responses · checked ${clock()}`; }
+    catch (e) { $('stamp').textContent = 'Waiting for file… ' + e.message; }
+  }, POLL_MS);
+}
+
+// remember the chosen file between sessions
+const idb = {
+  open: () => new Promise((res, rej) => { const r = indexedDB.open('geoai', 1); r.onupgradeneeded = () => r.result.createObjectStore('k'); r.onsuccess = () => res(r.result); r.onerror = rej; }),
+  async get() { try { const db = await this.open(); return await new Promise(res => { const q = db.transaction('k').objectStore('k').get('h'); q.onsuccess = () => res(q.result); q.onerror = () => res(null); }); } catch { return null; } },
+  async set(v) { try { const db = await this.open(); db.transaction('k', 'readwrite').objectStore('k').put(v, 'h'); } catch {} },
+};
+
+$('connect').onclick = async () => {
+  if (!window.showOpenFilePicker) { alert('Live connection needs Chrome or Edge. In this browser, use “Load file” instead.'); return; }
+  try {
+    let h = await idb.get();
+    if (h && (await h.queryPermission({ mode: 'read' })) !== 'granted') {
+      if (!confirm(`Reconnect to “${h.name}”?\n(OK = yes, Cancel = choose a different file)`)) h = null;
+      else if ((await h.requestPermission({ mode: 'read' })) !== 'granted') h = null;
+    } else if (h && !confirm(`Reconnect to “${h.name}”?\n(OK = yes, Cancel = choose a different file)`)) h = null;
+    if (!h) {
+      [h] = await window.showOpenFilePicker({ types: [{ description: 'Excel workbook', accept: { 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'] } }] });
+      await idb.set(h);
+    }
+    await startLive(h);
+  } catch (e) { if (e.name !== 'AbortError') alert(e.message); }
+};
+$('demoBtn').onclick = () => { setMode('demo'); setRows(demoData(), 'imagined responses for testing'); };
+async function loadFile(f) {
+  try { setMode('file'); setRows(parseWorkbook(await f.arrayBuffer()), `${f.name} · loaded ${clock()}`); }
+  catch (e) { alert(e.message); }
+}
+$('file').onchange = e => e.target.files[0] && loadFile(e.target.files[0]);
+addEventListener('dragover', e => e.preventDefault());
+addEventListener('drop', e => { e.preventDefault(); if (e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]); });
+
+// start in demo mode
+setRows(demoData(), 'imagined responses for testing');
+</script>
+</body>
+</html>
