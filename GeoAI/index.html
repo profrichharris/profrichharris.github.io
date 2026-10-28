@@ -113,7 +113,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 8px; }
     <nav class="qlist" id="qlist" aria-label="Questions"></nav>
     <main id="main"></main>
   </div>
-  <footer>Dashboard v6. Percentages are of each group’s own responses.</footer>
+  <footer>Dashboard v7. Percentages are of each group’s own responses.</footer>
 </div>
 
 <dialog id="askDlg" style="border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:20px;max-width:380px">
@@ -188,7 +188,7 @@ function parseWorkbook(buf) {
   const qCols = QUESTIONS.map(q => head.findIndex(h => q.re.test(h)));
   const missing = QUESTIONS.filter((q, i) => qCols[i] < 0).map(q => q.short);
   if (missing.length) throw new Error('Could not find these question columns: ' + missing.join('; '));
-  const out = [], bad = {}, per = QUESTIONS.map(() => ({ ok: 0, blank: 0, bad: 0 }));
+  const out = [], bad = {}, per = QUESTIONS.map(() => ({ ok: 0, blank: 0, bad: 0, ex: [] }));
   let noVisit = 0;
   for (const r of table.slice(hr + 1)) {
     if (r.every(c => String(c).trim() === '')) continue;
@@ -196,6 +196,7 @@ function parseWorkbook(buf) {
     if (!g) { noVisit++; continue; }
     const a = qCols.map((c, i) => {
       const k = optIndex(r[c]), raw = String(r[c] == null ? '' : r[c]).trim();
+      if (raw && per[i].ex.length < 3 && !per[i].ex.includes(raw)) per[i].ex.push(raw);
       if (k >= 0) per[i].ok++; else if (!raw) per[i].blank++; else { per[i].bad++; bad[raw] = 1; }
       return k;
     });
@@ -372,8 +373,8 @@ function render() {
   if (diag) {
     const col = i => { let n = '', c = i; do { n = String.fromCharCode(65 + c % 26) + n; c = Math.floor(c / 26) - 1; } while (c >= 0); return n; };
     $('diag').innerHTML = `<p>Sheet “${esc(diag.sheet)}”, headers on row ${diag.hr}. ${diag.total} respondent rows; ${diag.noVisit} skipped because the visiting-reason cell (column ${col(diag.visitCol)}) was blank. Counts: ` +
-      GROUPS.map(g => `${g.label} ${groupN(g.id)}`).join(', ') + `.</p><table style="border-collapse:collapse;font-size:12px"><tr><th align=left>Question</th><th>Col</th><th>Read</th><th>Blank</th><th>Unreadable</th></tr>` +
-      QUESTIONS.map((q, i) => `<tr><td style="padding:1px 8px 1px 0">${i + 1}. ${esc(q.short)}</td><td align=center>${col(diag.qCols[i])}</td><td align=center>${diag.per[i].ok}</td><td align=center>${diag.per[i].blank}</td><td align=center>${diag.per[i].bad}</td></tr>`).join('') + '</table>';
+      GROUPS.map(g => `${g.label} ${groupN(g.id)}`).join(', ') + `.</p><table style="border-collapse:collapse;font-size:12px"><tr><th align=left>Question</th><th>Col</th><th>Read</th><th>Blank</th><th>Unreadable</th><th align=left>Matched header → example cell values</th></tr>` +
+      QUESTIONS.map((q, i) => `<tr><td style="padding:1px 8px 1px 0">${i + 1}. ${esc(q.short)}</td><td align=center>${col(diag.qCols[i])}</td><td align=center>${diag.per[i].ok}</td><td align=center>${diag.per[i].blank}</td><td align=center>${diag.per[i].bad}</td><td style="padding-left:8px">${esc(diag.head[diag.qCols[i]].trim().slice(0, 40))} → ${diag.per[i].ex.map(v => '“' + esc(v.slice(0, 24)) + '”').join(', ') || '(all blank)'}</td></tr>`).join('') + '</table>';
   } else $('diag').innerHTML = '';
   const w = $('warn'); w.textContent = '⚠ ' + issues; w.style.display = issues ? '' : 'none';
   if (!groups.length) {
