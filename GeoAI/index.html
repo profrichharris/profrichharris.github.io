@@ -290,8 +290,8 @@ function renderQList() {
     q.appendChild(b);
   };
   mk(-1, 'Overview — all questions', '◎');
-  mk(-2, `Free-text comments (${rows.filter(r => r.c).length})`, '✎');
   QUESTIONS.forEach((qq, i) => mk(i, qq.short, i + 1));
+  mk(-2, `Free-text comments (${rows.filter(r => r.c).length})`, '✎');
 }
 function legendHTML() {
   return '<div class="legend">' + OPTIONS.map((o, i) => `<span><i style="background:${OPT_COL[i]}"></i>${o}</span>`).join('') + '</div>';
