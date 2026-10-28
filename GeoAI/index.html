@@ -118,7 +118,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 8px; }
     <nav class="qlist" id="qlist" aria-label="Questions"></nav>
     <main id="main"></main>
   </div>
-  <footer>Dashboard v10. Percentages are of each group’s own responses.</footer>
+  <footer>Dashboard v11. Percentages are of each group’s own responses.</footer>
 </div>
 
 <dialog id="askDlg" style="border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:20px;max-width:380px">
@@ -272,7 +272,7 @@ const f0 = x => Math.round(x);
 const $ = id => document.getElementById(id);
 
 // ---------- AI summaries of comments ----------
-const SUMMARY_MODEL = 'claude-haiku-5-5';
+let summaryModel = 'claude-haiku-5-5';
 let apiKey = '', minC = 8;            // key is held in memory only: never saved, never in the page source
 const sums = {};                      // gid -> {text, n, at, busy, err}
 const WHO = {
@@ -292,18 +292,22 @@ const mdHTML = t => {
   return (h + (inList ? '</ul>' : '')).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 };
 const commentsOf = gid => rows.filter(r => r.g === gid && r.c).map(r => r.c);
+const norm = t => String(t).toLowerCase().replace(/[‘’“”"']/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
 async function summarise(gid) {
   const list = commentsOf(gid);
   if (!apiKey) { alert('Paste your API key first.'); return; }
   sums[gid] = { ...sums[gid], busy: true, err: '' }; render();
   const prompt = `You are helping a university geography department understand the free-text comments about AI left by ${WHO[gid]}, in a short anonymous survey about AI (large language models such as ChatGPT, Claude and Gemini).
 
-Summarise the ${list.length} comments below in plain, neutral English for a general audience:
-- the 3–5 main themes, with rough proportions (for example "about a third", "a few");
-- the key concerns, hopes and messages;
-- any strong, unusual or conflicting views within the group.
+Below are ${list.length} numbered comments. Identify the main themes and report them as JSON only (no other text) in exactly this shape:
+{"overview": "one or two neutral sentences", "themes": [{"title": "3-6 words", "description": "one or two plain-English sentences", "comments": [numbers of the comments that support this theme], "quote": "words copied exactly from one of those comments, 15 words at most, or an empty string"}], "divergent": "one sentence on conflicting or unusual views, or an empty string", "caveat": "a short note if the comments are few or off-topic, otherwise an empty string"}
 
-Rules: use short bullet points under a few bold headings. Quote at most two short phrases verbatim. Never reproduce anything that could identify an individual. Use only what is in the comments and do not invent anything. If comments are few or off-topic, say so.
+Rules:
+- Give 3 to 5 themes, most common first. Only include a theme that at least two comments support, unless there are very few comments.
+- Base everything strictly on what the comments say. Do not infer motives, add context, or invent anything. If you are unsure whether a comment supports a theme, leave it out.
+- "comments" must list the numbers of every comment that supports the theme. A comment may support more than one theme. Do not give counts or percentages: they will be calculated from your list.
+- A quote must be copied word for word, never paraphrased. Use an empty string if there is no suitable short quote.
+- Never include anything that could identify an individual.
 
 Comments:
 ${list.map((c, i) => `${i + 1}. ${c.slice(0, 1000)}`).join('\n')}`;
@@ -311,27 +315,49 @@ ${list.map((c, i) => `${i + 1}. ${c.slice(0, 1000)}`).join('\n')}`;
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'content-type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
-      body: JSON.stringify({ model: SUMMARY_MODEL, max_tokens: 1200, messages: [{ role: 'user', content: prompt }] }),
+      body: JSON.stringify({ model: summaryModel, max_tokens: 2000, temperature: 0, messages: [{ role: 'user', content: prompt }] }),
     });
     const j = await res.json();
     if (!res.ok) throw new Error((j.error && j.error.message) || 'HTTP ' + res.status);
-    sums[gid] = { text: j.content.map(b => b.text || '').join(''), n: list.length, at: clock(), busy: false, err: '' };
+    const raw = j.content.map(b => b.text || '').join('');
+    const m = raw.match(/\{[\s\S]*\}/);
+    if (!m) throw new Error('The model did not return a summary in the expected format — press Update summary to try again.');
+    const d = JSON.parse(m[0]);
+    let dropped = 0;
+    const themes = (d.themes || []).map(t => {
+      const ids = [...new Set((t.comments || []).map(Number).filter(i => Number.isInteger(i) && i >= 1 && i <= list.length))];
+      let quote = String(t.quote || '').trim();
+      if (quote && !ids.some(i => norm(list[i - 1]).includes(norm(quote)))) { quote = ''; dropped++; }
+      return { title: String(t.title || ''), description: String(t.description || ''), ids, quote };
+    }).filter(t => t.ids.length && t.title).sort((x, y) => y.ids.length - x.ids.length);
+    if (!themes.length) throw new Error('No themes could be verified against the comments — press Update summary to try again.');
+    sums[gid] = { data: { overview: String(d.overview || ''), divergent: String(d.divergent || ''), caveat: String(d.caveat || ''), themes, dropped }, list, n: list.length, at: clock(), busy: false, err: '' };
   } catch (e) { sums[gid] = { ...sums[gid], busy: false, err: e.message }; }
   render();
+}
+function summaryBody(st) {
+  const d = st.data, N = st.list.length;
+  return (d.overview ? `<p>${esc(d.overview)}</p>` : '') +
+    d.themes.map(t => `<div style="margin:10px 0"><strong>${esc(t.title)}</strong> <span class="help">— ${t.ids.length} of ${N} comments</span><br>${esc(t.description)}` +
+      (t.quote ? `<br><em>“${esc(t.quote)}”</em> <span class="help" title="Checked: these words appear in a cited comment">✓</span>` : '') +
+      `<details class="help"><summary>Show these comments</summary><ul>${t.ids.map(i => `<li>${esc(st.list[i - 1])}</li>`).join('')}</ul></details></div>`).join('') +
+    (d.divergent ? `<p><strong>Differing views:</strong> ${esc(d.divergent)}</p>` : '') +
+    (d.caveat ? `<p class="help">${esc(d.caveat)}</p>` : '');
 }
 function summaryCard(groups) {
   const secs = groups.filter(g => commentsOf(g.id).length).map(g => {
     const n = commentsOf(g.id).length, st = sums[g.id] || {}, ok = n >= minC;
     return `<div class="grp" style="--c:${g.color}"><h3>${g.label} <small style="font-weight:400;color:var(--muted)">· ${n} comment${n === 1 ? '' : 's'}</small></h3>` +
-      (ok ? `<button data-sum="${g.id}" ${st.busy ? 'disabled' : ''}>${st.busy ? 'Summarising…' : st.text ? 'Update summary' : 'Summarise these comments'}</button>`
+      (ok ? `<button data-sum="${g.id}" ${st.busy ? 'disabled' : ''}>${st.busy ? 'Summarising…' : st.data ? 'Update summary' : 'Summarise these comments'}</button>`
           : `<span class="help">${n} of ${minC} comments needed before this group can be summarised.</span>`) +
       (st.err ? `<div class="err">${esc(st.err)}</div>` : '') +
-      (st.text ? `<div class="body">${mdHTML(st.text)}</div><div class="help">Based on ${st.n} comments at ${st.at}${st.n !== n ? ` — ${n} now, so press “Update summary” to refresh` : ''}. AI-generated: check against the comments below.</div>` : '') + '</div>';
+      (st.data ? `<div class="body">${summaryBody(st)}</div><div class="help">Based on ${st.n} comments at ${st.at}${st.n !== n ? ` — ${n} now, so press “Update summary” to refresh` : ''}. Counts come from the comments each theme cites and quotes are checked against them${st.data.dropped ? ` (${st.data.dropped} unverifiable quote${st.data.dropped > 1 ? 's' : ''} removed)` : ''}. Themes are still AI-written: use “Show these comments” to check.</div>` : '') + '</div>';
   }).join('');
   return `<div class="card" id="sum"><h2>What are people saying?</h2>
     <p class="note">AI summaries of each group’s comments. Comments are sent to Anthropic only when you press a summary button. Your key stays in this tab and is never saved.</p>
     <div style="display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center">
       <label>API key <input id="apiKey" type="password" autocomplete="off" placeholder="sk-ant-…" value="${esc(apiKey)}" size="26"></label>
+      <label>Model <select id="mdl" style="font:inherit;padding:5px 8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)"><option value="claude-haiku-5-5" ${summaryModel === 'claude-haiku-5-5' ? 'selected' : ''}>Haiku 5.5 — fast, cheap</option><option value="claude-sonnet-5-5" ${summaryModel === 'claude-sonnet-5-5' ? 'selected' : ''}>Sonnet 5.5 — more careful</option></select></label>
       <label>Minimum comments per group <input id="minC" type="number" min="1" max="200" value="${minC}" style="width:64px"></label></div>
     ${secs || '<div class="empty">No comments from the selected groups yet.</div>'}</div>`;
 }
@@ -471,6 +497,7 @@ function render() {
     main.innerHTML = summaryCard(groups) + `<div class="card" id="cm"><h2>Free-text comments</h2><p class="note">${list.length} comment${list.length === 1 ? '' : 's'} from the selected groups. Newest at the top.</p>${waitingNote()}` +
       (list.length ? list.slice().reverse().map(r => { const g = GROUPS.find(g => g.id === r.g); return `<div class="cm" style="--c:${g.color}"><b>${g.label}</b>${esc(r.c)}</div>`; }).join('') : '<div class="empty">No comments yet.</div>') + '</div>';
     $('apiKey').oninput = e => { apiKey = e.target.value.trim(); };
+    $('mdl').onchange = e => { summaryModel = e.target.value; };
     $('minC').onchange = e => { minC = Math.max(1, +e.target.value || 8); render(); };
     main.querySelectorAll('[data-sum]').forEach(b => b.onclick = () => summarise(b.dataset.sum));
   } else if (sel < 0) {
