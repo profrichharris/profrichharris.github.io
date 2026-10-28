@@ -118,7 +118,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 8px; }
     <nav class="qlist" id="qlist" aria-label="Questions"></nav>
     <main id="main"></main>
   </div>
-  <footer>Dashboard v12. Percentages are of each group’s own responses.</footer>
+  <footer>Dashboard v13. Percentages are of each group’s own responses.</footer>
 </div>
 
 <dialog id="askDlg" style="border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:20px;max-width:380px">
@@ -273,10 +273,10 @@ const $ = id => document.getElementById(id);
 
 // ---------- AI summaries of comments ----------
 const MODELS = [
-  ['claude-fable-5-1', 'Fable 5.1 — best writing and accuracy'],
-  ['claude-opus-5-5', 'Opus 5.5 — very capable'],
-  ['claude-sonnet-5-5', 'Sonnet 5.5 — balanced'],
-  ['claude-haiku-5-5', 'Haiku 5.5 — fastest, cheapest'],
+  ['claude-fable-5-1', 'Fable 5.1 — best, ~20p–£0.30 per summary'],
+  ['claude-opus-5-5', 'Opus 5.5 — very capable, ~8p'],
+  ['claude-sonnet-5-5', 'Sonnet 5.5 — balanced, ~4p'],
+  ['claude-haiku-5-5', 'Haiku 5.5 — fastest, under 1p'],
 ];
 let summaryModel = MODELS[0][0];
 let apiKey = '', minC = 8;            // key is held in memory only: never saved, never in the page source
@@ -318,15 +318,18 @@ Rules:
 Comments:
 ${list.map((c, i) => `${i + 1}. ${c.slice(0, 1000)}`).join('\n')}`;
   try {
-    const call = extra => fetch('https://api.anthropic.com/v1/messages', {
+    // These models always think before answering and that counts towards max_tokens, so leave generous room.
+    // (No temperature: the API now rejects sampling parameters.)
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'content-type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
-      body: JSON.stringify({ model: summaryModel, max_tokens: 2000, ...extra, messages: [{ role: 'user', content: prompt }] }),
+      body: JSON.stringify({ model: summaryModel, max_tokens: 12000, output_config: { effort: 'medium' }, messages: [{ role: 'user', content: prompt }] }),
     });
-    let res = await call({ temperature: 0 }), j = await res.json();
-    if (!res.ok && /temperature/i.test((j.error && j.error.message) || '')) { res = await call({}); j = await res.json(); }
+    const j = await res.json();
     if (!res.ok) throw new Error((j.error && j.error.message) || 'HTTP ' + res.status);
-    const raw = j.content.map(b => b.text || '').join('');
+    if (j.stop_reason === 'refusal') throw new Error('The model declined to summarise these comments — try a different model from the dropdown.');
+    if (j.stop_reason === 'max_tokens') throw new Error('The summary was cut off — press Update summary to try again.');
+    const raw = j.content.filter(b => b.type === 'text').map(b => b.text || '').join('');
     const m = raw.match(/\{[\s\S]*\}/);
     if (!m) throw new Error('The model did not return a summary in the expected format — press Update summary to try again.');
     const d = JSON.parse(m[0]);
