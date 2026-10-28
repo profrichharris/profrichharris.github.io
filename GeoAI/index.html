@@ -9,19 +9,19 @@
 :root {
   --bg: #f6f7f9; --card: #ffffff; --ink: #1c2330; --muted: #5d6677; --line: #dfe3ea; --accent: #1d5fa8;
   --sd: #c2410c; --md: #f0a064; --ma: #84b9dc; --sa: #1d6fa5;
-  --g-academic: #475569; --g-student: #c2377a; --g-parent: #8a8a1f;
+  --g-academic: #475569; --g-student: #c2377a; --g-parent: #8a8a1f; --g-other: #b8641f;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #12161d; --card: #1b212b; --ink: #e8ecf2; --muted: #9aa5b6; --line: #2d3644; --accent: #6aa8ee;
     --sd: #e0663a; --md: #d98a4e; --ma: #5f98c0; --sa: #3d94d0;
-    --g-academic: #a3b1c6; --g-student: #ef6fa8; --g-parent: #c8c84a;
+    --g-academic: #a3b1c6; --g-student: #ef6fa8; --g-parent: #c8c84a; --g-other: #e0a060;
   }
 }
 :root[data-theme="dark"] {
   --bg: #12161d; --card: #1b212b; --ink: #e8ecf2; --muted: #9aa5b6; --line: #2d3644; --accent: #6aa8ee;
   --sd: #e0663a; --md: #d98a4e; --ma: #5f98c0; --sa: #3d94d0;
-  --g-academic: #a3b1c6; --g-student: #ef6fa8; --g-parent: #c8c84a;
+  --g-academic: #a3b1c6; --g-student: #ef6fa8; --g-parent: #c8c84a; --g-other: #e0a060;
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
@@ -65,6 +65,8 @@ svg .m { fill: var(--muted); }
 .empty { color: var(--muted); padding: 24px 0; text-align: center; }
 .row-click { cursor: pointer; }
 .row-click:hover rect.hit { fill: var(--bg); }
+#cm .cm { border-left: 4px solid var(--c); padding: 6px 12px; margin: 0 0 10px; background: var(--bg); border-radius: 0 8px 8px 0; }
+#cm .cm b { display: block; font-size: 12px; color: var(--c); }
 footer { color: var(--muted); font-size: 13px; margin-top: 8px; }
 .help { font-size: 13px; color: var(--muted); }
 .help summary { cursor: pointer; }
@@ -107,7 +109,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 8px; }
     <nav class="qlist" id="qlist" aria-label="Questions"></nav>
     <main id="main"></main>
   </div>
-  <footer>Responses from “Other” visitors and the free-text comments are ignored. Percentages are of each group’s own responses.</footer>
+  <footer>Percentages are of each group’s own responses.</footer>
 </div>
 
 <script>
@@ -131,6 +133,7 @@ const GROUPS = [
   { id: 'academic', label: 'Academic staff', color: 'var(--g-academic)', test: /academic staff/i, on: true },
   { id: 'student', label: 'Prospective students', color: 'var(--g-student)', test: /^prospective student/i, on: true },
   { id: 'parent', label: 'Parents / guardians', color: 'var(--g-parent)', test: /^parent/i, on: false },
+  { id: 'other', label: 'Other visitors', color: 'var(--g-other)', test: /\S/, on: false },
 ];
 const VISIT_RE = /why you are visiting/i;
 const POLL_MS = 5000;
@@ -155,6 +158,7 @@ function parseWorkbook(buf) {
   const table = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
   if (!table.length) return [];
   const head = table[0].map(h => String(h));
+  const commentCol = head.findIndex(h => /other comments/i.test(h));
   const visitCol = head.findIndex(h => VISIT_RE.test(h));
   const qCols = QUESTIONS.map(q => head.findIndex(h => q.re.test(h)));
   if (visitCol < 0 || qCols.some(c => c < 0)) {
@@ -164,7 +168,7 @@ function parseWorkbook(buf) {
   for (const r of table.slice(1)) {
     const g = groupOf(r[visitCol]);
     if (!g) continue;
-    out.push({ g, a: qCols.map(c => optIndex(r[c])) });
+    out.push({ g, a: qCols.map(c => optIndex(r[c])), c: commentCol >= 0 ? String(r[commentCol] || '').trim() : '' });
   }
   return out;
 }
@@ -179,11 +183,13 @@ function demoData() {
     student:  [[.15,.30,.35,.20],[.10,.25,.40,.25],[.10,.25,.40,.25],[.20,.30,.30,.20],[.05,.25,.45,.25],[.10,.35,.40,.15],[.03,.10,.45,.42],[.30,.30,.25,.15],[.25,.40,.25,.10],[.30,.35,.25,.10],[.20,.35,.30,.15]],
     parent:   [[.10,.25,.40,.25],[.05,.20,.40,.35],[.10,.30,.40,.20],[.30,.35,.25,.10],[.10,.30,.40,.20],[.20,.40,.30,.10],[.05,.20,.45,.30],[.15,.25,.35,.25],[.25,.40,.25,.10],[.15,.25,.35,.25],[.20,.30,.30,.20]],
   };
-  const sizes = { academic: 38, student: 64, parent: 21 };
+  prof.other = prof.parent;
+  const sizes = { academic: 38, student: 64, parent: 21, other: 14 };
+  const sample = ['Worried about the energy use of data centres.', 'It helps me study but I do not trust it fully.', 'Universities need clear rules, not blanket bans.', 'Great for mapping and spatial analysis!', 'Too early to tell what the jobs impact will be.', 'AI art is not real art, it just copies people.', 'Developers care more about profit than ethics.'];
   const out = [];
   for (const g of Object.keys(sizes)) {
     for (let i = 0; i < sizes[g]; i++) {
-      out.push({ g, a: prof[g].map(p => { let u = rnd(), k = 0; while (k < 3 && u > p[k]) { u -= p[k]; k++; } return k; }) });
+      out.push({ g, c: rnd() < 0.3 ? sample[Math.floor(rnd() * sample.length)] : '', a: prof[g].map(p => { let u = rnd(), k = 0; while (k < 3 && u > p[k]) { u -= p[k]; k++; } return k; }) });
     }
   }
   return out;
@@ -198,6 +204,7 @@ function tally(qi, gid) {
 }
 const activeGroups = () => GROUPS.filter(g => g.on);
 const groupN = gid => rows.filter(r => r.g === gid).length;
+const esc = t => t.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const f0 = x => Math.round(x);
 
 // ---------- rendering ----------
@@ -225,6 +232,7 @@ function renderQList() {
     q.appendChild(b);
   };
   mk(-1, 'Overview — all questions', '◎');
+  mk(-2, `Free-text comments (${rows.filter(r => r.c).length})`, '✎');
   QUESTIONS.forEach((qq, i) => mk(i, qq.short, i + 1));
 }
 function legendHTML() {
@@ -318,7 +326,11 @@ function render() {
   renderChips(); renderQList();
   const groups = activeGroups(), main = $('main');
   if (!groups.length) { main.innerHTML = '<div class="card empty">Select at least one group to compare.</div>'; return; }
-  if (sel < 0) {
+  if (sel === -2) {
+    const list = rows.filter(r => r.c && groups.some(g => g.id === r.g));
+    main.innerHTML = `<div class="card" id="cm"><h2>Free-text comments</h2><p class="note">${list.length} comment${list.length === 1 ? '' : 's'} from the selected groups. Newest at the top.</p>` +
+      (list.length ? list.slice().reverse().map(r => { const g = GROUPS.find(g => g.id === r.g); return `<div class="cm" style="--c:${g.color}"><b>${g.label}</b>${esc(r.c)}</div>`; }).join('') : '<div class="empty">No comments yet.</div>') + '</div>';
+  } else if (sel < 0) {
     main.innerHTML = `<div class="card"><h2>Share who agree with each statement</h2>
       <p class="note">Mildly + strongly agree, as a % of each group. Right of the dashed line means most of that group agrees. Click a statement for the full breakdown.</p>
       ${groupLegend(groups)}${dumbbellSVG(groups)}</div>`;
