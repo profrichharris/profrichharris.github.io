@@ -118,7 +118,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 8px; }
     <nav class="qlist" id="qlist" aria-label="Questions"></nav>
     <main id="main"></main>
   </div>
-  <footer>Dashboard v9. Percentages are of each group’s own responses.</footer>
+  <footer>Dashboard v10. Percentages are of each group’s own responses.</footer>
 </div>
 
 <dialog id="askDlg" style="border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:20px;max-width:380px">
@@ -272,7 +272,7 @@ const f0 = x => Math.round(x);
 const $ = id => document.getElementById(id);
 
 // ---------- AI summaries of comments ----------
-const SUMMARY_MODEL = 'claude-sonnet-5-5';
+const SUMMARY_MODEL = 'claude-haiku-5-5';
 let apiKey = '', minC = 8;            // key is held in memory only: never saved, never in the page source
 const sums = {};                      // gid -> {text, n, at, busy, err}
 const WHO = {
