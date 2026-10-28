@@ -118,7 +118,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 8px; }
     <nav class="qlist" id="qlist" aria-label="Questions"></nav>
     <main id="main"></main>
   </div>
-  <footer>Dashboard v13. Percentages are of each group’s own responses.</footer>
+  <footer>Dashboard v14. Percentages are of each group’s own responses.</footer>
 </div>
 
 <dialog id="askDlg" style="border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:20px;max-width:380px">
@@ -273,9 +273,8 @@ const $ = id => document.getElementById(id);
 
 // ---------- AI summaries of comments ----------
 const MODELS = [
-  ['claude-fable-5-1', 'Fable 5.1 — best, ~20p–£0.30 per summary'],
-  ['claude-opus-5-5', 'Opus 5.5 — very capable, ~8p'],
-  ['claude-sonnet-5-5', 'Sonnet 5.5 — balanced, ~4p'],
+  ['claude-opus-5-5', 'Opus 5.5 — recommended, ~8p per summary'],
+  ['claude-sonnet-5-5', 'Sonnet 5.5 — faster, ~4p'],
   ['claude-haiku-5-5', 'Haiku 5.5 — fastest, under 1p'],
 ];
 let summaryModel = MODELS[0][0];
