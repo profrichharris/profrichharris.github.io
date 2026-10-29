@@ -118,7 +118,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 8px; }
     <nav class="qlist" id="qlist" aria-label="Questions"></nav>
     <main id="main"></main>
   </div>
-  <footer>Dashboard v15. Percentages are of each group’s own responses.</footer>
+  <footer>Dashboard v16. Percentages are of each group’s own responses.</footer>
 </div>
 
 <dialog id="askDlg" style="border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:20px;max-width:380px">
@@ -258,6 +258,8 @@ function tally(qi, gid) {
   const n = c[0] + c[1] + c[2] + c[3];
   return { c, n, p: c.map(x => n ? 100 * x / n : 0) };
 }
+// weighted agreement: strong answers (either side) count as two votes; returns % of votes that are for agreeing
+const weightedAgree = t => { const v = 2 * t.c[0] + t.c[1] + t.c[2] + 2 * t.c[3]; return v ? 100 * (t.c[2] + 2 * t.c[3]) / v : 0; };
 const groupN = gid => rows.filter(r => r.g === gid).length;
 // groups that are ticked AND have at least one respondent; ticked-but-empty ones are reported, not plotted
 const activeGroups = () => GROUPS.filter(g => g.on && groupN(g.id) > 0);
@@ -453,14 +455,14 @@ function groupedSVG(qi, groups) {
 function dumbbellSVG(groups) {
   const lab = 330, W = 960, rowH = 34, top = 30, H = top + QUESTIONS.length * rowH + 6;
   const x = v => lab + v * (W - lab - 40) / 100;
-  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Percentage agreeing with each statement, by group">`;
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Weighted percentage of votes agreeing with each statement, by group">`;
   for (let v = 0; v <= 100; v += 25) {
     s += `<line x1="${x(v)}" x2="${x(v)}" y1="${top - 8}" y2="${H - 6}" stroke="var(--line)" ${v === 50 ? 'stroke-dasharray="4 3" stroke-width="1.5"' : ''}/>`;
     s += `<text class="m" x="${x(v)}" y="14" font-size="11" text-anchor="middle">${v}%</text>`;
   }
   QUESTIONS.forEach((q, qi) => {
     const y = top + qi * rowH + rowH / 2;
-    const pts = groups.map(g => { const t = tally(qi, g.id); return { g, t, v: t.p[2] + t.p[3] }; }).filter(p => p.t.n);
+    const pts = groups.map(g => { const t = tally(qi, g.id); return { g, t, v: weightedAgree(t) }; }).filter(p => p.t.n);
     s += `<g class="row-click" data-q="${qi}"><rect class="hit" x="0" y="${y - rowH / 2}" width="${W}" height="${rowH}" fill="transparent"/>`;
     s += `<text x="${lab - 14}" y="${y + 4}" font-size="13" text-anchor="end">${qi + 1}. ${q.short}</text>`;
     if (pts.length > 1) {
@@ -469,7 +471,7 @@ function dumbbellSVG(groups) {
     }
     pts.forEach(p => {
       if (groups.length === 1) s += `<text x="${x(p.v) + 12}" y="${y + 4}" font-size="12" class="m">${f0(p.v)}%</text>`;
-      s += `<circle cx="${x(p.v)}" cy="${y}" r="7" fill="${p.g.color}" stroke="var(--card)" stroke-width="2"><title>${p.g.label}: ${f0(p.v)}% agree (n=${p.t.n})</title></circle>`;
+      s += `<circle cx="${x(p.v)}" cy="${y}" r="7" fill="${p.g.color}" stroke="var(--card)" stroke-width="2"><title>${p.g.label}: ${f0(p.v)}% of votes agree (n=${p.t.n})</title></circle>`;
     });
     s += '</g>';
   });
@@ -503,8 +505,8 @@ function render() {
     $('minC').onchange = e => { minC = Math.max(1, +e.target.value || 8); render(); };
     main.querySelectorAll('[data-sum]').forEach(b => b.onclick = () => summarise(b.dataset.sum));
   } else if (sel < 0) {
-    main.innerHTML = `<div class="card"><h2>Share who agree with each statement</h2>
-      <p class="note">Mildly + strongly agree, as a % of each group. Right of the dashed line means most of that group agrees. Click a statement for the full breakdown.</p>
+    main.innerHTML = `<div class="card"><h2>Weight of agreement with each statement</h2>
+      <p class="note">Each answer is a vote, but strongly agree and strongly disagree count twice. The dot shows the % of a group’s votes that are for agreeing, so right of the dashed line means the weight of opinion in that group is in favour. Click a statement for the full breakdown.</p>
       ${groupLegend(groups)}${dumbbellSVG(groups)}${waitingNote()}</div>`;
     main.querySelectorAll('.row-click').forEach(el => el.onclick = () => { sel = +el.dataset.q; render(); });
   } else {
