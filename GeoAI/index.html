@@ -118,7 +118,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 8px; }
     <nav class="qlist" id="qlist" aria-label="Questions"></nav>
     <main id="main"></main>
   </div>
-  <footer>Dashboard v16. Percentages are of each group’s own responses.</footer>
+  <footer>Dashboard v17. Percentages are of each group’s own responses.</footer>
 </div>
 
 <dialog id="askDlg" style="border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:20px;max-width:380px">
@@ -194,16 +194,24 @@ function parseWorkbook(buf) {
   // that actually holds readable answers; if none of the matching headers do, try the neighbouring columns.
   const body = table.slice(hr + 1);
   const score = c => body.reduce((n, r) => n + (optIndex(r[c]) >= 0 ? 1 : 0), 0);
+  const taken = [];
   const qCols = QUESTIONS.map(q => {
     const cand = head.map((h, i) => q.re.test(h) ? i : -1).filter(i => i >= 0);
     if (!cand.length) return -1;
     let best = cand[0], bs = -1;
     for (const c of cand) { const sc = score(c); if (sc > bs) { bs = sc; best = c; } }
-    if (bs <= 0) for (const c of cand) for (let d = -4; d <= 4; d++) {
-      const j = c + d;
-      if (j < 0 || j >= head.length || cand.includes(j)) continue;
-      const sc = score(j); if (sc > bs) { bs = sc; best = j; }
+    if (bs <= 0) {
+      // the statement's own columns hold no answers (e.g. Points/Feedback): the answers sit in the first readable column just AFTER them,
+      // never a neighbour that belongs to the previous statement; look backwards only if nothing follows
+      const hi = Math.max(...cand), lo = Math.min(...cand), seq = [];
+      for (let d = 1; d <= 4; d++) seq.push(hi + d);
+      for (let d = 1; d <= 4; d++) seq.push(lo - d);
+      for (const j of seq) {
+        if (j < 0 || j >= head.length || cand.includes(j) || taken.includes(j)) continue;
+        if (score(j) > 0) { best = j; break; }
+      }
     }
+    taken.push(best);
     return best;
   });
   const missing = QUESTIONS.filter((q, i) => qCols[i] < 0).map(q => q.short);
