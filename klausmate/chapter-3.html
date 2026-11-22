@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Chapter 3: A Case Study with Multilevel Models – Klausmate</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter-2.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-47347268070508084662a88d6a887909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="manual.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-3.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 3: A Case Study with Multilevel Models</span></a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Site">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Klausmate</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Chapter 1: Setting up Klausmate</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chapter 2: Getting Started</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-3.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 3: A Case Study with Multilevel Models</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary"><span class="header-section-number">3.1</span> Summary</a></li>
+  <li><a href="#start-a-new-conversation" id="toc-start-a-new-conversation" class="nav-link" data-scroll-target="#start-a-new-conversation"><span class="header-section-number">3.2</span> Start a new conversation</a></li>
+  <li><a href="#obtaining-an-answer-to-a-question" id="toc-obtaining-an-answer-to-a-question" class="nav-link" data-scroll-target="#obtaining-an-answer-to-a-question"><span class="header-section-number">3.3</span> Obtaining an answer to a question</a></li>
+  <li><a href="#load-the-package-data" id="toc-load-the-package-data" class="nav-link" data-scroll-target="#load-the-package-data"><span class="header-section-number">3.4</span> Load the package data</a></li>
+  <li><a href="#translating-answers" id="toc-translating-answers" class="nav-link" data-scroll-target="#translating-answers"><span class="header-section-number">3.5</span> Translating answers</a></li>
+  <li><a href="#prompt-refinement" id="toc-prompt-refinement" class="nav-link" data-scroll-target="#prompt-refinement"><span class="header-section-number">3.6</span> Prompt refinement</a></li>
+  <li><a href="#measuring-the-spatial-pattern" id="toc-measuring-the-spatial-pattern" class="nav-link" data-scroll-target="#measuring-the-spatial-pattern"><span class="header-section-number">3.7</span> Measuring the spatial pattern</a></li>
+  <li><a href="#fitting-a-null-random-intercepts-model" id="toc-fitting-a-null-random-intercepts-model" class="nav-link" data-scroll-target="#fitting-a-null-random-intercepts-model"><span class="header-section-number">3.8</span> Fitting a null random intercepts model</a></li>
+  <li><a href="#multilevel-models" id="toc-multilevel-models" class="nav-link" data-scroll-target="#multilevel-models"><span class="header-section-number">3.9</span> Multilevel models</a></li>
+  <li><a href="#prompts-matter" id="toc-prompts-matter" class="nav-link" data-scroll-target="#prompts-matter"><span class="header-section-number">3.10</span> Prompts matter!</a></li>
+  <li><a href="#please-provide-feedback" id="toc-please-provide-feedback" class="nav-link" data-scroll-target="#please-provide-feedback"><span class="header-section-number">3.11</span> Please provide feedback</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 3: A Case Study with Multilevel Models</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="summary" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.1</span> Summary</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>This chapter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Shows how Klausmate offers to refine a user prompt</li>
+<li>Introduces other functionality such as language translation for some features</li>
+<li>Provides an overview of using Klausmate to do some spatial analysis and to fit some multilevel models.</li>
+<li>Reminds you to provide feedback on Klausmate.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="start-a-new-conversation" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="start-a-new-conversation"><span class="header-section-number">3.2</span> Start a new conversation</h2>
+<p>If you are still running Klausmate from the previous chapter, press <em>New conversation</em>. This has the effect of starting Klausmate afresh whilst saving the Code Log from the previous conversation, with the means to <em>Recall</em> that earlier conversation under the <em>Past conversations</em> tab.</p>
+<p>If you ended Klausmate before then just run <code>klaus()</code> in the usual way in the RStudio Console.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you cannot see the <em>Past conversations</em> tab then it is because you have not yet started as second (or third, …) conversation during your current Klausmate session.</p>
+</div>
+</div>
+</section>
+<section id="obtaining-an-answer-to-a-question" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="obtaining-an-answer-to-a-question"><span class="header-section-number">3.3</span> Obtaining an answer to a question</h2>
+<p>In the <em>Your prompt</em> window type,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Tell me about multilevel modelling</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then press <em>Answer</em>. After a short while, a response will appear in the <em>Answer</em> window.</p>
+<p><em>Click to open the full answer</em>.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Take some time to read the generated answer before you proceed.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Do not confuse <em>Answer</em> with <em>Ask for Code</em>. It is <em>Answer</em> that you should use here.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can, of course, use any other Large Language Model or web search to ask this sort of question without the cost of eating into your Klausmate quota.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/20261118_083337.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3.1. Answering a question about multilevel modelling</figcaption>
+</figure>
+</div>
+</section>
+<section id="load-the-package-data" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="load-the-package-data"><span class="header-section-number">3.4</span> Load the package data</h2>
+<p>Use <em>Load Package Data</em> to add <u>both</u> <code>birmingham_lsoa_2001_2011</code> <u>and</u> <code>birmingham_lsoa_2011_2021</code> as context for the prompt.</p>
+<p>In the <em>Your prompt</em> window type,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Tell me about the variable y_change_asinh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then press <em>Answer</em> (again, <em>Answer</em> <u>not</u> Ask for Code)</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>As before, take some time to read the generated answer before you proceed.</p>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/20261118_083905.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3.2. Saying more about the change variables</figcaption>
+</figure>
+</div>
+</section>
+<section id="translating-answers" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="translating-answers"><span class="header-section-number">3.5</span> Translating answers</h2>
+<p>You can translate the answers into a different language by changing Klausmate’s default language.</p>
+<p>Press <em>Preferences</em> and <em>Change</em> from English to another language.</p>
+<p>Press <em>Close</em>.</p>
+<p>In the <em>Answer</em> tab window there is now the option to <em>Translate into [language]</em>. Press it.</p>
+<p>Future Answers (and Explanations) will use the same language so you may want to go back into <em>Preferences</em> and reset the default to English, which is the drop-down menu under <em>Response languag</em>e.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The translation is AI generated so should be treated with some caution.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The translation in Klausmate is relatively low cost but there are ways to do it for free. The web browser may offer it, for example.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/20261118_084304.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3.3. Translation into Italian</figcaption>
+</figure>
+</div>
+</section>
+<section id="prompt-refinement" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="prompt-refinement"><span class="header-section-number">3.6</span> Prompt refinement</h2>
+<p>Let’s begin by aiming to plot comparative maps of the two data sets. In the <em>Your prompt</em> widow type the following then <em>Ask for Code</em>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Using the two Birmingham data sets I’ve added, draw maps of y_change_asinh, one above the other, with a single legend shared by both. Split the values at zero and use Jenks classes on each side, with a colour-blind friendly diverging palette, and add a north arrow and scale bar.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You will most likely find that the prompt is too vague. Accept the suggested changes by pressing <em>Use this version</em> in the <em>Before asking for code</em> window.</p>
+<p>Then, <em>Ask for Code</em>.</p>
+<p><strong>Expand the Code window and take time to look through the output. Can you get a broad sense of what it is doing?</strong></p>
+<p>Next, <em>Run</em> the code.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/20261118_130159.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3.4. Suggesting revisions to the prompt</figcaption>
+</figure>
+</div>
+<p>The maps are not wholly satisfying, so try…</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Do not stack the maps vertically. Have them alongside each other in a 2 columns by 1 row format. Right justify the legend.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>… in <em>Your prompt</em> and <em>Ask for Code</em>. Accept any rephrasing that is suggested and, if required, press <em>Ask for Code</em> again, to generate the code.</p>
+<p>If <em>Changes</em> are highlighted, take a moment to view them, then <em>Run</em> the revised code.</p>
+<p>The result that I obtained was still not quite what I was looking for, so I tried…</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Have one legend for both maps and make sure that neither it nor the scale bar or north arrow obscure (overplot) the map. Shows the values in the legend in descending order, with highest values are the top. </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>…accepted the rephrasing, generated the code and ran it.</p>
+<p>The resulting maps were closer to what I wanted but still require some refinement—see Warning below.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You could spend a lot of time and cost refining the maps, changing the prompts and the code they generate. <strong>But it is probably not a good idea</strong> because you might also find it frustrating and begin to go around in circles.</p>
+<p>The code is only ever as good as the prompt you use and how the LLM interprets it. And that can be difficult to get right.</p>
+<p><strong>This points back to the purpose of Klausmate, which is not to replace your learning but to assist it.</strong></p>
+<p>Rather than over reliance on AI, your better way forward is to take the skeleton of the code it has generated and flesh it out yourself by manually editing the code, remembering that you can use <em>Save Code Block</em> to save the code and open it in RStudio for further development and testing.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/20261118_132453.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3.5. Once you have a broad template for the maps, the code can be refined ‘by hand’</figcaption>
+</figure>
+</div>
+</section>
+<section id="measuring-the-spatial-pattern" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="measuring-the-spatial-pattern"><span class="header-section-number">3.7</span> Measuring the spatial pattern</h2>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Look at any of the maps that have been generated.</p>
+<ul>
+<li><p>Is there any evidence of a spatial pattern in where the shares of the Black African population have risen in Birmingham and where they have declined?</p></li>
+<li><p>Has that pattern changed between 2001–11 and 2011–2022?</p></li>
+<li><p>Do areas of increase cluster with (are found alongside) other areas of growth and/or do areas of decrease cluster with other areas of decline?</p></li>
+<li><p>Does the strength of any clustering appear to increase or decrease over time?</p></li>
+</ul>
+</div>
+</div>
+</div>
+<section id="measuring-spatial-autocorrelation-at-the-lsoa-level" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="measuring-spatial-autocorrelation-at-the-lsoa-level">Measuring spatial autocorrelation at the LSOA level</h4>
+<p>We will calculate Moran’s I to measure the spatial pattern. Type the following into <em>Your prompt</em> and <em>Ask for Code</em>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Calculate and compare the Moran's values for y_change_asinh in 2001-11 and 2011-21 based on contiguous neighbours at the LSOA scale, using the objects birmingham_lsoa_2001_2011 and birmingham_lsoa_2011_2021. Restrict the analysis to the LSOAs present in both objects so the two values are directly comparable, define contiguity using queen adjacency (shared edge or corner), and report each Moran's I value together with its p-value from a permutation test.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You may find the Klausmate offers you a choice of package to use, in which case accept its recommendation and <em>Use this package</em>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/20261119_103130.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3.6. Klausmate offering alternative ways to complete the task</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Take some time to read the code and form a broad understanding of it before you proceed.</p>
+</div>
+</div>
+</div>
+<p>Nest, press <em>Run</em>.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In my example, above, the <code>sfdep</code> package needs installing. Please be patient if it, or any other package, is installed.</p>
+</div>
+</div>
+<p>The results appear in the <em>R output</em> window. Can you interpret them? Is the pattern of change getting stronger or weaker over time?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Try pressing <em>Explain</em> with the <em>R output</em> window still in focus. Compare your own interpretation of the results with what is generated.</p>
+</div>
+</div>
+</section>
+<section id="measuring-spatial-autocorrelation-at-more-aggregate-scales" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="measuring-spatial-autocorrelation-at-more-aggregate-scales">Measuring spatial autocorrelation at more aggregate scales</h4>
+<p>Type the following into <em>Your prompt</em> and <em>Ask for Code</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Aggregate the data to make comparable calculations at the MSOA, ward and constituency levels.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Again, take some time to read the code and form a broad understanding of it before you proceed.</p>
+<ul>
+<li><p>How is the code handling aggregating the neighbourhood-level (LSOA) data values into larger area units (MSOAs, wards and constituencies?).</p></li>
+<li><p>Is this the only (and best) way of doing it?</p></li>
+<li><p>If not, what does this warn you about ‘blindly’ using AI to code without also employing your own expertise and learning?</p></li>
+</ul>
+</div>
+</div>
+</div>
+<p>Press <em>Run</em> and view the <em>R output</em>.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>How do you interpret the results?</p>
+<ul>
+<li>When and at what scale was the pattern of spatial autocorrelation strongest?</li>
+<li>Is there any scale at which the pattern has strengthened over time?</li>
+<li>Are all the values statistically significant?</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="fitting-a-null-random-intercepts-model" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="fitting-a-null-random-intercepts-model"><span class="header-section-number">3.8</span> Fitting a null random intercepts model</h2>
+<p>Leaving aside the details for a moment, enter the following into <em>Your prompt</em>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Fit a null random intercepts model for 2001-11 using the birmingham_lsoa_2001_2011 object, with the outcome variable y_change_asinh, and four geographical levels nested from the smallest to the largest: LSOA, MSOA, Ward and Constituency, using the columns lsoa, msoa, ward and constituency in birmingham_lsoa_2001_2011 for each level. Then calculate the percentage of the total variance at each of the four levels, with the shares summing to 100 per cent and the LSOA level treated as the residual variance.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><u>Before</u> pressing Ask for Code tick the <em>AutoRun Code</em> box. Then press <em>Ask for Code</em>.<br>
+<br>
+If asked, choose to use the <code>lme4</code> package.</p>
+<p>Scroll down the R output window to the bottom of the results.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Answer the following questions:</p>
+<ul>
+<li>At what scale (which geographical level) is the percentage <strong>highest</strong>?</li>
+<li>At what scale (which geographical level) is the percentage <strong>lowest</strong>?</li>
+</ul>
+<p>Now go back to the previous <em>R output</em>—the easiest way to do this is using the back button to the left of the code tab.</p>
+<ul>
+<li>In 2001-11, at which scale was the Moran’s I <strong>lowest</strong> and statistically significant?</li>
+<li>In 2001-11, at which scale was the Moran’s I <strong>highest</strong> and statistically significant?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Variance measures how much the measured value—which here is $<code>y_change_asinh$</code>—varies from place-to-place.</p>
+<p>If a higher percentage of the variance is found at the LSOA scale than at the MSOA scale then it suggests that LSOAs are more dissimilar to each other than MSOAs are.</p>
+<p>That greater similarity between MSOAs is exhibited by their Moran’s I score, which says MSOAs are more like their neighbours than LSOAs are.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Modify <em>Your prompt</em> <u>by hand</u> to calculate comparable percentages from a null random intercepts model but for the period 2011-21.</p>
+<ul>
+<li><p>How do the results compare?</p></li>
+<li><p>Are the variations between LSOAs increasing or decreasing?</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you click in the Your prompt window when it is clear and press the up arrow on your keyboard, it will return to the previous used prompt.</p>
+</div>
+</div>
+<section id="gathering-the-results-into-a-publication-quality-plot" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="gathering-the-results-into-a-publication-quality-plot">Gathering the results into a publication quality plot</h4>
+<p>Raw R output is useful for personal use but rarely of a sufficient quality if you are intending to present or publish the results. Let’s gather some of our analysis into a higher quality table. Enter the following into <em>Your prompt</em> and <em>Ask for Code</em>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Gather the percentages from the last two null random intercepts models and present them in a publication-quality table, with the geographical levels as the rows running from the lowest level (LSOAs) to the highest (constituencies). The columns should give the name of each level and then the percentage of variance at that level for the two time periods, taking the variance partitioning coefficients from each null model, rounded to one decimal place, with the 2001–2011 model taken from birmingham_lsoa_2001_2011 and the 2011–2021 model taken from birmingham_lsoa_2011_2021. As a further row at the bottom, please include the total variance for each period, given as the raw sum of the level variances to two decimal places and labelled as such.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The R output can be expanded by clicking on its thumbnail. <em>Copy table</em> allows you to paste the table into programs such as Word.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Although the <em>percentage</em> of the variance (the differences between neighbourhoods) has increased at the LSOA level from 2001-11 to 2011-21, the <em>total</em> variance has decreased. In other words, if you want to find differences between places in what has been measured, then, increasingly, you need to look at the LSOA scale but, even there, they are harder to find because they are becoming less pronounced.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Copying the table will try and preserve its formatting but it is possible some might be lost requiring some further tidying-up in the receiving software.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/20261119_132206.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3.7. A reasonable quality table</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="multilevel-models" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="multilevel-models"><span class="header-section-number">3.9</span> Multilevel models</h2>
+<p>The null random intercepts models above are a simple form of multilevel model: multilevel because they contain multiple grouping levels (in our example, geographical but they do not have to be); null because they include only the outcome variable (a <span class="math inline">\(Y\)</span>) without relating it to any explanatory/predictor variables (no <span class="math inline">\(X\)</span> variables are included); and random intercepts because they allow that the average value of the <span class="math inline">\(Y\)</span> variable can vary from one group to another (so, from place-to-place in our models)—each group has its own intercept (average). Calling those random relates to how they are conceived and treated statistically.</p>
+<p>To show, in broad terms, how it works, <em>Clear Code</em> in the <em>Code</em> window, copy and paste the following into instead, and press <em>Run</em>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> birmingham_lsoa_2001_2011, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(msoa21cd, y_change_asinh)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(birmingham_lsoa_2001_2011<span class="sc">$</span>y_change_asinh),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">col =</span> <span class="st">"dark blue"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <em>R output</em> shows a boxplot, where each box represents a group—each is an MSOA—and the ‘whiskers’ represent variation in the <code>y_change_asinh</code> (the <span class="math inline">\(Y\)</span> variable) present within that MSOA, at the LSOA level (the observartions are at the LSOA level but those observations are then grouped by MSOA).</p>
+<p>The solid red line is the overall mean for the data—the overall intercept level.</p>
+<p>The red diamond shapes are the mean values for each group—in effect, the group level intercepts.</p>
+<p>So, to repeat, what we have are the overall intercept and the group level intercepts. It is the group level intercepts, when estimated by the multilevel model, that are referred to as the random intercepts.</p>
+<p>Looking at the boxplots, what we can see is variation <em>between</em> the groups (they do not all have the same average), as well as <em>within</em> the groups (the observations vary around the average).</p>
+<p>An extension to all this is to calculate the random intercepts at each level of the model simultaneously and to do so in a way that works out how much they add to or subtract from the intercepts at the other levels of the model. This means you can estimate a predicted value of <code>y_change_asinh</code> at different levels and for different groups in the model—for MSOAs, Wards and Constituencies.</p>
+<p>That becomes more complicated than drawing boxplots for each level. One difference between the boxplots and the model is the red diamonds (the averages) that you saw at the MSOA level make no allowance for what is happening at the other levels of the model. They are group averages but they are group averages that do not add to or subtract from what is happening at other levels of grouping.</p>
+<p>Nevertheless, the idea is simple enough—take advantage of the group structures so what is being measured can vary within and between groups at the various levels of the model, thereby gaining an understanding of which groups, and which levels, are the ones of most interest.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/20261119_172549.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3.8. Understanding within and between group differences is at the heart of multilevel modelling</figcaption>
+</figure>
+</div>
+<section id="a-random-intercepts-model-with-a-predictor-variable" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="a-random-intercepts-model-with-a-predictor-variable">A random intercepts model with a predictor variable</h4>
+<p>Deselect the contextual object <code>birmingham_lsoa_2011_2021 [sf]</code> by clicking on the tick box alongside it. That box will be shown with a cross and the name of the object will be struck through.</p>
+<p>Enter the following into <em>Your prompt</em> and <em>Ask for Code</em>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Extend the null random intercepts model for 2001-2011 to now include the predictor variable, pct_ba_2001, with the model fitted on birmingham_lsoa_2001_2011 and the four levels and their grouping variables taken from the existing null random intercepts model for the same period. Calculate the percentage of the variance at each of the four levels before and after the inclusion of the predictor variable, presented as a table of the proportion of total variance at each level, and include the full regression output showing the measured effect of pct_ba_2001 on y_change_asinh, including the coefficient and its standard error.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The model explores whether:</p>
+<ul>
+<li><p>(<span class="math inline">\(Y\)</span>) A change—over the period from 2001 to 2011—in the share of the total Black African population of Birmingham that lives in each of its neighbourhood LSOAs, is related to (<span class="math inline">\(X\)</span>) what percentage of the LSOAs’ population was classified as Black African in the 2001 Census. This is a linear regression style relationship.</p></li>
+<li><p>Whether you need to raise or lower the regression line—the average straight line relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>—for individual MSOAs, Wards and Constituencies to get a better estimate of the change that happened within them; in other words, whether some consistently have added or decreased change, regardless of the amount of <span class="math inline">\(X\)</span> (so the better prediction of <span class="math inline">\(Y\)</span> is not simply <span class="math inline">\(X\)</span> but <span class="math inline">\(X + \text{'a bit more'}\)</span> or <span class="math inline">\(X - \text{'a bit more'}\)</span> where the <span class="math inline">\(\text{'bit more'}\)</span> varies from place to place).</p></li>
+</ul>
+</div>
+</div>
+<p>The concept of <strong>homophily</strong> suggests that people tend to bond and form relationships with people who are similar to themselves. If this applies to where people live and that is linked to a person’s ethno-cultural heritage then we might expect neighbourhoods where a higher percentage of their population was Black African in 2001 to attract an increased shared (so a positive change) in the Black African population from 2001 to 2011. Expressed more formally:</p>
+<p><span class="math inline">\(H_0\)</span>: there is no evidence of a relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> in the model</p>
+<p><span class="math inline">\(H_1\)</span>: as <span class="math inline">\(X%\)</span> increases, so too does <span class="math inline">\(Y\)</span></p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Look at the results of the model. Is there evidence to support <span class="math inline">\(H_1\)</span>?</p>
+</div>
+</div>
+</div>
+</section>
+<section id="visualising-the-model" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="visualising-the-model">Visualising the model</h4>
+<p>The model is easier to understand by visualising the lines it is fitting to the data. We will look at these at the Constituency level simply because it is easier—there are fewer constituencies then there are Wards or MSOAs so fewer lines to show on the plot.</p>
+<p>Type the following into <em>Your prompt</em>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>I want to draw a scatter plot of the linear relationship between y_change_asinh and pct_ba_2001, using all rows of birmingham_lsoa_2001_2011, with all points in a single neutral colour, and with a straight black line showing the overall relationship taken from the fixed intercept and slope of the random intercepts model of y_change_asinh on pct_ba_2001, which has LSOA Constituency as the random effect and also includes Wards and MSOAs as groups. For each Constituency in birmingham_lsoa_2001_2011, I want a separate grey line parallel to the black line, positioned above or below it according to that Constituency's random intercept from the same model, and each grey line should span the full range of pct_ba_2001. Every LSOA should be drawn, the axes should be labelled with the variable names y_change_asinh and pct_ba_2001, and there should be no title. The plot should be interactive in a way that allows the user to click on the line in the chart and see the constituency name.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>Ask for Code</em> and, if required, press <em>Run</em>.</p>
+<p>The darkest line in the plot is like a standard regression line. Think of it as the overall relationship between the <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> variables.</p>
+<p>The other lines shift that overall relationship upwards or downwards to better fit each constituency. Hovering my mouse over the highest line shows me it is associated with the Birmingham Ladywood constituency. All things being equal, the amount of change is expected to be greater (more positive) here than for any other constituency.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Go online and find out more about Birmingham Ladywood constituency. Does what you learn ‘make sense’ given what the model shows?</p>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/20261120_102958.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3.9. Showing how the random intercepts shift the overall relationship up or down by constituency</figcaption>
+</figure>
+</div>
+</section>
+<section id="a-random-intercepts-and-random-slopes" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="a-random-intercepts-and-random-slopes">A random intercepts and random slopes</h4>
+<p>At the moment, only the intercept (the position of the line) varies between groups at the various levels of the model, which is why the lines for all Constituencies are parallel. We can remove this constraint and allow their slopes to vary too.</p>
+<p>Try the following:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Extend the previous plot, using the same data, birmingham_lsoa_2001_2011, and still at the constituency level, but now allowing the slope and intercept of the line to vary by constituency by fitting a random intercepts and slopes model, keeping the same response and predictor as the previous plot, with all constituencies shown on one set of axes and one fitted line per constituency.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/20261120_114550.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3.10. The model now has random intercepts and slopes</figcaption>
+</figure>
+</div>
+</section>
+<section id="caterpillar-plots" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="caterpillar-plots">Caterpillar plots</h4>
+<p>We have visualised the random effects as the constitueny levels but, in the model, there were fitted for MSOAs and Wards too.</p>
+<p>Try the following:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Draw caterpillar plots for the MSOA, Ward and Constituency levels, using birmingham_lsoa_2001_2011 as the data, and arrange them in a 2 by 2 lattice with the fourth cell left empty. For each group, the random effect is calculated as its random intercept plus the random slope at the mean of the predictor variable. Order the groups within each plot by ascending estimated effect, show all groups, and draw 95% confidence intervals around each estimate.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Caterpillar plots are used to show the differences within groups and whether any observations (whether any MSOAs, Wards or Constituencies) have an uptick or downtick in the expected amount of the <span class="math inline">\(Y\)</span> variable that is statistically different from zero. Please with a confidence interval that spans zero do not but there are places at the MSOA, Ward and Constituency levels with a group effect, meaning their LSOAs have more or less of the <span class="math inline">\(Y\)</span> variable than is otherwise expected.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/20261122_154454.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3.11. Caterpillar plots</figcaption>
+</figure>
+</div>
+</section>
+<section id="mapping-the-random-effects" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="mapping-the-random-effects">Mapping the random effects</h4>
+<p>The multilevel modelling we are using is geographical. It is based on neighbourhoods grouped into a geographical hierarchical. That means we can map the results.</p>
+<p>Try:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Create a map of the birmingham_lsoa_2001_2011 data showing the MSOA-level effect for each LSOA, calculated as the random intercept plus the random slope at the mean of the predictor variable, using the MSOA identifier column and the LSOA identifier column in birmingham_lsoa_2001_2011 to link each LSOA to its MSOA (default: columns named MSOA and LSOA if present, otherwise the first matching code columns). Each LSOA should be coloured by its MSOA's effect, with the fill and borders in the same colour. The class labels should be rounded to 2 decimal places. Use a diverging colour palette for the fill running from low to high values, with red for negative values, white at zero and blue for positive values, so that positive and negative effects are clearly distinguished (default: a red-white-blue diverging scale with white at zero). Divide the values into 6 map classes in total using equal intervals with zero forced as a break, with the breaks calculated from all values in birmingham_lsoa_2001_2011 (default: breaks calculated from all values in birmingham_lsoa_2001_2011).</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<ul>
+<li><p>Which MSOAs appear to have ‘inflated’ expected values of the <span class="math inline">\(Y\)</span> variable, and which ‘deflated’ values?</p></li>
+<li><p>What happens if you redraw the map, this time treating MSOAs with insignificant random effects as white, NA values?</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="prompts-matter" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="prompts-matter"><span class="header-section-number">3.10</span> Prompts matter!</h2>
+<p>An important ‘take away’ from this tutorial should be that prompts matter—phrase them badly and poorer outcomes will arise. The same is true when using Large Language Models more generally.</p>
+<p>It is an argument for why learning how to code and having subject expertise to guide the process remains important.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Earlier in this tutorial we allowed the code to AutoRun after being generated. In practice, this should be discouraged. Remember, the goad of Klausmate is to help you learn code, not to avoid it.</p>
+</div>
+</div>
+</section>
+<section id="please-provide-feedback" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="please-provide-feedback"><span class="header-section-number">3.11</span> Please provide feedback</h2>
+<p>After you have spent some time using Klausmate please provide feedback at <a href="https://forms.cloud.microsoft/e/pF4Zj6evqt" target="_blank">Feedback on Klausmate – Fill in form</a>. It will help guide any future development and use in teaching. Thank you.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/QRCode for Feedback on Klausmate.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="368"></p>
+</figure>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter-2.html" class="pagination-link" aria-label="Chapter 2: Getting Started">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chapter 2: Getting Started</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

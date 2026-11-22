@@ -1,0 +1,11 @@
+/* Links in the text: dark blue with a dotted underline (website). Edit the colour here. */
+main.content a:not(.anchorjs-link):not(.footnote-ref):not(.footnote-back):not(.btn) {
+  color: #14367a;
+  text-decoration: underline dotted;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+main.content a:not(.anchorjs-link):not(.footnote-ref):not(.footnote-back):not(.btn):hover {
+  color: #0a1f4d;
+  text-decoration-style: solid;
+}
