@@ -214,9 +214,10 @@ window.Quarto = {
   <li><a href="#prompt-refinement" id="toc-prompt-refinement" class="nav-link" data-scroll-target="#prompt-refinement"><span class="header-section-number">3.6</span> Prompt refinement</a></li>
   <li><a href="#measuring-the-spatial-pattern" id="toc-measuring-the-spatial-pattern" class="nav-link" data-scroll-target="#measuring-the-spatial-pattern"><span class="header-section-number">3.7</span> Measuring the spatial pattern</a></li>
   <li><a href="#fitting-a-null-random-intercepts-model" id="toc-fitting-a-null-random-intercepts-model" class="nav-link" data-scroll-target="#fitting-a-null-random-intercepts-model"><span class="header-section-number">3.8</span> Fitting a null random intercepts model</a></li>
-  <li><a href="#multilevel-models" id="toc-multilevel-models" class="nav-link" data-scroll-target="#multilevel-models"><span class="header-section-number">3.9</span> Multilevel models</a></li>
-  <li><a href="#prompts-matter" id="toc-prompts-matter" class="nav-link" data-scroll-target="#prompts-matter"><span class="header-section-number">3.10</span> Prompts matter!</a></li>
-  <li><a href="#please-provide-feedback" id="toc-please-provide-feedback" class="nav-link" data-scroll-target="#please-provide-feedback"><span class="header-section-number">3.11</span> Please provide feedback</a></li>
+  <li><a href="#gathering-the-results-into-a-publication-quality-plot" id="toc-gathering-the-results-into-a-publication-quality-plot" class="nav-link" data-scroll-target="#gathering-the-results-into-a-publication-quality-plot"><span class="header-section-number">3.9</span> Gathering the results into a publication quality plot</a></li>
+  <li><a href="#multilevel-models" id="toc-multilevel-models" class="nav-link" data-scroll-target="#multilevel-models"><span class="header-section-number">3.10</span> Multilevel models</a></li>
+  <li><a href="#prompts-matter" id="toc-prompts-matter" class="nav-link" data-scroll-target="#prompts-matter"><span class="header-section-number">3.11</span> Prompts matter!</a></li>
+  <li><a href="#please-provide-feedback" id="toc-please-provide-feedback" class="nav-link" data-scroll-target="#please-provide-feedback"><span class="header-section-number">3.12</span> Please provide feedback</a></li>
   </ul>
 </nav>
     </div>
@@ -257,7 +258,7 @@ window.Quarto = {
 <ul>
 <li>Shows how Klausmate offers to refine a user prompt</li>
 <li>Introduces other functionality such as language translation for some features</li>
-<li>Provides an overview of using Klausmate to do some spatial analysis and to fit some multilevel models.</li>
+<li>Provides a case study of using Klausmate to do some spatial analysis and to fit some multilevel models.</li>
 <li>Reminds you to provide feedback on Klausmate.</li>
 </ul>
 </div>
@@ -265,8 +266,7 @@ window.Quarto = {
 </section>
 <section id="start-a-new-conversation" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="start-a-new-conversation"><span class="header-section-number">3.2</span> Start a new conversation</h2>
-<p>If you are still running Klausmate from the previous chapter, press <em>New conversation</em>. This has the effect of starting Klausmate afresh whilst saving the Code Log from the previous conversation, with the means to <em>Recall</em> that earlier conversation under the <em>Past conversations</em> tab.</p>
-<p>If you ended Klausmate before then just run <code>klaus()</code> in the usual way in the RStudio Console.</p>
+<p>If you are still running Klausmate from the previous chapter, press <em>New conversation</em>. This has the effect of starting Klausmate afresh whilst saving the Code Log from the previous conversation. You can <em>Recall</em> that earlier conversation under the <em>Past conversations</em> tab. Alternatively, run <code>klaus()</code> in the usual way from the RStudio Console.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -277,7 +277,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you cannot see the <em>Past conversations</em> tab then it is because you have not yet started as second (or third, …) conversation during your current Klausmate session.</p>
+<p>If you cannot see the <em>Past conversations</em> tab it is because you have not yet started as second (or third, …) conversation yet in your current Klausmate session.</p>
 </div>
 </div>
 </section>
@@ -293,7 +293,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Take some time to read the generated answer before you proceed.</p>
+<p>Take some time to read the answer before you proceed. It will help prepare you for later parts of the chapter.</p>
 </div>
 </div>
 </div>
@@ -335,14 +335,14 @@ window.Quarto = {
 <p>Use <em>Load Package Data</em> to add <u>both</u> <code>birmingham_lsoa_2001_2011</code> <u>and</u> <code>birmingham_lsoa_2011_2021</code> as context for the prompt.</p>
 <p>In the <em>Your prompt</em> window type,</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Tell me about the variable y_change_asinh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Then press <em>Answer</em> (again, <em>Answer</em> <u>not</u> Ask for Code)</p>
+<p>Then press <em>Answer</em>.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>As before, take some time to read the generated answer before you proceed.</p>
+<p>As before, take some time to read the answer before you proceed.</p>
 </div>
 </div>
 </div>
@@ -355,11 +355,11 @@ window.Quarto = {
 </section>
 <section id="translating-answers" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="translating-answers"><span class="header-section-number">3.5</span> Translating answers</h2>
-<p>You can translate the answers into a different language by changing Klausmate’s default language.</p>
-<p>Press <em>Preferences</em> and <em>Change</em> from English to another language.</p>
+<p>Changing Klausmate’s default language translates answers into a different language.</p>
+<p>Press <em>Preferences</em> and <em>Change</em> from English to another language of your choosing.</p>
 <p>Press <em>Close</em>.</p>
 <p>In the <em>Answer</em> tab window there is now the option to <em>Translate into [language]</em>. Press it.</p>
-<p>Future Answers (and Explanations) will use the same language so you may want to go back into <em>Preferences</em> and reset the default to English, which is the drop-down menu under <em>Response languag</em>e.</p>
+<p>Future Answers (and Explanations) will now use that same language so you may want to go back into <em>Preferences</em> and reset the default to English, which is the drop-down menu under <em>Response language</em>.</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -370,7 +370,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The translation is AI generated so should be treated with some caution.</p>
+<p>The translation is AI generated so should be treated with caution.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -395,11 +395,21 @@ window.Quarto = {
 </section>
 <section id="prompt-refinement" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="prompt-refinement"><span class="header-section-number">3.6</span> Prompt refinement</h2>
+<p>Klausmate will try and help you phrase <em>Your prompt</em> in a way that improves the Code it generates. Such improvements are not guaranteed.</p>
 <p>Let’s begin by aiming to plot comparative maps of the two data sets. In the <em>Your prompt</em> widow type the following then <em>Ask for Code</em>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Using the two Birmingham data sets I’ve added, draw maps of y_change_asinh, one above the other, with a single legend shared by both. Split the values at zero and use Jenks classes on each side, with a colour-blind friendly diverging palette, and add a north arrow and scale bar.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You will most likely find that the prompt is too vague. Accept the suggested changes by pressing <em>Use this version</em> in the <em>Before asking for code</em> window.</p>
-<p>Then, <em>Ask for Code</em>.</p>
-<p><strong>Expand the Code window and take time to look through the output. Can you get a broad sense of what it is doing?</strong></p>
+<p>You will likely be told that the prompt is too vague. In a previous chapter, the reason was the lack of context (in that case the problem was draw a map of what?). That is not the problem here but there are still potential gaps in what the prompt asks for.</p>
+<p>Accept the suggested changes by pressing <em>Use this version</em> in the <em>Before asking for code</em> window. Then, <em>Ask for Code</em>.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Expand the Code window and take time to look through the output. Can you get a broad sense of what it is doing?</p>
+</div>
+</div>
+</div>
 <p>Next, <em>Run</em> the code.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -407,14 +417,11 @@ window.Quarto = {
 <figcaption>Figure 3.4. Suggesting revisions to the prompt</figcaption>
 </figure>
 </div>
-<p>The maps are not wholly satisfying, so try…</p>
+<p>For me, the maps were not wholly satisfying, so I tried…</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Do not stack the maps vertically. Have them alongside each other in a 2 columns by 1 row format. Right justify the legend.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>… in <em>Your prompt</em> and <em>Ask for Code</em>. Accept any rephrasing that is suggested and, if required, press <em>Ask for Code</em> again, to generate the code.</p>
-<p>If <em>Changes</em> are highlighted, take a moment to view them, then <em>Run</em> the revised code.</p>
-<p>The result that I obtained was still not quite what I was looking for, so I tried…</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Have one legend for both maps and make sure that neither it nor the scale bar or north arrow obscure (overplot) the map. Shows the values in the legend in descending order, with highest values are the top. </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>…accepted the rephrasing, generated the code and ran it.</p>
-<p>The resulting maps were closer to what I wanted but still require some refinement—see Warning below.</p>
+<p>… in <em>Your prompt</em> and pressed <em>Ask for Code</em>. I accepted the suggested rephrasing and then continued to <em>Ask for Code</em>.</p>
+<p>Try this yourself. If <em>Changes</em> are highlighted, take a moment to view them, then <em>Run</em> the revised code.</p>
+<p>The resulting maps were still not quite what I was looking for so require some further refinement—see Warning below.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -425,10 +432,10 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You could spend a lot of time and cost refining the maps, changing the prompts and the code they generate. <strong>But it is probably not a good idea</strong> because you might also find it frustrating and begin to go around in circles.</p>
+<p>You could spend a lot of time and cost refining the maps by changing the prompts and the code they generate. <strong>But it is probably not a good idea</strong> because you might also find it frustrating and begin to go around in circles.</p>
 <p>The code is only ever as good as the prompt you use and how the LLM interprets it. And that can be difficult to get right.</p>
 <p><strong>This points back to the purpose of Klausmate, which is not to replace your learning but to assist it.</strong></p>
-<p>Rather than over reliance on AI, your better way forward is to take the skeleton of the code it has generated and flesh it out yourself by manually editing the code, remembering that you can use <em>Save Code Block</em> to save the code and open it in RStudio for further development and testing.</p>
+<p>Rather than over reliance on AI, your better way forward is to take the skeleton of the code it has generated and flesh it out yourself by manually editing the code. Remember, you can use <em>Save Code Block</em> to save the code and open it in RStudio for further development and testing. It is also in the Code Log.</p>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -448,9 +455,9 @@ window.Quarto = {
 <div class="callout-body-container">
 <p>Look at any of the maps that have been generated.</p>
 <ul>
-<li><p>Is there any evidence of a spatial pattern in where the shares of the Black African population have risen in Birmingham and where they have declined?</p></li>
+<li><p>Is there a spatial pattern in where the shares of the Black African population have risen in Birmingham and where they have declined?</p></li>
 <li><p>Has that pattern changed between 2001–11 and 2011–2022?</p></li>
-<li><p>Do areas of increase cluster with (are found alongside) other areas of growth and/or do areas of decrease cluster with other areas of decline?</p></li>
+<li><p>Are areas of increase found alongside (cluster with) other areas of growth and/or do areas of decrease cluster with other areas of decline?</p></li>
 <li><p>Does the strength of any clustering appear to increase or decrease over time?</p></li>
 </ul>
 </div>
@@ -458,8 +465,8 @@ window.Quarto = {
 </div>
 <section id="measuring-spatial-autocorrelation-at-the-lsoa-level" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="measuring-spatial-autocorrelation-at-the-lsoa-level">Measuring spatial autocorrelation at the LSOA level</h4>
-<p>We will calculate Moran’s I to measure the spatial pattern. Type the following into <em>Your prompt</em> and <em>Ask for Code</em>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Calculate and compare the Moran's values for y_change_asinh in 2001-11 and 2011-21 based on contiguous neighbours at the LSOA scale, using the objects birmingham_lsoa_2001_2011 and birmingham_lsoa_2011_2021. Restrict the analysis to the LSOAs present in both objects so the two values are directly comparable, define contiguity using queen adjacency (shared edge or corner), and report each Moran's I value together with its p-value from a permutation test.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We will calculate Moran’s I to measure the spatial pattern as the (average) correlation between an LSOA and its neighbours. Type the following into <em>Your prompt</em> and <em>Ask for Code</em>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Calculate and compare the Moran's values for y_change_asinh in 2001-11 and 2011-21 based on contiguous neighbours at the LSOA scale, using the objects birmingham_lsoa_2001_2011 and birmingham_lsoa_2011_2021. Restrict the analysis to the LSOAs present in both objects so the two values are directly comparable, define contiguity using queen adjacency (shared edge or corner), and report each Moran's I value together with its p-value from a permutation test.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You may find the Klausmate offers you a choice of package to use, in which case accept its recommendation and <em>Use this package</em>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -488,7 +495,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In my example, above, the <code>sfdep</code> package needs installing. Please be patient if it, or any other package, is installed.</p>
+<p>In my example, above, the <code>sfdep</code> package needs installing. Please be patient whilst it, or any other package, is installed.</p>
 </div>
 </div>
 <p>The results appear in the <em>R output</em> window. Can you interpret them? Is the pattern of change getting stronger or weaker over time?</p>
@@ -502,14 +509,14 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Try pressing <em>Explain</em> with the <em>R output</em> window still in focus. Compare your own interpretation of the results with what is generated.</p>
+<p>Try pressing <em>Explain</em> with the <em>R output</em> window still in focus. Compare your interpretation of the results with what is generated.</p>
 </div>
 </div>
 </section>
 <section id="measuring-spatial-autocorrelation-at-more-aggregate-scales" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="measuring-spatial-autocorrelation-at-more-aggregate-scales">Measuring spatial autocorrelation at more aggregate scales</h4>
 <p>Type the following into <em>Your prompt</em> and <em>Ask for Code</em></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Aggregate the data to make comparable calculations at the MSOA, ward and constituency levels.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Aggregate the data to make comparable calculations (Moran's I) at the MSOA, ward and constituency levels.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -520,7 +527,7 @@ window.Quarto = {
 <ul>
 <li><p>How is the code handling aggregating the neighbourhood-level (LSOA) data values into larger area units (MSOAs, wards and constituencies?).</p></li>
 <li><p>Is this the only (and best) way of doing it?</p></li>
-<li><p>If not, what does this warn you about ‘blindly’ using AI to code without also employing your own expertise and learning?</p></li>
+<li><p>What does this warn you about ‘blindly’ using AI to code without also employing your own expertise and learning?</p></li>
 </ul>
 </div>
 </div>
@@ -545,11 +552,23 @@ window.Quarto = {
 </section>
 <section id="fitting-a-null-random-intercepts-model" class="level2" data-number="3.8">
 <h2 data-number="3.8" class="anchored" data-anchor-id="fitting-a-null-random-intercepts-model"><span class="header-section-number">3.8</span> Fitting a null random intercepts model</h2>
-<p>Leaving aside the details for a moment, enter the following into <em>Your prompt</em>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Fit a null random intercepts model for 2001-11 using the birmingham_lsoa_2001_2011 object, with the outcome variable y_change_asinh, and four geographical levels nested from the smallest to the largest: LSOA, MSOA, Ward and Constituency, using the columns lsoa, msoa, ward and constituency in birmingham_lsoa_2001_2011 for each level. Then calculate the percentage of the total variance at each of the four levels, with the shares summing to 100 per cent and the LSOA level treated as the residual variance.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Leaving aside the details for now, enter the following into <em>Your prompt</em>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Fit a null random intercepts model for 2001-11 using the birmingham_lsoa_2001_2011 object, with the outcome variable y_change_asinh, and four geographical levels nested from the smallest to the largest: LSOA, MSOA, Ward and Constituency, using the columns lsoa, msoa, ward and constituency in birmingham_lsoa_2001_2011 for each level. Then calculate the percentage of the total variance at each of the four levels, with the shares summing to 100 per cent and the LSOA level treated as the residual variance.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><u>Before</u> pressing Ask for Code tick the <em>AutoRun Code</em> box. Then press <em>Ask for Code</em>.<br>
 <br>
 If asked, choose to use the <code>lme4</code> package.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The standard R syntax for a linear regression formula takes the form</p>
+<p><code>lm(Y ~ X)</code></p>
+<p>What is the equivalent syntax for the null random intercepts model?</p>
+</div>
+</div>
+</div>
 <p>Scroll down the R output window to the bottom of the results.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
@@ -599,23 +618,11 @@ If asked, choose to use the <code>lme4</code> package.</p>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you click in the Your prompt window when it is clear and press the up arrow on your keyboard, it will return to the previous used prompt.</p>
-</div>
-</div>
-<section id="gathering-the-results-into-a-publication-quality-plot" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="gathering-the-results-into-a-publication-quality-plot">Gathering the results into a publication quality plot</h4>
-<p>Raw R output is useful for personal use but rarely of a sufficient quality if you are intending to present or publish the results. Let’s gather some of our analysis into a higher quality table. Enter the following into <em>Your prompt</em> and <em>Ask for Code</em>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Gather the percentages from the last two null random intercepts models and present them in a publication-quality table, with the geographical levels as the rows running from the lowest level (LSOAs) to the highest (constituencies). The columns should give the name of each level and then the percentage of variance at that level for the two time periods, taking the variance partitioning coefficients from each null model, rounded to one decimal place, with the 2001–2011 model taken from birmingham_lsoa_2001_2011 and the 2011–2021 model taken from birmingham_lsoa_2011_2021. As a further row at the bottom, please include the total variance for each period, given as the raw sum of the level variances to two decimal places and labelled as such.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="gathering-the-results-into-a-publication-quality-plot" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="gathering-the-results-into-a-publication-quality-plot"><span class="header-section-number">3.9</span> Gathering the results into a publication quality plot</h2>
+<p>Raw R output is useful for personal use but rarely of a sufficient quality if you are intending to present or publish the results. Let’s gather some of our analysis into a higher quality table. Enter the following into <em>Your prompt</em>, <em>Ask for Code</em> and <em>Run</em>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Gather the percentages from the last two null random intercepts models and present them in a publication-quality table, with the geographical levels as the rows running from the lowest level (LSOAs) to the highest (constituencies). The columns should give the name of each level and then the percentage of variance at that level for the two time periods, taking the variance partitioning coefficients from each null model, rounded to one decimal place, with the 2001–2011 model taken from birmingham_lsoa_2001_2011 and the 2011–2021 model taken from birmingham_lsoa_2011_2021. As a further row at the bottom, please include the total variance for each period, given as the raw sum of the level variances to two decimal places and labelled as such.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The R output can be expanded by clicking on its thumbnail. <em>Copy table</em> allows you to paste the table into programs such as Word.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -627,7 +634,7 @@ If asked, choose to use the <code>lme4</code> package.</p>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Although the <em>percentage</em> of the variance (the differences between neighbourhoods) has increased at the LSOA level from 2001-11 to 2011-21, the <em>total</em> variance has decreased. In other words, if you want to find differences between places in what has been measured, then, increasingly, you need to look at the LSOA scale but, even there, they are harder to find because they are becoming less pronounced.</p>
+<p>Although the <em>percentage</em> of the variance (the differences between neighbourhoods) has increased at the LSOA level from 2001-11 to 2011-21, the <em>total</em> variance has decreased. In other words, if you want to find differences in what is measured between places then, increasingly, you need to look at the LSOA scale but, even there, they are harder to find because they are becoming less pronounced.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -640,7 +647,7 @@ If asked, choose to use the <code>lme4</code> package.</p>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Copying the table will try and preserve its formatting but it is possible some might be lost requiring some further tidying-up in the receiving software.</p>
+<p>Copying the table will try and preserve its formatting but it is possible some might be lost requiring further tidying-up in the receiving software.</p>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -650,29 +657,34 @@ If asked, choose to use the <code>lme4</code> package.</p>
 </figure>
 </div>
 </section>
-</section>
-<section id="multilevel-models" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="multilevel-models"><span class="header-section-number">3.9</span> Multilevel models</h2>
-<p>The null random intercepts models above are a simple form of multilevel model: multilevel because they contain multiple grouping levels (in our example, geographical but they do not have to be); null because they include only the outcome variable (a <span class="math inline">\(Y\)</span>) without relating it to any explanatory/predictor variables (no <span class="math inline">\(X\)</span> variables are included); and random intercepts because they allow that the average value of the <span class="math inline">\(Y\)</span> variable can vary from one group to another (so, from place-to-place in our models)—each group has its own intercept (average). Calling those random relates to how they are conceived and treated statistically.</p>
-<p>To show, in broad terms, how it works, <em>Clear Code</em> in the <em>Code</em> window, copy and paste the following into instead, and press <em>Run</em>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> birmingham_lsoa_2001_2011, </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(msoa21cd, y_change_asinh)) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">size =</span> <span class="dv">3</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(birmingham_lsoa_2001_2011<span class="sc">$</span>y_change_asinh),</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">col =</span> <span class="st">"dark blue"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The <em>R output</em> shows a boxplot, where each box represents a group—each is an MSOA—and the ‘whiskers’ represent variation in the <code>y_change_asinh</code> (the <span class="math inline">\(Y\)</span> variable) present within that MSOA, at the LSOA level (the observartions are at the LSOA level but those observations are then grouped by MSOA).</p>
+<section id="multilevel-models" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="multilevel-models"><span class="header-section-number">3.10</span> Multilevel models</h2>
+<p>The null random intercepts models above are a simple form of multilevel model:</p>
+<ul>
+<li><p>multilevel because they contain multiple grouping levels (in our example, geographical but they do not have to be);</p></li>
+<li><p>null because they include only the outcome variable (a <span class="math inline">\(Y\)</span>) without relating it to any explanatory/predictor variables (no <span class="math inline">\(X\)</span> variables are included);</p></li>
+<li><p>random intercepts because they allow that the average value of the <span class="math inline">\(Y\)</span> variable can vary from one group to another (so, from place-to-place in our models)—each group has its own intercept (average).</p></li>
+</ul>
+<p>Calling those intercepts random relates to how they are conceived and treated statistically.</p>
+<p>To show, in broad terms, how it works, <em>Clear Code</em> in the <em>Code</em> window, copy and paste the following into it instead, and press <em>Run</em>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> birmingham_lsoa_2001_2011, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(msoa21cd, y_change_asinh)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(birmingham_lsoa_2001_2011<span class="sc">$</span>y_change_asinh),</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">col =</span> <span class="st">"dark blue"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <em>R output</em> shows a boxplot, where each box represents a group—each is an MSOA—and the ‘whiskers’ represent variation in the <code>y_change_asinh</code> (the <span class="math inline">\(Y\)</span> variable) present within that MSOA (the observations are at the LSOA level but those observations are grouped by MSOA).</p>
 <p>The solid red line is the overall mean for the data—the overall intercept level.</p>
 <p>The red diamond shapes are the mean values for each group—in effect, the group level intercepts.</p>
-<p>So, to repeat, what we have are the overall intercept and the group level intercepts. It is the group level intercepts, when estimated by the multilevel model, that are referred to as the random intercepts.</p>
-<p>Looking at the boxplots, what we can see is variation <em>between</em> the groups (they do not all have the same average), as well as <em>within</em> the groups (the observations vary around the average).</p>
-<p>An extension to all this is to calculate the random intercepts at each level of the model simultaneously and to do so in a way that works out how much they add to or subtract from the intercepts at the other levels of the model. This means you can estimate a predicted value of <code>y_change_asinh</code> at different levels and for different groups in the model—for MSOAs, Wards and Constituencies.</p>
-<p>That becomes more complicated than drawing boxplots for each level. One difference between the boxplots and the model is the red diamonds (the averages) that you saw at the MSOA level make no allowance for what is happening at the other levels of the model. They are group averages but they are group averages that do not add to or subtract from what is happening at other levels of grouping.</p>
+<p>So, what we have are the <strong>overall intercept</strong> and the <strong>group level intercepts</strong>. It is the group level intercepts, when estimated by the multilevel model, that are referred to as the random intercepts.</p>
+<p>Looking at the boxplots, what we can see is variation <strong>between</strong> the groups (they do not all have the same average), as well as <strong>within</strong> the groups (the observations vary around the average).</p>
+<p>An extension to all this is to calculate the random intercepts at each level of the model simultaneously and to do so in a way that works out how much they add to or subtract from the intercepts at the other levels of the model. This means you can estimate a predicted value of <code>y_change_asinh</code> at different levels and for different groups in the model—for specific MSOAs, Wards and Constituencies, as well as getting a sense of at what scale (what level) the geographical patterning of the <code>y_change_asinh</code> is strongest.</p>
+<p>Doing that is, unsurprisingly, more complicated than drawing boxplots for each level. One difference between the boxplots and the model is the red diamonds (the averages) that you saw at the MSOA level make no allowance for what is happening at the other levels of the model. They are group averages but they are group averages that do not add to or subtract from what is happening at other levels of grouping. A multilevel model will make that allowance.</p>
 <p>Nevertheless, the idea is simple enough—take advantage of the group structures so what is being measured can vary within and between groups at the various levels of the model, thereby gaining an understanding of which groups, and which levels, are the ones of most interest.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -682,9 +694,10 @@ If asked, choose to use the <code>lme4</code> package.</p>
 </div>
 <section id="a-random-intercepts-model-with-a-predictor-variable" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="a-random-intercepts-model-with-a-predictor-variable">A random intercepts model with a predictor variable</h4>
+<p>The null random intercepts models shows there is variation in <code>birmingham_lsoa_2011_2021</code> at the various levels. A next step is to model what is associated with that variation (what might explain it?).</p>
 <p>Deselect the contextual object <code>birmingham_lsoa_2011_2021 [sf]</code> by clicking on the tick box alongside it. That box will be shown with a cross and the name of the object will be struck through.</p>
 <p>Enter the following into <em>Your prompt</em> and <em>Ask for Code</em>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Extend the null random intercepts model for 2001-2011 to now include the predictor variable, pct_ba_2001, with the model fitted on birmingham_lsoa_2001_2011 and the four levels and their grouping variables taken from the existing null random intercepts model for the same period. Calculate the percentage of the variance at each of the four levels before and after the inclusion of the predictor variable, presented as a table of the proportion of total variance at each level, and include the full regression output showing the measured effect of pct_ba_2001 on y_change_asinh, including the coefficient and its standard error.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Extend the null random intercepts model for 2001-2011 to now include the predictor variable, pct_ba_2001, with the model fitted on birmingham_lsoa_2001_2011 and the four levels and their grouping variables taken from the existing null random intercepts model for the same period. Calculate the percentage of the variance at each of the four levels before and after the inclusion of the predictor variable, presented as a table of the proportion of total variance at each level, and include the full regression output showing the measured effect of pct_ba_2001 on y_change_asinh, including the coefficient and its standard error.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -698,11 +711,24 @@ If asked, choose to use the <code>lme4</code> package.</p>
 <p>The model explores whether:</p>
 <ul>
 <li><p>(<span class="math inline">\(Y\)</span>) A change—over the period from 2001 to 2011—in the share of the total Black African population of Birmingham that lives in each of its neighbourhood LSOAs, is related to (<span class="math inline">\(X\)</span>) what percentage of the LSOAs’ population was classified as Black African in the 2001 Census. This is a linear regression style relationship.</p></li>
-<li><p>Whether you need to raise or lower the regression line—the average straight line relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>—for individual MSOAs, Wards and Constituencies to get a better estimate of the change that happened within them; in other words, whether some consistently have added or decreased change, regardless of the amount of <span class="math inline">\(X\)</span> (so the better prediction of <span class="math inline">\(Y\)</span> is not simply <span class="math inline">\(X\)</span> but <span class="math inline">\(X + \text{'a bit more'}\)</span> or <span class="math inline">\(X - \text{'a bit more'}\)</span> where the <span class="math inline">\(\text{'bit more'}\)</span> varies from place to place).</p></li>
+<li><p>Whether you need to raise or lower the regression line—the average straight line relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>—for individual MSOAs, Wards and Constituencies to get a better estimate of the change that happened within them; in other words, whether some consistently have added or decreased change, regardless of the amount of <span class="math inline">\(X\)</span> in them (so the better prediction of <span class="math inline">\(Y\)</span> is not simply <span class="math inline">\(X\)</span> but <span class="math inline">\(X + \text{'a bit more'}\)</span> or <span class="math inline">\(X - \text{'a bit more'}\)</span> where the <span class="math inline">\(\text{'bit more'}\)</span> varies from place to place).</p></li>
 </ul>
 </div>
 </div>
-<p>The concept of <strong>homophily</strong> suggests that people tend to bond and form relationships with people who are similar to themselves. If this applies to where people live and that is linked to a person’s ethno-cultural heritage then we might expect neighbourhoods where a higher percentage of their population was Black African in 2001 to attract an increased shared (so a positive change) in the Black African population from 2001 to 2011. Expressed more formally:</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Looking in the <em>Code</em> window, what is the general form of the R syntax that fits this model?</p>
+</div>
+</div>
+</div>
+</section>
+<section id="evidence-of-homophily" class="level4" data-number="3.10.0.1">
+<h4 data-number="3.10.0.1" class="anchored" data-anchor-id="evidence-of-homophily"><span class="header-section-number">3.10.0.1</span> Evidence of homophily?</h4>
+<p>The concept of <strong>homophily</strong> suggests that people tend to bond and form relationships with people who are similar to themselves. If this applies to where people live and that decision is linked to a person’s ethno-cultural heritage then we might expect neighbourhoods where a higher percentage of their population was Black African in 2001 to attract an increased shared (so a positive change) in the Black African population from 2001 to 2011. Expressed more formally:</p>
 <p><span class="math inline">\(H_0\)</span>: there is no evidence of a relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> in the model</p>
 <p><span class="math inline">\(H_1\)</span>: as <span class="math inline">\(X%\)</span> increases, so too does <span class="math inline">\(Y\)</span></p>
 <div class="callout callout-style-simple callout-note">
@@ -718,9 +744,9 @@ If asked, choose to use the <code>lme4</code> package.</p>
 </section>
 <section id="visualising-the-model" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="visualising-the-model">Visualising the model</h4>
-<p>The model is easier to understand by visualising the lines it is fitting to the data. We will look at these at the Constituency level simply because it is easier—there are fewer constituencies then there are Wards or MSOAs so fewer lines to show on the plot.</p>
+<p>The model is easier to understand by visualising the lines it is fitting to the data. We will look at these at the Constituency level simply because there are fewer constituencies then there are Wards or MSOAs so fewer lines to show on the plot. The same principle of there being a seperate line for each group applies to other levels too.</p>
 <p>Type the following into <em>Your prompt</em>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>I want to draw a scatter plot of the linear relationship between y_change_asinh and pct_ba_2001, using all rows of birmingham_lsoa_2001_2011, with all points in a single neutral colour, and with a straight black line showing the overall relationship taken from the fixed intercept and slope of the random intercepts model of y_change_asinh on pct_ba_2001, which has LSOA Constituency as the random effect and also includes Wards and MSOAs as groups. For each Constituency in birmingham_lsoa_2001_2011, I want a separate grey line parallel to the black line, positioned above or below it according to that Constituency's random intercept from the same model, and each grey line should span the full range of pct_ba_2001. Every LSOA should be drawn, the axes should be labelled with the variable names y_change_asinh and pct_ba_2001, and there should be no title. The plot should be interactive in a way that allows the user to click on the line in the chart and see the constituency name.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>I want to draw a scatter plot of the linear relationship between y_change_asinh and pct_ba_2001, using all rows of birmingham_lsoa_2001_2011, with all points in a single neutral colour, and with a straight black line showing the overall relationship taken from the fixed intercept and slope of the random intercepts model of y_change_asinh on pct_ba_2001, which has LSOA Constituency as the random effect and also includes Wards and MSOAs as groups. For each Constituency in birmingham_lsoa_2001_2011, I want a separate grey line parallel to the black line, positioned above or below it according to that Constituency's random intercept from the same model, and each grey line should span the full range of pct_ba_2001. Every LSOA should be drawn, the axes should be labelled with the variable names y_change_asinh and pct_ba_2001, and there should be no title. The plot should be interactive in a way that allows the user to click on the line in the chart and see the constituency name.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Ask for Code</em> and, if required, press <em>Run</em>.</p>
 <p>The darkest line in the plot is like a standard regression line. Think of it as the overall relationship between the <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> variables.</p>
 <p>The other lines shift that overall relationship upwards or downwards to better fit each constituency. Hovering my mouse over the highest line shows me it is associated with the Birmingham Ladywood constituency. All things being equal, the amount of change is expected to be greater (more positive) here than for any other constituency.</p>
@@ -741,11 +767,22 @@ If asked, choose to use the <code>lme4</code> package.</p>
 </figure>
 </div>
 </section>
-<section id="a-random-intercepts-and-random-slopes" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="a-random-intercepts-and-random-slopes">A random intercepts and random slopes</h4>
+<section id="a-random-intercepts-and-random-slopes-model" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="a-random-intercepts-and-random-slopes-model">A random intercepts and random slopes model</h4>
 <p>At the moment, only the intercept (the position of the line) varies between groups at the various levels of the model, which is why the lines for all Constituencies are parallel. We can remove this constraint and allow their slopes to vary too.</p>
 <p>Try the following:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Extend the previous plot, using the same data, birmingham_lsoa_2001_2011, and still at the constituency level, but now allowing the slope and intercept of the line to vary by constituency by fitting a random intercepts and slopes model, keeping the same response and predictor as the previous plot, with all constituencies shown on one set of axes and one fitted line per constituency.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Extend the previous plot, using the same data, birmingham_lsoa_2001_2011, and still at the constituency level, but now allowing the slope and intercept of the line to vary by constituency by fitting a random intercepts and slopes model, keeping the same response and predictor as the previous plot, with all constituencies shown on one set of axes and one fitted line per constituency.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now not only does the baseline value (the intercept) varies by group, so too does the estimated effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> (the slope).</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Again, looking in the <em>Code</em> window, what is the general form of the R syntax that fits this model?</p>
+</div>
+</div>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/20261120_114550.png" class="img-fluid figure-img"></p>
@@ -755,9 +792,9 @@ If asked, choose to use the <code>lme4</code> package.</p>
 </section>
 <section id="caterpillar-plots" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="caterpillar-plots">Caterpillar plots</h4>
-<p>We have visualised the random effects as the constitueny levels but, in the model, there were fitted for MSOAs and Wards too.</p>
+<p>We have visualised the random effects as the constituency levels but, in the model, there were fitted for MSOAs and Wards too.</p>
 <p>Try the following:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Draw caterpillar plots for the MSOA, Ward and Constituency levels, using birmingham_lsoa_2001_2011 as the data, and arrange them in a 2 by 2 lattice with the fourth cell left empty. For each group, the random effect is calculated as its random intercept plus the random slope at the mean of the predictor variable. Order the groups within each plot by ascending estimated effect, show all groups, and draw 95% confidence intervals around each estimate.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Draw caterpillar plots for the MSOA, Ward and Constituency levels, using birmingham_lsoa_2001_2011 as the data, and arrange them in a 2 by 2 lattice with the fourth cell left empty. For each group, the random effect is calculated as its random intercept plus the random slope at the mean of the predictor variable. Order the groups within each plot by ascending estimated effect, show all groups, and draw 95% confidence intervals around each estimate.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -768,7 +805,20 @@ If asked, choose to use the <code>lme4</code> package.</p>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Caterpillar plots are used to show the differences within groups and whether any observations (whether any MSOAs, Wards or Constituencies) have an uptick or downtick in the expected amount of the <span class="math inline">\(Y\)</span> variable that is statistically different from zero. Please with a confidence interval that spans zero do not but there are places at the MSOA, Ward and Constituency levels with a group effect, meaning their LSOAs have more or less of the <span class="math inline">\(Y\)</span> variable than is otherwise expected.</p>
+<p>Caterpillar plots are used to show the differences within groups and whether any observations (whether any MSOAs, Wards or Constituencies) have an uptick or downtick in the expected amount of the <span class="math inline">\(Y\)</span> variable that is statistically different from zero. Places with a confidence interval that spans zero do not but there are places at the MSOA, Ward and Constituency levels with a group effect, meaning their LSOAs have more or less of the <span class="math inline">\(Y\)</span> variable than is otherwise expected.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The confidence intervals are used to determine whether any of the places has a random effect that differs from zero, not from each other. If you wanted to compare any one of the places with another in the same plot to assess if their confidence intervals overlapped, you would need to adjust (shorten) their confidence intervals.</p>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -780,9 +830,9 @@ If asked, choose to use the <code>lme4</code> package.</p>
 </section>
 <section id="mapping-the-random-effects" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="mapping-the-random-effects">Mapping the random effects</h4>
-<p>The multilevel modelling we are using is geographical. It is based on neighbourhoods grouped into a geographical hierarchical. That means we can map the results.</p>
+<p>The multilevel model we are using is geographical. It is based on neighbourhoods grouped into a geographical hierarchical. That means we can map the results.</p>
 <p>Try:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Create a map of the birmingham_lsoa_2001_2011 data showing the MSOA-level effect for each LSOA, calculated as the random intercept plus the random slope at the mean of the predictor variable, using the MSOA identifier column and the LSOA identifier column in birmingham_lsoa_2001_2011 to link each LSOA to its MSOA (default: columns named MSOA and LSOA if present, otherwise the first matching code columns). Each LSOA should be coloured by its MSOA's effect, with the fill and borders in the same colour. The class labels should be rounded to 2 decimal places. Use a diverging colour palette for the fill running from low to high values, with red for negative values, white at zero and blue for positive values, so that positive and negative effects are clearly distinguished (default: a red-white-blue diverging scale with white at zero). Divide the values into 6 map classes in total using equal intervals with zero forced as a break, with the breaks calculated from all values in birmingham_lsoa_2001_2011 (default: breaks calculated from all values in birmingham_lsoa_2001_2011).</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Create a map of the birmingham_lsoa_2001_2011 data showing the MSOA-level effect for each LSOA, calculated as the random intercept plus the random slope at the mean of the predictor variable, using the MSOA identifier column and the LSOA identifier column in birmingham_lsoa_2001_2011 to link each LSOA to its MSOA (default: columns named MSOA and LSOA if present, otherwise the first matching code columns). Each LSOA should be coloured by its MSOA's effect, with the fill and borders in the same colour. The class labels should be rounded to 2 decimal places. Use a diverging colour palette for the fill running from low to high values, with red for negative values, white at zero and blue for positive values, so that positive and negative effects are clearly distinguished (default: a red-white-blue diverging scale with white at zero). Divide the values into 6 map classes in total using equal intervals with zero forced as a break, with the breaks calculated from all values in birmingham_lsoa_2001_2011 (default: breaks calculated from all values in birmingham_lsoa_2001_2011).</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -792,15 +842,16 @@ If asked, choose to use the <code>lme4</code> package.</p>
 <ul>
 <li><p>Which MSOAs appear to have ‘inflated’ expected values of the <span class="math inline">\(Y\)</span> variable, and which ‘deflated’ values?</p></li>
 <li><p>What happens if you redraw the map, this time treating MSOAs with insignificant random effects as white, NA values?</p></li>
+<li><p>Can you produce a map at the Ward or Constituency scales?</p></li>
 </ul>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="prompts-matter" class="level2" data-number="3.10">
-<h2 data-number="3.10" class="anchored" data-anchor-id="prompts-matter"><span class="header-section-number">3.10</span> Prompts matter!</h2>
-<p>An important ‘take away’ from this tutorial should be that prompts matter—phrase them badly and poorer outcomes will arise. The same is true when using Large Language Models more generally.</p>
+<section id="prompts-matter" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="prompts-matter"><span class="header-section-number">3.11</span> Prompts matter!</h2>
+<p>Aside from learning a little about multilevel models and how to fit them in R, an important ‘take away’ from this tutorial should be that prompts matter—phrase them badly and poorer outcomes will arise. The same is true when using Large Language Models more generally.</p>
 <p>It is an argument for why learning how to code and having subject expertise to guide the process remains important.</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -816,8 +867,8 @@ If asked, choose to use the <code>lme4</code> package.</p>
 </div>
 </div>
 </section>
-<section id="please-provide-feedback" class="level2" data-number="3.11">
-<h2 data-number="3.11" class="anchored" data-anchor-id="please-provide-feedback"><span class="header-section-number">3.11</span> Please provide feedback</h2>
+<section id="please-provide-feedback" class="level2" data-number="3.12">
+<h2 data-number="3.12" class="anchored" data-anchor-id="please-provide-feedback"><span class="header-section-number">3.12</span> Please provide feedback</h2>
 <p>After you have spent some time using Klausmate please provide feedback at <a href="https://forms.cloud.microsoft/e/pF4Zj6evqt" target="_blank">Feedback on Klausmate – Fill in form</a>. It will help guide any future development and use in teaching. Thank you.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
