@@ -174,7 +174,7 @@
     "href": "chapter-2.html#pausing-or-ending-the-session",
     "title": "2  Chapter 2: Getting Started",
     "section": "2.8 Pausing or ending the session",
-    "text": "2.8 Pausing or ending the session\nKlausmate is not designed to replace RStudio. It is intended to help write and debug short blocks of code that can be passed into RStudio for further development. This means most of your programming should continue to be done in the main RStudio environment.\n\nReturning to the Console in RStudio\nGo back to RStudio and view its Console window. It will show\n&gt; klaus()\nKlausmate is running\nPresently, the Console is ‘locked’ by Klausmate, which means there is no &gt; prompt showing. Consequently, if you type 1 + 1 in the RStudio Console window it will not return the answer 2.\nThe simplest way to ‘release’ the Console is to press esc.\nTo re-activate Klausmate, type klaus() in the RStudio Console and go back to your browser window.\n\n\n\n\n\n\nCautionCaution\n\n\n\nThere is a Quick Console in Klausmate that can be used for quick operations. It is better avoided—Pause Klausmate and use the RStudio Console instead.\n\n\n\n\nPausing or ending the session from within Klausmate\nUsing the Pause button within Klausmate also ‘releases’ the Console in RStudio. Its advantage over pressing `esc` is it is more robust, offering to save your Code Log file and open it in RStudio. That gives you a copy of your coding to that point. Pressing esc does not offer this.\nTo quit Klausmate completely, press End Session.\n\n\n\n\n\n\nTipTip\n\n\n\nOnly Pause Klausmate if you plan to return to your current session. Otherwise, use End Session for a ‘cleaner’ exit that will also default to saving your Code Log.\n\n\n\n\nRestoring previous sessions\nKlausmate has some capacity to recover a Recent Session.\n\n\n\n\n\n\nWarningWarning\n\n\n\nDo not be reliant on recovering a Recent Session. Up to 5 sessions are kept, each for 7 days, then deleted.",
+    "text": "2.8 Pausing or ending the session\nKlausmate is not designed to replace RStudio. It is intended to help write and debug short blocks of code that can be passed into RStudio for further development. This means most of your programming should continue to be done in the main RStudio environment.\n\nReturning to the Console in RStudio\nGo back to RStudio and view its Console window. It will show\n&gt; klaus()\nKlausmate is running\nPresently, the Console is ‘locked’ by Klausmate, which means there is no &gt; prompt showing. Consequently, if you type 1 + 1 in the RStudio Console window it will not return the answer 2.\nThe simplest way to ‘release’ the Console is to press esc.\nTo re-activate Klausmate, type klaus() in the RStudio Console and go back to your browser window.\n\n\n\n\n\n\nCautionCaution\n\n\n\nThere is a Quick Console in Klausmate that can be used for quick operations. It is better avoided—Pause Klausmate and use the RStudio Console instead.\n\n\n\n\nPausing or ending the session from within Klausmate\nUsing the Pause button within Klausmate also ‘releases’ the Console in RStudio. Its advantage over pressing `esc` is it is more robust, offering to save your Code Log file and open it in RStudio. That gives you a copy of your coding to that point. Pressing esc does not offer this.\nTo quit Klausmate completely, press End Session.\n\n\n\n\n\n\nTipTip\n\n\n\nOnly Pause Klausmate if you plan to return to your current session. Otherwise, use End Session for a ‘cleaner’ exit that will also default to saving your Code Log and workspace in your working directory.\n\n\n\n\nRestoring previous sessions\nKlausmate has some capacity to recover a Recent Session.\n\n\n\n\n\n\nWarningWarning\n\n\n\nDo not be reliant on recovering a Recent Session. Up to 5 sessions are kept, each for 7 days, then deleted.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Chapter 2: Getting Started</span>"
     ]
@@ -314,7 +314,17 @@
     "href": "chapter-3.html#prompts-matter",
     "title": "3  Chapter 3: A Case Study with Multilevel Models",
     "section": "3.11 Prompts matter!",
-    "text": "3.11 Prompts matter!\nAside from learning a little about multilevel models and how to fit them in R, an important ‘take away’ from this tutorial should be that prompts matter—phrase them badly and poorer outcomes will arise. The same is true when using Large Language Models more generally.\nIt is an argument for why learning how to code and having subject expertise to guide the process remains important.\n\n\n\n\n\n\nCautionCaution\n\n\n\nEarlier in this tutorial we allowed the code to AutoRun after being generated. In practice, this should be discouraged. Remember, the goad of Klausmate is to help you learn code, not to avoid it.",
+    "text": "3.11 Prompts matter!\nAside from learning about multilevel models and how to fit them in R, an important ‘take away’ from this tutorial is that prompts matter—phrase them badly and poorer outcomes will arise. The same is true when using Large Language Models more generally.\nIt is an argument for why learning how to code and having subject expertise to guide the process remains important.\n\n\n\n\n\n\nCautionCaution\n\n\n\nEarlier in this tutorial we allowed the code to AutoRun after being generated. In practice, this should be discouraged. Remember, the goad of Klausmate is to help you learn code, not to avoid it.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Chapter 3: A Case Study with Multilevel Models</span>"
+    ]
+  },
+  {
+    "objectID": "chapter-3.html#end-your-session",
+    "href": "chapter-3.html#end-your-session",
+    "title": "3  Chapter 3: A Case Study with Multilevel Models",
+    "section": "3.12 End your session",
+    "text": "3.12 End your session\nYou can now End Session. Both the Code Log and your workspace are saved in your current working directory.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Chapter 3: A Case Study with Multilevel Models</span>"
     ]
@@ -323,8 +333,8 @@
     "objectID": "chapter-3.html#please-provide-feedback",
     "href": "chapter-3.html#please-provide-feedback",
     "title": "3  Chapter 3: A Case Study with Multilevel Models",
-    "section": "3.12 Please provide feedback",
-    "text": "3.12 Please provide feedback\nAfter you have spent some time using Klausmate please provide feedback at Feedback on Klausmate – Fill in form. It will help guide any future development and use in teaching. Thank you.",
+    "section": "3.13 Please provide feedback",
+    "text": "3.13 Please provide feedback\nAfter you have spent some time using Klausmate please provide feedback at Feedback on Klausmate – Fill in form. It will help guide any future development and use in teaching. Thank you.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Chapter 3: A Case Study with Multilevel Models</span>"
     ]
